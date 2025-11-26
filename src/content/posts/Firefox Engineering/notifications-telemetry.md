@@ -1,7 +1,18 @@
 ---
-title: 'The Semaphore and the Sea'
-pubDate: '2025-11-24'
+title: 'Notification Telemetry'
+pubDate: '2025-11-26'
 ---
+
+```yaml
+# metrics.yaml
+notification.permission.requested:
+  type: event
+  description: Recorded when a site requests notification permission
+  bugs: [1234567]
+  data_reviews: [https://bugzilla.mozilla.org/...]
+  notification_emails: [telemetry@mozilla.com]
+  expires: never
+```
 
 # The Permission Funnel Problem
 
@@ -26,8 +37,8 @@ In reality, they depend on a tight coupling between:
 * the UI surface that exposes permission requests
 * the system that persistently stores those permissions
 * the dialog lifecycle that mediates user consent
-* the underlying Web Platform APIs
-* Firefox’s telemetry system (Glean)
+* the underlying `Web Platform APIs`
+* Firefox’s telemetry system (`Glean`)
 * and the privacy policies that constrain what we are allowed to measure
 
 If any of these layers misbehaves, the entire pipeline becomes unreliable.
@@ -58,7 +69,7 @@ I am instrumenting seven critical transitions:
    – Due to prior user choices or protective settings.
 
 5. **The user interacts with the prompt**
-   – Allow, Block, Never Allow, Learn More, click-away, tab close — each branch carries different semantic weight.
+   – `Allow`, `Block`, `Never Allow`, `Learn More`, click-away, tab close — each branch carries different semantic weight.
 
 6. **The user immediately adjusts the permission afterward**
    – A common but under-measured pattern: instant reconsideration.

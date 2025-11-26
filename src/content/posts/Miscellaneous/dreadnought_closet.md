@@ -1,6 +1,6 @@
 ---
 title: 'The Anglo-German Arms Race and My Closet'
-pubDate: '2025-11-24'
+pubDate: '2025-11-25'
 ---
 
 ![_HMS Dreadnought](../_assets/dreadnought.jpg)
@@ -26,7 +26,7 @@ I conducted a forensic audit of my last 24 months of clothing consumption. The r
 - **The Hypothesis:** I assumed usage would follow a **Uniform Distribution** ($U(a,b)$). I paid for them, so I should wear them.
 - **The Reality:** My usage followed a severe **Power Law**. Roughly 5-7 items accounted for $>60\%$ of total utility.
 
-I had about $\$1,000$ of dead capital hanging on hangers. Why? Because I didn't understand that clothing follows the same rules as naval warfare.
+I had about \$1,000 of dead capital hanging on hangers. Why? Because I didn't understand that clothing follows the same rules as naval warfare.
 
 ## The Dreadnought Effect in Utility Theory
 
@@ -42,7 +42,7 @@ $$
 P(\text{Wear}_x) =
 \begin{cases}
 1 & \text{if } x = \text{Dreadnought} \\
-\epsilon & \text{if } x = \text{Sub-optimal} \ (\text{where } \epsilon \to 0)
+\epsilon & \text{if } x = \text{Sub-optimal} \quad (\text{where } \epsilon \to 0)
 \end{cases}
 $$
 
@@ -57,7 +57,7 @@ I bought a pair of white oversized Zara jeans.
 
 ### Exhibit B: The Patagonia Arbitrage
 
-I bought a Patagonia technical climbing tee (discounted to $\$30$).
+I bought a Patagonia technical climbing tee (discounted to \$30).
 
 - **The Reality:** It fits perfectly. It doesn't smell. It never wrinkles.
 - **Result:** It is a Dreadnought. It murdered every other t-shirt in my drawer.

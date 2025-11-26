@@ -137,6 +137,28 @@ html[data-font='sans'] * {
   letter-spacing: -0.02em;
 }
 
+/* Keep math in serif font always - exclude from font toggle */
+html[data-font='sans'] .katex,
+html[data-font='sans'] .katex *,
+html[data-font='sans'] .math,
+html[data-font='sans'] .math-display,
+html[data-font='sans'] .math-inline {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+}
+
+/* Preserve KaTeX-specific font families */
+html[data-font='sans'] .katex .mord,
+html[data-font='sans'] .katex .mop,
+html[data-font='sans'] .katex .mbin,
+html[data-font='sans'] .katex .mrel,
+html[data-font='sans'] .katex .mopen,
+html[data-font='sans'] .katex .mclose,
+html[data-font='sans'] .katex .mpunct,
+html[data-font='sans'] .katex .minner {
+  font-family: inherit !important;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 4rem 0 1.35rem 0;
