@@ -1,9 +1,9 @@
 ---
-title: 'My Closet is a Stochastic Disaster'
+title: 'The Anglo-German Arms Race and My Closet'
 pubDate: '2025-11-24'
 ---
 
-![_HMS Dreadnought](_assets/dreadnought.jpg)
+![_HMS Dreadnought](../_assets/dreadnought.jpg)
 
 In 1906, the British Royal Navy launched the _HMS Dreadnought_.
 

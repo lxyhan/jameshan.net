@@ -204,9 +204,10 @@ const tree = buildTree(posts)
 
   .file-name,
   .folder-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .nested {

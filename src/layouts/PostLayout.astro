@@ -39,12 +39,13 @@ const ogImage = `/open-graph/${postSlug}.png`
   <div class="post-container">
     <main>
       <div class="post-inner">
-        <aside class="post-rail" aria-label="Post navigation">
+        <!-- <aside class="post-rail" aria-label="Post navigation">
           <BackButton />
           {themeConfig.post.toc && <TableOfContents toc={toc} />}
-        </aside>
+        </aside> -->
         <article class="post-article prose">
           <GradientMask />
+          <BackButton />
           <div class="title">
             <h1>{title}</h1>
             <div class="date">
@@ -87,10 +88,10 @@ const ogImage = `/open-graph/${postSlug}.png`
   }
 
   .post-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    display: block;
+    /* grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
     gap: 2rem;
-    align-items: flex-start;
+    align-items: flex-start; */
   }
 
   .post-rail {
@@ -104,6 +105,8 @@ const ogImage = `/open-graph/${postSlug}.png`
 
   .post-article {
     min-width: 0;
+    max-width: 100ch;
+    margin: 0 auto;
   }
 
   @media (max-width: 1023px) {

@@ -1,0 +1,90 @@
+---
+---
+
+<button id="font-toggle" class="font-toggle" aria-label="Toggle font">
+  <span class="serif-icon">Aa</span>
+  <span class="sans-icon">Aa</span>
+</button>
+
+<script is:inline>
+  function initFontToggle() {
+    // Get saved preference or default to serif
+    const savedFont = localStorage.getItem('font-preference') || 'serif'
+    document.documentElement.setAttribute('data-font', savedFont)
+    
+    function bindFontToggle() {
+      const fontToggle = document.getElementById('font-toggle')
+      if (!fontToggle) return
+      
+      // Remove existing event listeners to prevent duplicates
+      const newToggle = fontToggle.cloneNode(true)
+      fontToggle.parentNode.replaceChild(newToggle, fontToggle)
+      
+      newToggle.addEventListener('click', function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        const currentFont = document.documentElement.getAttribute('data-font') || 'serif'
+        const newFont = currentFont === 'serif' ? 'sans' : 'serif'
+        
+        document.documentElement.setAttribute('data-font', newFont)
+        localStorage.setItem('font-preference', newFont)
+      })
+    }
+    
+    bindFontToggle()
+  }
+  
+  // Initialize on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFontToggle)
+  } else {
+    initFontToggle()
+  }
+  
+  // Re-bind on Astro page transitions
+  document.addEventListener('astro:page-load', initFontToggle)
+</script>
+
+<style>
+  .font-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    color: var(--text-primary);
+    transition: opacity 0.2s ease;
+    padding: 0;
+    position: relative;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  
+  .serif-icon,
+  .sans-icon {
+    transition: opacity 0.2s ease;
+  }
+  
+  /* Show serif icon when in sans mode (to switch to serif) */
+  html[data-font='sans'] .serif-icon {
+    display: block;
+    font-family: 'CMU Serif', serif;
+    font-style: italic;
+  }
+  
+  html[data-font='sans'] .sans-icon {
+    display: none;
+  }
+  
+  /* Show sans icon when in serif mode (to switch to sans) */
+  html[data-font='serif'] .serif-icon {
+    display: none;
+  }
+  
+  html[data-font='serif'] .sans-icon {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+</style>

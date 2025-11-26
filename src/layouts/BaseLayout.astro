@@ -1,10 +1,11 @@
 ---
 import { themeConfig } from '@/config'
-import { ClientRouter } from 'astro:transitions'
+import { ViewTransitions } from 'astro:transitions'
 import ThemeManager from '@/components/ui/ThemeManager.astro'
 import FaviconThemeSwitcher from '@/components/ui/FaviconThemeSwitcher.astro'
 import TransitionWrapper from '@/components/layout/TransitionWrapper.astro'
 import BlogTree from '@/components/widgets/BlogTree.astro'
+import Footer from '@/components/layout/Footer.astro'
 import { getSortedFilteredPosts } from '@/utils/draft'
 import type { LayoutProps } from '@/types'
 
@@ -19,12 +20,32 @@ const posts = await getSortedFilteredPosts()
 
 <html lang={language}>
   <head>
+    <script is:inline>
+      // Apply font preference immediately to prevent flash
+      (function() {
+        const savedFont = localStorage.getItem('font-preference') || 'serif';
+        document.documentElement.setAttribute('data-font', savedFont);
+      })();
+    </script>
     <ThemeManager />
-    {fadeAnimation && <ClientRouter />}
+    <ViewTransitions />
     <slot name="head" />
   </head>
   <body data-centered={themeConfig.general.centeredLayout}>
     <FaviconThemeSwitcher />
+    
+    <script is:inline>
+      // Smooth page transitions
+      document.addEventListener('astro:before-preparation', () => {
+        document.body.style.transition = 'opacity 0.2s ease-out';
+        document.body.style.opacity = '0';
+      });
+      
+      document.addEventListener('astro:after-swap', () => {
+        document.body.style.transition = 'opacity 0.3s ease-out';
+        document.body.style.opacity = '1';
+      });
+    </script>
 
     <div class="site-grid">
       <div class="main-column">
@@ -34,36 +55,41 @@ const posts = await getSortedFilteredPosts()
               {/* STRUCTURAL CHANGE: We created a grid container here */}
               <div class="two-col-grid">
                 
-                {/* COL 1: Main Content (About, Posts, etc) */}
-                <main class="content-area">
-                  <slot />
-                </main>
-
-                {/* COL 2: Sidebar (Blog Tree) */}
+                {/* COL 1: Sidebar (Blog Tree) */}
                 <aside class="sidebar-area">
                   <div class="blog-tree-sticky">
                     <BlogTree posts={posts} />
                   </div>
                 </aside>
+
+                {/* COL 2: Main Content (About, Posts, etc) */}
+                <main class="content-area">
+                  <slot />
+                </main>
 
               </div>
             </TransitionWrapper>
           ) : (
             <div class="layout-wrapper">
               <div class="two-col-grid">
-                <main class="content-area">
-                  <slot />
-                </main>
                 <aside class="sidebar-area">
                   <div class="blog-tree-sticky">
                     <BlogTree posts={posts} />
                   </div>
                 </aside>
+                <main class="content-area">
+                  <slot />
+                </main>
               </div>
             </div>
           )
         }
       </div>
+      {themeConfig.general.footer && (
+        <div class="footer-wrapper">
+          <Footer />
+        </div>
+      )}
     </div>
   </body>
 </html>
@@ -78,7 +104,13 @@ const posts = await getSortedFilteredPosts()
 
   .main-column {
     width: 100%;
-    padding: 0 1.5rem;
+    padding: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .main-column {
+      padding: 0;
+    }
   }
 
   .layout-wrapper {
@@ -105,41 +137,65 @@ const posts = await getSortedFilteredPosts()
     margin: 0 auto; /* Center on mobile */
     display: flex;
     flex-direction: column;
-    padding: 0 1rem; /* Add some padding on mobile */
+    padding: 0 1.5rem; /* Add padding on mobile */
+    order: 1; /* Show content first on mobile */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    box-sizing: border-box;
   }
 
   /* 4. Sidebar Area (Mobile Defaults) */
   .sidebar-area {
     width: 100%;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border); /* Separator line for mobile */
+    max-width: 100ch; /* Match content-area max-width */
+    margin: 1.5rem auto 0; /* Reduced space between about and blog tree */
+    padding: 0 rem; /* Add padding on mobile */
+    border-top: none; /* Remove border */
+    order: 2; /* Show blog tree at bottom on mobile */
   }
 
-  /* 5. Desktop Logic (The fix you requested) */
+  /* 5. Medium Screen Logic (Tablets) */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    /* Keep stacked layout but improve spacing */
+    .content-area {
+      max-width: 90%; /* Prevent content from being too wide */
+      padding: 0;
+    }
+
+    .sidebar-area {
+      max-width: 90%;
+      margin: 3rem auto 0; /* Center the sidebar */
+      padding: 2rem 1.5rem 0 1.5rem;
+    }
+  }
+
+  /* 6. Desktop Logic (The fix you requested) */
   @media (min-width: 1280px) {
     
     /* Turn on the Grid */
     .two-col-grid {
       display: grid;
-      /* Left column takes available space, Right column is fixed ~20rem */
-      grid-template-columns: minmax(0, 1fr) 20rem; 
-      gap: 4rem; /* Space between columns */
+      /* Left column is fixed ~16rem for slim blog tree, Right column takes available space */
+      grid-template-columns: 16rem minmax(0, 1fr); 
+      gap: 5rem; /* Gap between blog tree and content */
       align-items: start;
       padding-top: 2rem;
     }
 
     /* Left Column Alignment */
     .content-area {
-      margin: 0; /* Remove auto margin so it aligns left towards sidebar */
+      order: 2; /* Content on right */
+      margin: 0 auto; /* Center content in its column */
       max-width: 100ch; /* Increased from 65ch */
-      padding: 0;
+      padding: 0 2rem; /* Add padding to prevent content from being too close to edges */
     }
 
     /* Right Column Styling */
     .sidebar-area {
+      order: 1; /* Sidebar on left */
       margin-top: 0;
-      padding-top: 0;
+      margin: 0; /* Reset mobile margin */
+      padding: 0 0 0 3rem; /* Add more left padding */
+      max-width: none; /* Remove mobile max-width */
       border-top: none; /* Remove mobile border */
       height: 100%; /* Full height for sticky context */
     }
@@ -150,6 +206,27 @@ const posts = await getSortedFilteredPosts()
       top: 5rem; /* Sticks 5rem from top of screen */
       max-height: calc(100vh - 6rem);
       overflow-y: auto; /* Scroll sidebar internally if needed */
+    }
+  }
+
+  /* Footer wrapper - at the very bottom */
+  .footer-wrapper {
+    width: 100%;
+    max-width: 100ch;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Add padding on mobile */
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .footer-wrapper {
+      max-width: 90%;
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .footer-wrapper {
+      padding: 0 2rem;
     }
   }
 

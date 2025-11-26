@@ -8,6 +8,8 @@
 /* Main content container */
 .prose {
   margin-bottom: 8rem;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Post title section */
@@ -107,6 +109,34 @@
   height: auto;
   display: block;
   margin: 2em 0;
+  box-sizing: border-box;
+}
+
+/* Multiple images in a row - responsive grid */
+.prose p:has(> img) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2em 0;
+}
+
+.prose p:has(> img) img {
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: static !important;
+}
+
+.prose p:has(> img) img::after {
+  display: none !important;
+}
+
+/* Desktop: 4 columns for multiple images */
+@media (min-width: 768px) {
+  .prose p:has(> img) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .img-placeholder {

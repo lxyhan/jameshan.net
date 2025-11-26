@@ -1,28 +1,32 @@
 ---
 import { themeConfig } from '@/config'
 import ThemeToggle from '@/components/ui/ThemeToggle.astro'
+import FontToggle from '@/components/ui/FontToggle.astro'
 ---
 
 <header>
   <nav>
-    <a href="/" class="site-title">
-      <div class="profile-container">
+    <div class="profile-container">
+      <a href="/" class="profile-pics-link">
         <div class="profile-pics">
           <img src="/profile1.png" alt="Profile 1" class="profile-pic" />
           <img src="/profile2.png" alt="Profile 2" class="profile-pic" />
           <img src="/profile3.png" alt="Profile 3" class="profile-pic" />
           <img src="/profile4.png" alt="Profile 4" class="profile-pic" />
         </div>
-        <div class="name-row">
-          <span class="name">{themeConfig.site.title}</span>
+      </a>
+      <div class="name-row">
+        <span class="name">{themeConfig.site.title}</span>
+        <div class="toggle-group">
+          <FontToggle />
           <ThemeToggle />
         </div>
-        <div class="subtitle-container">
-          <span class="subtitle">Computer Science, Statistics, Economics</span>
-          <span class="subtitle">Undergraduate, University of Toronto St. George, Class of 2028</span>
-        </div>
       </div>
-    </a>
+      <div class="subtitle-container">
+        <span class="subtitle">Computer Science, Statistics, Economics</span>
+        <span class="subtitle">Undergraduate, University of Toronto St. George, Class of 2028</span>
+      </div>
+    </div>
   </nav>
 </header>
 <style>
@@ -45,22 +49,42 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
     gap: 0.75rem;
   }
   .profile-pics {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
-    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
   }
   .profile-pic {
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
+    aspect-ratio: 1;
     object-fit: cover;
     display: block;
-    flex-shrink: 0;
+  }
+  
+  @media (min-width: 768px) {
+    .profile-pics {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 100%;
+    }
   }
   .name-row {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
+  
+  .toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .profile-pics-link {
+    display: block;
+    text-decoration: none;
+  }
+  
   .name {
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-regular);
