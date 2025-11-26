@@ -10,9 +10,11 @@ import ImageViewer from '@/components/ui/ImageViewer.astro'
 import { getSortedFilteredPosts } from '@/utils/draft'
 import type { LayoutProps } from '@/types'
 
-type Props = LayoutProps
+type Props = LayoutProps & {
+  blogTreeFirst?: boolean
+}
 
-const { type = 'page' } = Astro.props
+const { type = 'page', blogTreeFirst = false } = Astro.props
 const language = themeConfig.site.language || 'en-US'
 const fadeAnimation = themeConfig.general.fadeAnimation
 
@@ -54,7 +56,7 @@ const posts = await getSortedFilteredPosts()
           fadeAnimation ? (
             <TransitionWrapper type={type} class="layout-wrapper">
               {/* STRUCTURAL CHANGE: We created a grid container here */}
-              <div class="two-col-grid">
+              <div class={`two-col-grid ${blogTreeFirst ? 'blog-tree-first' : ''}`}>
                 
                 {/* COL 1: Sidebar (Blog Tree) */}
                 <aside class="sidebar-area">
@@ -72,7 +74,7 @@ const posts = await getSortedFilteredPosts()
             </TransitionWrapper>
           ) : (
             <div class="layout-wrapper">
-              <div class="two-col-grid">
+              <div class={`two-col-grid ${blogTreeFirst ? 'blog-tree-first' : ''}`}>
                 <aside class="sidebar-area">
                   <div class="blog-tree-sticky">
                     <BlogTree posts={posts} />
@@ -150,9 +152,19 @@ const posts = await getSortedFilteredPosts()
     width: 100%;
     max-width: 100ch; /* Match content-area max-width */
     margin: 1.5rem auto 0; /* Reduced space between about and blog tree */
-    padding: 0 rem; /* Add padding on mobile */
+    padding: 0 1.5rem; /* Add padding on mobile */
     border-top: none; /* Remove border */
-    order: 2; /* Show blog tree at bottom on mobile */
+    order: 2; /* Show blog tree at bottom on mobile by default */
+  }
+
+  /* Blog tree first on mobile for post pages */
+  .two-col-grid.blog-tree-first .sidebar-area {
+    order: 0; /* Show blog tree at top on mobile */
+    margin: 0 auto 1.5rem; /* Margin at bottom instead of top */
+  }
+
+  .two-col-grid.blog-tree-first .content-area {
+    order: 1; /* Content comes after blog tree */
   }
 
   /* 5. Medium Screen Logic (Tablets) */
