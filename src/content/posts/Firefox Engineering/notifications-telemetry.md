@@ -1,6 +1,6 @@
 ---
 title: 'Instrumenting the Notification Permission Funnel in Firefox'
-pubDate: '2025-11-26'
+pubDate: '2025-11-27'
 ---
 
 # Instrumenting the Notification Permission Funnel in Firefox
@@ -19,6 +19,7 @@ Firefox currently has limited visibility into how users interact with notificati
 - How user behavior differs across site categories (social media vs. productivity apps)
 
 Without this data, we can't optimize the permission flow or understand why certain sites have low opt-in rates.
+
 
 ---
 
