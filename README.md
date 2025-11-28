@@ -1,64 +1,13 @@
-# Chiri 🌸
+James Han
+Computer Science, Statistics, Economics Undergraduate, University of Toronto St. George, Class of 2028
 
-![screenshot-light](public/screenshots/screenshot-light.png)
-![screenshot-dark](public/screenshots/screenshot-dark.png)
+My research interests live at the intersection of game theory, behavioral economics, asian history, and quantitative trading. I think a lot about how to define and quantify meaningful work. The following is my current understanding:
 
-Chiri is a minimal blog theme built with [Astro](https://astro.build), offering customization options while preserving its clean aesthetic.
+I believe the internet is worth fighting for. I work on next-gen privacy features at Firefox (read my love letter to rust) and build open-source tools (MarkUs & PythonTA) used by 30k+ students. I Lead Blueprint, UofT AI, Anthropic @ UofT, and Trinity College’s Orientation. In 2026 I’ll be doing quantitative research on a front-office electronic trading team. Won some hackathons (Hack the North, UofTHacks, NewHacks, Google x Hack the Future, Hack the 6ix) and organized others.
 
-Check the [demo](https://astro-chiri.netlify.app/) for more details.
+I read history and economics voraciously (an incomplete list). Recently: great game espionage, the Chilean revolution, Fengtian clique politics, the Taiping rebellion, Napoleon’s 1814 campaign. I see history as pattern recognition at scale. In previous years, I was amongst the best in Canadian debate, placing 1st in Ontario and 5th Nationally, and coached many cohorts of students in political science, history, public speaking, and, of course, competitve debate.
 
-## Features
+I’m also a triathlete training for the national age group team. Did a few Ironmans and ultra events this year. I find the best conversations happen on long runs or at climbing gyms—people are often too exhausted to maintain pretense.
 
-- [x] Build with Astro
-- [x] Responsive
-- [x] Light / Dark mode
-- [x] MDX
-- [x] KaTeX
-- [x] Sitemap
-- [x] OpenGraph
-- [x] RSS
-- [ ] Pagination
+Through this blog, I’ll be working through ideas that won’t leave me alone. If any of my words resonate with you, write me at jameshan.cs@gmail.com and I’d love to chat. Find me on LinkedIn and GitHub.
 
-## Getting Started
-
-1. [Fork](https://github.com/the3ash/astro-chiri/fork) this repository, or use this template to [create a new repository](https://github.com/new?template_name=astro-chiri&template_owner=the3ash).
-
-2. Run the following commands:
-
-   ```bash
-   git clone <your-repo-url>
-
-   cd <your-repo-name>
-
-   pnpm install
-
-   pnpm dev
-   ```
-
-3. Edit `src/config.ts` and `src/content/about/about.md` to your liking.
-
-4. Use `pnpm new <title>` to create new posts, or add your posts to `src/content/posts`.
-
-5. You need to set adapter as follows before deploying to Netlify, Vercel, or other platforms, but you can set `linkCard` to `false` in `src/config.ts` to skip this step:
-   - **Netlify**: `pnpm add @astrojs/netlify` and add `adapter: netlify()` in `astro.config.ts`.
-   - **Vercel**: `pnpm add @astrojs/vercel` and add `adapter: vercel()` in `astro.config.ts`.
-   - **Static (e.g. GitHub Pages)**: `pnpm add @astrojs/static` and add `adapter: static()` in `astro.config.ts`.
-   - Refer to [Astro Deployment Guides](https://docs.astro.build/en/guides/deploy/) for more details.
-
-&emsp;[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start) [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new)
-
-## Commands
-
-- `pnpm new <title>` - Create a new post (use `_title` for drafts)
-- `pnpm update-theme` - Update the theme to the latest version
-
-## References
-
-- https://paco.me/
-- https://benji.org/
-- https://shud.in/
-- https://retypeset.radishzz.cc/
-
-## License
-
-MIT
