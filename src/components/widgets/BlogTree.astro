@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { posts } = Astro.props
+const currentPath = Astro.url.pathname
 
 // Build tree structure from posts
 interface TreeNode {
@@ -93,7 +94,10 @@ const tree = buildTree(posts)
             <div class="tree-children">
               {node.children && node.children.map(child => (
                 child.type === 'file' && child.post ? (
-                  <a href={`/${child.post.id}`} class="tree-file">
+                  <a 
+                    href={`/${child.post.id}`} 
+                    class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
+                  >
                     <span class="file-icon">📄</span>
                     <span class="file-name">{child.post.data.title}</span>
                   </a>
@@ -106,7 +110,10 @@ const tree = buildTree(posts)
                     <div class="tree-children">
                       {child.children && child.children.map(file => (
                         file.post && (
-                          <a href={`/${file.post.id}`} class="tree-file">
+                          <a 
+                            href={`/${file.post.id}`} 
+                            class={`tree-file ${currentPath === `/${file.post.id}` ? 'active' : ''}`}
+                          >
                             <span class="file-icon">📄</span>
                             <span class="file-name">{file.post.data.title}</span>
                           </a>
@@ -119,7 +126,10 @@ const tree = buildTree(posts)
             </div>
           </details>
         ) : node.post ? (
-          <a href={`/${node.post.id}`} class="tree-file">
+          <a 
+            href={`/${node.post.id}`} 
+            class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
+          >
             <span class="file-icon">📄</span>
             <span class="file-name">{node.post.data.title}</span>
           </a>
@@ -192,6 +202,7 @@ const tree = buildTree(posts)
     color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
+    min-width: 0;
   }
 
   .tree-file:hover {
@@ -202,8 +213,19 @@ const tree = buildTree(posts)
     text-decoration: underline;
   }
 
+  .tree-file.active {
+    color: var(--primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .tree-file.active .file-name {
+    text-decoration: underline;
+  }
+
   .file-name,
   .folder-name {
+    flex: 1;
+    min-width: 0;
     max-width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;

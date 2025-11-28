@@ -32,4 +32,10 @@ const { title, description } = Astro.props
   .page-content main {
     flex: 1;
   }
+
+  @media (min-width: 1280px) {
+    .page-content > div {
+      margin-bottom: 0; /* Remove extra spacing from Header container */
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 ---
-title: 'SDS Retrospective'
+title: 'Markus & PythonTA'
 pubDate: '2025-11-27'
 ---
 # *Eight Months Across `PythonTA` & `MarkUs`*

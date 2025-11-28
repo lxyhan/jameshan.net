@@ -128,7 +128,6 @@ const posts = await getSortedFilteredPosts()
   /* This holds the Main Content and the Sidebar side-by-side on desktop */
   .two-col-grid {
     width: 100%;
-    max-width: 85rem; /* Limit total width so sidebar doesn't fly too far right */
     margin: 0 auto;
     display: flex; /* Default to mobile stack */
     flex-direction: column;
@@ -172,6 +171,7 @@ const posts = await getSortedFilteredPosts()
     /* Keep stacked layout but improve spacing */
     .content-area {
       max-width: 90%; /* Prevent content from being too wide */
+      margin: 0 auto; /* Center the content */
       padding: 0;
     }
 
@@ -185,41 +185,89 @@ const posts = await getSortedFilteredPosts()
   /* 6. Desktop Logic (The fix you requested) */
   @media (min-width: 1280px) {
     
-    /* Turn on the Grid */
+    .site-grid {
+      display: block; /* Ensure no flex interference */
+    }
+
+    .main-column {
+      display: block; /* Ensure no flex interference */
+    }
+
+    .layout-wrapper {
+      display: block; /* Override flex to allow grid to work */
+      min-height: auto; /* Remove min-height constraint */
+    }
+
+    /* Turn on the Grid - content centered, filetree in margin */
     .two-col-grid {
-      display: grid;
-      /* Left column is fixed ~16rem for slim blog tree, Right column takes available space */
-      grid-template-columns: 16rem minmax(0, 1fr); 
-      gap: 5rem; /* Gap between blog tree and content */
-      align-items: start;
+      display: block !important;
+      max-width: none;
+      margin: 0 auto;
       padding-top: 2rem;
+      position: relative;
     }
 
-    /* Left Column Alignment */
+    /* Main Content - Always centered */
     .content-area {
-      order: 2; /* Content on right */
-      margin: 0 auto; /* Center content in its column */
-      max-width: 100ch; /* Increased from 65ch */
-      padding: 0 2rem; /* Add padding to prevent content from being too close to edges */
+      margin: 0 auto;
+      max-width: 100ch;
+      width: 100ch; /* Force fixed width */
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      position: relative;
     }
 
-    /* Right Column Styling */
+    /* Sidebar - Positioned absolutely relative to viewport */
     .sidebar-area {
-      order: 1; /* Sidebar on left */
-      margin-top: 0;
-      margin: 0; /* Reset mobile margin */
-      padding: 0 0 0 3rem; /* Add more left padding */
-      max-width: none; /* Remove mobile max-width */
-      border-top: none; /* Remove mobile border */
-      height: 100%; /* Full height for sticky context */
+      position: absolute;
+      left: calc(50vw - 50ch - 300px - 2rem); /* Left of centered content */
+      top: 2rem;
+      margin: 0;
+      padding: 0;
+      max-width: 300px;
+      width: 300px;
+      border-top: none;
     }
 
-    /* Sticky Behavior */
+    /* Sticky Behavior - follows content */
     .blog-tree-sticky {
-      position: sticky;
-      top: 5rem; /* Sticks 5rem from top of screen */
-      max-height: calc(100vh - 6rem);
-      overflow-y: auto; /* Scroll sidebar internally if needed */
+      position: relative;
+      max-height: none;
+    }
+
+    /* Ensure consistent positioning for different page types */
+    .page-content,
+    .post-container {
+      display: block; /* Override flex */
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-content main,
+    .post-container main {
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Reset any extra spacing in post articles */
+    .post-article {
+      margin: 0 !important; /* Remove all margins including horizontal centering */
+      padding-top: 0 !important;
+      max-width: none !important; /* Remove max-width constraint */
+    }
+
+    /* Reset any extra spacing in page content */
+    .page-content > div {
+      margin: 0 !important;
+    }
+
+    /* Ensure post-inner doesn't add extra layout */
+    .post-inner {
+      margin: 0 !important;
+      padding: 0 !important;
     }
   }
 

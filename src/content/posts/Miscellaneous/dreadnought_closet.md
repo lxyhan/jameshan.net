@@ -1,5 +1,5 @@
 ---
-title: 'The Anglo-German Arms Race and My Closet'
+title: 'Dreadnought Drip'
 pubDate: '2025-11-25'
 ---
 

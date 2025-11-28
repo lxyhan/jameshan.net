@@ -1,5 +1,5 @@
 ---
-title: 'Instrumenting the Notification Permission Funnel in Firefox'
+title: 'Firefox Telemetry I'
 pubDate: '2025-11-27'
 ---
 
