@@ -1,0 +1,135 @@
+---
+---
+
+<div class="music-player">
+  <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+    <span class="music-icon">♪</span>
+  </button>
+  <span id="now-playing" class="now-playing">fishmans - baby blue (1995)</span>
+</div>
+
+<audio id="easter-egg-audio" loop>
+  <source src="/music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script is:inline>
+  function initMusicToggle() {
+    function bindMusicToggle() {
+      const musicToggle = document.getElementById('music-toggle')
+      const audio = document.getElementById('easter-egg-audio')
+      const nowPlaying = document.getElementById('now-playing')
+      
+      if (!musicToggle || !audio || !nowPlaying) return
+      
+      // Set initial volume
+      audio.volume = 0.5
+      
+      // Remove existing event listeners to prevent duplicates
+      const newToggle = musicToggle.cloneNode(true)
+      musicToggle.parentNode.replaceChild(newToggle, musicToggle)
+      
+      newToggle.addEventListener('click', function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        if (audio.paused) {
+          audio.play()
+          newToggle.classList.add('playing')
+          nowPlaying.classList.add('visible')
+        } else {
+          audio.pause()
+          newToggle.classList.remove('playing')
+          nowPlaying.classList.remove('visible')
+        }
+      })
+    }
+    
+    bindMusicToggle()
+  }
+  
+  // Initialize on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMusicToggle)
+  } else {
+    initMusicToggle()
+  }
+  
+  // Re-bind on Astro page transitions
+  document.addEventListener('astro:page-load', initMusicToggle)
+</script>
+
+<style>
+  .music-player {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .music-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    padding: 0;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    position: relative;
+    top: -2px;
+  }
+  
+  .music-toggle:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  .music-toggle.playing {
+    color: var(--primary);
+    opacity: 1;
+    animation: pulse 1s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+  
+  .music-icon {
+    display: block;
+  }
+
+  .now-playing {
+    font-size: var(--font-size-xs);
+    font-style: italic;
+    color: var(--primary);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .now-playing.visible {
+    opacity: 1;
+    transform: translateX(0);
+    animation: fadeInOut 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>

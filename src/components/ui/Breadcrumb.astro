@@ -1,0 +1,75 @@
+---
+interface Props {
+  postId: string
+  title: string
+}
+
+const { postId, title } = Astro.props
+
+// Split the post ID into parts (e.g., "Software Engineering/notifications-telemetry.md")
+const parts = postId.split('/')
+const folder = parts.length > 1 ? parts[0] : null
+const fileName = parts[parts.length - 1].replace('.md', '')
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/" class="breadcrumb-item">
+    <span class="breadcrumb-arrow">←</span>
+    home
+  </a>
+  {folder && (
+    <>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item folder">{folder}</span>
+    </>
+  )}
+  <span class="breadcrumb-separator">/</span>
+  <span class="breadcrumb-item current">{title}</span>
+</nav>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--serif);
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+  }
+
+  .breadcrumb-item:hover {
+    color: var(--text-primary);
+  }
+
+  .breadcrumb-item.folder {
+    color: var(--text-secondary);
+  }
+
+  .breadcrumb-item.current {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .breadcrumb-separator {
+    color: var(--text-secondary);
+    opacity: 0.5;
+  }
+
+  .breadcrumb-arrow {
+    margin-right: 0.25rem;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .breadcrumb-item:hover {
+      color: var(--text-secondary);
+    }
+  }
+</style>

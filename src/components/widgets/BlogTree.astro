@@ -75,18 +75,29 @@ function buildTree(posts: CollectionEntry<'posts'>[]): TreeNode {
 }
 
 const tree = buildTree(posts)
+
+// Helper function to check if a folder contains the current path
+function isFolderActive(node: TreeNode, currentPath: string): boolean {
+  if (node.type === 'file') {
+    return currentPath === `/${node.post?.id}`
+  }
+  if (node.children) {
+    return node.children.some(child => isFolderActive(child, currentPath))
+  }
+  return false
+}
 ---
 
 <div class="blog-tree">
-  <div class="tree-header">
-    <span class="folder-icon">📁</span>
-    <span class="folder-name">blog</span>
-  </div>
+  <a href="/" class="tree-header">
+    <span class="folder-icon">🌿</span>
+    <span class="folder-name">home</span>
+  </a>
   <div class="tree-content">
     {tree.children && tree.children.map(node => (
       <Fragment>
         {node.type === 'folder' ? (
-          <details class="tree-folder" open>
+          <details class="tree-folder" open={isFolderActive(node, currentPath)}>
             <summary>
               <span class="folder-icon">📂</span>
               <span class="folder-name">{node.name}</span>
@@ -102,7 +113,7 @@ const tree = buildTree(posts)
                     <span class="file-name">{child.post.data.title}</span>
                   </a>
                 ) : child.type === 'folder' ? (
-                  <details class="tree-folder nested" open>
+                  <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
                     <summary>
                       <span class="folder-icon">📂</span>
                       <span class="folder-name">{child.name}</span>
@@ -153,6 +164,13 @@ const tree = buildTree(posts)
     gap: 0.5rem;
     margin-bottom: 0.75rem;
     font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .tree-header:hover {
+    color: var(--primary);
   }
 
   .folder-icon,
@@ -178,10 +196,25 @@ const tree = buildTree(posts)
     padding: 0.25rem 0;
     list-style: none;
     user-select: none;
+    position: relative;
   }
 
   .tree-folder summary::-webkit-details-marker {
     display: none;
+  }
+
+  /* Chevron icon */
+  .tree-folder summary::before {
+    content: '›';
+    display: inline-block;
+    width: 1rem;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .tree-folder[open] summary::before {
+    transform: rotate(90deg);
   }
 
   .tree-folder summary:hover {
@@ -215,7 +248,6 @@ const tree = buildTree(posts)
 
   .tree-file.active {
     color: var(--primary);
-    font-weight: var(--font-weight-bold);
   }
 
   .tree-file.active .file-name {

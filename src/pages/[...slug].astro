@@ -22,6 +22,6 @@ const readingTime = remarkPluginFrontmatter.readingTime
 const toc = remarkPluginFrontmatter.toc || []
 ---
 
-<PostLayout {...post.data} readingTime={readingTime} toc={toc}>
+<PostLayout {...post.data} readingTime={readingTime} toc={toc} postId={post.id}>
   <Content />
 </PostLayout>
