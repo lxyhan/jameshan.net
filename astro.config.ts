@@ -2,37 +2,59 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import playformInline from '@playform/inline'
+
 import remarkMath from 'remark-math'
 import remarkDirective from 'remark-directive'
-import rehypeKatex from 'rehype-katex'
+import remarkGfm from 'remark-gfm'                         // ⭐ ADDED
 import remarkEmbeddedMedia from './src/plugins/remark-embedded-media.mjs'
 import remarkReadingTime from './src/plugins/remark-reading-time.mjs'
+import remarkTOC from './src/plugins/remark-toc.mjs'
+
+import rehypeKatex from 'rehype-katex'
+import rehypeRaw from 'rehype-raw'                         // ⭐ ADDED
 import rehypeCleanup from './src/plugins/rehype-cleanup.mjs'
 import rehypeImageProcessor from './src/plugins/rehype-image-processor.mjs'
 import rehypeCopyCode from './src/plugins/rehype-copy-code.mjs'
-import remarkTOC from './src/plugins/remark-toc.mjs'
+
 import { themeConfig } from './src/config'
 import { imageConfig } from './src/utils/image-config'
+
 import path from 'path'
 import netlify from '@astrojs/netlify'
 
 export default defineConfig({
-  adapter: netlify(), // Set adapter for deployment, or set `linkCard` to `false` in `src/config.ts`
+  adapter: netlify(),
   site: themeConfig.site.website,
+
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
       config: imageConfig
     }
   },
+
   markdown: {
     shikiConfig: {
       theme: 'css-variables',
       wrap: false
     },
-    remarkPlugins: [remarkMath, remarkDirective, remarkEmbeddedMedia, remarkReadingTime, remarkTOC],
-    rehypePlugins: [rehypeKatex, rehypeCleanup, rehypeImageProcessor, rehypeCopyCode]
+    remarkPlugins: [
+      remarkMath,
+      remarkDirective,
+      remarkGfm,                         // ⭐ ADDED: enables footnotes, tables, tasks, etc.
+      remarkEmbeddedMedia,
+      remarkReadingTime,
+      remarkTOC
+    ],
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeRaw,                         // ⭐ ADDED: enables inline HTML in markdown
+      rehypeCleanup,
+      rehypeImageProcessor,
+      rehypeCopyCode
+    ]
   },
+
   integrations: [
     playformInline({
       Exclude: [(file) => file.toLowerCase().includes('katex')]
@@ -40,6 +62,7 @@ export default defineConfig({
     mdx(),
     sitemap()
   ],
+
   vite: {
     resolve: {
       alias: {
@@ -47,6 +70,7 @@ export default defineConfig({
       }
     }
   },
+
   devToolbar: {
     enabled: false
   }
