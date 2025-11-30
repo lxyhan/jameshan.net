@@ -82,7 +82,7 @@ A system has **exactly one solution** iff:
 In other words:
 
 $$
-\operatorname{rank}(A) = \operatorname{rank}(C) = \text{number of variables}
+\operatorname{rank}(\operatorname{rref}(A)) = \operatorname{rank}(\operatorname{rref}(C)) = \text{number of variables}
 $$
 
 ### Infinitely Many Solutions
@@ -94,12 +94,12 @@ A system has **infinitely many solutions** iff:
 In other words:
 
 $$
-\operatorname{rank}(A) = \operatorname{rank}(C) \neq \text{number of variables}
+\operatorname{rank}(\operatorname{rref}(A)) = \operatorname{rank}(\operatorname{rref}(C)) \neq \text{number of variables}
 $$
 
-Specifically, the dimension of the solution set is:
+Specifically, the dimension of the solution set (set of possible input vectors x to produce Ax = b) is:
 
 $$
-\dim(\text{solution set}) = \text{number of variables} - \operatorname{rank}(C)
+\dim(\text{solution set}) = \text{number of variables} - \operatorname{rank}(\operatorname{rref}(C))
 $$
 

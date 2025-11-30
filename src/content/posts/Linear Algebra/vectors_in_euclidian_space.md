@@ -1,7 +1,9 @@
 ---
-title: 'Solving Linear Systems'
+title: 'Vectors in Euclidian Space'
 pubDate: '2025-11-29'
 ---
 
-## Basic Definition
+## Basic Definitions
+
+A linear combination of vectors 
 
