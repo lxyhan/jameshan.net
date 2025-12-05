@@ -5,7 +5,7 @@
 }
 
 .prose {
-  font-size: 1.125rem; /* 18px base text size */
+  font-size: 1.0625rem; /* 17px - denser, more document-like */
 }
 
 /* Main content container */
@@ -15,44 +15,44 @@
   overflow-x: hidden;
 }
 
-/* Post title section */
+/* Post title section - more compact */
 .prose .title {
-  margin-bottom: 2.5em;
+  margin-bottom: 1.5em;
 }
 
 .prose .title h1 {
-  margin: 0 0 0.375rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 /* Headings (h1-h5)
  Adjust size or spacing below if needed. */
 .prose h1 {
-  font-size: 1.75rem;
+  font-size: 1.65rem; /* Slightly smaller */
   font-weight: var(--font-weight-bold);
-  line-height: 1.3;
-  margin: 1.5em 0 0.5em 0;
+  line-height: 1.25;
+  margin: 1.25em 0 0.35em 0; /* Tighter margins */
 }
 
 .prose h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* More compact */
   font-weight: var(--font-weight-bold);
-  line-height: 1.4;
-  margin: 1.5em 0 0.5em 0;
+  line-height: 1.3;
+  margin: 1.15em 0 0.35em 0; /* Less space */
 }
 
 .prose h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.4;
-  margin: 1.25em 0 0.5em 0;
+  line-height: 1.35;
+  margin: 1em 0 0.3em 0; /* Tighter */
 }
 
 .prose h4,
 .prose h5 {
-  font-size: var(--font-size-m);
+  font-size: 1.1rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.5;
-  margin: 1em 0 0.5em 0;
+  line-height: 1.4;
+  margin: 0.85em 0 0.25em 0; /* Much tighter */
 }
 
 /* Bold text */
@@ -81,32 +81,32 @@
   text-decoration-color: var(--text-primary);
 }
 
-/* Paragraphs */
+/* Paragraphs - compact like a textbook */
 .prose p {
-  line-height: 1.5;
-  margin: 0.75em 0;
+  line-height: 1.55;
+  margin: 0.65em 0; /* Tighter spacing */
 }
 
-/* Tables */
+/* Tables - compact */
 .prose table {
   table-layout: fixed;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 1.75em 0;
-  font-size: var(--font-size-m);
+  margin: 1.25em 0; /* Less space */
+  font-size: 0.95em; /* Smaller for density */
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
-/* Table cells */
+/* Table cells - compact */
 .prose th,
 .prose td {
   border: none;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 0.5em 1em;
+  padding: 0.4em 0.75em; /* Tighter cells */
   text-align: left;
 }
 
@@ -124,12 +124,12 @@
   font-weight: var(--font-weight-bold);
 }
 
-/* Images */
+/* Images - compact like textbook figures */
 .prose img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 2em 0;
+  margin: 1.25em 0; /* Less space around images */
   box-sizing: border-box;
   background: linear-gradient(90deg, var(--code-bg) 25%, var(--border) 50%, var(--code-bg) 75%);
   background-size: 200% 100%;
@@ -257,11 +257,11 @@
     'calt' 0;
 }
 
-/* Blockquotes */
+/* Blockquotes - compact */
 .prose blockquote {
   border-left: 2px solid var(--border);
-  margin: 0 0 1.75em 0.125em;
-  padding: 0 0 0 1.375em;
+  margin: 1em 0 1em 0.125em; /* Less space */
+  padding: 0 0 0 1.25em;
   text-align: left;
 }
 
@@ -274,13 +274,13 @@
   margin-top: 0.5em;
 }
 
-/* Unordered lists */
+/* Unordered lists - denser */
 .prose ul {
   list-style-type: none;
   padding-left: 0;
   margin-left: 1rem;
-  margin-bottom: 1em;
-  line-height: 1.6;
+  margin-bottom: 0.75em; /* Tighter */
+  line-height: 1.5; /* Compact */
 }
 
 .prose ul ul {
@@ -292,7 +292,7 @@
 .prose ul li {
   position: relative;
   padding-left: 0.5rem;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em; /* Tighter list items */
 }
 
 .prose ul li:last-child {
@@ -314,12 +314,12 @@
   color: var(--text-tertiary);
 }
 
-/* Ordered lists */
+/* Ordered lists - denser */
 .prose ol {
   list-style-position: outside;
   padding-left: 0;
   margin-left: 1.25rem;
-  margin-bottom: 1.75em;
+  margin-bottom: 0.75em; /* Much tighter */
   counter-reset: item;
 }
 
@@ -327,7 +327,7 @@
   display: block;
   position: relative;
   padding-left: 0.25rem;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em; /* Tighter */
 }
 
 .prose ol li:last-child {
@@ -430,9 +430,9 @@
   line-height: 1;
 }
 
-/* Horizontal rule */
+/* Horizontal rule - less dramatic */
 .prose hr {
-  margin: 3.75em 0;
+  margin: 2em 0; /* Much tighter */
   height: auto;
   border: none;
   background: none;
@@ -468,10 +468,10 @@
   padding: 3px 1px;
 }
 
-/* Footnotes */
+/* Footnotes - more compact */
 .prose .footnotes {
-  margin-top: 4rem;
-  padding-top: 1.75rem;
+  margin-top: 2.5rem; /* Less space */
+  padding-top: 1.25rem;
   position: relative;
 }
 
@@ -525,12 +525,12 @@
   color: var(--text-primary);
 }
 
-/* Code blocks */
+/* Code blocks - more compact */
 .prose pre {
   background-color: var(--astro-code-background);
-  border-radius: 8px;
-  padding: 1.25em 1.5em;
-  margin: 2em 0;
+  border-radius: 6px;
+  padding: 1em 1.25em; /* Tighter padding */
+  margin: 1.25em 0; /* Less space */
   overflow-x: auto;
 }
 
@@ -568,10 +568,10 @@
   display: none !important;
 }
 
-/* Ensure display math is centered */
+/* Ensure display math is centered - compact */
 .katex-display {
   text-align: center;
-  margin: 1.75em 0;
+  margin: 1em 0; /* Less space around math */
 }
 
 /* Reset any conflicting styles that might interfere with KaTeX */
