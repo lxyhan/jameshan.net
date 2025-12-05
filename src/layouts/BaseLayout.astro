@@ -156,14 +156,14 @@ const posts = await getSortedFilteredPosts()
     order: 2; /* Show blog tree at bottom on mobile by default */
   }
 
-  /* Blog tree first on mobile for post pages */
+  /* Blog tree at bottom on mobile for post pages */
   .two-col-grid.blog-tree-first .sidebar-area {
-    order: 0; /* Show blog tree at top on mobile */
-    margin: 0 auto 1.5rem; /* Margin at bottom instead of top */
+    order: 2; /* Show blog tree at bottom on mobile */
+    margin: 1.5rem auto 0; /* Margin at top */
   }
 
   .two-col-grid.blog-tree-first .content-area {
-    order: 1; /* Content comes after blog tree */
+    order: 1; /* Content comes first */
   }
 
   /* 5. Medium Screen Logic (Tablets) */
