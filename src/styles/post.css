@@ -430,22 +430,13 @@
   line-height: 1;
 }
 
-/* Horizontal rule - less dramatic */
+/* Horizontal rule - subtle line */
 .prose hr {
-  margin: 2em 0; /* Much tighter */
-  height: auto;
+  margin: 2em 0;
+  height: 1px;
   border: none;
-  background: none;
-  text-align: center;
-  position: relative;
-}
-
-.prose hr::before {
-  content: '***';
-  font-family: var(--mono);
-  color: var(--text-tertiary);
-  font-size: 0.875em;
-  letter-spacing: 0.25em;
+  background: var(--text-tertiary);
+  opacity: 0.3;
 }
 
 /* Keyboard input */
