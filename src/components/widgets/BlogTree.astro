@@ -98,7 +98,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
       <Fragment>
         {node.type === 'folder' ? (
           <details class="tree-folder" open={isFolderActive(node, currentPath)}>
-            <summary>
+            <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
               <span class="folder-icon">📂</span>
               <span class="folder-name">{node.name}</span>
             </summary>
@@ -114,7 +114,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
                   </a>
                 ) : child.type === 'folder' ? (
                   <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
-                    <summary>
+                    <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
                       <span class="folder-icon">📂</span>
                       <span class="folder-name">{child.name}</span>
                     </summary>

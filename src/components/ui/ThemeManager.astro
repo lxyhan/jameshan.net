@@ -53,7 +53,7 @@
             localStorage.setItem(this.STORAGE_KEY, theme)
           }
         } catch (e) {
-          console.warn('Failed to store theme preference:', e)
+          // Silent fail in production, localStorage might be disabled
         }
       },
 

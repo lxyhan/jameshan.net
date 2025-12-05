@@ -77,15 +77,19 @@ async function fixRelativeImagePaths(
             img.setAttribute('src', new URL(processedImage.src, baseUrl).toString())
           }
         } catch (error) {
-          console.error(`[Feed] Image processing failed: ${src} -> ${resolvedPath}`, error)
+          if (import.meta.env.DEV) {
+            console.error(`[Feed] Image processing failed: ${src} -> ${resolvedPath}`, error)
+          }
           // Use original path as fallback when error occurs
           const relativePath = resolvedPath.replace('/src/content/posts/', '/')
           const imageUrl = new URL(relativePath, baseUrl).toString()
           img.setAttribute('src', imageUrl)
         }
       } else {
-        console.warn(`[Feed] Image module not found: ${resolvedPath}`)
-        console.warn(`[Feed] Available image modules:`, Object.keys(imagesGlob))
+        if (import.meta.env.DEV) {
+          console.warn(`[Feed] Image module not found: ${resolvedPath}`)
+          console.warn(`[Feed] Available image modules:`, Object.keys(imagesGlob))
+        }
       }
     } else if (src.startsWith('/')) {
       img.setAttribute('src', new URL(src, baseUrl).toString())

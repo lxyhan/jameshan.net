@@ -2,7 +2,7 @@
 import { themeConfig } from '@/config'
 ---
 
-<script define:vars={{ copyCode: themeConfig.post.copyCode }}>
+<script define:vars={{ copyCode: themeConfig.post.copyCode, isDev: import.meta.env.DEV }}>
   function initCopyCode() {
     const copyIcon = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
@@ -90,7 +90,9 @@ import { themeConfig } from '@/config'
             }, 500)
           }, 1500)
         } catch (err) {
-          console.error('Failed to copy code:', err)
+          if (isDev) {
+            console.error('Failed to copy code:', err)
+          }
 
           // Fallback method: create temporary textarea for older browsers
           try {
@@ -108,11 +110,15 @@ import { themeConfig } from '@/config'
                 document.body.removeChild(textArea)
               })
               .catch(() => {
-                console.error('Both clipboard methods failed')
+                if (isDev) {
+                  console.error('Both clipboard methods failed')
+                }
                 document.body.removeChild(textArea)
               })
           } catch (fallbackErr) {
-            console.error('All clipboard methods failed:', fallbackErr)
+            if (isDev) {
+              console.error('All clipboard methods failed:', fallbackErr)
+            }
           }
 
           button.setAttribute('data-copying', 'true')

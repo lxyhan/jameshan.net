@@ -19,9 +19,10 @@ const MONTHS_EN = [
 const VALID_SEPARATORS = ['.', '-', '/']
 
 /**
- * @param date
- * @param format
- * @returns
+ * Formats a date according to the specified format or theme config
+ * @param date - The date to format
+ * @param format - Optional date format string (overrides theme config)
+ * @returns Formatted date string
  */
 export function formatDate(date: Date, format?: string): string {
   const formatStr = (format || themeConfig.date.dateFormat).trim()

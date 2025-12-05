@@ -1,3 +1,7 @@
+/**
+ * Image optimization configuration for Sharp image processing
+ * Defines quality and compression settings for different image formats
+ */
 export const imageConfig = {
   // Enhanced image optimization settings
   limitInputPixels: 268402689, // ~16K x 16K pixels
