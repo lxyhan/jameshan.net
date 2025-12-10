@@ -82,10 +82,13 @@ Perpendicularity, projections, and Gram-Schmidt. Why orthogonal bases make every
 **9. Determinants**
 The single number that captures volume scaling and invertibility. Cofactor expansion, properties, and geometric meaning.
 
-**10. Diagonalization and Similarity**
+**10. Eigenvalues and Eigenvectors**
+The special directions a matrix leaves invariant. Finding eigenvalues via the characteristic polynomial, computing eigenvectors, and understanding eigenspaces. The foundation for diagonalization.
+
+**11. Diagonalization and Similarity**
 Finding the eigenvector coordinate system where a matrix is just scaling. Powers, exponentials, and long-term behavior.
 
-**11. Orthogonal Diagonalization**
+**12. Orthogonal Diagonalization**
 The spectral theorem: symmetric matrices can always be diagonalized with orthonormal eigenvectors. Why symmetric matrices are perfect.
 
 ---
