@@ -1,9 +1,9 @@
 ---
-title: 'Orthogonal Diagonalization and the Spectral Theorem'
+title: '12: Orthogonal Diagonalization and the Spectral Theorem'
 pubDate: '2025-12-08'
 ---
 
-Symmetric matrices have a special property: they can always be diagonalized using orthogonal eigenvectors. This means you can write $A = QDQ^T$ where $Q$ has orthonormal columns. The "orthogonal" part is crucial—instead of computing a full matrix inverse ($O(n^3)$), you just transpose ($O(n^2)$). Geometrically, symmetric matrices can only stretch along perpendicular axes, never rotate. This is the **Spectral Theorem**, and it's why symmetric matrices are the friendliest matrices in linear algebra.
+Symmetric matrices have a special property: they can always be diagonalized using orthogonal eigenvectors. This means you can write $A = QDQ^T$ where $Q$ has orthonormal columns. The "orthogonal" part is crucial,instead of computing a full matrix inverse ($O(n^3)$), you just transpose ($O(n^2)$). Geometrically, symmetric matrices can only stretch along perpendicular axes, never rotate. This is the **Spectral Theorem**, and it's why symmetric matrices are the friendliest matrices in linear algebra.
 
 ## The Spectral Theorem
 
@@ -34,7 +34,7 @@ When $Q^{-1} = Q^T$, all the expensive inversion work disappears.
 **Geometric meaning:**
 Rotate to the eigenvector basis (via $Q^T$), scale along axes (via $D$), rotate back (via $Q$).
 
-Symmetric matrices **cannot rotate**—they only stretch along orthogonal axes. That's why eigenvectors are automatically perpendicular.
+Symmetric matrices **cannot rotate**,they only stretch along orthogonal axes. That's why eigenvectors are automatically perpendicular.
 
 ---
 
@@ -79,7 +79,7 @@ When eigenvalues repeat, the corresponding eigenspace might have dimension > 1. 
 
 **Theorem:** All eigenvalues of a real symmetric matrix are real.
 
-This is crucial—complex eigenvalues would break the geometric interpretation. The proof uses the fact that $A = A^T$ forces eigenvalues to equal their complex conjugates, making them real.
+This is crucial,complex eigenvalues would break the geometric interpretation. The proof uses the fact that $A = A^T$ forces eigenvalues to equal their complex conjugates, making them real.
 
 ---
 
@@ -136,7 +136,7 @@ So $\det(Q) = \pm 1$.
 Orthogonal matrices represent:
 - **Rotations:** $\det(Q) = 1$
 - **Reflections:** $\det(Q) = -1$
-- **Combinations:** Rotations and reflections preserve lengths and angles—that's exactly what orthogonal matrices do
+- **Combinations:** Rotations and reflections preserve lengths and angles,that's exactly what orthogonal matrices do
 
 **Key distinction:** Transpose reverses rotations/reflections, but doesn't undo stretching. That's why $Q^T = Q^{-1}$ only works for orthogonal matrices (no stretching component).
 
@@ -239,7 +239,7 @@ The level set $\mathbf{x}^TA\mathbf{x} = 1$ defines a quadric surface:
 - **Hyperboloid** if eigenvalues have mixed signs
 - **Degenerate** if any eigenvalue is zero
 
-The **eigenvectors** of $A$ are the **principal axes** of this quadric—they point along the directions of maximum and minimum stretching.
+The **eigenvectors** of $A$ are the **principal axes** of this quadric,they point along the directions of maximum and minimum stretching.
 
 ---
 
@@ -255,7 +255,7 @@ $$
 = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2
 $$
 
-**In the eigenvector basis**, the quadratic form has no cross terms—it's just a sum of squares with weights $\lambda_i$.
+**In the eigenvector basis**, the quadratic form has no cross terms,it's just a sum of squares with weights $\lambda_i$.
 
 **Example:** The ellipse $3x^2 + 2xy + 3y^2 = 1$ (from our earlier $A$) becomes $4u^2 + 2v^2 = 1$ in the eigenvector coordinates, where axes are rotated by $45°$.
 
@@ -275,7 +275,7 @@ If $A$ stretches by factor $\sigma$ in some direction, then:
 - $A^T$ still stretches by $\sigma$ in the corresponding direction (transpose doesn't change singular values)
 - $A^{-1}$ compresses by factor $1/\sigma$ (actually inverts the stretching)
 
-**When they're equal:** $A^T = A^{-1}$ precisely when $A$ has no stretching component—when it's a pure rotation or reflection. These are the **orthogonal matrices**.
+**When they're equal:** $A^T = A^{-1}$ precisely when $A$ has no stretching component,when it's a pure rotation or reflection. These are the **orthogonal matrices**.
 
 ---
 
@@ -285,7 +285,7 @@ If $A$ stretches by factor $\sigma$ in some direction, then:
 
 For a **non-square** matrix $A$ ($m \times n$), you can't do eigendecomposition directly. But the matrix $A^TA$ ($n \times n$) is symmetric, so it has orthonormal eigenvectors.
 
-These eigenvectors of $A^TA$ are the **right singular vectors** of $A$—the optimal input directions.
+These eigenvectors of $A^TA$ are the **right singular vectors** of $A$,the optimal input directions.
 
 ---
 
@@ -344,7 +344,7 @@ $$
 
 ### **(Involutions: $A^2 = I$)**
 
-Matrices satisfying $A^2 = I$ are called **involutions**—applying them twice returns to the original.
+Matrices satisfying $A^2 = I$ are called **involutions**,applying them twice returns to the original.
 
 **Examples:**
 - Reflections across a line or plane

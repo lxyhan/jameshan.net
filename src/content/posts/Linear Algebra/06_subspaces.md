@@ -1,9 +1,9 @@
 ---
-title: 'Subspaces'
+title: '6: Subspaces'
 pubDate: '2025-12-3'
 ---
 
-Subspaces are the building blocks of linear algebra—they're the sets where vector operations stay contained, and understanding them reveals the geometry hidden inside matrices.
+Subspaces are the building blocks of linear algebra,they're the sets where vector operations stay contained, and understanding them reveals the geometry hidden inside matrices.
 
 ## Basic Definitions
 
@@ -82,7 +82,7 @@ is **not** a subspace because:
 - It doesn't contain $\mathbf{0}$ (since $0 + 0 \neq 1$)
 - It's not closed under addition: $(1, 0)$ and $(0, 1)$ are in $S$, but their sum $(1, 1)$ is not
 
-This is a line, but it **doesn't.  pass through the origin**—so it fails to be a subspace.
+This is a line, but it **doesn't.  pass through the origin**,so it fails to be a subspace.
 
 ---
 
@@ -112,7 +112,7 @@ is a subspace of $\mathbb{R}^n$.
    au = (ac_1)v_1 + \cdots + (ac_k)v_k \in \operatorname{span}\{v_1, \dots, v_k\}.
    $$
 
-This is why span is so important—it's the canonical way to construct subspaces.
+This is why span is so important,it's the canonical way to construct subspaces.
 
 ---
 
@@ -152,7 +152,7 @@ This is a subspace of $\mathbb{R}^n$.
 2. If $Au = \mathbf{0}$ and $Av = \mathbf{0}$, then $A(u + v) = Au + Av = \mathbf{0}$
 3. If $Au = \mathbf{0}$, then $A(cu) = c(Au) = c\mathbf{0} = \mathbf{0}$
 
-**Interpretation**: The null space captures all the "redundancy" in the matrix—the directions that get collapsed to zero.
+**Interpretation**: The null space captures all the "redundancy" in the matrix,the directions that get collapsed to zero.
 
 ---
 

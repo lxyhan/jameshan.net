@@ -1,5 +1,5 @@
 ---
-title: "Re-imagining Matrices"
+title: "1: Re-imagining Matrices"
 pubDate: "2025-11-29"
 ---
 
@@ -9,7 +9,7 @@ A matrix is a **pantry**.
 A vector is a **recipe**.  
 Matrix multiplication is simply **cooking**.
 
-This single metaphor reproduces all three classical views—column combinations, systems, and transformations—without distortion.
+This single metaphor reproduces all three classical views,column combinations, systems, and transformations,without distortion.
 
 ---
 
@@ -22,7 +22,7 @@ A = [a_1\; a_2\; \dots\; a_n].
 $$
 
 Each column \(a_i\) is an ingredient with a fixed flavor profile.  
-Salt, chili, lemon—encoded as vectors.
+Salt, chili, lemon,encoded as vectors.
 
 ---
 
@@ -63,7 +63,7 @@ $$
 
 means: find a recipe whose cooked dish hits that profile exactly.
 
-Row operations are simply constraints on taste—saltiness here, acidity there.
+Row operations are simply constraints on taste,saltiness here, acidity there.
 
 ---
 
@@ -106,4 +106,4 @@ A linear map is a kitchen whose behavior is fully determined by how it cooks the
 
 This is the entire subject reduced to one metaphor:  
 **ingredients, recipes, dishes.**  
-Everything else—rank, projections, diagonalization—follows from this.
+Everything else,rank, projections, diagonalization,follows from this.

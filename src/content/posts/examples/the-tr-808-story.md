@@ -9,7 +9,7 @@ The Roland TR-808 Rhythm Composer, often simply called the "808," is one of the 
 
 ## The Birth of the 808
 
-In the late 1970s, Roland Corporation was looking to create an affordable drum machine that could compete with the expensive Linn LM-1, which was the first drum machine to use digital samples. The company's engineers, led by **Ikutaro Kakehashi**, set out to create something different—a machine that would use **analog synthesis** to generate drum sounds rather than digital samples.
+In the late 1970s, Roland Corporation was looking to create an affordable drum machine that could compete with the expensive Linn LM-1, which was the first drum machine to use digital samples. The company's engineers, led by **Ikutaro Kakehashi**, set out to create something different,a machine that would use **analog synthesis** to generate drum sounds rather than digital samples.
 
 The development team faced several challenges:
 
@@ -17,7 +17,7 @@ The development team faced several challenges:
 2. **Sound design** - Creating realistic drum sounds using only analog circuits
 3. **User interface** - Making it intuitive for musicians to program rhythms
 
-> "We wanted to create something that would make drummers obsolete, but instead we created something that made everyone want to be a drummer." — Ikutaro Kakehashi
+> "We wanted to create something that would make drummers obsolete, but instead we created something that made everyone want to be a drummer." , Ikutaro Kakehashi
 
 ## The "Failed" Launch
 
@@ -62,7 +62,7 @@ Hardware reissues include the **Roland TR-08** boutique series reissue, the **Ro
 
 The TR-808 has transcended its role as a musical instrument to become a **cultural symbol**. It has influenced fashion with 808-inspired clothing and accessories, art with visual artists incorporating 808 imagery in their work, film through documentaries and movies about the machine's impact, and literature with books and articles celebrating its legacy.
 
-> "The 808 didn't just change music—it changed culture. It gave a voice to communities that didn't have access to expensive studio equipment." — Questlove
+> "The 808 didn't just change music,it changed culture. It gave a voice to communities that didn't have access to expensive studio equipment." , Questlove
 
 ## The Enduring Legacy
 

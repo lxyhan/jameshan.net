@@ -1,5 +1,5 @@
 ---
-title: 'Dreadnought Drip'
+title: 'Dreadnought Economics'
 pubDate: '2025-11-25'
 ---
 
@@ -11,7 +11,7 @@ Until that morning, naval power was a gradient. You had older battleships, newer
 
 But the _Dreadnought_ was different. She was the first all-big-gun battleship, powered by steam turbines. She was faster, deadlier, and tougher than anything else on the water.
 
-The moment she launched, she didn't just become the "best" ship. She effectively deleted the value of every other ship in existence. Every battleship built before 1906—even ones launched just a month prior—instantly became "pre-Dreadnoughts." They were obsolete scrap metal.
+The moment she launched, she didn't just become the "best" ship. She effectively deleted the value of every other ship in existence. Every battleship built before 1906,even ones launched just a month prior,instantly became "pre-Dreadnoughts." They were obsolete scrap metal.
 
 I tell you this because I recently realized I have inadvertently recreated the Anglo-German Naval Arms Race in my bedroom closet. And, much like the German Empire in 1910, I am losing.
 
@@ -34,7 +34,7 @@ Standard economic theory assumes goods are **substitutable** with diminishing ma
 
 **False.**
 
-Clothing utility is discontinuous. The moment I acquire a "Dreadnought"—a perfect item—the probability of me choosing an inferior substitute drops to near zero.
+Clothing utility is discontinuous. The moment I acquire a "Dreadnought",a perfect item,the probability of me choosing an inferior substitute drops to near zero.
 
 <!-- ![_Discontinuous Step Function](../_assets/utility-graph.png) -->
 
@@ -93,6 +93,6 @@ We must account for material fatigue. By rotating, we introduce a rest period ($
 
 ## Conclusion
 
-I spent \$2,250 to learn that in a closed system like a closet, the "Second Best" option isn't an alternative—it's waste.
+I spent \$2,250 to learn that in a closed system like a closet, the "Second Best" option isn't an alternative,it's waste.
 
 The British Navy learned this in 1906. I learned it in 2024. From now on, I only invest in Dreadnoughts.

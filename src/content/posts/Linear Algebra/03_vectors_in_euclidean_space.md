@@ -1,5 +1,5 @@
 ---
-title: 'Vectors in Euclidian Space'
+title: '3: Vectors in Euclidian Space'
 pubDate: '2025-11-29'
 ---
 

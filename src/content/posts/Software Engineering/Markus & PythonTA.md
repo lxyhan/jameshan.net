@@ -71,7 +71,7 @@ Below are the grouped areas of work and what they taught me.
 
 # **2.1 Testing & Debugging: Criteria Controller Full Coverage (#7668)**
 
-This was my first MarkUs PR — a deep dive into controller tests.
+This was my first MarkUs PR , a deep dive into controller tests.
 
 ### **Work**
 
@@ -122,7 +122,7 @@ This `PR` also broke my fear of large `Rails` controllers.
 * How `Rails` eager loading works.
 * Why academic platforms struggle with performance under TA load.
 
-This was my first “impactful” bug fix — instructors notice this one.
+This was my first “impactful” bug fix , instructors notice this one.
 
 ---
 
@@ -266,7 +266,7 @@ This is critical as more instructors grade on tablets.
 
 ---
 
-# **3. Beyond Code — How SDS Shaped Me**
+# **3. Beyond Code , How SDS Shaped Me**
 
 SDS didn’t just improve my code.
 It changed how I operate in every technical environment.
@@ -282,7 +282,7 @@ It changed how I operate in every technical environment.
 
 ### **Now joining RBC Capital Markets as a Quantitative Researcher...**
 
-`MarkUs` and `PythonTA` taught me that the best engineers aren’t the ones who know everything — they’re the ones who ask the right questions.
+`MarkUs` and `PythonTA` taught me that the best engineers aren’t the ones who know everything , they’re the ones who ask the right questions.
 
 * **Ask early, ask often.** David’s reviews taught me that clarifying requirements upfront saves hours of rework.
 * **Learn from every code review.** Every comment is a lesson from someone who’s solved this problem before.
@@ -309,7 +309,7 @@ These habits now shape how I lead workshops, run hackathons, and mentor student 
 ### **David Liu’s code reviews**
 
 The best feedback I’ve received in my career so far.
-Precise, kind, and rigorous — the kind that forces you to level up.
+Precise, kind, and rigorous , the kind that forces you to level up.
 
 ### **The SDS community**
 
@@ -342,4 +342,4 @@ But the habits I built here stay with me forever:
 
 Thank you to everyone who made this experience possible.
 
-I’m excited to carry this foundation into the rest of my career — and I hope future SDS students find the same growth, joy, and challenge in this codebase that I did.
+I’m excited to carry this foundation into the rest of my career , and I hope future SDS students find the same growth, joy, and challenge in this codebase that I did.

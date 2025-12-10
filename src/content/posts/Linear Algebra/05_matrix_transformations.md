@@ -1,5 +1,5 @@
 ---
-title: 'Matrix Transformations as Functions'
+title: '5: Matrix Transformations as Functions'
 pubDate: '2025-12-05'
 ---
 
@@ -29,7 +29,7 @@ When we write $T(\mathbf{x}) = A\mathbf{x}$, we're treating matrix multiplicatio
 - **Codomain:** $\mathbb{R}^m$ (the space where outputs live)
 - **Range (Image):** $\{\mathbf{y} \in \mathbb{R}^m \mid \mathbf{y} = A\mathbf{x} \text{ for some } \mathbf{x}\}$
 
-The **range** is the set of all possible outputs—it's the **column space** of $A$.
+The **range** is the set of all possible outputs,it's the **column space** of $A$.
 
 $$
 \text{Range}(T) = \text{Col}(A) = \text{span}\{\text{columns of } A\}
@@ -66,7 +66,7 @@ $$
 - $\text{rref}(A)$ has a **pivot in every column**
 - $\text{rank}(A) = n$ (number of columns)
 
-**Geometric Intuition:** Injective transformations don't "collapse" dimensions—they preserve distinctness.
+**Geometric Intuition:** Injective transformations don't "collapse" dimensions,they preserve distinctness.
 
 ---
 
@@ -113,7 +113,7 @@ $$
 - $\text{rref}(A)$ has a **pivot in every row**
 - $\text{rank}(A) = m$ (number of rows)
 
-**Geometric Intuition:** Surjective transformations "cover" the entire codomain—no gaps.
+**Geometric Intuition:** Surjective transformations "cover" the entire codomain,no gaps.
 
 ---
 
@@ -203,16 +203,16 @@ Given $T(\mathbf{x}) = A\mathbf{x}$:
 $$
 \mathbb{R}^2 \xrightarrow{A_{3 \times 2}} \mathbb{R}^3
 $$
-Imagine embedding a plane into 3D space—points don't overlap (injective), but not all of 3D is covered (not surjective).
+Imagine embedding a plane into 3D space,points don't overlap (injective), but not all of 3D is covered (not surjective).
 
 ### **Surjective but not Injective**
 $$
 \mathbb{R}^3 \xrightarrow{A_{2 \times 3}} \mathbb{R}^2
 $$
-Imagine projecting 3D onto a plane—every point on the plane is hit (surjective), but many 3D points map to the same plane point (not injective).
+Imagine projecting 3D onto a plane,every point on the plane is hit (surjective), but many 3D points map to the same plane point (not injective).
 
 ### **Bijective**
 $$
 \mathbb{R}^n \xrightarrow{A_{n \times n}} \mathbb{R}^n
 $$
-A rotation, reflection, or scaling in $\mathbb{R}^n$—every point has a unique pre-image and every point is reached.
+A rotation, reflection, or scaling in $\mathbb{R}^n$,every point has a unique pre-image and every point is reached.

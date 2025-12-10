@@ -16,7 +16,7 @@ You can use various formatting options like **bold**, _italic_, ~~strikethrough~
 ## Blockquotes
 
 > Don't communicate by sharing memory, share memory by communicating.<br>
-> — <cite>Rob Pike[^1]</cite>
+> , <cite>Rob Pike[^1]</cite>
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
@@ -72,7 +72,7 @@ const Button = ({ text, onClick }) => {
 }
 ```
 
-## Other Elements — sub, sup, abbr, kbd, mark
+## Other Elements , sub, sup, abbr, kbd, mark
 
 H<sub>2</sub>O
 

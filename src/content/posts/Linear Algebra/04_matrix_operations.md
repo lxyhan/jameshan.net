@@ -1,9 +1,9 @@
 ---
-title: 'Matrix Operations'
+title: '4: Matrix Operations'
 pubDate: '2025-12-06'
 ---
 
-Matrices aren't just grids of numbers—they're objects with their own arithmetic. Matrix addition and scalar multiplication work entry-by-entry, but matrix multiplication is something stranger and more powerful: it's function composition in disguise.
+Matrices aren't just grids of numbers,they're objects with their own arithmetic. Matrix addition and scalar multiplication work entry-by-entry, but matrix multiplication is something stranger and more powerful: it's function composition in disguise.
 
 ## Matrix Addition
 
@@ -69,7 +69,7 @@ For scalars $c, d$ and matrices $A, B$:
 
 ## Matrix Multiplication
 
-Matrix multiplication is where things get interesting. Unlike addition, it's not entry-by-entry—it encodes something deeper.
+Matrix multiplication is where things get interesting. Unlike addition, it's not entry-by-entry,it encodes something deeper.
 
 ### **(When Can You Multiply?)**
 
@@ -145,7 +145,7 @@ $$
 
 **Matrix multiplication is function composition.**
 
-The matrix $AB$ represents "first apply $B$, then apply $A$." This is why multiplication isn't commutative—the order of transformations matters.
+The matrix $AB$ represents "first apply $B$, then apply $A$." This is why multiplication isn't commutative,the order of transformations matters.
 
 ---
 
@@ -157,7 +157,7 @@ $$
 AB = \sum_{k=1}^{n} (\text{column } k \text{ of } A) \cdot (\text{row } k \text{ of } B)
 $$
 
-Each term is an outer product—a column times a row—giving a rank-1 matrix. The sum builds up the full product.
+Each term is an outer product,a column times a row,giving a rank-1 matrix. The sum builds up the full product.
 
 ---
 
@@ -199,7 +199,7 @@ For matrices of compatible sizes:
 3. **Scalar compatibility**: $c(AB) = (cA)B = A(cB)$
 4. **Identity**: $I_m A = A = A I_n$ for $A$ of size $m \times n$
 
-Associativity is remarkable—it says we can chain transformations without worrying about grouping. This is why we can write $ABC$ without parentheses.
+Associativity is remarkable,it says we can chain transformations without worrying about grouping. This is why we can write $ABC$ without parentheses.
 
 ---
 
@@ -252,7 +252,7 @@ The transpose reversal $(AB)^T = B^T A^T$ mirrors how function composition rever
 
 A matrix is **symmetric** if $A^T = A$.
 
-This means $A_{ij} = A_{ji}$—the matrix equals its mirror across the diagonal.
+This means $A_{ij} = A_{ji}$,the matrix equals its mirror across the diagonal.
 
 **Example:**
 
@@ -288,7 +288,7 @@ $$
 
 Then $A^2 = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$.
 
-This matrix is **nilpotent**—some power of it is zero. Geometrically, applying it twice collapses everything.
+This matrix is **nilpotent**,some power of it is zero. Geometrically, applying it twice collapses everything.
 
 ---
 
@@ -416,7 +416,7 @@ $$
 
 A matrix that is **not** invertible is called **singular**.
 
-Singular matrices have $\det(A) = 0$, meaning they collapse at least one dimension. There's no way to "uncollapse"—information is lost, so no inverse exists.
+Singular matrices have $\det(A) = 0$, meaning they collapse at least one dimension. There's no way to "uncollapse",information is lost, so no inverse exists.
 
 **Example:**
 
@@ -434,4 +434,4 @@ The definition of matrix multiplication seems arbitrary until you realize it's *
 
 If we want $(AB)\mathbf{x} = A(B\mathbf{x})$ to hold for all $\mathbf{x}$, there's only one possible definition for $AB$. The entry formula, the column view, and all the properties follow inevitably.
 
-Matrix multiplication is function composition—the rest is just computing what that means entry-by-entry.
+Matrix multiplication is function composition,the rest is just computing what that means entry-by-entry.

@@ -1,11 +1,11 @@
 ---
-title: 'Eigenvalues and Eigenvectors'
+title: '10: Eigenvalues and Eigenvectors'
 pubDate: '2025-12-08'
 ---
 
-Most vectors change direction when you apply a matrix to them. But **eigenvectors** don't—they stay on their own line, just getting stretched or compressed. These special directions reveal the "skeleton" of a transformation. The stretch factor is the **eigenvalue**. Together, eigenvalues and eigenvectors tell you what a matrix really does, stripped of coordinate system noise.
+Most vectors change direction when you apply a matrix to them. But **eigenvectors** don't,they stay on their own line, just getting stretched or compressed. These special directions reveal the "skeleton" of a transformation. The stretch factor is the **eigenvalue**. Together, eigenvalues and eigenvectors tell you what a matrix really does, stripped of coordinate system noise.
 
-Finding eigenvectors means asking: "What directions does this transformation leave invariant?" The answer unlocks everything—stability analysis, matrix powers, differential equations, Google's PageRank. Eigenvectors are the natural coordinates where complicated transformations become simple.
+Finding eigenvectors means asking: "What directions does this transformation leave invariant?" The answer unlocks everything,stability analysis, matrix powers, differential equations, Google's PageRank. Eigenvectors are the natural coordinates where complicated transformations become simple.
 
 ---
 
@@ -21,13 +21,13 @@ $$
 
 The scalar $\lambda$ is the **eigenvalue** corresponding to $\mathbf{v}$.
 
-**What this means:** Applying $A$ to $\mathbf{v}$ just scales $\mathbf{v}$—no rotation, no shear, just stretching (or compressing, or flipping) by factor $\lambda$.
+**What this means:** Applying $A$ to $\mathbf{v}$ just scales $\mathbf{v}$,no rotation, no shear, just stretching (or compressing, or flipping) by factor $\lambda$.
 
 ---
 
 ### **(Why "Eigen"?)**
 
-The German word *eigen* means "characteristic" or "own." Eigenvectors are the matrix's "own vectors"—the directions intrinsic to the transformation itself, independent of any choice of coordinates.
+The German word *eigen* means "characteristic" or "own." Eigenvectors are the matrix's "own vectors",the directions intrinsic to the transformation itself, independent of any choice of coordinates.
 
 ---
 
@@ -35,7 +35,7 @@ The German word *eigen* means "characteristic" or "own." Eigenvectors are the ma
 
 ### **(Invariant Directions)**
 
-Think of a transformation as a physical process: stretching rubber, flowing water, rotating machinery. Most directions get mixed—a vector pointing northeast might end up pointing south after transformation.
+Think of a transformation as a physical process: stretching rubber, flowing water, rotating machinery. Most directions get mixed,a vector pointing northeast might end up pointing south after transformation.
 
 But **eigenvectors are special**: they point along axes that the transformation respects. Apply the matrix, and the vector stays on its own line.
 
@@ -172,7 +172,7 @@ $$
 (A - \lambda I)\mathbf{v} = \mathbf{0}
 $$
 
-This is a homogeneous system—row reduce and find the null space of $(A - \lambda I)$.
+This is a homogeneous system,row reduce and find the null space of $(A - \lambda I)$.
 
 ---
 
@@ -276,9 +276,9 @@ $$
 1 \leq \text{geometric multiplicity} \leq \text{algebraic multiplicity}
 $$
 
-**When they're equal:** The matrix behaves "nicely" for that eigenvalue—there are enough eigenvectors to span the eigenspace fully.
+**When they're equal:** The matrix behaves "nicely" for that eigenvalue,there are enough eigenvectors to span the eigenspace fully.
 
-**When they differ:** The matrix is **defective** for that eigenvalue—there aren't enough independent eigenvectors.
+**When they differ:** The matrix is **defective** for that eigenvalue,there aren't enough independent eigenvectors.
 
 ---
 
@@ -334,7 +334,7 @@ This is why eigenspaces are subspaces.
 
 **Theorem:** Eigenvectors corresponding to **distinct** eigenvalues are linearly independent.
 
-**Why this matters:** If you have $n$ distinct eigenvalues for an $n \times n$ matrix, you automatically have $n$ independent eigenvectors—the matrix is diagonalizable.
+**Why this matters:** If you have $n$ distinct eigenvalues for an $n \times n$ matrix, you automatically have $n$ independent eigenvectors,the matrix is diagonalizable.
 
 ---
 
@@ -348,7 +348,7 @@ This is why eigenspaces are subspaces.
 
 **4. Projection matrix:** Eigenvalues are 0 and 1 only.
 
-**5. Rotation matrix (by angle $\theta \neq 0, \pi$):** Complex eigenvalues $e^{i\theta}$ and $e^{-i\theta}$ (no real eigenvectors—rotations have no invariant directions in 2D).
+**5. Rotation matrix (by angle $\theta \neq 0, \pi$):** Complex eigenvalues $e^{i\theta}$ and $e^{-i\theta}$ (no real eigenvectors,rotations have no invariant directions in 2D).
 
 ---
 
@@ -408,7 +408,7 @@ $$
 
 **Eigenvalues:** $\lambda = \pm i$ (purely imaginary).
 
-**Interpretation:** Rotations in 2D have no real invariant directions—every vector gets rotated off its line.
+**Interpretation:** Rotations in 2D have no real invariant directions,every vector gets rotated off its line.
 
 ---
 
@@ -427,7 +427,7 @@ For the differential equation $\frac{d\mathbf{x}}{dt} = A\mathbf{x}$:
 - If any eigenvalue has $\text{Re}(\lambda) > 0$: System is **unstable** (solutions explode)
 - If eigenvalues have $\text{Re}(\lambda) = 0$: Neutral stability
 
-The eigenvectors give the "modes" of the system—independent directions of behavior.
+The eigenvectors give the "modes" of the system,independent directions of behavior.
 
 ---
 
@@ -441,7 +441,7 @@ $$
 
 **Why:** $A(A\mathbf{v}) = A(\lambda\mathbf{v}) = \lambda(A\mathbf{v}) = \lambda^2\mathbf{v}$, and so on.
 
-The eigenvector with the largest $|\lambda|$ dominates long-term behavior—this is why PageRank works.
+The eigenvector with the largest $|\lambda|$ dominates long-term behavior,this is why PageRank works.
 
 ---
 
@@ -459,7 +459,7 @@ In mechanical systems, eigenvalues give frequencies of vibration, and eigenvecto
 
 ### **(5. Principal Component Analysis (PCA)**
 
-In statistics, PCA finds the eigenvectors of the covariance matrix. These eigenvectors point in directions of maximum variance—they're the "principal components" that capture the most information in the data.
+In statistics, PCA finds the eigenvectors of the covariance matrix. These eigenvectors point in directions of maximum variance,they're the "principal components" that capture the most information in the data.
 
 ---
 
@@ -475,13 +475,13 @@ For larger matrices, this is computationally impractical (solving degree-$n$ pol
 - **Power iteration:** Find the dominant eigenvalue by repeatedly multiplying $A\mathbf{x}$
 - **Inverse iteration:** Find specific eigenvalues by inverting $(A - \mu I)$
 
-These methods are what numerical libraries use—they avoid computing the characteristic polynomial directly.
+These methods are what numerical libraries use,they avoid computing the characteristic polynomial directly.
 
 ---
 
 ## Why Eigenvectors Are Fundamental
 
-Eigenvectors are the **natural coordinates** for a matrix. In the eigenvector basis, the matrix is diagonal—just scaling, no mixing. This is why:
+Eigenvectors are the **natural coordinates** for a matrix. In the eigenvector basis, the matrix is diagonal,just scaling, no mixing. This is why:
 
 1. **Diagonalization works:** If you have enough eigenvectors, you can change to a basis where $A$ is diagonal.
 
@@ -493,4 +493,4 @@ Eigenvectors are the **natural coordinates** for a matrix. In the eigenvector ba
 
 Every matrix is "trying" to be diagonal. Eigenvectors show you the coordinate system where this is true.
 
-Next, we'll use eigenvalues and eigenvectors to **diagonalize** matrices—writing $A = PDP^{-1}$ where $D$ is diagonal. This unlocks matrix powers, exponentials, and the ability to solve $A^k$ or $e^{At}$ effortlessly.
+Next, we'll use eigenvalues and eigenvectors to **diagonalize** matrices,writing $A = PDP^{-1}$ where $D$ is diagonal. This unlocks matrix powers, exponentials, and the ability to solve $A^k$ or $e^{At}$ effortlessly.

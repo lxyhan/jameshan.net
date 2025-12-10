@@ -1,9 +1,9 @@
 ---
-title: 'Diagonalization and Similarity'
+title: '11: Diagonalization and Similarity'
 pubDate: '2025-12-08'
 ---
 
-Diagonalization converts a complicated matrix into the simplest possible form: a diagonal matrix. When you can diagonalize a matrix $A$, you've found the "eigenvector coordinate system" where $A$ just stretches along axes. This makes everything easier—computing powers, solving differential equations, understanding long-term behavior. The key is finding enough eigenvectors to build a new basis.
+Diagonalization converts a complicated matrix into the simplest possible form: a diagonal matrix. When you can diagonalize a matrix $A$, you've found the "eigenvector coordinate system" where $A$ just stretches along axes. This makes everything easier,computing powers, solving differential equations, understanding long-term behavior. The key is finding enough eigenvectors to build a new basis.
 
 ## What is Diagonalization?
 
@@ -32,7 +32,7 @@ $$
 A^k = PD^kP^{-1}
 $$
 
-Computing $D^k$ is trivial—just raise each diagonal entry to the $k$-th power.
+Computing $D^k$ is trivial,just raise each diagonal entry to the $k$-th power.
 
 **Matrix exponential:**
 $$
@@ -57,7 +57,7 @@ $$
 
 The vector $\mathbf{v}$ is an **eigenvector** corresponding to $\lambda$.
 
-**Interpretation:** Eigenvectors are the special directions where $A$ acts like pure scaling—no rotation, just stretch or compression by factor $\lambda$.
+**Interpretation:** Eigenvectors are the special directions where $A$ acts like pure scaling,no rotation, just stretch or compression by factor $\lambda$.
 
 ---
 
@@ -75,7 +75,7 @@ $$
 \det(A - \lambda I) = 0
 $$
 
-This is the **characteristic equation**. Expanding it gives a polynomial of degree $n$ in $\lambda$—the **characteristic polynomial**.
+This is the **characteristic equation**. Expanding it gives a polynomial of degree $n$ in $\lambda$,the **characteristic polynomial**.
 
 ---
 
@@ -150,7 +150,7 @@ $$
 A[\mathbf{v}_1 \mid \mathbf{v}_2 \mid \cdots \mid \mathbf{v}_n] = [\lambda_1\mathbf{v}_1 \mid \lambda_2\mathbf{v}_2 \mid \cdots \mid \lambda_n\mathbf{v}_n]
 $$
 
-Column by column, this is exactly $A\mathbf{v}_i = \lambda_i\mathbf{v}_i$—the defining property of eigenvectors.
+Column by column, this is exactly $A\mathbf{v}_i = \lambda_i\mathbf{v}_i$,the defining property of eigenvectors.
 
 Multiplying on the right by $P^{-1}$ gives $A = PDP^{-1}$.
 
@@ -210,7 +210,7 @@ If $A$ and $B$ are similar, they share:
 4. **Rank:** $\text{rank}(B) = \text{rank}(A)$
 5. **Invertibility:** $A$ invertible $\iff$ $B$ invertible
 
-**Why?** All these properties are basis-independent—they depend only on the transformation itself, not the coordinate system.
+**Why?** All these properties are basis-independent,they depend only on the transformation itself, not the coordinate system.
 
 ---
 
@@ -242,7 +242,7 @@ When eigenvalues repeat, diagonalizability depends on whether there are enough e
 
 For an eigenvalue $\lambda$:
 - **Algebraic multiplicity:** How many times $\lambda$ appears as a root of the characteristic polynomial
-- **Geometric multiplicity:** $\dim(\ker(A - \lambda I))$—the number of linearly independent eigenvectors for $\lambda$
+- **Geometric multiplicity:** $\dim(\ker(A - \lambda I))$,the number of linearly independent eigenvectors for $\lambda$
 
 **Key fact:** Always: geometric multiplicity $\leq$ algebraic multiplicity
 
@@ -282,7 +282,7 @@ $$
 A - 2I = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
 $$
 
-$\dim(\ker(A - 2I)) = 1$—only one independent eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+$\dim(\ker(A - 2I)) = 1$,only one independent eigenvector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
 
 Since geometric (1) < algebraic (2), $A$ is **not diagonalizable**.
 
@@ -340,7 +340,7 @@ As $k \to \infty$, $A^k$ is dominated by the **largest eigenvalue** (in absolute
 - If $|\lambda_{\max}| = 1$: Bounded behavior (might oscillate)
 - If $|\lambda_{\max}| > 1$: $A^k$ explodes (growth along dominant eigenvector)
 
-**Application:** In Markov chains, Leslie models, discrete dynamical systems—eigenvalues control the long-term fate.
+**Application:** In Markov chains, Leslie models, discrete dynamical systems,eigenvalues control the long-term fate.
 
 ---
 
@@ -423,6 +423,6 @@ To diagonalize an $n \times n$ matrix $A$:
    - $D = \text{diag}(\lambda_1, \ldots, \lambda_n)$ (eigenvalues in matching order)
 5. **Verify:** $AP = PD$
 
-If you can't find $n$ independent eigenvectors, the matrix is not diagonalizable—but you might still use the **Jordan normal form** (a nearly-diagonal form with 1's above some diagonal entries).
+If you can't find $n$ independent eigenvectors, the matrix is not diagonalizable,but you might still use the **Jordan normal form** (a nearly-diagonal form with 1's above some diagonal entries).
 
-Diagonalization reveals the coordinate system where a transformation is simplest—just scaling, no mixing. It's the key to understanding matrix powers, exponentials, and the long-term behavior of linear systems.
+Diagonalization reveals the coordinate system where a transformation is simplest,just scaling, no mixing. It's the key to understanding matrix powers, exponentials, and the long-term behavior of linear systems.

@@ -1,9 +1,9 @@
 ---
-title: 'Kernel and Image'
+title: '7: Kernel and Image'
 pubDate: '2025-12-06'
 ---
 
-Every linear transformation has two fundamental subspaces attached to it: the **kernel** (what gets destroyed) and the **image** (what gets produced). Understanding these reveals what a transformation does geometrically—where it collapses, where it stretches, and what it can reach.
+Every linear transformation has two fundamental subspaces attached to it: the **kernel** (what gets destroyed) and the **image** (what gets produced). Understanding these reveals what a transformation does geometrically,where it collapses, where it stretches, and what it can reach.
 
 ## The Image
 
@@ -38,7 +38,7 @@ $$
 A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \cdots + x_n\mathbf{a}_n
 $$
 
-Every output is a linear combination of the columns—so the image is exactly the span of the columns.
+Every output is a linear combination of the columns,so the image is exactly the span of the columns.
 
 **Interpretation:** The column space tells you **what vectors can be reached** by the transformation. If $\mathbf{b} \in \text{col}(A)$, then $A\mathbf{x} = \mathbf{b}$ has a solution. If $\mathbf{b} \notin \text{col}(A)$, the system is inconsistent.
 
@@ -73,7 +73,7 @@ $$
 
 The null space is the solution set to the homogeneous system $A\mathbf{x} = \mathbf{0}$.
 
-**Interpretation:** The kernel captures all the **redundancy** in the transformation—the directions that get completely flattened to nothing.
+**Interpretation:** The kernel captures all the **redundancy** in the transformation,the directions that get completely flattened to nothing.
 
 ---
 
@@ -151,7 +151,7 @@ $$
 - Dimensions that survive and get mapped somewhere meaningful (the rank)
 - Dimensions that get crushed to zero (the nullity)
 
-This is conservation of dimension—you can't create or destroy dimensions, only redistribute them.
+This is conservation of dimension,you can't create or destroy dimensions, only redistribute them.
 
 ---
 
@@ -291,9 +291,9 @@ These subspaces pair up as orthogonal complements:
 
 The kernel and image tell you exactly how a transformation reshapes space:
 
-**The image** is the "shadow" of the domain in the codomain—all the places you can reach. Its dimension (the rank) is how many independent directions survive the transformation.
+**The image** is the "shadow" of the domain in the codomain,all the places you can reach. Its dimension (the rank) is how many independent directions survive the transformation.
 
-**The kernel** is the "blind spot" in the domain—all the inputs that become invisible. Its dimension (the nullity) is how many directions get flattened.
+**The kernel** is the "blind spot" in the domain,all the inputs that become invisible. Its dimension (the nullity) is how many directions get flattened.
 
 $$
 \underbrace{\text{Domain}}_{\dim = n} = \underbrace{\text{Kernel}}_{\text{crushed}} \oplus \underbrace{\text{Complement}}_{\text{survives} \to \text{Image}}

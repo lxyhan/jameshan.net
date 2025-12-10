@@ -1,9 +1,9 @@
 ---
-title: 'The Determinant'
+title: '9: The Determinant'
 pubDate: '2025-12-06'
 ---
 
-The determinant is a single number that captures something essential about a square matrix: how it scales volume. A determinant of zero means the matrix collapses space—it's singular. A nonzero determinant means the matrix is invertible. This geometric meaning drives everything else.
+The determinant is a single number that captures something essential about a square matrix: how it scales volume. A determinant of zero means the matrix collapses space,it's singular. A nonzero determinant means the matrix is invertible. This geometric meaning drives everything else.
 
 ## Geometric Meaning
 
@@ -67,7 +67,7 @@ $$
 \det\begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix} = 2(2) - 4(1) = 0
 $$
 
-The columns $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$ and $\begin{bmatrix} 4 \\ 2 \end{bmatrix}$ are parallel—they span a line, not a parallelogram. Zero area means the matrix is singular.
+The columns $\begin{bmatrix} 2 \\ 1 \end{bmatrix}$ and $\begin{bmatrix} 4 \\ 2 \end{bmatrix}$ are parallel,they span a line, not a parallelogram. Zero area means the matrix is singular.
 
 ---
 
@@ -96,7 +96,7 @@ $$
 = 45 + 84 + 96 - 105 - 72 - 48 = 0
 $$
 
-The determinant is zero—these columns are linearly dependent (the third column is the average of the first two).
+The determinant is zero,these columns are linearly dependent (the third column is the average of the first two).
 
 ---
 
@@ -181,7 +181,7 @@ $$
 A = \begin{bmatrix} 1 & 0 & 2 & 0 \\ 3 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 2 & 0 & 0 & 1 \end{bmatrix}
 $$
 
-Column 2 has three zeros—expand along it:
+Column 2 has three zeros,expand along it:
 
 $$
 \det(A) = 0 \cdot C_{12} + 1 \cdot C_{22} + 0 \cdot C_{32} + 0 \cdot C_{42} = C_{22}
@@ -360,7 +360,7 @@ $$
 \det\begin{bmatrix} a_{11} & * & * \\ 0 & a_{22} & * \\ 0 & 0 & a_{33} \end{bmatrix} = a_{11} a_{22} a_{33}
 $$
 
-This follows from cofactor expansion—each step picks up one diagonal entry.
+This follows from cofactor expansion,each step picks up one diagonal entry.
 
 ---
 
@@ -415,4 +415,4 @@ The determinant answers fundamental questions:
 3. **Does it preserve orientation?** Check the sign
 4. **Are these vectors linearly independent?** Put them as columns and check $\det \neq 0$
 
-The determinant compresses a matrix into a single number—but that number encodes deep geometric and algebraic information about what the matrix does.
+The determinant compresses a matrix into a single number,but that number encodes deep geometric and algebraic information about what the matrix does.

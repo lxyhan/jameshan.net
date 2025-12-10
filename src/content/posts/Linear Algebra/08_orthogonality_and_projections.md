@@ -1,9 +1,9 @@
 ---
-title: 'Orthogonality and Projections'
+title: '8: Orthogonality and Projections'
 pubDate: '2025-12-08'
 ---
 
-Orthogonality is the geometric idea of "perpendicularity" extended to any dimension. Two vectors are orthogonal when their dot product is zero—they point in completely independent directions. This concept unlocks powerful tools: projections decompose vectors into components, orthogonal bases simplify computations, and the Gram-Schmidt process converts any basis into an orthonormal one. Orthogonality turns complicated geometric problems into simple, coordinate-wise calculations.
+Orthogonality is the geometric idea of "perpendicularity" extended to any dimension. Two vectors are orthogonal when their dot product is zero,they point in completely independent directions. This concept unlocks powerful tools: projections decompose vectors into components, orthogonal bases simplify computations, and the Gram-Schmidt process converts any basis into an orthonormal one. Orthogonality turns complicated geometric problems into simple, coordinate-wise calculations.
 
 ## The Dot Product
 
@@ -49,7 +49,7 @@ $$
 \cos\theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \|\mathbf{v}\|}
 $$
 
-**Key insight:** The dot product is $\|\mathbf{u}\| \|\mathbf{v}\| \cos\theta$—it captures both magnitude and directional alignment.
+**Key insight:** The dot product is $\|\mathbf{u}\| \|\mathbf{v}\| \cos\theta$,it captures both magnitude and directional alignment.
 
 ---
 
@@ -71,7 +71,7 @@ $$
 \cos\theta = \frac{11}{5\sqrt{5}} = \frac{11\sqrt{5}}{25} \approx 0.9839
 $$
 
-The angle is $\theta \approx 10.3°$—nearly aligned.
+The angle is $\theta \approx 10.3°$,nearly aligned.
 
 ---
 
@@ -85,7 +85,7 @@ $$
 \mathbf{u} \cdot \mathbf{v} = 0
 $$
 
-**Geometric meaning:** Orthogonal vectors are perpendicular—they point in completely independent directions.
+**Geometric meaning:** Orthogonal vectors are perpendicular,they point in completely independent directions.
 
 **Note:** The zero vector $\mathbf{0}$ is orthogonal to every vector (by convention).
 
@@ -133,7 +133,7 @@ $$
 \mathbf{v} = (\mathbf{v} \cdot \mathbf{q}_1)\mathbf{q}_1 + (\mathbf{v} \cdot \mathbf{q}_2)\mathbf{q}_2 + \cdots + (\mathbf{v} \cdot \mathbf{q}_n)\mathbf{q}_n
 $$
 
-The coefficients are just dot products—no need to solve a system of equations!
+The coefficients are just dot products,no need to solve a system of equations!
 
 **Why this works:** Dot both sides with $\mathbf{q}_i$:
 
@@ -155,7 +155,7 @@ $$
 \text{comp}_{\mathbf{u}} \mathbf{v} = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|}
 $$
 
-This is the signed length of the projection—positive if $\mathbf{v}$ points roughly in the direction of $\mathbf{u}$, negative otherwise.
+This is the signed length of the projection,positive if $\mathbf{v}$ points roughly in the direction of $\mathbf{u}$, negative otherwise.
 
 ---
 
@@ -334,7 +334,7 @@ $$
 
 At each step, we take $\mathbf{v}_k$ and remove its components along all previous orthogonal directions. What remains ($\mathbf{u}_k$) is guaranteed to be orthogonal to $\mathbf{u}_1, \ldots, \mathbf{u}_{k-1}$.
 
-**Key insight:** The span of $\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}$ equals the span of $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ at each stage—we're just changing the basis vectors, not the subspace.
+**Key insight:** The span of $\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}$ equals the span of $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ at each stage,we're just changing the basis vectors, not the subspace.
 
 ---
 
@@ -450,7 +450,7 @@ These are the **four fundamental subspaces**, paired as orthogonal complements.
 
 ### **(Signal Processing)**
 
-In Fourier analysis, sine and cosine waves form an orthogonal basis for periodic functions. The Fourier coefficients are just inner products—projections onto each frequency component.
+In Fourier analysis, sine and cosine waves form an orthogonal basis for periodic functions. The Fourier coefficients are just inner products,projections onto each frequency component.
 
 ---
 
@@ -465,4 +465,4 @@ Orthogonality turns geometry into algebra:
 5. **Gram-Schmidt converts any basis** into an orthonormal one
 6. **Orthogonal matrices preserve structure** (lengths, angles, volume)
 
-When vectors are orthogonal, you can work component-wise—no cross-terms, no interactions, just clean decomposition. This is why orthonormal bases are the gold standard: they make every calculation as simple as possible while preserving all the geometry.
+When vectors are orthogonal, you can work component-wise,no cross-terms, no interactions, just clean decomposition. This is why orthonormal bases are the gold standard: they make every calculation as simple as possible while preserving all the geometry.

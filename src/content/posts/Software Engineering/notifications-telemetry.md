@@ -286,7 +286,7 @@ if (
 
 ### **2. Finding the Right Callback Point**
 
-Initially, I thought [DesktopNotificationPermissionPrompt](cci:2://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:1259:0-1406:1) would have its own action callbacks. But it doesn't—it relies on the base [PermissionPrompt](cci:2://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:246:0-805:1) class to wrap its [promptActions](cci:1://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:309:2-333:3) array.
+Initially, I thought [DesktopNotificationPermissionPrompt](cci:2://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:1259:0-1406:1) would have its own action callbacks. But it doesn't,it relies on the base [PermissionPrompt](cci:2://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:246:0-805:1) class to wrap its [promptActions](cci:1://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:309:2-333:3) array.
 
 The telemetry had to go in the base class's [prompt()](cci:1://file:///Users/jhan/Documents/firefox/browser/modules/PermissionUI.sys.mjs:506:2-665:3) method, which wraps all actions:
 
@@ -309,7 +309,7 @@ for (let promptAction of this.promptActions) {
 
 ### **3. Understanding Glean's Event Ping Behavior**
 
-Events aren't sent immediately—they're batched and sent:
+Events aren't sent immediately,they're batched and sent:
 - Every ~24 hours
 - When 500 events accumulate
 - On app update
@@ -369,7 +369,7 @@ Glean.webNotificationPermission.promptInteraction.testGetValue()
 **2. Glean Telemetry is Code, Not Configuration**
 - Metrics are defined in YAML but recorded in code
 - Privacy review happens at the metric definition level
-- Data doesn't magically appear—you instrument specific code paths
+- Data doesn't magically appear,you instrument specific code paths
 
 **3. User Gestures Matter**
 - Browsers distinguish between user-initiated and script-initiated actions

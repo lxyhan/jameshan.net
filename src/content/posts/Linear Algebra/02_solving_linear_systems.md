@@ -1,9 +1,9 @@
 ---
-title: 'Solving Linear Systems'
+title: '2: Solving Linear Systems'
 pubDate: '2025-12-08'
 ---
 
-Solving a linear system means finding a recipe that produces a target dish. You have ingredients (matrix columns), you know what you want to cook (the vector $\mathbf{b}$), and you need to figure out the quantities (the solution $\mathbf{x}$). Sometimes there's exactly one recipe. Sometimes there are infinitely many ways to hit the target. Sometimes it's impossible—the ingredients you have can't produce that flavor.
+Solving a linear system means finding a recipe that produces a target dish. You have ingredients (matrix columns), you know what you want to cook (the vector $\mathbf{b}$), and you need to figure out the quantities (the solution $\mathbf{x}$). Sometimes there's exactly one recipe. Sometimes there are infinitely many ways to hit the target. Sometimes it's impossible,the ingredients you have can't produce that flavor.
 
 The algorithm for answering "does a solution exist, and if so, what is it?" is **row reduction**. It's mechanical, systematic, and reveals everything about the system's structure. This is the computational heart of linear algebra.
 
@@ -43,7 +43,7 @@ Each equation represents a **hyperplane** in $\mathbb{R}^n$. Solving the system 
 - Parallel lines never meet (no solution)
 - The same line counted twice (infinitely many solutions)
 
-**In $\mathbb{R}^3$:** Each equation is a plane. The solution is where all planes meet—a point, a line, a plane, or nothing.
+**In $\mathbb{R}^3$:** Each equation is a plane. The solution is where all planes meet,a point, a line, a plane, or nothing.
 
 **In higher dimensions:** Same idea, harder to visualize.
 
@@ -62,7 +62,7 @@ x + y = 2
 \end{cases}
 $$
 
-These are parallel lines—they never intersect. No $(x, y)$ satisfies both equations.
+These are parallel lines,they never intersect. No $(x, y)$ satisfies both equations.
 
 ---
 
@@ -135,7 +135,7 @@ $$
 \end{bmatrix}
 $$
 
-Both are in REF—pivots descend in a "staircase" pattern.
+Both are in REF,pivots descend in a "staircase" pattern.
 
 ---
 
@@ -163,7 +163,7 @@ $$
 \end{bmatrix}
 $$
 
-RREF is unique—every matrix has exactly one RREF.
+RREF is unique,every matrix has exactly one RREF.
 
 ---
 
@@ -249,7 +249,7 @@ A variable $x_i$ is **free** if column $i$ of $\text{rref}(A)$ has no pivot.
 - $x$ and $z$ are **basic** (columns 1 and 3 have pivots)
 - $y$ is **free** (column 2 has no pivot)
 
-Free variables can take **any value**—they parameterize the solution set.
+Free variables can take **any value**,they parameterize the solution set.
 
 ---
 
@@ -280,7 +280,7 @@ $$
 \mathbf{x} = \begin{bmatrix} 1 - 2t \\ t \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} + t\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}, \quad t \in \mathbb{R}
 $$
 
-This is a **line** in $\mathbb{R}^3$—infinitely many solutions parameterized by $t$.
+This is a **line** in $\mathbb{R}^3$,infinitely many solutions parameterized by $t$.
 
 ---
 
@@ -306,7 +306,7 @@ $$
 [0 \; 0 \; 0 \; \cdots \; 0 \mid 1]
 $$
 
-This says $0 = 1$—impossible.
+This says $0 = 1$,impossible.
 
 **Example:**
 
@@ -322,7 +322,7 @@ $$
 \end{array}\right]
 $$
 
-Last column has a pivot—no solution.
+Last column has a pivot,no solution.
 
 ---
 
@@ -339,7 +339,7 @@ $$
 \text{rank}(A) = \text{number of variables}
 $$
 
-Every variable is basic—no free variables.
+Every variable is basic,no free variables.
 
 **Example:**
 
@@ -383,7 +383,7 @@ This is the number of free variables.
 
 | Pivot in last column? | All columns of $A$ have pivots? | Number of solutions |
 |----------------------|----------------------------------|---------------------|
-| **Yes** | — | **None** (inconsistent) |
+| **Yes** | , | **None** (inconsistent) |
 | No | **Yes** | **One** (unique) |
 | No | No | **Infinitely many** |
 
@@ -488,8 +488,8 @@ Row reduction is the **universal algorithm** for linear systems. It tells you:
 - Is it unique? (Count free variables)
 - What is the solution? (Solve for basic variables in terms of free ones)
 
-Every computational tool in linear algebra—finding inverses, computing kernels, checking independence—ultimately reduces to row reduction.
+Every computational tool in linear algebra,finding inverses, computing kernels, checking independence,ultimately reduces to row reduction.
 
 The geometry is simple: each equation carves out a hyperplane. The algebra is mechanical: row operations preserve solutions. Together, they give you a complete answer to "does this system have solutions, and if so, what are they?"
 
-Next, we'll build the geometric language—vectors, spans, linear combinations—that makes sense of what these solutions mean.
+Next, we'll build the geometric language,vectors, spans, linear combinations,that makes sense of what these solutions mean.
