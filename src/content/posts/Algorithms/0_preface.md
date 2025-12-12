@@ -3,23 +3,27 @@ title: '0: Preface'
 pubDate: '2025-12-10'
 ---
 
-These articles document my journey learning algorithms and data structures,not as a comprehensive guide, but as a personal record of concepts that clicked, implementations that worked, and patterns I want to remember.
+These articles document my journey learning data structures and algorithms—not as a comprehensive textbook, but as a personal record of concepts that clicked, implementations that worked, and intuitions I want to remember.
 
-This isn't a textbook. It's a learning log. The topics reflect what I'm studying right now, not everything there is to know. If you're learning the same material, maybe my explanations will help. If not, at least I'll have notes I can reference later.
-
-The best way to learn is to explain. So here's my attempt.
+The focus is practical: **what** each structure does, **when** to use it, **how** to implement it, and **why** the runtime is what it is. No formal proofs—just clear explanations and the reasoning behind complexity claims.
 
 ---
 
-## What I'm Learning
+## The Standard Data Structures
 
-My courses started with **graphs**, which makes sense,most interesting data is connected. Social networks, dependencies, routing problems. Learning BFS and DFS felt like unlocking a new way to think about traversal. Minimum spanning trees (Kruskal's and Prim's) showed me how greedy algorithms can be elegant when they work.
+Throughout these articles, I use a consistent set of data structure definitions. These aren't arbitrary—they're the building blocks you'll encounter in courses and interviews. When I write code, I'm using these exact structures:
 
-Then came **dictionaries and trees**,the structures that make retrieval fast. Hash tables for constant-time lookup (when you don't care about order). BSTs for when you need both speed and sorting. Heaps for when you always need the "most important" element.
+**Graphs** use adjacency lists with `Vertex`, `Edge`, and `Path` objects. Each vertex tracks its incoming and outgoing edges. Each edge knows its endpoints and weight.
 
-**Tries** were surprising,I'd never thought about prefix matching as a tree problem before, but once you see it, autocomplete makes so much more sense.
+**Union-Find** uses `UnifNode` objects with parent pointers and ranks. Path compression and union-by-rank give us near-constant amortized operations.
 
-This ordering isn't canonical,it's just how my curriculum structured things. Starting with graphs before arrays felt backwards at first, but now I see why: graphs force you to think about structure and traversal from day one.
+**Dictionaries** come in two flavors: hash tables (unordered, $O(1)$ average) and balanced BSTs (ordered, $O(\log n)$ guaranteed). Both use `DictNode` with key-value pairs.
+
+**Tries** store strings character-by-character, with each `TrieNode` containing a dictionary of children.
+
+**Priority Queues** are implemented as heaps, with `QueueNode` objects containing keys, values, and priorities.
+
+These structures appear throughout the articles. Understanding them deeply—not just their interfaces but their internals—is what separates "I've seen this before" from "I know how to use this."
 
 ---
 
@@ -27,56 +31,75 @@ This ordering isn't canonical,it's just how my curriculum structured things. Sta
 
 ### **Part I: Graphs**
 
+Graphs are everywhere. Social networks, maps, dependencies, state machines. Learning to think in graphs unlocks a huge class of problems.
+
 **1: Graphs and Representations**
-Vertices, edges, adjacency lists, adjacency matrices. How you store a graph determines what you can do with it.
+What is a graph? Vertices, edges, directed vs undirected, weighted vs unweighted. The two main representations (adjacency list vs matrix) and when each makes sense.
 
-**2: Breadth-First Search (BFS)**
-Level-by-level exploration. Finding shortest paths in unweighted graphs.
+**2: Breadth-First Search**
+Exploring level-by-level. Finding shortest paths in unweighted graphs. The intuition: BFS guarantees you see closer vertices before farther ones.
 
-**3: Depth-First Search (DFS)**
-Diving deep before backtracking. Detecting cycles, topological sorting, and connected components.
+**3: Depth-First Search**
+Diving deep before backtracking. Detecting cycles, finding connected components, topological sorting. The intuition: DFS fully explores one path before trying alternatives.
 
-**4: Minimum Spanning Trees: Kruskal's Algorithm**
-Connecting all vertices with minimum total edge weight. The greedy algorithm that picks edges by increasing weight.
+**4: Weighted Shortest Paths**
+When edges have costs, BFS isn't enough. Dijkstra's algorithm (cheapest-first search) and why it works. The critical insight: always expand the cheapest unvisited vertex.
 
-**5: Minimum Spanning Trees: Prim's Algorithm**
-Growing a tree from a starting vertex. The greedy algorithm that expands outward.
+**5: Minimum Spanning Trees**
+Connecting all vertices with minimum total weight. Prim's algorithm (grow from a vertex) and Kruskal's algorithm (pick cheapest edges). Both are greedy—and both are optimal.
 
-**6: Union-Find (Disjoint Set)**
-Efficiently tracking connected components. The data structure that makes Kruskal's fast.
+**6: Union-Find**
+Tracking connected components efficiently. The data structure that makes Kruskal's algorithm fast. Path compression and union-by-rank: two simple tricks that make operations nearly constant time.
 
 ---
 
 ### **Part II: Dictionaries**
 
-**7: Unsorted Dictionaries and Hashing**
-Hash functions, collision resolution, and load factors. Trading space for constant-time operations.
+The dictionary ADT—insert, lookup, delete by key—is fundamental. The implementation determines the tradeoffs.
 
-**8: Sorted Dictionaries and Binary Search Trees**
-In-order traversal, insertion, deletion, and balancing. When you need both lookup and ordering.
+**7: Hash Tables**
+Trading space for speed. Hash functions, collision resolution (chaining vs open addressing), load factors, and resizing. Why average-case $O(1)$ but worst-case $O(n)$.
+
+**8: Balanced Binary Search Trees**
+When you need ordering *and* speed. BST basics, why balance matters, and how AVL trees maintain it. Guaranteed $O(\log n)$ for everything, plus in-order traversal.
 
 ---
 
 ### **Part III: Specialized Structures**
 
-**9: Priority Queues and Heaps**
-Binary heaps, heapify, and heap sort. When you always need the minimum (or maximum) element.
+Some problems need specialized tools.
 
-**10: Tries and Prefix Matching**
-Prefix trees, insertion, and search. The structure that makes autocomplete possible.
+**9: Priority Queues and Heaps**
+Always need the minimum (or maximum)? Heaps give you $O(\log n)$ insert and extract-min with a beautifully simple array-based structure. The heap property and why heapify is $O(n)$, not $O(n \log n)$.
+
+**10: Tries**
+Prefix matching as a tree problem. Autocomplete, spell checkers, IP routing. Operations are $O(k)$ where $k$ is string length—independent of how many strings you've stored.
+
+---
+
+## Standard Algorithms
+
+These algorithms appear repeatedly. They're the "vocabulary" for solving graph problems:
+
+- **BFS**: Shortest path in unweighted graphs. $O(V + E)$.
+- **DFS**: Cycle detection, topological sort, connected components. $O(V + E)$.
+- **Dijkstra's (CFS)**: Shortest path in weighted graphs (non-negative weights). $O((V + E) \log V)$ with a heap.
+- **Prim's MST**: Grow a tree from a starting vertex. $O((V + E) \log V)$ with a heap.
+- **Kruskal's MST**: Sort edges, add if no cycle. $O(E \log E)$ with Union-Find.
+- **Kahn's Algorithm**: Topological sort via in-degree counting. $O(V + E)$.
 
 ---
 
 ## How to Use These Notes
 
-**If you're following the same course**: Read sequentially,I've ordered them the way I learned them.
+**If you're studying the same material**: Read sequentially. Each article builds on previous concepts.
 
-**If you're looking for a specific topic**: Jump directly to it. I've tried to make each article self-contained, though some assume prior knowledge.
+**If you're looking for a specific topic**: Jump directly to it. I've tried to make each article self-contained, defining terms as needed.
 
-**If you're learning algorithms**: Implement everything yourself first, then read my notes. You'll get way more out of it that way.
+**If you're preparing for interviews**: Focus on the runtime intuitions. Interviewers care less about formal proofs and more about whether you understand *why* an algorithm is efficient.
 
-These articles are me explaining things to myself. If they help you too, great. If not, there are better textbooks out there.
+**The best approach**: Implement everything yourself first. Then read my notes. You'll understand them ten times better if you've wrestled with the problems yourself.
 
 ---
 
-*The best moment in learning algorithms is when something "clicks" and suddenly feels obvious. "Of course BFS finds shortest paths,it explores level by level!" "Of course hash tables are fast,you jump straight to the answer!" These articles are my attempt to capture those moments before I forget them.*
+*The goal isn't to memorize—it's to internalize. When you truly understand why BFS finds shortest paths, you don't need to remember it. It becomes obvious.*
