@@ -91,6 +91,22 @@ Finding the eigenvector coordinate system where a matrix is just scaling. Powers
 **12. Orthogonal Diagonalization**
 The spectral theorem: symmetric matrices can always be diagonalized with orthonormal eigenvectors. Why symmetric matrices are perfect.
 
+**13. Singular Value Decomposition**
+The decomposition that works for any matrix. Rotate, stretch, rotate—every linear transformation in three simple steps.
+
+---
+
+### **Part IV: Applications in Quantitative Finance**
+
+**14. Portfolio Optimization**
+Markowitz mean-variance optimization as quadratic forms. Covariance matrices, the efficient frontier, and why eigenvalues reveal risk structure.
+
+**15. PCA in Finance**
+Principal Component Analysis for factor discovery. How a few eigenvectors explain most of the variance in hundreds of correlated assets.
+
+**16. Covariance Estimation and Regularization**
+When sample covariance fails: shrinkage, factor models, and eigenvalue clipping. The math that makes portfolio optimization actually work.
+
 ---
 
 ## How to Read This
