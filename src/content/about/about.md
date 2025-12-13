@@ -10,4 +10,4 @@ I read history and economics voraciously (*an incomplete list*). Recently: *grea
 
 I'm also a triathlete training for the national age group team. Did a few Ironmans and ultra events this year. I find the *best conversations* happen on long runs or at climbing gyms—people are often too exhausted to maintain pretense.
 
-Through this blog, I'll be working through ideas that won't leave me alone. If any of my words resonate with you, write me at [jameshan.cs@gmail.com](mailto:jameshan.cs@gmail.com) and I'd love to chat. Find me on [LinkedIn](https://linkedin.com/in/jameshan) and [GitHub](https://github.com/lxyhan).
+Through this blog, I'll be working through ideas that won't leave me alone. If any of my words resonate with you, write me at [jameshan.cs@gmail.com](mailto:jameshan.cs@gmail.com) and I'd love to chat. Find me on [LinkedIn](https://www.linkedin.com/in/jameshan27/) and [GitHub](https://github.com/lxyhan).

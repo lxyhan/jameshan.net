@@ -35,15 +35,16 @@ Only prevent cycles **within the current path**. A node can be revisited from a 
 
 ## The Universal Template
 
+Each frontier entry stores a **path** (list of nodes/edges from source), not just the current node. This avoids a separate parent dictionary.
+
 ```
 search(graph, source, goals):
-    open = {source}              # frontier: discovered, not yet processed
+    open = {[source]}            # frontier: paths to explore
     closed = {}                  # for interpath pruning
-    parent = {source: None}
-    cost = {source: 0}
 
     while open is not empty:
-        current = pick from open      # ← PICK RULE VARIES
+        path = pick from open         # ← PICK RULE VARIES
+        current = path.last()
 
         # Interpath: skip if already processed
         if current in closed:
@@ -51,17 +52,14 @@ search(graph, source, goals):
         closed.add(current)           # ← EXPLORE TIME (or move to export)
 
         if current in goals:
-            return reconstruct_path(parent, source, current)
+            return path
 
         for edge in current.out_edges:
             neighbor = edge.to
-            new_cost = cost[current] + edge.wgt
 
             if neighbor not in closed:                              # interpath check
-                if neighbor not in cost or new_cost < cost[neighbor]:
-                    cost[neighbor] = new_cost
-                    parent[neighbor] = current
-                    open.add(neighbor)
+                if neighbor not in path:                            # intrapath check
+                    open.add(path + [neighbor])
                     # closed.add(neighbor)  ← EXPORT TIME (alternative)
 
     return None
@@ -137,40 +135,37 @@ open = PriorityQueue()  # min-heap by cost
 **Why interpath fails**: First discovery ≠ optimal. A node might be discovered via an expensive path first, then later found via a cheaper path. If we closed it on first discovery, we'd block the better path.
 
 **How it works**:
-- Nodes can be added to open multiple times (with different costs)
-- When we pop a node, check if we've already processed it with a better cost
+- Each path can be added to open (with different costs)
+- When we pop a path, check if we've already processed its endpoint with a better cost
 - Only process each node once (at its best cost)
 
 ```
 cfs(graph, source, goals):
     open = PriorityQueue()
     processed = {}               # tracks best cost when processed
-    parent = {source: None}
-    cost = {source: 0}
 
-    open.push(source, priority=0)
+    open.push([source], priority=0)
 
     while open is not empty:
-        current, current_cost = open.pop()
+        path, path_cost = open.pop()
+        current = path.last()
 
         # Skip if already processed (found cheaper path earlier)
         if current in processed:
             continue
-        processed[current] = current_cost
+        processed[current] = path_cost
 
         if current in goals:
-            return reconstruct_path(parent, source, current)
+            return path
 
         for edge in current.out_edges:
             neighbor = edge.to
-            new_cost = current_cost + edge.wgt
+            new_cost = path_cost + edge.wgt
 
             # Allow re-adding with better cost (intrapath only)
             if neighbor not in processed:
-                if neighbor not in cost or new_cost < cost[neighbor]:
-                    cost[neighbor] = new_cost
-                    parent[neighbor] = current
-                    open.push(neighbor, priority=new_cost)
+                if neighbor not in path:                 # intrapath: no cycles
+                    open.push(path + [neighbor], priority=new_cost)
 
     return None
 ```
