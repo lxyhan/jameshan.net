@@ -553,15 +553,15 @@
   font-size: 0.875rem;
 }
 
-/* Shiki dual theme support */
-html.light .astro-code,
-html.light .astro-code span {
-  color: var(--shiki-light) !important;
+/* Shiki dual theme support - use both color variables, CSS will pick the right one */
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light, inherit);
 }
 
 html.dark .astro-code,
 html.dark .astro-code span {
-  color: var(--shiki-dark) !important;
+  color: var(--shiki-dark, inherit) !important;
 }
 
 html.light .astro-code {

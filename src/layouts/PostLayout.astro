@@ -76,6 +76,17 @@ const ogImage = `/open-graph/${postSlug}.png`
     {themeConfig.post.linkCard && <LinkCard />}
     {themeConfig.general.footer && <Footer />}
   </div>
+  <script>
+    // Force code highlighting to apply on View Transitions navigation
+    function refreshCodeHighlighting() {
+      document.querySelectorAll('.astro-code span[style]').forEach(span => {
+        // Force style recalculation by reading computed style
+        void span.offsetHeight
+      })
+    }
+    document.addEventListener('astro:page-load', refreshCodeHighlighting)
+    document.addEventListener('astro:after-swap', refreshCodeHighlighting)
+  </script>
 </BaseLayout>
 
 <style>
