@@ -1,0 +1,420 @@
+---
+interface Props {
+  mode?: 'widget' | 'full'
+}
+
+const { mode = 'widget' } = Astro.props
+
+import mediaData from '@/data/media.json'
+const mediaJson = JSON.stringify(mediaData.entries)
+---
+
+<div class={`media-calendar ${mode}`} data-mode={mode} data-media={mediaJson}>
+  <div class="calendar-header">
+    {mode === 'full' && (
+      <button class="nav-btn prev" aria-label="Previous month">←</button>
+    )}
+    <span class="month-year"></span>
+    {mode === 'full' && (
+      <button class="nav-btn next" aria-label="Next month">→</button>
+    )}
+  </div>
+
+  <div class="calendar-weekdays">
+    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+  </div>
+
+  <div class="calendar-grid"></div>
+</div>
+
+<div id="media-modal" class="media-modal">
+  <div class="media-modal-content">
+    <button class="close-btn" aria-label="Close">×</button>
+    <div class="media-container">
+      <img id="media-img" src="" alt="" style="display: none;" />
+      <video id="media-video" controls playsinline style="display: none;">
+        <source src="" type="video/mp4" />
+      </video>
+    </div>
+    <div class="media-title"></div>
+  </div>
+</div>
+
+<script>
+  function initMediaCalendar() {
+    const calendars = document.querySelectorAll('.media-calendar')
+
+    calendars.forEach(calendar => {
+      const mode = calendar.getAttribute('data-mode')
+      const mediaRaw = calendar.getAttribute('data-media')
+      const entries = mediaRaw ? JSON.parse(mediaRaw) : []
+
+      // Build date lookup
+      const mediaByDate: Record<string, any> = {}
+      entries.forEach((entry: any) => {
+        mediaByDate[entry.date] = entry
+      })
+
+      // State
+      let currentMonth = new Date().getMonth()
+      let currentYear = new Date().getFullYear()
+
+      const grid = calendar.querySelector('.calendar-grid')
+      const monthYearEl = calendar.querySelector('.month-year')
+      const prevBtn = calendar.querySelector('.nav-btn.prev')
+      const nextBtn = calendar.querySelector('.nav-btn.next')
+
+      function renderCalendar() {
+        if (!grid || !monthYearEl) return
+
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December']
+        monthYearEl.textContent = `${monthNames[currentMonth]} ${currentYear}`
+
+        grid.innerHTML = ''
+
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay()
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+
+        // Empty cells before first day
+        for (let i = 0; i < firstDay; i++) {
+          const empty = document.createElement('div')
+          empty.className = 'calendar-day empty'
+          grid.appendChild(empty)
+        }
+
+        // Day cells
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+          const dayEl = document.createElement('button')
+          dayEl.className = 'calendar-day'
+          dayEl.textContent = String(day)
+
+          const media = mediaByDate[dateStr]
+          if (media) {
+            dayEl.classList.add('has-media')
+            dayEl.classList.add(media.type === 'video' ? 'is-video' : 'is-photo')
+            dayEl.setAttribute('aria-label', `${media.title} - ${dateStr}`)
+            dayEl.addEventListener('click', () => openMedia(media))
+          } else {
+            dayEl.disabled = true
+          }
+
+          // Highlight today
+          const today = new Date()
+          if (day === today.getDate() &&
+              currentMonth === today.getMonth() &&
+              currentYear === today.getFullYear()) {
+            dayEl.classList.add('today')
+          }
+
+          grid.appendChild(dayEl)
+        }
+      }
+
+      // Navigation (full mode only)
+      if (mode === 'full') {
+        prevBtn?.addEventListener('click', () => {
+          currentMonth--
+          if (currentMonth < 0) {
+            currentMonth = 11
+            currentYear--
+          }
+          renderCalendar()
+        })
+
+        nextBtn?.addEventListener('click', () => {
+          currentMonth++
+          if (currentMonth > 11) {
+            currentMonth = 0
+            currentYear++
+          }
+          renderCalendar()
+        })
+      }
+
+      renderCalendar()
+    })
+
+    // Modal logic
+    const modal = document.getElementById('media-modal')
+    const imgEl = document.getElementById('media-img') as HTMLImageElement
+    const videoEl = document.getElementById('media-video') as HTMLVideoElement
+    const closeBtn = modal?.querySelector('.close-btn')
+    const titleEl = modal?.querySelector('.media-title')
+
+    function openMedia(media: any) {
+      if (!modal || !imgEl || !videoEl || !titleEl) return
+
+      // Reset
+      imgEl.style.display = 'none'
+      videoEl.style.display = 'none'
+
+      if (media.type === 'video') {
+        const source = videoEl.querySelector('source')
+        if (source) source.src = media.path
+        videoEl.load()
+        videoEl.style.display = 'block'
+        videoEl.play()
+      } else {
+        imgEl.src = media.path
+        imgEl.alt = media.title
+        imgEl.style.display = 'block'
+      }
+
+      titleEl.textContent = media.title
+
+      modal.style.visibility = 'visible'
+      void modal.offsetWidth
+      modal.classList.add('active')
+      document.body.style.overflow = 'hidden'
+    }
+
+    function closeMedia() {
+      if (!modal || !videoEl) return
+
+      videoEl.pause()
+      modal.classList.remove('active')
+      document.body.style.overflow = ''
+    }
+
+    modal?.addEventListener('transitionend', (e) => {
+      if ((e as TransitionEvent).propertyName === 'opacity' && !modal.classList.contains('active')) {
+        modal.style.visibility = 'hidden'
+        if (videoEl) {
+          const source = videoEl.querySelector('source')
+          if (source) source.src = ''
+          videoEl.load()
+        }
+        if (imgEl) {
+          imgEl.src = ''
+          imgEl.alt = ''
+        }
+      }
+    })
+
+    closeBtn?.addEventListener('click', closeMedia)
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeMedia()
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeMedia()
+      }
+    })
+
+    // Hide modal initially
+    if (modal) {
+      modal.style.visibility = 'hidden'
+    }
+
+    // Expose openMedia globally for calendar buttons
+    (window as any).openMedia = openMedia
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMediaCalendar)
+  } else {
+    initMediaCalendar()
+  }
+
+  document.addEventListener('astro:page-load', initMediaCalendar)
+</script>
+
+<style>
+  .media-calendar {
+    font-family: var(--serif);
+  }
+
+  .media-calendar.widget {
+    max-width: 280px;
+  }
+
+  .media-calendar.full {
+    max-width: 400px;
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+  }
+
+  .media-calendar.widget .calendar-header {
+    justify-content: center;
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    transition: color 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--spacing-s);
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+
+  .calendar-day.empty {
+    visibility: hidden;
+  }
+
+  .calendar-day:disabled {
+    cursor: default;
+  }
+
+  .calendar-day.today {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+  }
+
+  .calendar-day.has-media {
+    cursor: pointer;
+    color: var(--text-primary);
+    background: var(--code-bg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .calendar-day.has-media:hover {
+    background: var(--selection);
+  }
+
+  .calendar-day.is-video::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 4px;
+    height: 4px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+  }
+
+  .calendar-day {
+    position: relative;
+  }
+
+  /* Modal */
+  .media-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease-in-out;
+    background: color-mix(in srgb, var(--bg) 95%, transparent);
+  }
+
+  .media-modal.active {
+    opacity: 1;
+  }
+
+  .media-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .media-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-modal img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    cursor: zoom-out;
+  }
+
+  .media-modal video {
+    max-width: 90vw;
+    max-height: 80vh;
+    background: #000;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    padding: 0.5rem;
+  }
+
+  .close-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .media-title {
+    margin-top: 1rem;
+    font-size: var(--font-size-s);
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .media-calendar.full {
+      max-width: 100%;
+    }
+
+    .calendar-day {
+      font-size: 0.8rem;
+    }
+
+    .media-modal-content {
+      max-width: 95vw;
+    }
+  }
+</style>

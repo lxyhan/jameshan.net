@@ -90,8 +90,8 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
 <div class="blog-tree">
   <a href="/" class="tree-header">
-    <span class="folder-icon">🌿</span>
-    <span class="folder-name">home</span>
+    <img src="/90-906173_computer-clipart-old-computer-vector-png.png" alt="" class="header-icon" />
+    <span class="folder-name">~/jhan</span>
   </a>
   <div class="tree-content">
     {tree.children && tree.children.map(node => (
@@ -153,8 +153,8 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 <style>
   .blog-tree {
     font-family: var(--serif);
-    font-size: var(--font-size-s);
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 2;
     padding: 0.5rem 0;
   }
 
@@ -171,6 +171,13 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .tree-header:hover {
     color: var(--primary);
+  }
+
+  .header-icon {
+    width: 1.6em;
+    height: 1.6em;
+    flex-shrink: 0;
+    object-fit: contain;
   }
 
   .folder-icon,

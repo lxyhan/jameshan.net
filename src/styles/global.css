@@ -103,7 +103,7 @@ html {
   scrollbar-gutter: stable;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -124,7 +124,7 @@ body {
   padding: 6rem 0 1.5rem 0;
   overscroll-behavior-y: contain;
   transition: background-color 0.2s ease-out;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   animation: fadeIn 0.4s ease-out;
 }
@@ -213,6 +213,31 @@ html[data-font='sans'] .katex .minner {
 
 ::selection {
   background-color: var(--selection);
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 :focus {

@@ -533,6 +533,7 @@
 
 .prose pre > code {
   font-family: var(--mono);
+  font-size: 0.65em;
   font-feature-settings:
     'liga' 0,
     'calt' 0;
@@ -548,8 +549,9 @@
   border-radius: 0;
 }
 
+.prose pre > code,
 .prose pre > code * {
-  font-size: var(--font-size-s);
+  font-size: 1rem;
 }
 
 /* KaTeX Math Rendering */

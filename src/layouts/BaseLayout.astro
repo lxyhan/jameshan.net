@@ -10,11 +10,7 @@ import ImageViewer from '@/components/ui/ImageViewer.astro'
 import { getSortedFilteredPosts } from '@/utils/draft'
 import type { LayoutProps } from '@/types'
 
-type Props = LayoutProps & {
-  blogTreeFirst?: boolean
-}
-
-const { type = 'page', blogTreeFirst = false } = Astro.props
+const { type = 'page' } = Astro.props as LayoutProps
 const language = themeConfig.site.language || 'en-US'
 const fadeAnimation = themeConfig.general.fadeAnimation
 
@@ -24,7 +20,6 @@ const posts = await getSortedFilteredPosts()
 <html lang={language}>
   <head>
     <script is:inline>
-      // Apply font preference immediately to prevent flash
       (function() {
         const savedFont = localStorage.getItem('font-preference') || 'serif';
         document.documentElement.setAttribute('data-font', savedFont);
@@ -36,14 +31,12 @@ const posts = await getSortedFilteredPosts()
   </head>
   <body data-centered={themeConfig.general.centeredLayout}>
     <FaviconThemeSwitcher />
-    
+
     <script is:inline>
-      // Smooth page transitions
       document.addEventListener('astro:before-preparation', () => {
         document.body.style.transition = 'opacity 0.2s ease-out';
         document.body.style.opacity = '0';
       });
-      
       document.addEventListener('astro:after-swap', () => {
         document.body.style.transition = 'opacity 0.3s ease-out';
         document.body.style.opacity = '1';
@@ -51,43 +44,29 @@ const posts = await getSortedFilteredPosts()
     </script>
 
     <div class="site-grid">
-      <div class="main-column">
-        {
-          fadeAnimation ? (
-            <TransitionWrapper type={type} class="layout-wrapper">
-              {/* STRUCTURAL CHANGE: We created a grid container here */}
-              <div class={`two-col-grid ${blogTreeFirst ? 'blog-tree-first' : ''}`}>
-                
-                {/* COL 1: Sidebar (Blog Tree) */}
-                <aside class="sidebar-area">
-                  <div class="blog-tree-sticky">
-                    <BlogTree posts={posts} />
-                  </div>
-                </aside>
-
-                {/* COL 2: Main Content (About, Posts, etc) */}
-                <main class="content-area">
-                  <slot />
-                </main>
-
-              </div>
-            </TransitionWrapper>
-          ) : (
-            <div class="layout-wrapper">
-              <div class={`two-col-grid ${blogTreeFirst ? 'blog-tree-first' : ''}`}>
-                <aside class="sidebar-area">
-                  <div class="blog-tree-sticky">
-                    <BlogTree posts={posts} />
-                  </div>
-                </aside>
-                <main class="content-area">
-                  <slot />
-                </main>
-              </div>
-            </div>
-          )
-        }
-      </div>
+      {fadeAnimation ? (
+        <TransitionWrapper type={type} class="layout-wrapper">
+          <div class="two-col-grid">
+            <aside class="sidebar-area">
+              <BlogTree posts={posts} />
+            </aside>
+            <main class="content-area">
+              <slot />
+            </main>
+          </div>
+        </TransitionWrapper>
+      ) : (
+        <div class="layout-wrapper">
+          <div class="two-col-grid">
+            <aside class="sidebar-area">
+              <BlogTree posts={posts} />
+            </aside>
+            <main class="content-area">
+              <slot />
+            </main>
+          </div>
+        </div>
+      )}
       {themeConfig.general.footer && (
         <div class="footer-wrapper">
           <Footer />
@@ -99,194 +78,98 @@ const posts = await getSortedFilteredPosts()
 </html>
 
 <style is:global>
-  /* 1. Base Site Setup */
+  /* Clean Layout System */
+
   .site-grid {
     width: 100%;
-    margin: 0 auto;
     min-height: 100vh;
   }
 
-  .main-column {
-    width: 100%;
-    padding: 0;
-  }
-  
-  @media (max-width: 768px) {
-    .main-column {
-      padding: 0;
-    }
-  }
-
   .layout-wrapper {
-    display: flex;
-    flex-direction: column;
     min-height: calc(100vh - 7.5rem);
-    width: 100%;
   }
 
-  /* 2. The Grid Container */
-  /* This holds the Main Content and the Sidebar side-by-side on desktop */
+  /* Two Column Layout */
   .two-col-grid {
-    width: 100%;
-    margin: 0 auto;
-    display: flex; /* Default to mobile stack */
-    flex-direction: column;
-  }
-
-  /* 3. Main Content Area */
-  .content-area {
-    width: 100%;
-    max-width: 100ch; /* Increased from 65ch for better readability */
-    margin: 0 auto; /* Center on mobile */
     display: flex;
     flex-direction: column;
-    padding: 0 1.5rem; /* Add padding on mobile */
-    order: 1; /* Show content first on mobile */
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     box-sizing: border-box;
   }
 
-  /* 4. Sidebar Area (Mobile Defaults) */
+  /* Sidebar */
   .sidebar-area {
-    width: 100%;
-    max-width: 100ch; /* Match content-area max-width */
-    margin: 1.5rem auto 0; /* Reduced space between about and blog tree */
-    padding: 0 1.5rem; /* Add padding on mobile */
-    border-top: none; /* Remove border */
-    order: 2; /* Show blog tree at bottom on mobile by default */
+    order: 2;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
   }
 
-  /* Blog tree at bottom on mobile for post pages */
-  .two-col-grid.blog-tree-first .sidebar-area {
-    order: 2; /* Show blog tree at bottom on mobile */
-    margin: 1.5rem auto 0; /* Margin at top */
+  /* Main Content */
+  .content-area {
+    order: 1;
+    flex: 1;
+    min-width: 0;
   }
 
-  .two-col-grid.blog-tree-first .content-area {
-    order: 1; /* Content comes first */
-  }
-
-  /* 5. Medium Screen Logic (Tablets) */
-  @media (min-width: 768px) and (max-width: 1680px) {
+  /* Medium+ screens: side by side */
+  @media (min-width: 900px) {
     .two-col-grid {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Keep content centered */
-    .content-area {
-      max-width: 100ch;
-      width: 100ch;
-      margin: 0 auto;
+      flex-direction: row;
+      gap: 4rem;
       padding: 0 2rem;
-      box-sizing: border-box;
-      order: 1; /* Content first */
+      align-items: flex-start;
+      justify-content: center;
     }
 
-    /* Position sidebar at bottom, aligned with left edge of content */
     .sidebar-area {
-      max-width: 100ch;
-      width: 100ch;
-      margin: 2rem auto 0; /* Center it and add top margin */
-      padding: 0 2rem;
-      box-sizing: border-box;
-      order: 2; /* Sidebar second */
-    }
-  }
-
-  /* 6. Desktop Logic (The fix you requested) */
-  @media (min-width: 1680px) {
-    
-    .site-grid {
-      display: block; /* Ensure no flex interference */
-    }
-
-    .main-column {
-      display: block; /* Ensure no flex interference */
-    }
-
-    .layout-wrapper {
-      display: block; /* Override flex to allow grid to work */
-      min-height: auto; /* Remove min-height constraint */
-    }
-
-    /* Turn on the Grid - content centered, filetree in margin */
-    .two-col-grid {
-      display: block !important;
-      max-width: none;
-      margin: 0 auto;
-      padding-top: 2rem;
-      position: relative;
-    }
-
-    /* Main Content - Always centered */
-    .content-area {
-      margin: 0 auto;
-      max-width: 100ch;
-      width: 100ch; /* Force fixed width */
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-      position: relative;
-    }
-
-    /* Sidebar - Positioned absolutely relative to viewport */
-    .sidebar-area {
-      position: absolute;
-      left: calc(50vw - 50ch - 300px - 2rem); /* Left of centered content */
-      top: 2rem;
-      margin: 0;
-      padding: 0;
-      max-width: 300px;
+      order: 1;
       width: 300px;
+      flex-shrink: 0;
+      margin-top: 0;
+      padding-top: 0;
       border-top: none;
+      position: sticky;
+      top: 6rem;
+      max-height: calc(100vh - 8rem);
+      overflow-y: auto;
     }
 
-    /* Sticky Behavior - follows content */
-    .blog-tree-sticky {
-      position: relative;
-      max-height: none;
-    }
-
-    /* Ensure consistent positioning for different page types */
-    .page-content,
-    .post-container {
-      display: block; /* Override flex */
-    }
-
-    .page-content main,
-    .post-container main {
-      display: block;
+    .content-area {
+      order: 2;
+      width: 65ch;
+      flex-shrink: 0;
     }
   }
 
-  /* Footer wrapper - at the very bottom */
+  /* Large screens: wider content */
+  @media (min-width: 1200px) {
+    .two-col-grid {
+      gap: 5rem;
+    }
+
+    .sidebar-area {
+      width: 320px;
+    }
+
+    .content-area {
+      width: 75ch;
+    }
+  }
+
+  /* Footer */
   .footer-wrapper {
-    width: 100%;
-    max-width: 100ch;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem; /* Add padding on mobile */
+    padding: 0 1.5rem;
   }
 
-  @media (min-width: 768px) and (max-width: 1279px) {
-    .footer-wrapper {
-      max-width: 90%;
-      padding: 0 1.5rem;
-    }
-  }
-
-  @media (min-width: 1280px) {
+  @media (min-width: 900px) {
     .footer-wrapper {
       padding: 0 2rem;
     }
   }
 
-  /* Footer offset adjustments */
-  @media (max-width: 768px) {
-    .layout-wrapper {
-      min-height: calc(100vh - 5.5rem);
-    }
-  }
 </style>

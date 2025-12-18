@@ -1,5 +1,5 @@
 ---
-title: 'Warlord Economics: What 1920s Manchuria Reveals About Power Structures'
+title: 'Fengtian Economics'
 pubDate: '2025-12-06'
 ---
 
