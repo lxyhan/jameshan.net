@@ -13,7 +13,7 @@ With path compression and union by rank, both operations are $O(\alpha(n)) \appr
 
 ## Data Structure
 
-```
+```python
 UnifNode:
   - key: Key
   - parent: Optional[UnifNode]  # None if root
@@ -34,7 +34,7 @@ Each set is a tree. Elements point to parents. The **root** is the set's represe
 
 ### Make Set
 
-```
+```python
 make_set(key):
     node = UnifNode(key)
     node.parent = None
@@ -45,7 +45,7 @@ make_set(key):
 
 ### Find (with Path Compression)
 
-```
+```python
 find(key):
     node = nodes.get(key)
     if node.parent is None:
@@ -58,7 +58,7 @@ Path compression flattens the tree: after find, all nodes on the path point dire
 
 ### Union (by Rank)
 
-```
+```python
 union(x, y):
     root_x = find(x)
     root_y = find(y)
@@ -93,7 +93,7 @@ Together: amortized $O(\alpha(n))$ where $\alpha$ is inverse Ackermann. $\alpha(
 
 ## Application: Kruskal's MST
 
-```
+```python
 kruskal(graph):
     uf = UnionFind()
     for v in graph.vertices:

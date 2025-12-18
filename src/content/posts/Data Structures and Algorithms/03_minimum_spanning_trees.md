@@ -19,7 +19,7 @@ Both Prim's and Kruskal's are greedy algorithms that exploit this property.
 
 **Idea**: Grow MST from a starting vertex. Always add the cheapest edge connecting the tree to a new vertex.
 
-```
+```python
 mst_prim(graph, start):
     in_mst = Dict()
     parent = Dict()
@@ -56,7 +56,7 @@ mst_prim(graph, start):
 
 **Idea**: Sort all edges by weight. Add edges in order, skipping any that would create a cycle.
 
-```
+```python
 mst_kruskal(graph):
     uf = UnionFind()
     mst_edges = []

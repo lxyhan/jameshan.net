@@ -15,7 +15,7 @@ The course uses consistent data structure definitions. All code in these notes f
 
 ### Graph (Adjacency Lists)
 
-```
+```python
 Vertex:
   - key: Key
   - in_edges: List[Edge]
@@ -43,7 +43,7 @@ Graph:
 
 ### Union-Find
 
-```
+```python
 UnifNode:
   - key: Key
   - parent: Optional[UnifNode]
@@ -58,7 +58,7 @@ UnionFind:
 
 ### Dictionary (Hash Table)
 
-```
+```python
 DictNode:
   - key: String
   - val: Object
@@ -77,7 +77,7 @@ Dict:
 
 ### Sorted Dictionary (Balanced BST)
 
-```
+```python
 DictNode:
   - key: Key
   - val: Object
@@ -95,7 +95,7 @@ SortDict:
 
 ### Trie
 
-```
+```python
 TrieNode:
   - key: Key
   - val: Object
@@ -110,7 +110,7 @@ Trie:
 
 ### Priority Queue (Heap)
 
-```
+```python
 QueueNode:
   - key: Key
   - val: Object
@@ -127,7 +127,7 @@ Queue:
 
 ## Standard Algorithms
 
-```
+```python
 bfs(graph, goals, args*) -> Optional[Path]
 dfs(graph, goals, args*) -> Optional[Path]
 cfs(graph, goals, args*) -> Optional[Path]

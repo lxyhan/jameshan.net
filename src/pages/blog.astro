@@ -1,0 +1,247 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import BaseHead from '@/components/layout/BaseHead.astro'
+import { getSortedFilteredPosts } from '@/utils/draft'
+import { themeConfig } from '@/config'
+
+const posts = await getSortedFilteredPosts()
+
+// Extract categories from post paths
+const categories = [...new Set(posts.map(post => post.id.split('/')[0]))].sort()
+
+// Build posts data for client-side search
+const postsData = posts.map(post => ({
+  id: post.id,
+  title: post.data.title,
+  date: post.data.pubDate.toISOString().split('T')[0],
+  category: post.id.split('/')[0],
+  url: `/${post.id}`
+}))
+---
+
+<BaseLayout>
+  <BaseHead
+    title={`Blog | ${themeConfig.site.title}`}
+    description="All posts and articles"
+    slot="head"
+  />
+
+  <div class="blog-page">
+    <header class="blog-header">
+      <h1>Blog</h1>
+      <p class="blog-description">All posts. Use search or filter by category.</p>
+    </header>
+
+    <div class="search-section">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search posts..."
+        autocomplete="off"
+      />
+      <div class="category-filters">
+        <button class="category-btn active" data-category="all">All</button>
+        {categories.map(cat => (
+          <button class="category-btn" data-category={cat}>{cat}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="posts-list" id="posts-list">
+      {posts.map(post => (
+        <a href={`/${post.id}`} class="post-item" data-category={post.id.split('/')[0]}>
+          <span class="post-category">{post.id.split('/')[0]}</span>
+          <span class="post-title">{post.data.title}</span>
+          <span class="post-date">{post.data.pubDate.toISOString().split('T')[0]}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="no-results" id="no-results" style="display: none;">No posts found.</p>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ postsData }}>
+  function initBlogSearch() {
+    const searchInput = document.getElementById('search-input')
+    const postsList = document.getElementById('posts-list')
+    const noResults = document.getElementById('no-results')
+    const categoryBtns = document.querySelectorAll('.category-btn')
+    const postItems = document.querySelectorAll('.post-item')
+
+    let currentCategory = 'all'
+    let currentSearch = ''
+
+    function filterPosts() {
+      let visibleCount = 0
+
+      postItems.forEach(item => {
+        const category = item.dataset.category
+        const title = item.querySelector('.post-title').textContent.toLowerCase()
+        const matchesCategory = currentCategory === 'all' || category === currentCategory
+        const matchesSearch = currentSearch === '' || title.includes(currentSearch.toLowerCase())
+
+        if (matchesCategory && matchesSearch) {
+          item.style.display = ''
+          visibleCount++
+        } else {
+          item.style.display = 'none'
+        }
+      })
+
+      noResults.style.display = visibleCount === 0 ? '' : 'none'
+    }
+
+    searchInput?.addEventListener('input', (e) => {
+      currentSearch = e.target.value
+      filterPosts()
+    })
+
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+        currentCategory = btn.dataset.category
+        filterPosts()
+      })
+    })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlogSearch)
+  } else {
+    initBlogSearch()
+  }
+  document.addEventListener('astro:page-load', initBlogSearch)
+</script>
+
+<style>
+  .blog-page {
+    max-width: 100%;
+  }
+
+  .blog-header {
+    margin-bottom: 2rem;
+  }
+
+  .blog-header h1 {
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .blog-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    margin: 0;
+  }
+
+  .search-section {
+    margin-bottom: 2rem;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  #search-input:focus {
+    border-color: var(--text-tertiary);
+  }
+
+  #search-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .category-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .category-btn:hover {
+    border-color: var(--text-tertiary);
+    color: var(--text-primary);
+  }
+
+  .category-btn.active {
+    background: var(--code-bg);
+    border-color: var(--text-tertiary);
+    color: var(--text-primary);
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+
+  .post-item:hover {
+    background: var(--code-bg);
+    margin: 0 -0.5rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .post-category {
+    display: none;
+  }
+
+  .post-title {
+    font-size: 1rem;
+  }
+
+  .post-date {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .no-results {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2rem;
+  }
+
+  @media (min-width: 600px) {
+    .post-item {
+      grid-template-columns: 140px 1fr auto;
+    }
+
+    .post-category {
+      display: block;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+  }
+</style>

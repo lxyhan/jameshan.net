@@ -1,0 +1,114 @@
+---
+import { getSortedFilteredPosts } from '@/utils/draft'
+
+interface Props {
+  currentPostId: string
+}
+
+const { currentPostId } = Astro.props
+
+const posts = await getSortedFilteredPosts()
+
+// Get current folder
+const currentFolder = currentPostId.split('/')[0]
+
+// Filter posts to same folder and sort alphabetically by id
+const folderPosts = posts
+  .filter(post => post.id.split('/')[0] === currentFolder)
+  .sort((a, b) => a.id.localeCompare(b.id))
+
+// Find current post index within folder
+const currentIndex = folderPosts.findIndex(post => post.id === currentPostId)
+
+// Get prev and next within folder order
+const prevPost = currentIndex > 0 ? folderPosts[currentIndex - 1] : null
+const nextPost = currentIndex < folderPosts.length - 1 ? folderPosts[currentIndex + 1] : null
+---
+
+{(prevPost || nextPost) && (
+  <nav class="post-navigation" aria-label="Post navigation">
+    <div class="nav-link prev">
+      {prevPost && (
+        <a href={`/${prevPost.id}`}>
+          <span class="nav-direction">Previous</span>
+          <span class="nav-title">{prevPost.data.title}</span>
+        </a>
+      )}
+    </div>
+    <div class="nav-link next">
+      {nextPost && (
+        <a href={`/${nextPost.id}`}>
+          <span class="nav-direction">Next</span>
+          <span class="nav-title">{nextPost.data.title}</span>
+        </a>
+      )}
+    </div>
+  </nav>
+)}
+
+<style>
+  .post-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-link {
+    display: flex;
+  }
+
+  .nav-link.prev {
+    justify-content: flex-start;
+  }
+
+  .nav-link.next {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .nav-link a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    max-width: 100%;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link a:hover {
+    color: var(--primary, var(--text-primary));
+  }
+
+  .nav-direction {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-title {
+    font-size: 1rem;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  @media (max-width: 600px) {
+    .post-navigation {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .nav-link.next {
+      justify-content: flex-start;
+      text-align: left;
+    }
+  }
+</style>

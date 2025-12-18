@@ -35,7 +35,11 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      theme: 'css-variables',
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark'
+      },
+      defaultColor: false,
       wrap: false
     },
     remarkPlugins: [
@@ -56,9 +60,13 @@ export default defineConfig({
   },
 
   integrations: [
-    playformInline({
-      Exclude: [(file) => file.toLowerCase().includes('katex')]
-    }),
+    // playformInline({
+    //   Exclude: [
+    //     (file) => file.toLowerCase().includes('katex'),
+    //     (file) => file.toLowerCase().includes('shiki'),
+    //     (file) => file.toLowerCase().includes('astro-code')
+    //   ]
+    // }),
     mdx(),
     sitemap()
   ],

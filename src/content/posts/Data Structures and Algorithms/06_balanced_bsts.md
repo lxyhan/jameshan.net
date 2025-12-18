@@ -9,7 +9,7 @@ BSTs store keys where left subtree < node < right subtree. This gives $O(\log n)
 
 ## Data Structure
 
-```
+```python
 DictNode:
   - key: Key
   - val: Object
@@ -25,7 +25,7 @@ SortDict:
 
 ## Basic Operations
 
-```
+```python
 search(node, key):
     if node is None: return None
     if key == node.key: return node
@@ -45,7 +45,7 @@ inorder(node):  # visits keys in sorted order
 
 > For every node, $|\text{height}(left) - \text{height}(right)| \leq 1$
 
-```
+```python
 balance_factor(node) = height(node.left) - height(node.right)
 ```
 
@@ -58,7 +58,7 @@ AVL property: $|bf| \leq 1$ for all nodes.
 When $|bf| > 1$ after insert/delete, rotate to rebalance:
 
 **Right Rotation** (bf = +2, left child bf ≥ 0):
-```
+```python
       y              x
      / \            / \
     x   C   →      A   y
@@ -76,7 +76,7 @@ When $|bf| > 1$ after insert/delete, rotate to rebalance:
 
 ## AVL Insert
 
-```
+```python
 avl_insert(node, key, val):
     # Standard BST insert
     if node is None:
@@ -109,7 +109,7 @@ rebalance(node):
 
 ## AVL Delete
 
-```
+```python
 avl_delete(node, key):
     if node is None: return None
 

@@ -1,0 +1,306 @@
+---
+import { getSortedFilteredPosts } from '@/utils/draft'
+
+const posts = await getSortedFilteredPosts()
+
+const postsData = posts.map(post => ({
+  id: post.id,
+  title: post.data.title,
+  category: post.id.split('/')[0],
+  url: `/${post.id}`
+}))
+---
+
+<div id="search-modal" class="search-modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Search posts">
+    <div class="search-input-wrapper">
+      <span class="search-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </span>
+      <input
+        type="text"
+        id="modal-search-input"
+        placeholder="Search posts..."
+        autocomplete="off"
+        autofocus
+      />
+      <kbd class="shortcut-hint">esc</kbd>
+    </div>
+    <div class="search-results" id="search-results">
+      <div class="results-hint">Type to search...</div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ postsData }}>
+  function initSearchModal() {
+    const modal = document.getElementById('search-modal')
+    const input = document.getElementById('modal-search-input')
+    const results = document.getElementById('search-results')
+    const backdrop = modal?.querySelector('.modal-backdrop')
+
+    if (!modal || !input || !results) return
+
+    let selectedIndex = -1
+    let filteredPosts = []
+
+    function openModal() {
+      modal.setAttribute('aria-hidden', 'false')
+      modal.classList.add('open')
+      document.body.style.overflow = 'hidden'
+      input.value = ''
+      results.innerHTML = '<div class="results-hint">Type to search...</div>'
+      selectedIndex = -1
+      filteredPosts = []
+      setTimeout(() => input.focus(), 10)
+    }
+
+    function closeModal() {
+      modal.setAttribute('aria-hidden', 'true')
+      modal.classList.remove('open')
+      document.body.style.overflow = ''
+    }
+
+    function updateSelection() {
+      const items = results.querySelectorAll('.result-item')
+      items.forEach((item, i) => {
+        item.classList.toggle('selected', i === selectedIndex)
+      })
+      if (selectedIndex >= 0 && items[selectedIndex]) {
+        items[selectedIndex].scrollIntoView({ block: 'nearest' })
+      }
+    }
+
+    function navigateToSelected() {
+      if (selectedIndex >= 0 && filteredPosts[selectedIndex]) {
+        window.location.href = filteredPosts[selectedIndex].url
+        closeModal()
+      }
+    }
+
+    function renderResults(query) {
+      if (!query.trim()) {
+        results.innerHTML = '<div class="results-hint">Type to search...</div>'
+        filteredPosts = []
+        selectedIndex = -1
+        return
+      }
+
+      const q = query.toLowerCase()
+      filteredPosts = postsData.filter(post =>
+        post.title.toLowerCase().includes(q) ||
+        post.category.toLowerCase().includes(q)
+      )
+
+      if (filteredPosts.length === 0) {
+        results.innerHTML = '<div class="results-hint">No results found</div>'
+        selectedIndex = -1
+        return
+      }
+
+      selectedIndex = 0
+      results.innerHTML = filteredPosts.map((post, i) =>
+        '<a href="' + post.url + '" class="result-item ' + (i === 0 ? 'selected' : '') + '" data-index="' + i + '">' +
+          '<span class="result-category">' + post.category + '</span>' +
+          '<span class="result-title">' + post.title + '</span>' +
+        '</a>'
+      ).join('')
+
+      // Add click handlers
+      results.querySelectorAll('.result-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          closeModal()
+        })
+      })
+    }
+
+    // Keyboard shortcut to open
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        openModal()
+      }
+    })
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal()
+      }
+    })
+
+    // Close on backdrop click
+    backdrop?.addEventListener('click', closeModal)
+
+    // Search input handling
+    input.addEventListener('input', (e) => {
+      renderResults(e.target.value)
+    })
+
+    // Keyboard navigation in results
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        if (filteredPosts.length > 0) {
+          selectedIndex = Math.min(selectedIndex + 1, filteredPosts.length - 1)
+          updateSelection()
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        if (filteredPosts.length > 0) {
+          selectedIndex = Math.max(selectedIndex - 1, 0)
+          updateSelection()
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault()
+        navigateToSelected()
+      }
+    })
+  }
+
+  // Initialize on load and page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearchModal)
+  } else {
+    initSearchModal()
+  }
+  document.addEventListener('astro:page-load', initSearchModal)
+</script>
+
+<style is:global>
+  .search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+  }
+
+  .search-modal.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  html.light .modal-backdrop {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    max-height: 60vh;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 16px 70px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: transform 0.15s ease;
+  }
+
+  .search-modal.open .modal-content {
+    transform: translateY(0);
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .search-icon {
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  #modal-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-primary);
+    outline: none;
+  }
+
+  #modal-search-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .shortcut-hint {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+  }
+
+  .results-hint {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+  }
+
+  .result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.75rem 0.875rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background 0.1s ease;
+    border: 1px solid transparent;
+  }
+
+  .result-item:hover,
+  .result-item.selected {
+    background: var(--code-bg);
+    border-color: var(--border);
+  }
+
+  .result-item + .result-item {
+    margin-top: 0.25rem;
+  }
+
+  .result-category {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .result-title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+</style>

@@ -518,7 +518,6 @@
 
 /* Code blocks - more compact */
 .prose pre {
-  background-color: var(--astro-code-background);
   border-radius: 6px;
   padding: 1em 1.25em; /* Tighter padding */
   margin: 1.25em 0; /* Less space */
@@ -551,7 +550,26 @@
 
 .prose pre > code,
 .prose pre > code * {
-  font-size: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Shiki dual theme support */
+html.light .astro-code,
+html.light .astro-code span {
+  color: var(--shiki-light) !important;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+
+html.light .astro-code {
+  background-color: #f6f8fa !important;
+}
+
+html.dark .astro-code {
+  background-color: #24292e !important;
 }
 
 /* KaTeX Math Rendering */

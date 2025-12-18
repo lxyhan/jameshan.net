@@ -19,7 +19,7 @@ A **graph** $G = (V, E)$ consists of vertices $V$ and edges $E$. Edges can be **
 
 ## Adjacency List Representation
 
-```
+```python
 Vertex:
   - key: Key
   - in_edges: List[Edge]

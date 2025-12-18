@@ -10,7 +10,7 @@ Hash tables implement dictionaries with **$O(1)$ average** insert, lookup, and d
 ## Core Idea
 
 Convert keys to array indices via a **hash function**:
-```
+```python
 index = hash(key) mod capacity
 ```
 
@@ -20,7 +20,7 @@ index = hash(key) mod capacity
 
 ## Data Structure
 
-```
+```python
 DictNode:
   - key: String
   - val: Object
@@ -39,7 +39,7 @@ Dict:
 
 Each bucket is a linked list of all elements that hash to that index.
 
-```
+```python
 insert(key, val):
     index = hash_func(key) mod capacity
     # Search bucket for existing key

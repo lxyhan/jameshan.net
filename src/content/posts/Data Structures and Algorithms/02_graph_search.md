@@ -37,7 +37,7 @@ Only prevent cycles **within the current path**. A node can be revisited from a 
 
 Each frontier entry stores a **path** (list of nodes/edges from source), not just the current node. This avoids a separate parent dictionary.
 
-```
+```python
 search(graph, source, goals):
     open = {[source]}            # frontier: paths to explore
     closed = {}                  # for interpath pruning
@@ -69,7 +69,7 @@ search(graph, source, goals):
 
 ## BFS: Interpath Pruning
 
-```
+```python
 open = Queue()  # FIFO
 ```
 
@@ -85,7 +85,7 @@ open = Queue()  # FIFO
 
 ## DFS: Interpath Pruning
 
-```
+```python
 open = Stack()  # LIFO (or use recursion)
 ```
 
@@ -107,7 +107,7 @@ For cycle detection specifically, we track **intrapath** state (current path onl
 
 Back edge to GRAY = cycle.
 
-```
+```python
 dfs_cycle(v, color):
     color[v] = GRAY              # entering current path
 
@@ -126,7 +126,7 @@ dfs_cycle(v, color):
 
 ## CFS: Intrapath Pruning Only
 
-```
+```python
 open = PriorityQueue()  # min-heap by cost
 ```
 
@@ -139,7 +139,7 @@ open = PriorityQueue()  # min-heap by cost
 - When we pop a path, check if we've already processed its endpoint with a better cost
 - Only process each node once (at its best cost)
 
-```
+```python
 cfs(graph, source, goals):
     open = PriorityQueue()
     processed = {}               # tracks best cost when processed

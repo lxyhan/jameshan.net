@@ -9,7 +9,7 @@ A **priority queue** supports insert and extract-min/max. Binary heaps implement
 
 ## Data Structure
 
-```
+```python
 QueueNode:
   - key: Key
   - val: Object
@@ -50,7 +50,7 @@ For node at index $i$ (0-indexed):
 
 Add at end, bubble up:
 
-```
+```python
 push(key, val, pri):
     heap.append(QueueNode(key, val, pri))
     bubble_up(len(heap) - 1)
@@ -68,7 +68,7 @@ bubble_up(i):
 
 Replace root with last, bubble down:
 
-```
+```python
 pop():
     result = heap[0]
     heap[0] = heap.pop_last()
@@ -97,7 +97,7 @@ bubble_down(i):
 
 **Bottom-up**: Bubble down from last non-leaf → $O(n)$
 
-```
+```python
 heapify(array):
     for i from len(array)/2 - 1 down to 0:
         bubble_down(i)

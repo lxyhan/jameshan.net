@@ -93,6 +93,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     <img src="/90-906173_computer-clipart-old-computer-vector-png.png" alt="" class="header-icon" />
     <span class="folder-name">~/jhan</span>
   </a>
+  <p class="search-hint"><kbd>⌘K</kbd> to search</p>
   <div class="tree-content">
     {tree.children && tree.children.map(node => (
       <Fragment>
@@ -273,5 +274,20 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .nested {
     margin-left: 0;
+  }
+
+  .search-hint {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0.75rem 0;
+  }
+
+  .search-hint kbd {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 0.1rem 0.35rem;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
   }
 </style>

@@ -9,7 +9,7 @@ A **trie** stores strings character-by-character. Strings with common prefixes s
 
 ## Data Structure
 
-```
+```python
 TrieNode:
   - key: Key
   - val: Object  # non-None marks end of word
@@ -25,7 +25,7 @@ Trie:
 
 ### Insert
 
-```
+```python
 insert(key, val):
     node = root
     for char in key:
@@ -37,7 +37,7 @@ insert(key, val):
 
 ### Search
 
-```
+```python
 get(key):
     node = root
     for char in key:
@@ -49,7 +49,7 @@ get(key):
 
 ### Prefix Search
 
-```
+```python
 starts_with(prefix):
     node = root
     for char in prefix:
@@ -61,7 +61,7 @@ starts_with(prefix):
 
 ### Autocomplete
 
-```
+```python
 autocomplete(prefix):
     node = root
     for char in prefix:
