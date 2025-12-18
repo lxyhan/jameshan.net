@@ -89,11 +89,10 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 ---
 
 <div class="blog-tree">
-  <a href="/" class="tree-header">
-    <img src="/90-906173_computer-clipart-old-computer-vector-png.png" alt="" class="header-icon" />
-    <span class="folder-name">~/jhan</span>
-  </a>
-  <p class="search-hint"><kbd>⌘K</kbd> to search</p>
+  <div class="tree-header-row">
+    <a href="/" class="tree-header">~/jhan</a>
+    <span class="search-hint"><kbd>⌘K</kbd> to search</span>
+  </div>
   <div class="tree-content">
     {tree.children && tree.children.map(node => (
       <Fragment>
@@ -159,11 +158,14 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     padding: 0.5rem 0;
   }
 
-  .tree-header {
+  .tree-header-row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
     margin-bottom: 0.75rem;
+  }
+
+  .tree-header {
     font-weight: var(--font-weight-bold);
     color: var(--text-primary);
     text-decoration: none;
@@ -174,11 +176,18 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     color: var(--primary);
   }
 
-  .header-icon {
-    width: 1.6em;
-    height: 1.6em;
-    flex-shrink: 0;
-    object-fit: contain;
+  .search-hint {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+  }
+
+  .search-hint kbd {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.1rem 0.35rem;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
   }
 
   .folder-icon,
@@ -274,20 +283,5 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .nested {
     margin-left: 0;
-  }
-
-  .search-hint {
-    color: var(--text-tertiary);
-    font-size: 0.85rem;
-    margin: 0.5rem 0 0.75rem 0;
-  }
-
-  .search-hint kbd {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    padding: 0.1rem 0.35rem;
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 4px;
   }
 </style>
