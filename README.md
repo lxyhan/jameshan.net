@@ -1,9 +1,3 @@
-# James Han - Personal Website
-
-A minimal, performance-focused personal blog built with Astro, featuring mathematical typesetting, dark mode, and optimized for accessibility and SEO.
-
-## About
-
 Computer Science, Statistics, Economics Undergraduate, University of Toronto St. George, Class of 2028
 
 My research interests live at the intersection of game theory, behavioral economics, asian history, and quantitative trading. I think a lot about how to define and quantify meaningful work. The following is my current understanding:
