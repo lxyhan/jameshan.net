@@ -124,9 +124,9 @@
   font-weight: var(--font-weight-bold);
 }
 
-/* Images - compact like textbook figures */
+/* Images - full width, compact like textbook figures */
 .prose img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   display: block;
   margin: 1.25em 0; /* Less space around images */
@@ -137,6 +137,7 @@
   min-height: 200px;
   color: transparent;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .prose img[src] {

@@ -3,13 +3,13 @@ title: 'Fengtian Economics'
 pubDate: '2025-12-06'
 ---
 
-In 1928, Zhang Zuolin - a former bandit turned warlord - controlled Manchuria, commanded 300,000 troops, and negotiated with the Japanese as an equal. He had no formal education, no democratic mandate, and no legal authority over the territory he governed.
+In 1928, Zhang Zuolin, a former bandit turned warlord, controlled Manchuria, commanded 300,000 troops, and negotiated with the Japanese as an equal. He had no formal education, no democratic mandate, and no legal authority over the territory he governed.
 
 Yet he maintained power for nearly two decades in one of the most resource-rich, strategically contested regions in Asia.
 
 His secret wasn't military dominance. It was **incentive alignment**.
 
-The Fengtian clique - Zhang's coalition of warlords, merchants, and Japanese-backed financiers - operated less like a traditional government and more like a decentralized syndicate. The mechanisms he used reveal something fundamental about how power actually works when formal authority doesn't exist.
+The Fengtian clique, Zhang's coalition of warlords, merchants, and Japanese-backed financiers, operated less like a traditional government and more like a decentralized syndicate. The mechanisms he used reveal something fundamental about how power actually works when formal authority doesn't exist.
 
 Authority ≠ power. This is the lesson.
 
@@ -17,9 +17,11 @@ Authority ≠ power. This is the lesson.
 
 ## The Bandit Who Became a State
 
-Zhang Zuolin started as a common criminal - leading a bandit gang in rural Liaoning in the 1890s. But he understood something most outlaws didn't: **legitimacy is cheaper than violence**.
+Zhang Zuolin started as a common criminal, leading a bandit gang in rural Liaoning in the 1890s. But he understood something most outlaws didn't: **legitimacy is cheaper than violence**.
 
 Instead of fighting the Qing dynasty, he offered his services. In 1902, he was appointed a local militia commander. By 1916, he was military governor of Fengtian province. By 1926, he controlled Beijing itself.
+
+![Fengtian clique soldiers](/images/posts/history/fengtian_soldiers.jpg)
 
 How did a bandit with no formal training, no aristocratic lineage, and no ideological movement build a coalition powerful enough to challenge the Republic of China?
 
@@ -29,7 +31,7 @@ How did a bandit with no formal training, no aristocratic lineage, and no ideolo
 
 ## The Structure of the Fengtian Clique
 
-The Fengtian clique wasn't a hierarchy - it was a **coalition of independent operators** bound by mutual interest.
+The Fengtian clique wasn't a hierarchy, it was a **coalition of independent operators** bound by mutual interest.
 
 Zhang's inner circle included:
 
@@ -74,7 +76,7 @@ Governors could get rich in their provinces. But they needed Zhang to:
 - Secure external financing
 - Arbitrate disputes with other coalition members
 
-**Zhang's value wasn't in hoarding resources - it was in being the most credible coordinator.**
+**Zhang's value wasn't in hoarding resources, it was in being the most credible coordinator.**
 
 ### **2. Reputation as Currency**
 
@@ -83,24 +85,24 @@ Zhang rarely issued direct orders. Instead, he:
 - **Withdrew favor** by excluding someone from meetings or cutting off loan access
 - **Publicized loyalty** through newspapers he funded
 
-When Yang Yuting negotiated weapons purchases from Japan, he did so *on Zhang's behalf*. If the deal succeeded, Yang's reputation rose - but so did Zhang's, because Yang was "his man."
+When Yang Yuting negotiated weapons purchases from Japan, he did so *on Zhang's behalf*. If the deal succeeded, Yang's reputation rose, but so did Zhang's, because Yang was "his man."
 
 If Yang defected, he'd lose:
 - Access to Japanese contacts (who trusted him *because* he represented Zhang)
 - His position in the coalition (making him a target for rivals)
 - His reputation (being labeled as disloyal in a world where trust was scarce)
 
-**Zhang's power wasn't coercive - it was gravitational. Staying in his orbit was more valuable than leaving.**
+**Zhang's power wasn't coercive, it was gravitational. Staying in his orbit was more valuable than leaving.**
 
 ### **3. Strategic Marriages**
 
-Zhang's family didn't just rule - they *connected*.
+Zhang's family didn't just rule, they *connected*.
 
 - Zhang Xueliang (his son) married Yu Fengzhi, daughter of a wealthy merchant family
 - Zhang's daughters married into Japanese-aligned Manchurian aristocracy
 - His sons-in-law were given governorships or military commands
 
-This wasn't romantic - it was **collateral**.
+This wasn't romantic, it was **collateral**.
 
 If a governor considered defecting, he had to weigh:
 - Would his daughter be disowned?
@@ -147,11 +149,11 @@ This pattern appears everywhere power exists without formal authority:
 
 In 1928, Zhang Zuolin was assassinated by Japanese officers who had grown frustrated with his increasing independence. His train was blown up as he returned to Manchuria from Beijing.
 
-The irony: the same structure that gave him power - decentralization, coalition-building, reliance on external financing - made him vulnerable once his partners decided he was more valuable dead than alive.
+The irony: the same structure that gave him power, decentralization, coalition-building, reliance on external financing, made him vulnerable once his partners decided he was more valuable dead than alive.
 
 His son, Zhang Xueliang, inherited the coalition. But by 1931, the Japanese invaded outright, and the Fengtian clique dissolved. Local governors defected, revenue streams dried up, and the coalition that had lasted two decades collapsed in months.
 
-**The lesson**: coordination-based power is flexible and resilient - until it isn't. The moment your partners have a better option, the structure evaporates.
+**The lesson**: coordination-based power is flexible and resilient, until it isn't. The moment your partners have a better option, the structure evaporates.
 
 Zhang Zuolin understood incentives. But he didn't control them.
 

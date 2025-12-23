@@ -1,3 +1,13 @@
+/* System font for tilde character - CMU Serif has misaligned tilde */
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local("Georgia"), local("Times New Roman"), local("serif");
+  unicode-range: U+007E; /* Tilde ~ */
+}
+
 /* Computer Modern Serif font - Self-hosted for performance */
 @font-face {
   font-family: "CMU Serif";
