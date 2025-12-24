@@ -12,7 +12,7 @@
         const data = await response.json();
         const statsElement = document.getElementById('analytics-stats');
         if (statsElement) {
-          statsElement.innerHTML = `👁️ ${data.today} today · ${data.allTime} all time`;
+          statsElement.innerHTML = `👁️ ${data.today} today · ${data.allTime} views`;
         }
       }
     } catch (error) {

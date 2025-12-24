@@ -12,44 +12,40 @@ export const GET: APIRoute = async () => {
   }
 
   try {
-    // Get today's unique visitors (unique session_ids for today)
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const { data: todayVisitors, error: todayError } = await supabase
+    // Get today's total views (every page load counts)
+    const { count: todayViews, error: todayError } = await supabase
       .from('visitors')
-      .select('session_id')
+      .select('*', { count: 'exact', head: true })
       .gte('visited_at', today.toISOString());
 
     if (todayError) {
-      console.error('Today visitors error:', todayError);
-      return new Response(JSON.stringify({ error: 'Failed to fetch today visitors' }), {
+      console.error('Today views error:', todayError);
+      return new Response(JSON.stringify({ error: 'Failed to fetch today views' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // Get all-time unique visitors
-    const { data: allTimeVisitors, error: allTimeError } = await supabase
+    // Get all-time total views
+    const { count: allTimeViews, error: allTimeError } = await supabase
       .from('visitors')
-      .select('session_id');
+      .select('*', { count: 'exact', head: true });
 
     if (allTimeError) {
-      console.error('All-time visitors error:', allTimeError);
-      return new Response(JSON.stringify({ error: 'Failed to fetch all-time visitors' }), {
+      console.error('All-time views error:', allTimeError);
+      return new Response(JSON.stringify({ error: 'Failed to fetch all-time views' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
     }
-
-    // Count unique session IDs
-    const todayUnique = new Set(todayVisitors?.map((v) => v.session_id) || []).size;
-    const allTimeUnique = new Set(allTimeVisitors?.map((v) => v.session_id) || []).size;
 
     return new Response(
       JSON.stringify({
-        today: todayUnique,
-        allTime: allTimeUnique,
+        today: todayViews || 0,
+        allTime: allTimeViews || 0,
       }),
       {
         status: 200,

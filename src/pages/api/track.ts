@@ -24,34 +24,21 @@ export const POST: APIRoute = async ({ request }) => {
     // Get user agent
     const userAgent = request.headers.get('user-agent') || 'Unknown';
 
-    // Check if this session already visited today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const { data: existingVisit } = await supabase
+    // Track every page view (reloads count too)
+    const { error } = await supabase
       .from('visitors')
-      .select('id')
-      .eq('session_id', sessionId)
-      .gte('visited_at', today.toISOString())
-      .single();
+      .insert({
+        session_id: sessionId,
+        user_agent: userAgent,
+        visited_at: new Date().toISOString(),
+      });
 
-    // Only insert if no visit today from this session
-    if (!existingVisit) {
-      const { error } = await supabase
-        .from('visitors')
-        .insert({
-          session_id: sessionId,
-          user_agent: userAgent,
-          visited_at: new Date().toISOString(),
-        });
-
-      if (error) {
-        console.error('Supabase insert error:', error);
-        return new Response(JSON.stringify({ error: 'Failed to track visit' }), {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return new Response(JSON.stringify({ error: 'Failed to track visit' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     return new Response(JSON.stringify({ success: true }), {
