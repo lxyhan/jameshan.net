@@ -4,6 +4,13 @@ import { supabase } from '@/lib/supabase';
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!supabase) {
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     const { sessionId } = await request.json();
 

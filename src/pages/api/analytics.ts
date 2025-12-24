@@ -4,6 +4,13 @@ import { supabase } from '@/lib/supabase';
 export const prerender = false;
 
 export const GET: APIRoute = async () => {
+  if (!supabase) {
+    return new Response(JSON.stringify({ today: 0, allTime: 0 }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     // Get today's unique visitors (unique session_ids for today)
     const today = new Date();

@@ -1,5 +1,5 @@
 ---
-title: 'VII. MarkUs: Scheduled Visibility (Frontend)'
+title: '6. MarkUs: Scheduled Visibility (Frontend)'
 pubDate: '2025-11-27'
 ---
 

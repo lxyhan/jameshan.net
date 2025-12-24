@@ -1,5 +1,5 @@
 ---
-title: 'IX. Reflections'
+title: 'Reflections'
 pubDate: '2025-11-27'
 ---
 

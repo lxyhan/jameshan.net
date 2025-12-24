@@ -57,15 +57,10 @@ function buildTree(posts: CollectionEntry<'posts'>[]): TreeNode {
     })
   })
 
-  // Sort: folders first, then files, alphabetically
+  // Sort alphabetically by name (files and folders mixed)
   function sortTree(node: TreeNode) {
     if (node.children) {
-      node.children.sort((a, b) => {
-        if (a.type !== b.type) {
-          return a.type === 'folder' ? -1 : 1
-        }
-        return a.name.localeCompare(b.name)
-      })
+      node.children.sort((a, b) => a.name.localeCompare(b.name))
       node.children.forEach(sortTree)
     }
   }
