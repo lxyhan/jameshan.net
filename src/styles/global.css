@@ -108,9 +108,9 @@ html {
 
 body {
   font-family: var(--sans);
-  font-size: 1.0625rem; /* 17px - compact but readable */
+  font-size: 1.0625rem; /* 17px - compact like textbooks */
   text-rendering: optimizeLegibility;
-  line-height: 1.5; /* Better readability */
+  line-height: 1.5; /* Tighter for density */
   color: var(--text-primary);
   font-display: swap;
   word-wrap: break-word;
@@ -120,7 +120,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  letter-spacing: -0.03em; /* Less tight */
+  letter-spacing: -0.025em; /* Very tight letter spacing */
   padding: 6rem 0 1.5rem 0;
   overscroll-behavior-y: contain;
   transition: background-color 0.2s ease-out;

@@ -3,8 +3,6 @@ title: '7. MarkUs: Touch Annotations'
 pubDate: '2025-11-27'
 ---
 
-# Making Grading Work on Tablets
-
 *For the first time, grading on iPads, Surface tablets, and touchscreen laptops just works.*
 
 **PR #7736** (In Progress)

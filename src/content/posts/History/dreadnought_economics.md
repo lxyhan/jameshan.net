@@ -7,11 +7,18 @@ pubDate: '2025-11-25'
 
 In 1906, the British Royal Navy launched the _HMS Dreadnought_.
 
-Until that morning, naval power was a gradient. You had older battleships, newer battleships, some with more guns, some with fewer. It was a linear progression of utility.
+> **Before Dreadnought**
+>
+> Until that morning, naval power was a gradient. You had older battleships, newer battleships, some with more guns, some with fewer. It was a linear progression of utility.
 
-But the _Dreadnought_ was different. She was the first all-big-gun battleship, powered by steam turbines. She was faster, deadlier, and tougher than anything else on the water.
+**But the _Dreadnought_ was different:**
+- First all-big-gun battleship
+- Powered by steam turbines
+- Faster, deadlier, and tougher than anything else on the water
 
-The moment she launched, she didn't just become the "best" ship. She effectively deleted the value of every other ship in existence. Every battleship built before 1906,even ones launched just a month prior,instantly became "pre-Dreadnoughts." They were obsolete scrap metal.
+> **The Discontinuous Jump**
+>
+> The moment she launched, she didn't just become the "best" ship. She effectively **deleted the value** of every other ship in existence. Every battleship built before 1906—even ones launched just a month prior—instantly became "pre-Dreadnoughts." They were obsolete scrap metal.
 
 I tell you this because I recently realized I have inadvertently recreated the Anglo-German Naval Arms Race in my bedroom closet. And, much like the German Empire in 1910, I am losing.
 
@@ -19,22 +26,30 @@ I tell you this because I recently realized I have inadvertently recreated the A
 
 I spend a lot of time optimizing trading strategies and game theory models. Theoretically, I should be good at resource allocation. In practice, my personal inventory is a disaster.
 
-I conducted a forensic audit of my last 24 months of clothing consumption. The results were statistically offensive.
+I conducted a forensic audit of my last 24 months of clothing consumption.
 
-- **Sample Size ($N$):** $\approx 45$ items acquired.
-- **CapEx:** $\approx$ \$2,250 (assuming a mean price $\mu_p \approx$ \$50).
-- **The Hypothesis:** I assumed usage would follow a **Uniform Distribution** ($U(a,b)$). I paid for them, so I should wear them.
-- **The Reality:** My usage followed a severe **Power Law**. Roughly 5-7 items accounted for $>60\%$ of total utility.
+> **The Data**
+>
+> - **Sample Size ($N$):** $\approx 45$ items acquired
+> - **CapEx:** $\approx$ \$2,250 (mean price $\mu_p \approx$ \$50)
+> - **The Hypothesis:** Usage would follow a **Uniform Distribution** ($U(a,b)$). I paid for them, so I should wear them.
+> - **The Reality:** Usage followed a severe **Power Law**. Roughly 5-7 items accounted for $>60\%$ of total utility.
 
-I had about \$1,000 of dead capital hanging on hangers. Why? Because I didn't understand that clothing follows the same rules as naval warfare.
+**Result:** About \$1,000 of dead capital hanging on hangers.
+
+**Why?** I didn't understand that clothing follows the same rules as naval warfare.
 
 ## The Dreadnought Effect in Utility Theory
 
-Standard economic theory assumes goods are **substitutable** with diminishing marginal utility. If I have a "Perfect" shirt ($U=1.0$) and a "Good" shirt ($U=0.8$), I should theoretically wear the Good shirt $40\%$ of the time.
+> **Standard Economic Theory**
+>
+> Goods are **substitutable** with diminishing marginal utility. If I have a "Perfect" shirt ($U=1.0$) and a "Good" shirt ($U=0.8$), I should theoretically wear the Good shirt $40\%$ of the time.
 
 **False.**
 
-Clothing utility is discontinuous. The moment I acquire a "Dreadnought",a perfect item,the probability of me choosing an inferior substitute drops to near zero.
+> **Reality: Discontinuous Utility**
+>
+> The moment I acquire a "Dreadnought"—a perfect item—the probability of me choosing an inferior substitute drops to near zero.
 
 <!-- ![_Discontinuous Step Function](../_assets/utility-graph.png) -->
 
@@ -65,7 +80,7 @@ I bought a Patagonia technical climbing tee (discounted to \$30).
 
 ## The New Protocol: Quantifying the Closet
 
-To stop bleeding money, I’m treating my wardrobe as a bounded system governed by specific variables.
+To stop bleeding money, I'm treating my wardrobe as a bounded system governed by specific variables.
 
 ### 1. The Decay Constant ($\lambda$)
 
@@ -75,19 +90,26 @@ $$
 S(t) = S_0 e^{-\lambda t}
 $$
 
-- **Patagonia/Arc'teryx:** $\lambda \to 0$. I call this the "Forever Coefficient."
-- **Cheap Fast Fashion Wool:** $\lambda \approx 0.5$ per wash. It loses shape faster than a radioactive isotope.
+> **Decay Rates**
+>
+> - **Patagonia/Arc'teryx:** $\lambda \to 0$ (the "Forever Coefficient")
+> - **Cheap Fast Fashion Wool:** $\lambda \approx 0.5$ per wash (loses shape faster than a radioactive isotope)
+
+---
 
 ### 2. The Optimization Strategy
 
 I am pivoting to a **High-CPW Uniform** strategy (Zone 1).
 
-- **The "Dreadnought" Filter:** If a new item does not completely obsolete a previous item in its category, **do not buy it.** "Good enough" is a trap.
-- **The Functional Exception:** For high-entropy environments (The Gym), Aesthetic Value is irrelevant. My \$15 Decathlon tee with CPW = \$0.50 is an efficiency masterpiece. It stays.
-- **The Constraint:** 5 Tops, 4 Bottoms, 4 Shoes.
+> **Three Rules**
+>
+> 1. **The "Dreadnought" Filter** — If a new item does not completely obsolete a previous item in its category, **do not buy it**. "Good enough" is a trap.
+> 2. **The Functional Exception** — For high-entropy environments (The Gym), Aesthetic Value is irrelevant. My \$15 Decathlon tee with CPW = \$0.50 is an efficiency masterpiece. It stays.
+> 3. **The Constraint** — 5 Tops, 4 Bottoms, 4 Shoes
 
 **Why 4 pairs of shoes?**
-We must account for material fatigue. By rotating, we introduce a rest period ($t_{rest} > 24h$), reducing the Decay Constant ($\lambda$) and extending the asset lifespan.
+
+Material fatigue requires rotation. By introducing a rest period ($t_{rest} > 24h$), we reduce the Decay Constant ($\lambda$) and extend the asset lifespan.
 
 ---
 

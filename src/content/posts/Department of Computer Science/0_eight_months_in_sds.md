@@ -3,8 +3,6 @@ title: 'Eight Months in SDS'
 pubDate: '2025-11-27'
 ---
 
-# PythonTA & MarkUs: A Retrospective
-
 *May–December 2025*
 
 ---

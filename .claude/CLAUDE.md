@@ -18,3 +18,7 @@ Astro-based personal website deployed on Netlify.
 - Use TypeScript for all new code
 - Follow existing code style (Prettier/ESLint configured)
 - Test changes with `pnpm build` before committing
+
+## Git Commits
+- Do NOT include "Co-Authored-By: Claude" in commit messages
+- Keep commit messages concise and descriptive

@@ -3,8 +3,6 @@ title: 'I. Notification Permission Telemetry'
 pubDate: '2025-11-27'
 ---
 
-# Instrumenting the Notification Permission Funnel
-
 *My first Firefox patch: adding Glean telemetry to track how users interact with notification permission prompts.*
 
 **Bug 1998053** | [D274203](https://phabricator.services.mozilla.com/D274203) | Reviewer: timhuang

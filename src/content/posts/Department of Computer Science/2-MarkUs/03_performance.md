@@ -3,8 +3,6 @@ title: '3. MarkUs: Performance'
 pubDate: '2025-11-27'
 ---
 
-# Fixing an N+1 Query
-
 *My first impactful bug fix—instructors notice this one.*
 
 **PR #7678**

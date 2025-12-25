@@ -3,9 +3,20 @@ title: '2: Solving Linear Systems'
 pubDate: '2025-12-08'
 ---
 
-Solving a linear system means finding a recipe that produces a target dish. You have ingredients (matrix columns), you know what you want to cook (the vector $\mathbf{b}$), and you need to figure out the quantities (the solution $\mathbf{x}$). Sometimes there's exactly one recipe. Sometimes there are infinitely many ways to hit the target. Sometimes it's impossible,the ingredients you have can't produce that flavor.
+Solving a linear system means finding a recipe that produces a target dish.
 
-The algorithm for answering "does a solution exist, and if so, what is it?" is **row reduction**. It's mechanical, systematic, and reveals everything about the system's structure. This is the computational heart of linear algebra.
+> **The Kitchen Metaphor Applied**
+>
+> - **Ingredients**: Matrix columns
+> - **Target dish**: The vector $\mathbf{b}$
+> - **Your task**: Find the quantities (the solution $\mathbf{x}$)
+>
+> **Three possible outcomes:**
+> - Exactly one recipe works
+> - Infinitely many ways to hit the target
+> - Impossible — the ingredients you have can't produce that flavor
+
+**Row reduction** is the universal algorithm for answering "does a solution exist, and if so, what is it?" It's mechanical, systematic, and reveals everything about the system's structure. This is the computational heart of linear algebra.
 
 ---
 
@@ -483,13 +494,24 @@ This is a line (1-dimensional solution space).
 
 ## Why This Matters
 
-Row reduction is the **universal algorithm** for linear systems. It tells you:
-- Does a solution exist? (Check for pivot in last column)
-- Is it unique? (Count free variables)
-- What is the solution? (Solve for basic variables in terms of free ones)
+Row reduction is the **universal algorithm** for linear systems.
 
-Every computational tool in linear algebra,finding inverses, computing kernels, checking independence,ultimately reduces to row reduction.
+> **Three Questions, One Method**
+>
+> 1. **Does a solution exist?** → Check for pivot in last column
+> 2. **Is it unique?** → Count free variables
+> 3. **What is the solution?** → Solve for basic variables in terms of free ones
 
-The geometry is simple: each equation carves out a hyperplane. The algebra is mechanical: row operations preserve solutions. Together, they give you a complete answer to "does this system have solutions, and if so, what are they?"
+Every computational tool in linear algebra—finding inverses, computing kernels, checking independence—ultimately reduces to row reduction.
 
-Next, we'll build the geometric language,vectors, spans, linear combinations,that makes sense of what these solutions mean.
+### The Big Picture
+
+**Geometry**: Each equation carves out a hyperplane
+
+**Algebra**: Row operations preserve solutions
+
+**Together**: A complete answer to "does this system have solutions, and if so, what are they?"
+
+---
+
+Next, we'll build the geometric language—vectors, spans, linear combinations—that makes sense of what these solutions mean.

@@ -3,8 +3,6 @@ title: '5. MarkUs: Scheduled Visibility (Backend)'
 pubDate: '2025-11-27'
 ---
 
-# The Most Complex Feature I've Built End-to-End
-
 *Instructors wanted to schedule assignment visibility automatically: "Visible Oct 1–Dec 31"*
 
 **PR #7697**

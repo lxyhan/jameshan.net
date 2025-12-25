@@ -47,9 +47,8 @@ const ogImage = `/open-graph/${postSlug}.png`
         </aside> -->
         <article class="post-article prose">
           <GradientMask />
-          <Breadcrumb postId={postId} title={title} />
-          <div class="title">
-            <h1>{title}</h1>
+          <div class="post-header">
+            <Breadcrumb postId={postId} title={title} />
             <div class="date">
               <FormattedDate date={pubDate} context="post" />
               {
@@ -62,6 +61,7 @@ const ogImage = `/open-graph/${postSlug}.png`
               }
             </div>
           </div>
+          <h1 class="post-title">{title}</h1>
           <slot />
           <PostNavigation currentPostId={postId} />
         </article>
@@ -105,6 +105,23 @@ const ogImage = `/open-graph/${postSlug}.png`
     /* grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
     gap: 2rem;
     align-items: flex-start; */
+  }
+
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    margin: 1rem 0 1rem 0;
+    letter-spacing: -0.04em;
+    font-stretch: condensed;
   }
 
   .post-rail {

@@ -3,8 +3,6 @@ title: '6. MarkUs: Scheduled Visibility (Frontend)'
 pubDate: '2025-11-27'
 ---
 
-# Building the UI Layer
-
 *Making the backend feature usable.*
 
 **PR #7717**

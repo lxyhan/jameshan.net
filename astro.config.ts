@@ -9,6 +9,7 @@ import remarkGfm from 'remark-gfm'                         // ⭐ ADDED
 import remarkEmbeddedMedia from './src/plugins/remark-embedded-media.mjs'
 import remarkReadingTime from './src/plugins/remark-reading-time.mjs'
 import remarkTOC from './src/plugins/remark-toc.mjs'
+import remarkCallouts from './src/plugins/remark-callouts.mjs'
 
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'                         // ⭐ ADDED
@@ -46,6 +47,7 @@ export default defineConfig({
       remarkMath,
       remarkDirective,
       remarkGfm,                         // ⭐ ADDED: enables footnotes, tables, tasks, etc.
+      remarkCallouts,                    // ⭐ ADDED: emoji-based callouts
       remarkEmbeddedMedia,
       remarkReadingTime,
       remarkTOC

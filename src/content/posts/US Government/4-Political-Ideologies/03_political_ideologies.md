@@ -9,13 +9,13 @@ What does it mean to be liberal or conservative in America? The answer is more c
 
 The traditional model places political views on a single dimension:
 
-**Left/Liberal**: Favor government intervention in the economy, individual freedom on social issues, skepticism of traditional authority.
-
-**Right/Conservative**: Favor free markets and limited economic intervention, traditional values on social issues, respect for established institutions.
-
-**Moderate/Centrist**: In between. May hold mixed views or simply less intense positions.
+- **Left/Liberal**: Favor government intervention in the economy, individual freedom on social issues, skepticism of traditional authority
+- **Right/Conservative**: Favor free markets and limited economic intervention, traditional values on social issues, respect for established institutions
+- **Moderate/Centrist**: In between. May hold mixed views or simply less intense positions
 
 This model is useful but incomplete. Many Americans don't fit neatly on one line.
+
+---
 
 ## Core Ideological Values
 
@@ -23,29 +23,25 @@ This model is useful but incomplete. Many Americans don't fit neatly on one line
 
 Modern American liberalism emphasizes:
 
-**Equality**: Government should reduce economic inequality through progressive taxation, social programs, and regulation.
+1. **Equality**: Government should reduce economic inequality through progressive taxation, social programs, and regulation
+2. **Individual rights**: Strong protections for civil liberties, especially for minority groups. Separation of church and state
+3. **Social progress**: Society should evolve. Traditional practices aren't inherently good
+4. **Government as solution**: Collective action through government can address social problems that markets won't solve
+5. **Skepticism of concentrated power**: In corporations, not government
 
-**Individual rights**: Strong protections for civil liberties, especially for minority groups. Separation of church and state.
-
-**Social progress**: Society should evolve. Traditional practices aren't inherently good.
-
-**Government as solution**: Collective action through government can address social problems that markets won't solve.
-
-**Skepticism of concentrated power**: In corporations, not government.
+---
 
 ### Conservatism
 
 American conservatism emphasizes:
 
-**Liberty**: Government should generally leave people and markets alone. Lower taxes, less regulation.
+1. **Liberty**: Government should generally leave people and markets alone. Lower taxes, less regulation
+2. **Tradition**: Existing institutions embody accumulated wisdom. Change should be gradual
+3. **Order**: Strong defense, law and order, respect for authority
+4. **Individual responsibility**: People succeed or fail based on their own efforts. Government programs create dependency
+5. **Skepticism of concentrated power**: In government, not corporations
 
-**Tradition**: Existing institutions embody accumulated wisdom. Change should be gradual.
-
-**Order**: Strong defense, law and order, respect for authority.
-
-**Individual responsibility**: People succeed or fail based on their own efforts. Government programs create dependency.
-
-**Skepticism of concentrated power**: In government, not corporations.
+---
 
 ### Libertarianism
 
@@ -57,6 +53,8 @@ Maximum individual freedom in both economic and social spheres:
 - Skepticism of both corporate and government power
 
 Libertarians are economically conservative and socially liberal. They're a significant minority in both parties but politically homeless.
+
+---
 
 ### Populism
 
@@ -70,21 +68,30 @@ Neither consistently liberal nor conservative. Characterized by:
 
 Populism can appear on the left (Bernie Sanders) or right (Donald Trump). It's a style as much as an ideology.
 
+---
+
 ## The Two-Dimensional Model
 
 A better model uses two axes:
 
-**Economic dimension**: Government intervention in economy (left) vs. free markets (right)
+**Economic dimension:**
+- Left: Government intervention in economy
+- Right: Free markets
 
-**Social dimension**: Individual freedom on personal issues (libertarian) vs. traditional values/government regulation of morality (authoritarian)
+**Social dimension:**
+- Libertarian: Individual freedom on personal issues
+- Authoritarian: Traditional values/government regulation of morality
 
-This creates four quadrants:
-- Liberal (economic left, social libertarian)
-- Conservative (economic right, social traditional)
-- Libertarian (economic right, social libertarian)
-- Populist/Communitarian (economic left, social traditional)
+> 💡 **This creates four quadrants:**
+>
+> 1. **Liberal** (economic left, social libertarian)
+> 2. **Conservative** (economic right, social traditional)
+> 3. **Libertarian** (economic right, social libertarian)
+> 4. **Populist/Communitarian** (economic left, social traditional)
+>
+> Most voters aren't pure types. They mix views from different quadrants.
 
-Most voters aren't pure types. They mix views from different quadrants.
+---
 
 ## Party Ideologies
 
@@ -128,31 +135,45 @@ Most voters aren't pure types. They mix views from different quadrants.
 
 **Internal tensions**: Establishment vs. populist wing. Free trade vs. protectionism. Democracy norms vs. Trumpism.
 
+---
+
 ## Polarization
 
 ### Elite Polarization
 
 Politicians have sorted ideologically. Conservative Democrats and liberal Republicans have nearly disappeared from Congress.
 
-**Evidence**: Voting patterns show almost no overlap between the parties. DW-NOMINATE scores (a measure of ideology based on roll call votes) show the parties moving apart.
+**Evidence:**
+- Voting patterns show almost no overlap between the parties
+- DW-NOMINATE scores (a measure of ideology based on roll call votes) show the parties moving apart
 
 ### Mass Polarization
 
-The public is more complicated. Issue positions haven't polarized as much as partisan identities.
+> 📘 **The public is more complicated. Issue positions haven't polarized as much as partisan identities.**
 
-**Affective polarization**: Americans increasingly dislike the other party. Not just disagreement but hostility. Democrats and Republicans don't want their children to marry each other.
+**Three key trends:**
 
-**Sorting**: People who identify as Democrats have become more liberal; Republicans more conservative. Moderates have been claimed by parties that match their dominant views.
+1. **Affective polarization**
+   - Americans increasingly dislike the other party
+   - Not just disagreement but hostility
+   - Democrats and Republicans don't want their children to marry each other
 
-**Media bubbles**: Partisan media reinforces existing beliefs. People choose information sources that confirm their views.
+2. **Sorting**
+   - People who identify as Democrats have become more liberal
+   - Republicans more conservative
+   - Moderates have been claimed by parties that match their dominant views
+
+3. **Media bubbles**
+   - Partisan media reinforces existing beliefs
+   - People choose information sources that confirm their views
 
 ### Negative Partisanship
 
-People are motivated more by dislike of the other party than enthusiasm for their own.
-
-"I'm not a Republican; I'm an anti-Democrat" (or vice versa).
+People are motivated more by dislike of the other party than enthusiasm for their own. "I'm not a Republican; I'm an anti-Democrat" (or vice versa).
 
 This makes compromise harder. Giving the other side a win is unacceptable even if the policy is good.
+
+---
 
 ## Ideology and Policy
 
@@ -176,17 +197,27 @@ This makes compromise harder. Giving the other side a win is unacceptable even i
 | Criminal justice | Reform, reduce incarceration | Law and order, tough on crime |
 | LGBTQ+ rights | Equality, anti-discrimination | Religious liberty, traditional marriage |
 
+---
+
 ### Where Americans Actually Are
 
-On many issues, the public is closer to liberal positions than conservative ones (healthcare, minimum wage, environment). On others, they're more conservative (crime, immigration enforcement).
+Public opinion is nuanced:
 
-The intensity is asymmetric. Conservatives care more intensely about their priority issues (guns, abortion) than liberals do about theirs. This shapes electoral outcomes.
+**Liberal-leaning issues:**
+- Healthcare, minimum wage, environment
+
+**Conservative-leaning issues:**
+- Crime, immigration enforcement
+
+**The intensity is asymmetric**: Conservatives care more intensely about their priority issues (guns, abortion) than liberals do about theirs. This shapes electoral outcomes.
+
+---
 
 ## The Takeaway
 
-American ideology is messier than left-right labels suggest.
+> ✅ **American ideology is messier than left-right labels suggest.**
 
-Understanding ideology means understanding:
+**Understanding ideology means understanding:**
 - The core values of liberalism and conservatism
 - Why a two-dimensional model fits better than one dimension
 - How the parties differ on economic and social issues

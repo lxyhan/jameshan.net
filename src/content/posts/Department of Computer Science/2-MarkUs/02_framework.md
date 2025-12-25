@@ -3,8 +3,6 @@ title: '2. MarkUs: Framework Maintenance'
 pubDate: '2025-11-27'
 ---
 
-# Rack Deprecation Fixes
-
 *Keeping up with upstream changes.*
 
 **PR #7675**

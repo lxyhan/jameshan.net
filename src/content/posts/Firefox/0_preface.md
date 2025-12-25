@@ -3,8 +3,6 @@ title: 'Firefox Contributions'
 pubDate: '2025-11-27'
 ---
 
-# Contributing to Firefox
-
 *A series documenting my patches to Mozilla Firefox as a Privacy Engineering intern.*
 
 ---

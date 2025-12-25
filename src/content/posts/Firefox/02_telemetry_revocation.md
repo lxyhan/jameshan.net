@@ -3,8 +3,6 @@ title: 'II. Telemetry Revocation Events'
 pubDate: '2025-12-22'
 ---
 
-# Adding Permission Revocation Telemetry
-
 *Extending the notification telemetry to track when users revoke permissions.*
 
 **Bug 1998053** | [D274203](https://phabricator.services.mozilla.com/D274203) | Reviewer: timhuang

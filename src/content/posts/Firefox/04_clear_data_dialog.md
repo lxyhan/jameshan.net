@@ -3,8 +3,6 @@ title: 'IV. Clear Data Dialog Cleanup'
 pubDate: '2025-12-22'
 ---
 
-# Removing the Legacy Clear Data Dialog
-
 *Cleanup patch removing dead code after the new dialog shipped.*
 
 **Bug 1856418** | [D271909](https://phabricator.services.mozilla.com/D271909) | Reviewer: manuel

@@ -3,8 +3,6 @@ title: '1. PythonTA'
 pubDate: '2025-11-27'
 ---
 
-# My Introduction to Production Codebases
-
 *May–August 2025*
 
 ---

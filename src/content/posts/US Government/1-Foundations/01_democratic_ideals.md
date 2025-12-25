@@ -11,7 +11,7 @@ The founders didn't invent democracy from scratch. They drew on centuries of pol
 
 ### Core Democratic Ideals
 
-**Natural Rights**: The idea that all people possess certain rights simply by being human. These rights exist before government, independent of any law or constitution. John Locke identified them as life, liberty, and property. Jefferson adapted this to "life, liberty, and the pursuit of happiness" in the Declaration of Independence.
+**Natural Rights**: All people possess certain rights simply by being human. These rights exist before government, independent of any law or constitution. John Locke identified them as life, liberty, and property. Jefferson adapted this to "life, liberty, and the pursuit of happiness" in the Declaration of Independence.
 
 **Social Contract**: An implicit agreement among people in a society. We give up some freedoms (like the freedom to steal) in exchange for protection and social order. Government derives its authority from this contract. If government violates the contract, the people have the right to alter or abolish it.
 
@@ -29,6 +29,8 @@ These principles reinforce each other:
 
 The Declaration of Independence combines all four: people have natural rights, governments are instituted to secure those rights (social contract), they derive their powers from consent of the governed (popular sovereignty), and when government becomes destructive of these ends, the people can alter or abolish it (limited government as the ultimate check).
 
+---
+
 ## Types of Democracy
 
 Not all democracies work the same way. Political scientists identify three models of representative democracy:
@@ -36,50 +38,62 @@ Not all democracies work the same way. Political scientists identify three model
 ### Participatory Democracy
 
 **Core idea**: Broad participation in politics and civil society is essential.
-
 **Assumptions**:
 - More participation produces better outcomes
 - Citizens should be directly involved in decision-making
 - Civic engagement strengthens democracy
-
 **Examples**: Town hall meetings, ballot initiatives, recall elections, open primaries
 
 **Criticism**: Most people don't have time to become informed on every issue. Direct democracy can produce ill-considered policies and tyranny of the majority.
 
+---
+
 ### Pluralist Democracy
 
 **Core idea**: Democracy works through competition among groups.
-
 **Assumptions**:
 - People organize around shared interests
 - Groups compete to influence policy
 - No single group dominates
 - Policy emerges from bargaining between groups
-
 **Examples**: Interest groups lobbying Congress, multiple parties competing in elections, advocacy organizations mobilizing members
 
 **Criticism**: Not all groups have equal resources. The "heavenly chorus sings with an upper-class accent." (E.E. Schattschneider)
 
+---
+
 ### Elite Democracy
 
 **Core idea**: Democracy should be filtered through elected representatives and institutions.
-
 **Assumptions**:
 - Most citizens lack the time or expertise for direct governance
 - Elected officials deliberate on behalf of the people
 - Institutional checks prevent hasty or dangerous decisions
-
 **Examples**: Electoral College, original appointment of Senators by state legislatures, lifetime appointment of federal judges
 
 **Criticism**: Creates distance between citizens and government. Can entrench elite interests at the expense of ordinary people.
+
+---
 
 ## The Founders' Debate
 
 The tension between these models runs through the founding documents.
 
-**Federalist No. 10** (Madison) argues for a large republic with filtered representation. He feared "factions" (groups united by passion or interest adverse to others' rights or the community's interests). A large republic, he argued, would make it harder for any single faction to dominate. Elected representatives would "refine and enlarge" public views. This is closer to elite/pluralist democracy.
+#### Federalist No. 10 (Madison)
 
-**Brutus No. 1** (likely Robert Yates) countered that a large republic would be too distant from the people. In small republics, citizens know their representatives personally and can hold them accountable. A powerful central government would inevitably become tyrannical. This argument favors more participatory, local democracy.
+Argues for a large republic with filtered representation:
+- Feared "factions" (groups united by passion or interest adverse to others' rights)
+- Large republic makes it harder for any single faction to dominate
+- Elected representatives would "refine and enlarge" public views
+- Closer to elite/pluralist democracy
+
+#### Brutus No. 1 (likely Robert Yates)
+
+Countered that a large republic would be too distant from the people:
+- In small republics, citizens know their representatives personally
+- Can hold them accountable
+- A powerful central government would inevitably become tyrannical
+- Favors more participatory, local democracy
 
 This debate never ended. Every expansion of voting rights, every reform of electoral procedures, every argument about direct democracy versus representative institutions, echoes the Federalist/Anti-Federalist divide.
 
@@ -91,12 +105,22 @@ This debate never ended. Every expansion of voting rights, every reform of elect
 | Federalist No. 10 | Madison | Large republic, filtering factions, representative democracy |
 | Brutus No. 1 | Likely Yates | Small republic, direct accountability, dangers of consolidation |
 
+---
+
 ## The Takeaway
 
-American democracy is a hybrid. It incorporates elements of all three models: direct participation in some areas (voting, jury duty), pluralist competition among groups, and elite institutions that filter and check popular impulses.
+> 📘 **American democracy is a hybrid**
+>
+> It incorporates elements of all three models: direct participation in some areas (voting, jury duty), pluralist competition among groups, and elite institutions that filter and check popular impulses.
 
-The specific balance has shifted over time. The 17th Amendment (direct election of Senators) moved toward participatory democracy. The growth of the administrative state moved toward elite democracy. The rise of interest groups reflects pluralist democracy.
+**The balance has shifted over time:**
+- The 17th Amendment (direct election of Senators) → participatory democracy
+- Growth of the administrative state → elite democracy
+- Rise of interest groups → pluralist democracy
 
-Understanding these models helps explain ongoing debates. When someone argues for more direct democracy (ballot initiatives, abolishing the Electoral College), they're drawing on participatory theory. When someone defends institutional checks (Senate filibuster, judicial review), they're drawing on elite theory. When someone emphasizes the role of organized groups, they're thinking in pluralist terms.
+**Understanding these models helps explain ongoing debates:**
+- More direct democracy (ballot initiatives, abolishing Electoral College) → participatory theory
+- Defending institutional checks (Senate filibuster, judicial review) → elite theory
+- Emphasizing organized groups → pluralist terms
 
 The founders gave us a framework. Each generation decides how to apply it.

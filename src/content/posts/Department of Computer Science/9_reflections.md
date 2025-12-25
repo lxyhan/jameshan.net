@@ -3,8 +3,6 @@ title: 'Reflections'
 pubDate: '2025-11-27'
 ---
 
-# Beyond Code
-
 *How SDS shaped me as an engineer.*
 
 ---

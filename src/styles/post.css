@@ -5,7 +5,7 @@
 }
 
 .prose {
-  font-size: 1.0625rem; /* 17px - denser, more document-like */
+  font-size: 1.0625rem; /* 17px - dense textbook style */
 }
 
 /* Main content container */
@@ -24,35 +24,57 @@
   margin: 0 0 0.25rem 0;
 }
 
-/* Headings (h1-h5)
- Adjust size or spacing below if needed. */
+/* Headings - dense textbook style with visual interest */
 .prose h1 {
-  font-size: 1.65rem; /* Slightly smaller */
+  font-size: 1.85rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.25;
-  margin: 1.25em 0 0.35em 0; /* Tighter margins */
+  line-height: 1.15;
+  margin: 1.5em 0 0.4em 0;
+  letter-spacing: -0.03em;
+  font-stretch: condensed;
+}
+
+.prose h1:first-child {
+  margin-top: 0;
 }
 
 .prose h2 {
-  font-size: 1.4rem; /* More compact */
+  font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.3;
-  margin: 1.15em 0 0.35em 0; /* Less space */
+  line-height: 1.2;
+  margin: 1.25em 0 0.35em 0;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--border);
+  letter-spacing: -0.025em;
+  font-stretch: condensed;
 }
 
 .prose h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.35;
-  margin: 1em 0 0.3em 0; /* Tighter */
+  line-height: 1.25;
+  margin: 1em 0 0.3em 0;
+  padding-left: 0.5em;
+  border-left: 3px solid var(--text-tertiary);
+  letter-spacing: -0.02em;
 }
 
-.prose h4,
-.prose h5 {
-  font-size: 1.1rem;
+.prose h4 {
+  font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
-  line-height: 1.4;
-  margin: 0.85em 0 0.25em 0; /* Much tighter */
+  line-height: 1.3;
+  margin: 0.85em 0 0.25em 0;
+  color: var(--text-secondary);
+  letter-spacing: -0.02em;
+}
+
+.prose h5 {
+  font-size: 1.0625rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+  margin: 0.75em 0 0.25em 0;
+  font-style: italic;
+  letter-spacing: -0.015em;
 }
 
 /* Bold text */
@@ -81,10 +103,10 @@
   text-decoration-color: var(--text-primary);
 }
 
-/* Paragraphs - compact like a textbook */
+/* Paragraphs - dense textbook spacing */
 .prose p {
   line-height: 1.55;
-  margin: 0.65em 0; /* Tighter spacing */
+  margin: 0.5em 0;
 }
 
 /* Tables - compact */
@@ -258,30 +280,85 @@
     'calt' 0;
 }
 
-/* Blockquotes - compact */
+/* Blockquotes - callout box style */
 .prose blockquote {
-  border-left: 2px solid var(--border);
-  margin: 1em 0 1em 0.125em; /* Less space */
-  padding: 0 0 0 1.25em;
+  background: var(--code-bg);
+  border-left: 3px solid var(--text-tertiary);
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  border-radius: 6px;
   text-align: left;
 }
 
 .prose blockquote p {
-  margin: 0;
+  margin: 0.35em 0;
 }
+
+.prose blockquote p:first-child {
+  margin-top: 0;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Emoji callouts - Notion-style colored boxes */
+/* Use data-callout attribute for styling */
+
+/* Info/Blue callouts */
+.prose blockquote[data-callout="info"],
+.prose blockquote[data-callout="note"] {
+  background: rgba(59, 130, 246, 0.1);
+  border-left-color: rgb(59, 130, 246);
+}
+
+/* Warning/Yellow callouts */
+.prose blockquote[data-callout="warning"],
+.prose blockquote[data-callout="caution"] {
+  background: rgba(251, 191, 36, 0.1);
+  border-left-color: rgb(251, 191, 36);
+}
+
+/* Success/Green callouts */
+.prose blockquote[data-callout="success"],
+.prose blockquote[data-callout="tip"] {
+  background: rgba(34, 197, 94, 0.1);
+  border-left-color: rgb(34, 197, 94);
+}
+
+/* Error/Red callouts */
+.prose blockquote[data-callout="error"],
+.prose blockquote[data-callout="danger"] {
+  background: rgba(239, 68, 68, 0.1);
+  border-left-color: rgb(239, 68, 68);
+}
+
+/* Question/Purple callouts */
+.prose blockquote[data-callout="question"] {
+  background: rgba(168, 85, 247, 0.1);
+  border-left-color: rgb(168, 85, 247);
+}
+
+/* Quote/Gray callouts */
+.prose blockquote[data-callout="quote"] {
+  background: rgba(100, 116, 139, 0.1);
+  border-left-color: rgb(100, 116, 139);
+}
+
+/* Remove the enlarged first letter styling */
 
 .prose blockquote cite {
   display: inline-block;
   margin-top: 0.5em;
 }
 
-/* Unordered lists - denser */
+/* Unordered lists - dense spacing */
 .prose ul {
   list-style-type: none;
   padding-left: 0;
   margin-left: 1rem;
-  margin-bottom: 0.75em; /* Tighter */
-  line-height: 1.5; /* Compact */
+  margin-bottom: 0.5em;
+  line-height: 1.5;
 }
 
 .prose ul ul {
@@ -293,7 +370,7 @@
 .prose ul li {
   position: relative;
   padding-left: 0.5rem;
-  margin-bottom: 0.3em; /* Tighter list items */
+  margin-bottom: 0.25em;
 }
 
 .prose ul li:last-child {
@@ -315,12 +392,12 @@
   color: var(--text-tertiary);
 }
 
-/* Ordered lists - denser */
+/* Ordered lists - dense spacing */
 .prose ol {
   list-style-position: outside;
   padding-left: 0;
   margin-left: 1.25rem;
-  margin-bottom: 0.75em; /* Much tighter */
+  margin-bottom: 0.5em;
   counter-reset: item;
 }
 
@@ -328,7 +405,7 @@
   display: block;
   position: relative;
   padding-left: 0.25rem;
-  margin-bottom: 0.3em; /* Tighter */
+  margin-bottom: 0.25em;
 }
 
 .prose ol li:last-child {
@@ -431,13 +508,13 @@
   line-height: 1;
 }
 
-/* Horizontal rule - subtle line */
+/* Horizontal rule - decorative divider */
 .prose hr {
   margin: 2em 0;
   height: 1px;
   border: none;
-  background: var(--text-tertiary);
-  opacity: 0.3;
+  background: linear-gradient(to right, transparent, var(--text-tertiary) 20%, var(--text-tertiary) 80%, transparent);
+  opacity: 0.4;
 }
 
 /* Keyboard input */

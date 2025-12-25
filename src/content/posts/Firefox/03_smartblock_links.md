@@ -3,8 +3,6 @@ title: 'III. SmartBlock Link Preservation'
 pubDate: '2025-12-22'
 ---
 
-# Preserving Embed Content When SmartBlock Replaces Trackers
-
 *Making blocked embeds still useful by preserving their text and links.*
 
 **Bug 1976290** | [D273937](https://phabricator.services.mozilla.com/D273937) | Reviewer: manuel (security review: freddyb)

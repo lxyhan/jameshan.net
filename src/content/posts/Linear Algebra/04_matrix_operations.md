@@ -3,7 +3,12 @@ title: '4: Matrix Operations'
 pubDate: '2025-12-06'
 ---
 
-Matrices aren't just grids of numbers,they're objects with their own arithmetic. Matrix addition and scalar multiplication work entry-by-entry, but matrix multiplication is something stranger and more powerful: it's function composition in disguise.
+Matrices aren't just grids of numbers—they're objects with their own arithmetic.
+
+> **Three Types of Operations**
+>
+> - **Addition & Scalar Multiplication**: Work entry-by-entry (simple)
+> - **Matrix Multiplication**: Something stranger and more powerful—it's function composition in disguise
 
 ## Matrix Addition
 
@@ -165,12 +170,12 @@ Each term is an outer product,a column times a row,giving a rank-1 matrix. The s
 
 ### **(Non-Commutativity)**
 
-In general, $AB \neq BA$.
-
-**Reasons:**
-1. $AB$ might exist when $BA$ doesn't (dimension mismatch)
-2. Even when both exist, they may have different sizes
-3. Even when both are the same size, the entries usually differ
+> **Critical Fact: $AB \neq BA$**
+>
+> **Why order matters:**
+> 1. $AB$ might exist when $BA$ doesn't (dimension mismatch)
+> 2. Even when both exist, they may have different sizes
+> 3. Even when both are the same size, the entries usually differ
 
 **Example:**
 
@@ -430,8 +435,12 @@ The columns are linearly dependent (second is twice the first), $\det(A) = 0$, a
 
 ## Why Matrix Multiplication Works This Way
 
-The definition of matrix multiplication seems arbitrary until you realize it's **forced** by the requirement that matrices represent linear transformations.
+> **The Deep Reason**
+>
+> The definition of matrix multiplication seems arbitrary until you realize it's **forced** by the requirement that matrices represent linear transformations.
+>
+> If we want $(AB)\mathbf{x} = A(B\mathbf{x})$ to hold for all $\mathbf{x}$, there's only one possible definition for $AB$.
 
-If we want $(AB)\mathbf{x} = A(B\mathbf{x})$ to hold for all $\mathbf{x}$, there's only one possible definition for $AB$. The entry formula, the column view, and all the properties follow inevitably.
+**The entry formula, the column view, and all the properties follow inevitably.**
 
-Matrix multiplication is function composition,the rest is just computing what that means entry-by-entry.
+Matrix multiplication is function composition—the rest is just computing what that means entry-by-entry.

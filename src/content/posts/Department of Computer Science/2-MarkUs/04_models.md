@@ -3,8 +3,6 @@ title: '4. MarkUs: Model Architecture'
 pubDate: '2025-11-27'
 ---
 
-# Fixing Foreign Key Cascade Issues
-
 *My hardest early PR.*
 
 **PR #7681**

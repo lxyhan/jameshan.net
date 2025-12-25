@@ -3,8 +3,6 @@ title: '1. MarkUs: Testing'
 pubDate: '2025-11-27'
 ---
 
-# Criteria Controller Full Coverage
-
 *My first MarkUs PR—a deep dive into controller tests.*
 
 **PR #7668**
