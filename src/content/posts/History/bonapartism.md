@@ -4,7 +4,7 @@ pubDate: '2025-12-28'
 draft: true
 ---
 
-![Napoleon](/images/bonapartism.png)
+![Napoleon III after his surrender at Sedan, 1870](/images/bonapartism.png)
 
 A young Napoleon is certain he will rule France.
 
@@ -87,6 +87,8 @@ The banker Napoleon never finds out what he actually was.
 ---
 
 ## The Bismarck Problem
+
+![Bismarck and Napoleon III after Sedan, 1870](/images/BismarckundNapoleonIII.jpg)
 
 Otto von Bismarck was a mediocre law student. A failed bureaucrat. He managed his family's estates for a decade through his late twenties and early thirties. The "mad Junker," drinking, dueling, drifting. His mother had wanted him to be a diplomat. He couldn't hold a government job.
 
