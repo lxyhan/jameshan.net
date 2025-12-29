@@ -26,9 +26,13 @@ His uncle had the same feeling. The difference is his uncle was right.
 
 What do you do with a conviction you can't verify?
 
+Some people carry it from childhood. A sense of being meant for something. Not arrogance, but quieter. More like a fact about the world that happens to involve you. You don't choose it. It's just there, the way some people are left-handed.
+
 Napoleon I had it. He wrote to his brother at 22: "I have no fear of death. I feel myself above personal misfortune." At that point he was a minor artillery officer with no prospects. Corsican accent. No connections. No money. Within a decade, he would command the largest army in European history.
 
-Napoleon III had the same feeling. So did countless people history erased. The uncle and the nephew felt identical certainty. One was genius recognizing itself. The other was inheritance mistaken for destiny.
+Napoleon III had the same feeling. So did countless people history erased. The problem is obvious: the feeling is necessary but not sufficient. It tells you nothing about whether you're right.
+
+Worse, it might be negatively correlated with self-knowledge. The uncle and the nephew felt identical certainty. One was genius recognizing itself. The other was inheritance mistaken for destiny.
 
 **From inside, they're indistinguishable.**
 
