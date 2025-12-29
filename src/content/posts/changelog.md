@@ -5,6 +5,18 @@ pubDate: '2025-12-29'
 
 All notable changes to this project will be documented in this file.
 
+## [4.4] - 2025-12-29
+### Added
+- Comprehensive analytics tracking with per-page view counts
+- Bot detection and human/bot separation in analytics
+- Browser fingerprinting for unique visitor tracking
+- Scroll depth and time-on-page engagement metrics
+- Analytics dashboard page at /analytics
+
+### Changed
+- Moved views display between likes and date on posts
+- Switched from middleware to client-side tracking (works with static pages)
+
 ## [4.3] - 2025-12-29
 ### Added
 - Comments system with threaded replies
