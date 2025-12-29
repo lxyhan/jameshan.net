@@ -7,8 +7,7 @@ const { path } = Astro.props;
 ---
 
 <span class="post-views" data-path={path}>
-  <span class="view-icon">👁️</span>
-  <span class="view-count">...</span>
+  <span class="view-count">...</span> views
 </span>
 
 <script>
@@ -37,13 +36,6 @@ const { path } = Astro.props;
   .post-views {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.2rem;
-  }
-
-  .view-icon {
-    font-size: 0.8rem;
   }
 
   .view-count {
