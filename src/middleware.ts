@@ -170,8 +170,8 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
     const botCheck = isBot(userAgent);
     const deviceInfo = parseUserAgent(userAgent);
 
-    // Fire and forget - don't await
-    supabase.from('page_views').insert({
+    // Must await in serverless environment
+    const { error } = await supabase.from('page_views').insert({
       page_path: path,
       page_query: url.search || null,
       ip_address: ip,
@@ -185,9 +185,9 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
       browser_version: deviceInfo.browserVersion,
       os: deviceInfo.os,
       os_version: deviceInfo.osVersion,
-    }).then(({ error }) => {
-      if (error) console.error('Analytics tracking error:', error);
     });
+
+    if (error) console.error('Analytics tracking error:', error);
   }
 
   return response;
