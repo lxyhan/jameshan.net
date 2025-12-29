@@ -3,17 +3,15 @@ title: '0: Preface'
 pubDate: '2025-12-08'
 ---
 
-> **Credentials:** I achieved 100% in MAT223 (Linear Algebra I) at the University of Toronto.
->
-> ![MAT223 Grade](/images/posts/linear-algebra/mat223-grade.png)
-
 Linear algebra is not about matrices. It's about **structure**—how to capture relationships, compress information, and reveal hidden symmetries in the world.
 
 > **Why Linear Algebra Matters**
 >
 > Every time Google ranks web pages, every time your phone recognizes your face, every time an AI generates text—linear algebra is there, working in the background. It's the mathematical language of systems that are too complex to understand piece by piece, but simple enough to understand as a whole.
 
-This is not a textbook. It's a journey through the key ideas that make linear algebra powerful: from the humble system of equations to the spectral theorem, from concrete calculations to geometric intuition. Each article builds on the last, but each also stands alone.
+This is not a textbook. It's a journey through the key ideas that make linear algebra powerful: from the humble system of equations to the spectral theorem, from concrete calculations to geometric intuition. Each article builds on the last, but each also stands alone. I achieved 100% in MAT223 (Linear Algebra I) at the University of Toronto.
+
+![MAT223 Grade](/images/posts/linear-algebra/mat223-grade.png)
 
 ---
 
