@@ -131,6 +131,11 @@ import { themeConfig } from '@/config'
     }
   }
 
+  // Load on initial page load
+  loadAnalytics();
+  loadTopPages();
+
+  // Re-load on View Transitions navigation
   document.addEventListener('astro:page-load', () => {
     loadAnalytics();
     loadTopPages();
