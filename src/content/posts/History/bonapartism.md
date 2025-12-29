@@ -4,6 +4,8 @@ pubDate: '2025-12-28'
 draft: true
 ---
 
+![Napoleon](/images/bonapartism.png)
+
 A young Napoleon is certain he will rule France.
 
 He studies military history obsessively. Writes treatises on artillery, on governance. He understands that history has a shape, and he is part of it. The feeling isn't ambition. It's quieter. A fact about the world he hasn't yet proven.
