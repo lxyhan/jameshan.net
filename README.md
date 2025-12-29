@@ -1,4 +1,4 @@
-Computer Science, Statistics, Economics Undergraduate, University of Toronto St. George, Class of 2028
+Computer Science, Statistics, Economics Undergraduate, University of Toronto St. George, Class of 2027
 
 My research interests live at the intersection of game theory, behavioral economics, asian history, and quantitative trading. I think a lot about how to define and quantify meaningful work. The following is my current understanding:
 
