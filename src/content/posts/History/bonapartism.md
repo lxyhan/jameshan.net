@@ -114,4 +114,4 @@ Napoleon I had the feeling and the genius and the moment. The uncle got all thre
 
 I'm twenty, comparing myself to Napoleon, which is exactly as ridiculous as it sounds. The Marxist critique might be right. The feeling might be lying.
 
-I'm still not taking the banker job.
+I took the quant job. I don't know which Napoleon that makes me.
