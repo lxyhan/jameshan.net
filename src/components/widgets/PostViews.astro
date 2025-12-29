@@ -1,0 +1,52 @@
+---
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+---
+
+<span class="post-views" data-path={path}>
+  <span class="view-icon">👁️</span>
+  <span class="view-count">...</span>
+</span>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.post-views').forEach(async (el) => {
+      const path = el.getAttribute('data-path');
+      if (!path) return;
+
+      try {
+        const response = await fetch(`/api/analytics?path=${encodeURIComponent(path)}`);
+        if (response.ok) {
+          const data = await response.json();
+          const countEl = el.querySelector('.view-count');
+          if (countEl) {
+            countEl.textContent = data.allTime || 0;
+          }
+        }
+      } catch (error) {
+        // Silent fail
+      }
+    });
+  });
+</script>
+
+<style>
+  .post-views {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .view-icon {
+    font-size: 0.8rem;
+  }
+
+  .view-count {
+    font-family: var(--serif);
+  }
+</style>

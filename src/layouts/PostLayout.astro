@@ -16,6 +16,9 @@ import NeoDBCard from '@/components/ui/NeoDBCard.astro'
 import XPOST from '@/components/ui/XPOST.astro'
 import CopyCode from '@/components/ui/CopyCode.astro'
 import PostNavigation from '@/components/widgets/PostNavigation.astro'
+import Comments from '@/components/comments/Comments.astro'
+import PostLikes from '@/components/comments/PostLikes.astro'
+import PostViews from '@/components/widgets/PostViews.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import { themeConfig } from '@/config'
@@ -23,6 +26,7 @@ import { themeConfig } from '@/config'
 const { title, pubDate, readingTime, toc, postId } = Astro.props as PostLayoutProps & { postId: string }
 
 const postSlug = Astro.url.pathname.split('/').filter(Boolean).pop() || ''
+const postPath = Astro.url.pathname
 const ogImage = `/open-graph/${postSlug}.png`
 ---
 
@@ -50,6 +54,8 @@ const ogImage = `/open-graph/${postSlug}.png`
           <div class="post-header">
             <Breadcrumb postId={postId} title={title} />
             <div class="date">
+              <PostLikes slug={postSlug} />
+              <span class="separator" style="margin: 0 0.5rem;">|</span>
               <FormattedDate date={pubDate} context="post" />
               {
                 themeConfig.post.readingTime && readingTime && (
@@ -59,11 +65,14 @@ const ogImage = `/open-graph/${postSlug}.png`
                   </span>
                 )
               }
+              <span class="separator">·</span>
+              <PostViews path={postPath} />
             </div>
           </div>
           <h1 class="post-title">{title}</h1>
           <slot />
           <PostNavigation currentPostId={postId} />
+          <Comments slug={postSlug} />
         </article>
       </div>
     </main>

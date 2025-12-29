@@ -1,9 +1,18 @@
 ---
 title: 'Changelog'
-pubDate: '2025-12-28'
+pubDate: '2025-12-29'
 ---
 
 All notable changes to this project will be documented in this file.
+
+## [4.3] - 2025-12-29
+### Added
+- Comments system with threaded replies
+- Post and comment likes
+- Spam detection for comments
+- Social media icons in sidebar (GitHub, LinkedIn, Instagram)
+- Recent posts section in sidebar
+- Changelog and source links in sidebar
 
 ## [4.2] - 2025-12-28
 ### Added

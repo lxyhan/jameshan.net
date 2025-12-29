@@ -1,44 +1,112 @@
 ---
-// Client-side probe to track visitors
+// Client-side probe to enhance server-side tracking with browser data
 ---
 
 <script>
   // Generate or retrieve session ID
   function getSessionId(): string {
     let sessionId = localStorage.getItem('visitor_session_id');
-
     if (!sessionId) {
-      // Generate a random session ID
       sessionId = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
       localStorage.setItem('visitor_session_id', sessionId);
     }
-
     return sessionId;
   }
 
-  // Track visitor
-  async function trackVisit() {
+  // Simple browser fingerprint (hash of browser characteristics)
+  function getFingerprint(): string {
+    const components = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width + 'x' + screen.height,
+      screen.colorDepth,
+      new Date().getTimezoneOffset(),
+      navigator.hardwareConcurrency || 0,
+      navigator.deviceMemory || 0,
+      (navigator as any).connection?.effectiveType || '',
+    ];
+    // Simple hash
+    let hash = 0;
+    const str = components.join('|');
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(36);
+  }
+
+  // Enhance server-side tracking with client data
+  async function enhanceTracking() {
     try {
       const sessionId = getSessionId();
+      const fingerprint = getFingerprint();
+      const path = window.location.pathname;
 
-      await fetch('/api/track', {
+      await fetch('/api/track/enhance', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ sessionId }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path,
+          sessionId,
+          fingerprint,
+          screenWidth: screen.width,
+          screenHeight: screen.height,
+          viewportWidth: window.innerWidth,
+          viewportHeight: window.innerHeight,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          language: navigator.language,
+        }),
       });
     } catch (error) {
-      // Silently fail - analytics shouldn't break the site
-      console.debug('Analytics tracking failed:', error);
+      // Silent fail
     }
   }
 
-  // Track on page load
-  trackVisit();
+  // Track scroll depth and time on page
+  let maxScroll = 0;
+  let startTime = Date.now();
 
-  // Track on View Transitions navigation (if enabled)
+  function updateScrollDepth() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const percent = Math.round((scrollTop / docHeight) * 100);
+      maxScroll = Math.max(maxScroll, percent);
+    }
+  }
+
+  function sendEngagement() {
+    const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+    const path = window.location.pathname;
+
+    // Use sendBeacon for reliability on page leave
+    navigator.sendBeacon('/api/track/engagement', JSON.stringify({
+      path,
+      sessionId: getSessionId(),
+      timeOnPage,
+      scrollDepth: maxScroll,
+    }));
+  }
+
   document.addEventListener('astro:page-load', () => {
-    trackVisit();
+    // Reset for new page
+    maxScroll = 0;
+    startTime = Date.now();
+
+    // Enhance tracking with client data
+    enhanceTracking();
+
+    // Track scroll
+    window.addEventListener('scroll', updateScrollDepth, { passive: true });
   });
+
+  // Send engagement data when leaving
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      sendEngagement();
+    }
+  });
+
+  window.addEventListener('beforeunload', sendEngagement);
 </script>

@@ -1,0 +1,117 @@
+---
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div class="post-likes" data-slug={slug}>
+  <button class="like-btn" aria-label="Like this post">
+    <span class="heart-icon">♡</span>
+    <span class="like-count">0</span>
+  </button>
+</div>
+
+<script is:inline define:vars={{ slug }}>
+  (function () {
+    const container = document.querySelector('.post-likes[data-slug="' + slug + '"]');
+    if (!container) return;
+
+    const btn = container.querySelector('.like-btn');
+    const heartIcon = container.querySelector('.heart-icon');
+    const countSpan = container.querySelector('.like-count');
+
+    // Get or create user session ID
+    function getUserId() {
+      let id = localStorage.getItem('visitor_session_id');
+      if (!id) {
+        id = Date.now() + '-' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('visitor_session_id', id);
+      }
+      return id;
+    }
+
+    // Fetch initial state
+    async function loadLikeStatus() {
+      try {
+        const userId = getUserId();
+        const response = await fetch(
+          '/api/posts/like?slug=' + encodeURIComponent(slug) + '&userId=' + encodeURIComponent(userId)
+        );
+        const data = await response.json();
+
+        countSpan.textContent = data.count || 0;
+        if (data.liked) {
+          btn.classList.add('liked');
+          heartIcon.textContent = '♥';
+        }
+      } catch (error) {
+        // Silent fail - show default state
+      }
+    }
+
+    // Toggle like
+    btn.addEventListener('click', async function () {
+      const userId = getUserId();
+
+      try {
+        const response = await fetch('/api/posts/like', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ postSlug: slug, userId }),
+        });
+        const data = await response.json();
+
+        countSpan.textContent = data.count || 0;
+        if (data.liked) {
+          btn.classList.add('liked');
+          heartIcon.textContent = '♥';
+        } else {
+          btn.classList.remove('liked');
+          heartIcon.textContent = '♡';
+        }
+      } catch (error) {
+        // Silent fail
+      }
+    });
+
+    // Initialize
+    loadLikeStatus();
+  })();
+</script>
+
+<style>
+  .post-likes {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .like-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+
+  .like-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .like-btn.liked {
+    color: #e25555;
+  }
+
+  .heart-icon {
+    font-size: 0.9rem;
+  }
+
+  .like-count {
+    font-size: 0.85rem;
+  }
+</style>

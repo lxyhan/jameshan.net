@@ -3,55 +3,82 @@ import { supabase } from '@/lib/supabase';
 
 export const prerender = false;
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ request }) => {
   if (!supabase) {
-    return new Response(JSON.stringify({ today: 0, allTime: 0 }), {
+    return new Response(JSON.stringify({
+      today: 0, allTime: 0, uniqueToday: 0, uniqueAllTime: 0,
+      humanToday: 0, humanAllTime: 0, botToday: 0, botAllTime: 0,
+    }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
   try {
+    const url = new URL(request.url);
+    const path = url.searchParams.get('path');
+    const excludeBots = url.searchParams.get('excludeBots') !== 'false';
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Get today's total views (every page load counts)
-    const { count: todayViews, error: todayError } = await supabase
-      .from('visitors')
-      .select('*', { count: 'exact', head: true })
-      .gte('visited_at', today.toISOString());
+    // Get all data for aggregation
+    const { data: allData, error } = await supabase
+      .from('page_views')
+      .select('ip_address, session_id, fingerprint, viewed_at, is_bot, page_path');
 
-    if (todayError) {
-      console.error('Today views error:', todayError);
-      return new Response(JSON.stringify({ error: 'Failed to fetch today views' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    if (error) throw error;
 
-    // Get all-time total views
-    const { count: allTimeViews, error: allTimeError } = await supabase
-      .from('visitors')
-      .select('*', { count: 'exact', head: true });
+    // Filter by path if provided
+    let filteredData = path
+      ? allData?.filter(d => d.page_path === path)
+      : allData;
 
-    if (allTimeError) {
-      console.error('All-time views error:', allTimeError);
-      return new Response(JSON.stringify({ error: 'Failed to fetch all-time views' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    const todayData = filteredData?.filter(d =>
+      new Date(d.viewed_at) >= today
+    ) || [];
 
-    return new Response(
-      JSON.stringify({
-        today: todayViews || 0,
-        allTime: allTimeViews || 0,
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    // Separate bots and humans
+    const humanData = filteredData?.filter(d => !d.is_bot) || [];
+    const botData = filteredData?.filter(d => d.is_bot) || [];
+    const humanTodayData = todayData.filter(d => !d.is_bot);
+    const botTodayData = todayData.filter(d => d.is_bot);
+
+    // Count unique by IP > fingerprint > session_id
+    const getUniqueCount = (data: typeof allData) => {
+      const unique = new Set(data?.map(d =>
+        d.ip_address && d.ip_address !== 'unknown'
+          ? d.ip_address
+          : d.fingerprint || d.session_id || 'unknown'
+      ));
+      unique.delete('unknown');
+      return unique.size;
+    };
+
+    const stats = {
+      // Total views
+      today: todayData.length,
+      allTime: filteredData?.length || 0,
+
+      // Unique visitors
+      uniqueToday: getUniqueCount(todayData),
+      uniqueAllTime: getUniqueCount(filteredData),
+
+      // Human vs Bot breakdown
+      humanToday: humanTodayData.length,
+      humanAllTime: humanData.length,
+      botToday: botTodayData.length,
+      botAllTime: botData.length,
+
+      // Unique humans only
+      uniqueHumanToday: getUniqueCount(humanTodayData),
+      uniqueHumanAllTime: getUniqueCount(humanData),
+    };
+
+    return new Response(JSON.stringify(stats), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
     console.error('Analytics error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
