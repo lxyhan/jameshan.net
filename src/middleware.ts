@@ -158,6 +158,12 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
   if (supabase) {
     const userAgent = request.headers.get('user-agent') || '';
     const ip = getClientIP(request);
+
+    // Skip build-time requests (no user-agent = not a real browser request)
+    if (!userAgent || ip === 'unknown') {
+      return response;
+    }
+
     const referer = request.headers.get('referer') || null;
     const language = request.headers.get('accept-language')?.split(',')[0] || null;
 
