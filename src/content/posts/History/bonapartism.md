@@ -112,6 +112,4 @@ Napoleon III's mistake wasn't ambition. It was believing the feeling was enough.
 
 Napoleon I had the feeling and the genius and the moment. The uncle got all three. The nephew got one, and assumed the others would follow. Tukhachevsky had all three too. And the system destroyed him anyway.
 
-I'm twenty, comparing myself to Napoleon, which is exactly as ridiculous as it sounds. The Marxist critique might be right. The feeling might be lying.
-
 I took the quant job. I don't know which Napoleon that makes me.
