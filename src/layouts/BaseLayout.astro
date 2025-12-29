@@ -8,6 +8,7 @@ import BlogTree from '@/components/widgets/BlogTree.astro'
 import Footer from '@/components/layout/Footer.astro'
 import SearchModal from '@/components/ui/SearchModal.astro'
 import ImageViewer from '@/components/ui/ImageViewer.astro'
+import AnalyticsProbe from '@/components/widgets/AnalyticsProbe.astro'
 import { getSortedFilteredPosts } from '@/utils/draft'
 import type { LayoutProps } from '@/types'
 
@@ -76,6 +77,7 @@ const posts = await getSortedFilteredPosts()
     </div>
     <ImageViewer />
     <SearchModal />
+    <AnalyticsProbe />
   </body>
 </html>
 
