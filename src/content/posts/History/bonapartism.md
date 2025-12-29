@@ -4,7 +4,7 @@ pubDate: '2025-12-28'
 draft: true
 ---
 
-![Napoleon III after his surrender at Sedan, 1870](/images/bonapartism.png)
+![The tragedy, the farce, and the martyr](/images/bonapartism.png)
 
 A young Napoleon is certain he will rule France.
 
