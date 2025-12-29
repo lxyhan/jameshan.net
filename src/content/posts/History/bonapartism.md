@@ -94,7 +94,7 @@ When the moment came (a parliament seat, almost by accident) he was ready in a w
 
 **The estate wasn't the thing. It was cover for the thing.**
 
-Is quant my estate, or is it the banker job? I don't know. From inside, preparation and drift look the same. Bismarck probably didn't know either, until the moment arrived.
+I'm twenty, studying computer science. Next year I'll be doing quantitative research. Is quant my estate, or is it the banker job? I don't know. From inside, preparation and drift look the same.
 
 ---
 
