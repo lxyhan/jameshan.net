@@ -3,6 +3,10 @@ title: '0: Preface'
 pubDate: '2025-12-08'
 ---
 
+> **Credentials:** I achieved 100% in MAT223 (Linear Algebra I) at the University of Toronto.
+>
+> ![MAT223 Grade](/images/posts/linear-algebra/mat223-grade.png)
+
 Linear algebra is not about matrices. It's about **structure**—how to capture relationships, compress information, and reveal hidden symmetries in the world.
 
 > **Why Linear Algebra Matters**
