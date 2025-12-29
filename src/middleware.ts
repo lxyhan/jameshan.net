@@ -160,7 +160,7 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
     const ip = getClientIP(request);
 
     // Skip build-time requests (no user-agent = not a real browser request)
-    if (!userAgent || ip === 'unknown') {
+    if (!userAgent) {
       return response;
     }
 
