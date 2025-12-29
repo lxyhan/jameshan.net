@@ -36,26 +36,20 @@
     return Math.abs(hash).toString(36);
   }
 
-  // Enhance server-side tracking with client data
-  async function enhanceTracking() {
+  // Track page view
+  async function trackPageView() {
     try {
       const sessionId = getSessionId();
       const fingerprint = getFingerprint();
       const path = window.location.pathname;
 
-      await fetch('/api/track/enhance', {
+      await fetch('/api/track/view', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           path,
           sessionId,
           fingerprint,
-          screenWidth: screen.width,
-          screenHeight: screen.height,
-          viewportWidth: window.innerWidth,
-          viewportHeight: window.innerHeight,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          language: navigator.language,
         }),
       });
     } catch (error) {
@@ -94,8 +88,8 @@
     maxScroll = 0;
     startTime = Date.now();
 
-    // Enhance tracking with client data
-    enhanceTracking();
+    // Track page view
+    trackPageView();
 
     // Track scroll
     window.addEventListener('scroll', updateScrollDepth, { passive: true });
