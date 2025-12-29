@@ -56,6 +56,8 @@ const ogImage = `/open-graph/${postSlug}.png`
             <div class="date">
               <PostLikes slug={postSlug} />
               <span class="separator" style="margin: 0 0.5rem;">|</span>
+              <PostViews path={postPath} />
+              <span class="separator" style="margin: 0 0.5rem;">|</span>
               <FormattedDate date={pubDate} context="post" />
               {
                 themeConfig.post.readingTime && readingTime && (
@@ -65,8 +67,6 @@ const ogImage = `/open-graph/${postSlug}.png`
                   </span>
                 )
               }
-              <span class="separator">·</span>
-              <PostViews path={postPath} />
             </div>
           </div>
           <h1 class="post-title">{title}</h1>
