@@ -1,9 +1,16 @@
 ---
 title: 'Changelog'
-pubDate: '2024-12-25'
+pubDate: '2025-12-28'
 ---
 
 All notable changes to this project will be documented in this file.
+
+## [4.2] - 2025-12-28
+### Added
+- New essay: "Reflections on Bonapartism"
+
+### Changed
+- Major typography overhaul for headings
 
 ## [4.1] - 2024-12-24
 ### Added
