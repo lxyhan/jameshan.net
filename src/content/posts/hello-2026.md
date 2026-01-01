@@ -3,12 +3,10 @@ title: 'hello, 2026!'
 pubDate: '2025-12-31'
 ---
 
-![how i feel](/images/1_hK7aHVK19Q9z-fzp0vob4A.jpg)
+2025 was a strong year: 4.0 GPA in CS coursework, six hackathon wins, a 70.3 Ironman, and seven internship offers.
 
-Currently: 4.0 GPA in CS classes, six hackathon wins, a 70.3 Ironman, seven internship offers.
+2026 is about building on that momentum. This semester I'm taking four technical courses while working full-time at Firefox. In May I transition to a quantitative trading role, join a research lab, and race a full Ironman.
 
-Not my tempo.
+Outside of work, I train consistently — strength 5x/week, swimming, running, and cycling. I've found that physical discipline reinforces the mental kind.
 
-This semester I'm taking four technical courses while working full-time. In May I start at a quant desk, join a research lab, and race a 140.6 Ironman. Weekly: Strength training 5x, 2x swimming, 2x running, 2x cycling. I have a lot of ground to cover and not a lot of time.
-
-Sometimes I think I ought to find balance. But I know I'd rather be exceptional.
+Looking forward to what this year brings.

@@ -74,9 +74,9 @@ The Revolution needed someone. It had destroyed the old order and couldn't stabi
 
 The Marxist answer is: dissolve the impulse entirely. Accept that history is made by structures and classes, not by individuals who feel special.
 
-I don't have a good response to this. The essay has a hole here. I can gesture at free will, at the irreducibility of individual action, but I can't prove the Marxist critique wrong. Maybe the whole idea of great men is an illusion, and history is just determinism wearing a mask. The Revolution would have found its general. The Soviet state would have found its modernizer.
+This critique has no easy answer. One can gesture at free will, at the irreducibility of individual action, but the Marxist position is difficult to refute. Maybe the whole idea of great men is an illusion, and history is just determinism wearing a mask. The Revolution would have found its general. The Soviet state would have found its modernizer.
 
-I'm proceeding anyway, which might just be the illusion doing its job.
+And yet people proceed anyway—which might just be the illusion doing its job.
 
 ---
 
@@ -102,7 +102,7 @@ When the moment came (a parliament seat, almost by accident) he was ready in a w
 
 **The estate wasn't the thing. It was cover for the thing.**
 
-I'm twenty, studying computer science. Next year I'll be doing quantitative research. Is quant my estate, or is it the banker job? I don't know. From inside, preparation and drift look the same.
+From inside, preparation and drift look the same.
 
 ---
 
@@ -110,7 +110,7 @@ I'm twenty, studying computer science. Next year I'll be doing quantitative rese
 
 Tukhachevsky was 44 when he died. In that time he revolutionized military doctrine, commanded armies, shaped the structure of a superpower's defense. Then a bullet in a basement.
 
-I've interrogated this preference and I can't dissolve it: a consequential life cut short beats a long life in the wrong arena. Maybe this is just youth talking. But I believe it.
+There's a case to be made: a consequential life cut short beats a long life in the wrong arena.
 
 ---
 
@@ -120,4 +120,4 @@ Napoleon III's mistake wasn't ambition. It was believing the feeling was enough.
 
 Napoleon I had the feeling and the genius and the moment. The uncle got all three. The nephew got one, and assumed the others would follow. Tukhachevsky had all three too. And the system destroyed him anyway.
 
-I took the quant job. I don't know which Napoleon that makes me.
+Every ambitious person faces the same question. The answer only comes in retrospect.

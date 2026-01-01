@@ -177,13 +177,11 @@ The problem: What if there's no crisis? What if institutions are stable? What if
 
 The fascist answer is obviously wrong. Manufacturing enemies, tribal exclusion, aesthetic violence—these end in horror. But the diagnosis is real: modern life can feel formless, disembodied, lacking in stakes. Comfort alone isn't enough.
 
-What I've found: meaning comes from active construction, not passive consumption or tribal belonging. It requires discipline, but discipline in service of something beyond yourself. Training your body not for war but for mastery. Creating art knowing it might fail. Pursuing truth for its own sake. Building relationships and community through care, not exclusion. Confronting nature—mountains, oceans, the physical world that doesn't care about your narrative.
+The alternative: meaning comes from active construction, not passive consumption or tribal belonging. It requires discipline, but discipline in service of something beyond yourself. Training your body not for war but for mastery. Creating art knowing it might fail. Pursuing truth for its own sake. Building relationships and community through care, not exclusion. Confronting nature—mountains, oceans, the physical world that doesn't care about your narrative.
 
 These don't offer the immediate gratification of a balcony speech or the simplicity of manufactured crisis. They're harder. They require showing up daily without validation. But they offer integration: body and mind, self and world, discipline and meaning. And they don't require enemies.
 
 The hunger for intensity is real. Eliminating it produces *Brave New World*. But intensity doesn't require violence or exclusion. It requires engagement—with difficulty, with the absurd, with the world as it is rather than as myth demands it to be.
 
-If you've gotten this far, I want to hear from you: Do you feel the absence Mishima describes? Have you found ways to build meaning that don't require enemies? Or do you think I'm wrong about all of this?
-
-[jameshan.cs@gmail.com](mailto:jameshan.cs@gmail.com)
+The question remains open. The hunger for intensity is real. The fascist answer is wrong. What comes next is still being written.
 
