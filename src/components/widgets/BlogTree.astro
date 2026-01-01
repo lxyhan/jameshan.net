@@ -58,10 +58,14 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
     })
   })
 
-  // Sort alphabetically by name (files and folders mixed)
+  // Sort alphabetically by name, but pin hello-2026 to top
   function sortTree(node: TreeNode) {
     if (node.children) {
-      node.children.sort((a, b) => a.name.localeCompare(b.name))
+      node.children.sort((a, b) => {
+        if (a.name.startsWith('hello-2026')) return -1
+        if (b.name.startsWith('hello-2026')) return 1
+        return a.name.localeCompare(b.name)
+      })
       node.children.forEach(sortTree)
     }
   }
@@ -70,11 +74,11 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
   return root
 }
 
-const tree = buildTree(posts, ['changelog', 'hello-2026'])
+const tree = buildTree(posts, ['changelog'])
 
-// Get recent posts (exclude changelog and hello-2026)
+// Get recent posts (exclude changelog)
 const recentPosts = posts
-  .filter(p => !p.id.includes('changelog') && !p.id.includes('hello-2026'))
+  .filter(p => !p.id.includes('changelog'))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3)
 
@@ -183,8 +187,6 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
       })}
     </div>
     <div class="tree-links">
-      <a href="/hello-2026" class={currentPath === '/hello-2026' ? 'active' : ''}>hello 2026</a>
-      <span class="link-sep">·</span>
       <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>changelog</a>
       <span class="link-sep">·</span>
       <a href="/analytics" class={currentPath === '/analytics' ? 'active' : ''}>analytics</a>

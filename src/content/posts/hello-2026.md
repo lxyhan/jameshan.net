@@ -1,10 +1,14 @@
 ---
-title: 'Hello 2026'
+title: 'hello, 2026!'
 pubDate: '2025-12-31'
 ---
 
-First year didn't go the way I'd planned. I spent the summer before second year figuring out what needed to change. By December 2025: 4.0 GPA, six hackathon wins, a 70.3 Ironman, and seven internship offers. More than the outcomes, what changed was the process. I stopped optimizing for appearing successful and started actually learning. Attended lectures. Did problem sets early. Trained consistently instead of in bursts.
+![how i feel](/images/1_hK7aHVK19Q9z-fzp0vob4A.jpg)
 
-This semester is the hardest I've attempted — four technical courses while interning. The goal is simple: keep the momentum going. The broader aim is depth over breadth. I spent 2025 saying yes to everything. This year I want to go deeper on fewer things.
+Second year: 4.0 GPA, six hackathon wins, a 70.3 Ironman, seven internship offers.
 
-I turned 20 this past September. Not old, but old enough that "still figuring things out" stops being a valid excuse. I don't want to be the person with potential. I want to be the person who executed. Here's to 2026.
+Not my tempo.
+
+This semester I'm taking four technical courses while working full-time. In May I start at a quant desk, join a research lab, and race an Ironman. I have a lot of ground to cover and not a lot of time.
+
+Sometimes I think I ought to find balance. But I know I'd rather be exceptional.
