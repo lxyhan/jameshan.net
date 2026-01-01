@@ -15,6 +15,9 @@ This series covers my contributions to Firefox's privacy and security features. 
 2. **Telemetry: Revocation Events** — Adding toolbar and preferences revocation tracking
 3. **SmartBlock Link Preservation** — Preserving embed content when trackers are blocked
 4. **Clear Data Dialog Cleanup** — Removing legacy UI code
+5. **Privacy Metrics: Design & Data Foundation** — Designing a New Tab widget for privacy stats
+6. **Privacy Metrics: Implementation** — Building the data pipeline with Redux and Feeds
+7. **Privacy Metrics: UI & Testing** — React component, localization, and testing
 
 ---
 
