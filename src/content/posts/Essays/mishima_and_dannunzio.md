@@ -61,11 +61,21 @@ The result: young men feel the absence and reach for what's left. Mishima's aest
 
 Mishima's entire project is intensity as its own justification. In *Sun and Steel*, he describes bodybuilding as forging the self into a "classical statue." The goal isn't health; it's aesthetic totality. The problem: Intensity in service of what?
 
-Mishima died for the restoration of imperial power, a cause that was already irrelevant in 1970. His death had no political effect. It was purely aesthetic. D'Annunzio at Fiume: spectacle as governance, myth as policy. And when Mussolini came to power, he took D'Annunzio's aesthetics and built a horror.
+Mishima died for the restoration of imperial power, a cause that was already irrelevant in 1970. His death had no political effect. It was purely aesthetic. The soldiers laughed at him. His manifesto was incoherent. He accomplished nothing except providing footage for documentaries.
 
-What about the weak? What about those who can't perform intensity? In Mishima's work, women are almost entirely absent, or present only as objects. In D'Annunzio's Fiume, the excluded were Jews, Slavs, anyone outside the mythic "Italian" identity.
+Look closer at Mishima's actual politics: he wanted to restore the Emperor's divine authority, eliminate democratic governance, and return Japan to militarism. He founded a private militia. Strip away the prose style and you're left with a man who couldn't accept that his country had moved on.
+
+Mishima's misogyny wasn't incidental—it was structural. Women in his work exist as props, symbols, or obstacles. His homosexuality, which he suppressed and sublimated into death worship, became another aesthetic project rather than something he could integrate. The intensity he offered came at the cost of honest self-knowledge.
+
+D'Annunzio followed a similar pattern. At Fiume, his "governance" meant daily speeches, mass rallies, and paramilitary spectacle. He invented the aesthetics Mussolini would later industrialize: the black shirts, the Roman salute, the cult of the leader. When Mussolini marched on Rome, he was copying D'Annunzio's playbook.
+
+At Fiume, the excluded were Jews, Slavs, anyone outside the mythic "Italian" identity. D'Annunzio's utopia was purchased through ethnic exclusion and maintained through spectacle. When it collapsed, his followers went to Mussolini. The line from Fiume to the racial laws of 1938 is traceable.
+
+What about those who can't perform intensity? In Mishima's world, the weak don't exist. In D'Annunzio's, they're fuel. Both men built philosophies that required exclusion—of women, of the unbeautiful, of anyone who couldn't or wouldn't perform.
 
 The 1937 problem: Were Germans in 1937 happy? Many were. They had myth, belonging, intensity, purpose. The cost was purchased by exclusion. And then horror. The seduction of tribal aesthetics: they work because contraction is easier than expansion. It's easier to build meaning around us vs. them than around universal solidarity. It's easier to manufacture crisis through enemies than to find meaning without them.
+
+Mishima and D'Annunzio aren't misunderstood artists. They're warnings. The fact that young men still reach for them says more about what's missing in modern life than about what these men actually offered.
 
 ---
 
@@ -184,4 +194,3 @@ These don't offer the immediate gratification of a balcony speech or the simplic
 The hunger for intensity is real. Eliminating it produces *Brave New World*. But intensity doesn't require violence or exclusion. It requires engagement—with difficulty, with the absurd, with the world as it is rather than as myth demands it to be.
 
 The question remains open. The hunger for intensity is real. The fascist answer is wrong. What comes next is still being written.
-
