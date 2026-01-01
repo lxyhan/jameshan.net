@@ -70,11 +70,11 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
   return root
 }
 
-const tree = buildTree(posts, ['changelog'])
+const tree = buildTree(posts, ['changelog', 'hello-2026'])
 
-// Get recent posts (exclude changelog)
+// Get recent posts (exclude changelog and hello-2026)
 const recentPosts = posts
-  .filter(p => !p.id.includes('changelog'))
+  .filter(p => !p.id.includes('changelog') && !p.id.includes('hello-2026'))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3)
 
