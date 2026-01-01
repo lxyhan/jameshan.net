@@ -3,7 +3,9 @@ title: '0: Preface'
 pubDate: '2025-12-10'
 ---
 
-These are my review notes for **CSC 263: Data Structures and Analysis**. They cover the core data structures, algorithms, and complexity analysis from the course.
+These are my notes for **CSC263: Data Structures and Analysis** and **CSC373: Algorithm Design, Analysis & Complexity** at the University of Toronto.
+
+CSC263 covers core data structures and their analysis. CSC373 extends into algorithm design techniques: divide-and-conquer, greedy strategies, dynamic programming, network flows, and computational complexity.
 
 The focus: **what** each structure does, **when** to use it, **how** to implement it using the standard definitions, and **why** the runtime is what it is.
 
@@ -156,3 +158,18 @@ top_khans(graph, args*) -> Optional[Graph]
 
 7. **Priority Queues and Heaps** — Binary heap, heapify, $O(\log n)$ operations
 8. **Tries** — Prefix trees, $O(k)$ operations
+
+### Part IV: Algorithm Design (CSC373)
+
+9. **Divide and Conquer** — Master theorem, Karatsuba, Strassen's
+10. **Greedy Algorithms** — Exchange arguments, activity selection, Huffman
+11. **Dynamic Programming** — LCS, edit distance, knapsack
+12. **Network Flows** — Ford-Fulkerson, max-flow min-cut, bipartite matching
+13. **Linear Programming** — Simplex intuition, duality, LP relaxation
+14. **NP-Completeness** — Reductions, Cook-Levin, common NP-complete problems
+15. **Approximation Algorithms** — Vertex cover, set cover, TSP
+16. **Randomized Algorithms** — Karger's min-cut, probabilistic analysis
+
+---
+
+*CSC373 content coming Winter 2026.*
