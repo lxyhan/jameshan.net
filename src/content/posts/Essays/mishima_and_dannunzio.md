@@ -1,6 +1,7 @@
 ---
 title: "A Criticism of Mishima and D'Annunzio"
 pubDate: '2025-12-30'
+draft: true
 ---
 
 In 1970, Yukio Mishima walked into a Tokyo military base with four followers, took a general hostage, and demanded the restoration of imperial power. When the soldiers laughed at his balcony speech, he went inside and committed ritual suicide. A photographer was present. This was planned.
@@ -73,7 +74,7 @@ At Fiume, the excluded were Jews, Slavs, anyone outside the mythic "Italian" ide
 
 What about those who can't perform intensity? In Mishima's world, the weak don't exist. In D'Annunzio's, they're fuel. Both men built philosophies that required exclusion—of women, of the unbeautiful, of anyone who couldn't or wouldn't perform.
 
-The 1937 problem: Were Germans in 1937 happy? Many were. They had myth, belonging, intensity, purpose. The cost was purchased by exclusion. And then horror. The seduction of tribal aesthetics: they work because contraction is easier than expansion. It's easier to build meaning around us vs. them than around universal solidarity. It's easier to manufacture crisis through enemies than to find meaning without them.
+Were Germans in 1937 happy? Many were. They had myth, belonging, intensity, purpose. The cost was purchased by exclusion. And then horror. The seduction of tribal aesthetics: they work because contraction is easier than expansion. It's easier to build meaning around us vs. them than around universal solidarity. It's easier to manufacture crisis through enemies than to find meaning without them.
 
 Mishima and D'Annunzio aren't misunderstood artists. They're warnings. The fact that young men still reach for them says more about what's missing in modern life than about what these men actually offered.
 
@@ -141,7 +142,7 @@ This is the gap liberalism leaves open. It doesn't tell you *what* to do with yo
 
 ---
 
-## 7. The Brave New World Problem
+## 7. A Brave New World
 
 ### Huxley's Dystopia
 
