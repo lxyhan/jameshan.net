@@ -37,6 +37,35 @@ function getClientIP(request: Request): string {
   return 'unknown';
 }
 
+function isOwnerTraffic(ip: string, userAgent: string): boolean {
+  // Skip localhost
+  if (ip === '127.0.0.1' || ip === '::1' || ip === 'localhost') {
+    return true;
+  }
+
+  // Skip configured IPs (comma-separated in env var)
+  const excludedIPs = import.meta.env.ANALYTICS_EXCLUDED_IPS || '';
+  if (excludedIPs) {
+    const ipList = excludedIPs.split(',').map((s: string) => s.trim());
+    if (ipList.includes(ip)) {
+      return true;
+    }
+  }
+
+  // Skip configured user agent patterns (e.g., your specific devices)
+  const excludedUA = import.meta.env.ANALYTICS_EXCLUDED_UA || '';
+  if (excludedUA && userAgent) {
+    const patterns = excludedUA.split(',').map((s: string) => s.trim());
+    for (const pattern of patterns) {
+      if (pattern && userAgent.includes(pattern)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   if (!supabase) {
     return new Response(JSON.stringify({ success: true }), {
@@ -58,6 +87,15 @@ export const POST: APIRoute = async ({ request }) => {
 
     const userAgent = request.headers.get('user-agent') || '';
     const ip = getClientIP(request);
+
+    // Skip owner traffic (localhost, configured IPs, configured user agents)
+    if (isOwnerTraffic(ip, userAgent)) {
+      return new Response(JSON.stringify({ success: true, skipped: true }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const referer = request.headers.get('referer') || null;
     const language = request.headers.get('accept-language')?.split(',')[0] || null;
 
