@@ -675,6 +675,9 @@ export const prerender = false
 
     // Ensure area dropdown is populated before showing modal
     updateAreaDropdown()
+    // Reset button states
+    modalSubmit.disabled = false
+    modalDelete.disabled = false
     taskModal.style.display = 'flex'
     document.getElementById('task-description').focus()
   }
