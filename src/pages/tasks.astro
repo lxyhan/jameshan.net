@@ -223,6 +223,7 @@ export const prerender = false
   let selectedArea = ''
   let workTaskIds = JSON.parse(localStorage.getItem('workTaskIds') || '[]')
   let studyTaskIds = JSON.parse(localStorage.getItem('studyTaskIds') || '[]')
+  let pendingOperations = new Set() // Track task IDs with in-flight API requests
 
   // Schedule by day of week (0 = Sunday, 1 = Monday, etc.)
   const SCHEDULE = {
@@ -782,17 +783,55 @@ export const prerender = false
 
   modalDelete.addEventListener('click', async () => {
     if (!editingTaskId) return
-    if (confirm('Delete this task?')) {
-      try {
-        const res = await fetch(`/api/tasks/${editingTaskId}`, { method: 'DELETE' })
-        if (res.ok) {
-          // Remove from Today column if it was there
-          removeFromToday(editingTaskId)
-          closeModal()
-          loadTasks()
+    if (modalDelete.disabled) return
+    if (!confirm('Delete this task?')) return
+
+    // Disable button
+    modalDelete.disabled = true
+    const originalText = modalDelete.textContent
+    modalDelete.textContent = 'Deleting...'
+
+    const id = editingTaskId
+
+    // Save for potential restore
+    const taskIndex = tasks.findIndex(t => t.id === id)
+    const completedIndex = completedTasks.findIndex(t => t.id === id)
+    const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
+    const wasInTasks = taskIndex >= 0
+
+    // Optimistic delete
+    if (wasInTasks) {
+      tasks.splice(taskIndex, 1)
+    } else if (completedIndex >= 0) {
+      completedTasks.splice(completedIndex, 1)
+    }
+    removeFromToday(id)
+    closeModal()
+    renderQueues()
+    if (showCompleted) renderCompletedLog()
+
+    try {
+      const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
+      if (!res.ok && task) {
+        // Restore on failure
+        if (wasInTasks) {
+          tasks.push(task)
+        } else {
+          completedTasks.unshift(task)
         }
-      } catch (e) {
-        console.error('Failed to delete task:', e)
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
+      }
+    } catch (err) {
+      // Restore on error
+      if (task) {
+        if (wasInTasks) {
+          tasks.push(task)
+        } else {
+          completedTasks.unshift(task)
+        }
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
       }
     }
   })
@@ -820,6 +859,12 @@ export const prerender = false
     const description = document.getElementById('task-description').value.trim()
     if (!description) return
 
+    // Prevent duplicate submission
+    if (modalSubmit.disabled) return
+    modalSubmit.disabled = true
+    const originalText = modalSubmit.textContent
+    modalSubmit.textContent = 'Saving...'
+
     const taskData = {
       description,
       due_date: document.getElementById('task-due-date').value || null,
@@ -839,25 +884,79 @@ export const prerender = false
     try {
       let res
       if (editingTaskId) {
+        // Editing existing task - optimistic update
+        const existingTask = tasks.find(t => t.id === editingTaskId) || completedTasks.find(t => t.id === editingTaskId)
+        const prevData = existingTask ? { ...existingTask } : null
+
+        if (existingTask) {
+          Object.assign(existingTask, taskData)
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
+        }
+
         res = await fetch(`/api/tasks/${editingTaskId}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(taskData)
         })
+
+        if (res.ok) {
+          closeModal()
+        } else if (prevData && existingTask) {
+          // Revert on failure
+          Object.assign(existingTask, prevData)
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
+          modalSubmit.disabled = false
+          modalSubmit.textContent = originalText
+        }
       } else {
+        // Creating new task - optimistic with temp ID
+        const tempId = 'temp-' + Date.now()
+        const tempTask = { id: tempId, ...taskData, created_at: new Date().toISOString() }
+
+        if (taskData.completed_at) {
+          completedTasks.unshift(tempTask)
+          if (showCompleted) renderCompletedLog()
+        } else {
+          tasks.push(tempTask)
+          renderQueues()
+        }
+        closeModal()
+
         res = await fetch('/api/tasks', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(taskData)
         })
-      }
 
-      if (res.ok) {
-        closeModal()
-        loadTasks()
+        if (res.ok) {
+          const data = await res.json()
+          // Replace temp task with real one
+          if (taskData.completed_at) {
+            const idx = completedTasks.findIndex(t => t.id === tempId)
+            if (idx >= 0) completedTasks[idx] = data.task
+            if (showCompleted) renderCompletedLog()
+          } else {
+            const idx = tasks.findIndex(t => t.id === tempId)
+            if (idx >= 0) tasks[idx] = data.task
+            renderQueues()
+          }
+        } else {
+          // Remove temp task on failure
+          if (taskData.completed_at) {
+            completedTasks = completedTasks.filter(t => t.id !== tempId)
+            if (showCompleted) renderCompletedLog()
+          } else {
+            tasks = tasks.filter(t => t.id !== tempId)
+            renderQueues()
+          }
+        }
       }
-    } catch (e) {
-      console.error('Failed to save task:', e)
+    } catch (err) {
+      console.error('Failed to save task:', err)
+      modalSubmit.disabled = false
+      modalSubmit.textContent = originalText
     }
   })
 
@@ -942,34 +1041,100 @@ export const prerender = false
 
     if (action === 'complete') {
       e.stopPropagation()
+      if (pendingOperations.has(id)) return // Prevent duplicate
+
+      // Add loading state
+      pendingOperations.add(id)
+      const taskEl = document.querySelector(`.task-item[data-id="${id}"]`)
+      const checkboxEl = taskEl?.querySelector('.task-checkbox')
+      taskEl?.classList.add('loading')
+      checkboxEl?.classList.add('loading')
+
+      // Optimistic update: move task to completed
+      const taskIndex = tasks.findIndex(t => t.id === id)
+      const task = tasks[taskIndex]
+      if (task) {
+        task.completed_at = new Date().toISOString()
+        tasks.splice(taskIndex, 1)
+        completedTasks.unshift(task)
+        removeFromToday(id)
+        expandedTaskId = null
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
+      }
+
+      // API call in background
       try {
         const res = await fetch(`/api/tasks/${id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ completed_at: new Date().toISOString() })
+          body: JSON.stringify({ completed_at: task.completed_at })
         })
-        if (res.ok) {
-          // Remove from Today column if it was there
-          removeFromToday(id)
-          expandedTaskId = null
-          loadTasks()
+        if (!res.ok) {
+          // Revert on failure
+          task.completed_at = null
+          completedTasks = completedTasks.filter(t => t.id !== id)
+          tasks.push(task)
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
         }
-      } catch (e) {
-        console.error('Failed to complete task:', e)
+      } catch (err) {
+        // Revert on error
+        task.completed_at = null
+        completedTasks = completedTasks.filter(t => t.id !== id)
+        tasks.push(task)
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
+      } finally {
+        pendingOperations.delete(id)
       }
     } else if (action === 'uncomplete') {
       e.stopPropagation()
+      if (pendingOperations.has(id)) return // Prevent duplicate
+
+      // Add loading state
+      pendingOperations.add(id)
+      const taskEl = document.querySelector(`.completed-task[data-id="${id}"]`)
+      const checkboxEl = taskEl?.querySelector('.task-checkbox')
+      taskEl?.classList.add('loading')
+      checkboxEl?.classList.add('loading')
+
+      // Optimistic update: move task back to active
+      const taskIndex = completedTasks.findIndex(t => t.id === id)
+      const task = completedTasks[taskIndex]
+      const prevCompletedAt = task?.completed_at
+      if (task) {
+        task.completed_at = null
+        completedTasks.splice(taskIndex, 1)
+        tasks.push(task)
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
+      }
+
+      // API call in background
       try {
         const res = await fetch(`/api/tasks/${id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ completed_at: null })
         })
-        if (res.ok) {
-          loadTasks()
+        if (!res.ok) {
+          // Revert on failure
+          task.completed_at = prevCompletedAt
+          tasks = tasks.filter(t => t.id !== id)
+          completedTasks.unshift(task)
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
         }
-      } catch (e) {
-        console.error('Failed to uncomplete task:', e)
+      } catch (err) {
+        // Revert on error
+        task.completed_at = prevCompletedAt
+        tasks = tasks.filter(t => t.id !== id)
+        completedTasks.unshift(task)
+        renderQueues()
+        if (showCompleted) renderCompletedLog()
+      } finally {
+        pendingOperations.delete(id)
       }
     } else if (action === 'expand') {
       expandedTaskId = expandedTaskId === id ? null : id
@@ -980,18 +1145,55 @@ export const prerender = false
     } else if (action === 'edit') {
       openModal(id)
     } else if (action === 'delete') {
-      if (confirm('Delete this task?')) {
-        try {
-          const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
-          if (res.ok) {
-            // Remove from Today column if it was there
-            removeFromToday(id)
-            expandedTaskId = null
-            loadTasks()
+      if (pendingOperations.has(id)) return // Prevent duplicate
+      if (!confirm('Delete this task?')) return
+
+      // Add loading state
+      pendingOperations.add(id)
+
+      // Save task for potential restore
+      const taskIndex = tasks.findIndex(t => t.id === id)
+      const completedIndex = completedTasks.findIndex(t => t.id === id)
+      const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
+      const wasInTasks = taskIndex >= 0
+
+      // Optimistic delete
+      if (wasInTasks) {
+        tasks.splice(taskIndex, 1)
+      } else {
+        completedTasks.splice(completedIndex, 1)
+      }
+      removeFromToday(id)
+      expandedTaskId = null
+      renderQueues()
+      if (showCompleted) renderCompletedLog()
+
+      // API call in background
+      try {
+        const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
+        if (!res.ok && task) {
+          // Restore on failure
+          if (wasInTasks) {
+            tasks.push(task)
+          } else {
+            completedTasks.unshift(task)
           }
-        } catch (e) {
-          console.error('Failed to delete task:', e)
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
         }
+      } catch (err) {
+        // Restore on error
+        if (task) {
+          if (wasInTasks) {
+            tasks.push(task)
+          } else {
+            completedTasks.unshift(task)
+          }
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
+        }
+      } finally {
+        pendingOperations.delete(id)
       }
     }
   })
