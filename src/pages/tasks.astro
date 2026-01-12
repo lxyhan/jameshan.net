@@ -224,6 +224,7 @@ export const prerender = false
   let workTaskIds = JSON.parse(localStorage.getItem('workTaskIds') || '[]')
   let studyTaskIds = JSON.parse(localStorage.getItem('studyTaskIds') || '[]')
   let pendingOperations = new Set() // Track task IDs with in-flight API requests
+  let subtasksByTaskId = {} // { taskId: [subtask, ...] }
 
   // Schedule by day of week (0 = Sunday, 1 = Monday, etc.)
   const SCHEDULE = {
@@ -308,22 +309,35 @@ export const prerender = false
   // Load tasks
   async function loadTasks() {
     try {
-      const [tasksRes, completedRes] = await Promise.all([
+      const [tasksRes, completedRes, subtasksRes] = await Promise.all([
         fetch('/api/tasks'),
-        fetch('/api/tasks?completed=true')
+        fetch('/api/tasks?completed=true'),
+        fetch('/api/tasks/subtasks')
       ])
 
       if (tasksRes.ok) {
         const data = await tasksRes.json()
         tasks = data.tasks || []
-        renderQueues()
       }
 
       if (completedRes.ok) {
         const data = await completedRes.json()
         completedTasks = data.tasks || []
-        if (showCompleted) renderCompletedLog()
       }
+
+      if (subtasksRes.ok) {
+        const data = await subtasksRes.json()
+        subtasksByTaskId = {}
+        for (const subtask of data.subtasks || []) {
+          if (!subtasksByTaskId[subtask.task_id]) {
+            subtasksByTaskId[subtask.task_id] = []
+          }
+          subtasksByTaskId[subtask.task_id].push(subtask)
+        }
+      }
+
+      renderQueues()
+      if (showCompleted) renderCompletedLog()
     } catch (e) {
       console.error('Failed to load tasks:', e)
     }
@@ -430,7 +444,7 @@ export const prerender = false
               <div class="task-meta">
                 <span class="task-priority p${task.priority}">[P${task.priority}]</span>
                 <span class="task-time">[${formatTime(task.estimated_minutes)}]</span>
-                ${task.due_date ? `<span class="task-date">${formatDate(task.due_date)}</span>` : ''}
+                ${task.due_date ? `<span class="task-due">${formatDate(task.due_date)}</span>` : ''}
               </div>
               <div class="task-expanded-fields">
                 ${task.completion_criteria ? `
@@ -456,7 +470,7 @@ export const prerender = false
         `
       }
       return `
-        <div class="completed-task" data-id="${task.id}" data-action="edit">
+        <div class="completed-task" data-id="${task.id}" data-action="expand-completed">
           <span class="task-checkbox" data-action="uncomplete" data-id="${task.id}">✓</span>
           <div class="task-content">
             <div class="task-description">${areaLabel ? `<span class="task-area">${escapeHtml(areaLabel)}</span> ` : ''}${escapeHtml(task.description)}</div>
@@ -470,33 +484,40 @@ export const prerender = false
     }
 
     if (isExpanded) {
+      const progress = getSubtaskProgress(task.id)
+      const hasFields = task.completion_criteria || task.resources
       return `
-        <div class="task-expanded" data-id="${task.id}">
-          <div class="task-item">
-            <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
+        <div class="task-expanded" data-id="${task.id}" draggable="true">
+          <div class="task-item" data-action="expand" data-id="${task.id}">
+            <span class="task-drag-handle" title="Drag to Today">⋮⋮</span>
+                        <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
             <div class="task-content">
               <div class="task-description">${areaLabel ? `<span class="task-area">${escapeHtml(areaLabel)}</span> ` : ''}${escapeHtml(task.description)}</div>
               <div class="task-meta">
+                ${progress ? `<span class="subtask-progress">[${progress.completed}/${progress.total}]</span>` : ''}
                 <span class="task-priority p${task.priority}">[P${task.priority}]</span>
                 <span class="task-time">[${formatTime(task.estimated_minutes)}]</span>
-                ${task.due_date ? `<span class="task-date">${formatDate(task.due_date)}</span>` : ''}
+                ${task.due_date ? `<span class="task-due">${formatDate(task.due_date)}</span>` : ''}
               </div>
             </div>
           </div>
-          <div class="task-expanded-fields">
-            ${task.completion_criteria ? `
-              <div class="task-field">
-                <span class="task-field-label">Done when:</span>
-                <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
-              </div>
-            ` : ''}
-            ${task.resources ? `
-              <div class="task-field">
-                <span class="task-field-label">Resources:</span>
-                <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
-              </div>
-            ` : ''}
-          </div>
+          ${hasFields ? `
+            <div class="task-expanded-fields">
+              ${task.completion_criteria ? `
+                <div class="task-field">
+                  <span class="task-field-label">Done when:</span>
+                  <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
+                </div>
+              ` : ''}
+              ${task.resources ? `
+                <div class="task-field">
+                  <span class="task-field-label">Notes:</span>
+                  <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+          ${renderSubtasksSection(task.id)}
           <div class="task-actions">
             <button data-action="edit" data-id="${task.id}">Edit</button>
             <button data-action="delete" data-id="${task.id}" class="delete">Delete</button>
@@ -506,13 +527,15 @@ export const prerender = false
     }
 
     const inToday = isInToday(task.id)
+    const progress = getSubtaskProgress(task.id)
     return `
-      <div class="task-item ${isSelected ? 'selected' : ''}" data-id="${task.id}" data-action="edit" draggable="true">
+      <div class="task-item ${isSelected ? 'selected' : ''}" data-id="${task.id}" data-action="expand" draggable="true">
         <span class="task-drag-handle" title="Drag to Today">⋮⋮</span>
-        <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
+                <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
         <div class="task-content">
           <div class="task-description">${areaLabel ? `<span class="task-area">${escapeHtml(areaLabel)}</span> ` : ''}${escapeHtml(task.description)}</div>
           <div class="task-meta">
+            ${progress ? `<span class="subtask-progress">[${progress.completed}/${progress.total}]</span>` : ''}
             <span class="task-priority p${task.priority}">[P${task.priority}]</span>
             <span class="task-time">[${formatTime(task.estimated_minutes)}]</span>
             ${task.due_date ? `<span class="task-due">due ${formatDate(task.due_date)}</span>` : ''}
@@ -577,14 +600,60 @@ export const prerender = false
     }
 
     const html = sectionTasks.map(task => {
+      const isExpanded = expandedTaskId === task.id
       const areaLabel = getAreaLabel(task.area)
+      const progress = getSubtaskProgress(task.id)
+
+      if (isExpanded) {
+        const hasFields = task.completion_criteria || task.resources
+        return `
+          <div class="task-expanded" data-id="${task.id}" draggable="true">
+            <div class="task-item" data-action="expand" data-id="${task.id}">
+              <span class="task-drag-handle task-remove-from-today" data-action="remove-from-today" data-id="${task.id}" title="Remove">✕</span>
+                            <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
+              <div class="task-content">
+                <div class="task-description">${areaLabel ? `<span class="task-area">${escapeHtml(areaLabel)}</span> ` : ''}${escapeHtml(task.description)}</div>
+                <div class="task-meta">
+                  ${progress ? `<span class="subtask-progress">[${progress.completed}/${progress.total}]</span>` : ''}
+                  <span class="task-priority p${task.priority}">[P${task.priority}]</span>
+                  <span class="task-time">[${formatTime(task.estimated_minutes)}]</span>
+                  ${task.due_date ? `<span class="task-due">due ${formatDate(task.due_date)}</span>` : ''}
+                </div>
+              </div>
+            </div>
+            ${hasFields ? `
+              <div class="task-expanded-fields">
+                ${task.completion_criteria ? `
+                  <div class="task-field">
+                    <span class="task-field-label">Done when:</span>
+                    <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
+                  </div>
+                ` : ''}
+                ${task.resources ? `
+                  <div class="task-field">
+                    <span class="task-field-label">Notes:</span>
+                    <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
+                  </div>
+                ` : ''}
+              </div>
+            ` : ''}
+            ${renderSubtasksSection(task.id)}
+            <div class="task-actions">
+              <button data-action="edit" data-id="${task.id}">Edit</button>
+              <button data-action="delete" data-id="${task.id}" class="delete">Delete</button>
+            </div>
+          </div>
+        `
+      }
+
       return `
-        <div class="task-item" data-id="${task.id}" data-action="edit" draggable="true">
+        <div class="task-item" data-id="${task.id}" data-action="expand" draggable="true">
           <span class="task-drag-handle task-remove-from-today" data-action="remove-from-today" data-id="${task.id}" title="Remove">✕</span>
-          <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
+                    <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
           <div class="task-content">
             <div class="task-description">${areaLabel ? `<span class="task-area">${escapeHtml(areaLabel)}</span> ` : ''}${escapeHtml(task.description)}</div>
             <div class="task-meta">
+              ${progress ? `<span class="subtask-progress">[${progress.completed}/${progress.total}]</span>` : ''}
               <span class="task-priority p${task.priority}">[P${task.priority}]</span>
               <span class="task-time">[${formatTime(task.estimated_minutes)}]</span>
               ${task.due_date ? `<span class="task-due">due ${formatDate(task.due_date)}</span>` : ''}
@@ -713,6 +782,162 @@ export const prerender = false
   function getAreaLabel(areaId) {
     const area = AREAS.find(a => a.id === areaId)
     return area ? area.label : null
+  }
+
+  function getSubtaskProgress(taskId) {
+    const subtasks = subtasksByTaskId[taskId] || []
+    if (subtasks.length === 0) return null
+    const completed = subtasks.filter(s => s.completed).length
+    return { completed, total: subtasks.length }
+  }
+
+  function renderSubtasksSection(taskId) {
+    const subtasks = subtasksByTaskId[taskId] || []
+    const progress = getSubtaskProgress(taskId)
+
+    return `
+      <div class="subtasks-section">
+        <div class="subtasks-header">
+          Subtasks${progress ? ` (${progress.completed}/${progress.total})` : ''}
+        </div>
+        <div class="subtasks-list">
+          ${subtasks.map(s => `
+            <div class="subtask-item ${s.completed ? 'completed' : ''}" data-subtask-id="${s.id}">
+              <span class="subtask-checkbox ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${s.id}">${s.completed ? '✓' : ''}</span>
+              <span class="subtask-description">${escapeHtml(s.description)}</span>
+              <button class="subtask-delete" data-action="delete-subtask" data-subtask-id="${s.id}" title="Delete">×</button>
+            </div>
+          `).join('')}
+        </div>
+        <div class="subtask-add">
+          <input type="text" class="subtask-input" placeholder="Add subtask..." data-task-id="${taskId}" />
+        </div>
+      </div>
+    `
+  }
+
+  async function toggleSubtask(subtaskId) {
+    // Find the subtask and its parent task
+    let parentTaskId = null
+    let subtask = null
+    for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
+      const found = subtasks.find(s => s.id === subtaskId)
+      if (found) {
+        parentTaskId = taskId
+        subtask = found
+        break
+      }
+    }
+    if (!subtask) return
+
+    pendingOperations.add(subtaskId)
+    const prevCompleted = subtask.completed
+
+    // Optimistic update
+    subtask.completed = !subtask.completed
+    renderQueues()
+
+    try {
+      const res = await fetch('/api/tasks/subtasks', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: subtaskId, completed: subtask.completed })
+      })
+      if (!res.ok) {
+        subtask.completed = prevCompleted
+        renderQueues()
+      }
+    } catch (err) {
+      subtask.completed = prevCompleted
+      renderQueues()
+    } finally {
+      pendingOperations.delete(subtaskId)
+    }
+  }
+
+  async function addSubtask(taskId, description) {
+    if (!description.trim()) return
+
+    const tempId = 'temp-' + Date.now()
+    const tempSubtask = {
+      id: tempId,
+      task_id: taskId,
+      description: description.trim(),
+      completed: false,
+      position: (subtasksByTaskId[taskId]?.length || 0)
+    }
+
+    // Optimistic add
+    if (!subtasksByTaskId[taskId]) {
+      subtasksByTaskId[taskId] = []
+    }
+    subtasksByTaskId[taskId].push(tempSubtask)
+    renderQueues()
+
+    try {
+      const res = await fetch('/api/tasks/subtasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task_id: taskId, description: description.trim() })
+      })
+      if (res.ok) {
+        const data = await res.json()
+        // Replace temp subtask with real one
+        const idx = subtasksByTaskId[taskId].findIndex(s => s.id === tempId)
+        if (idx >= 0) {
+          subtasksByTaskId[taskId][idx] = data.subtask
+        }
+        renderQueues()
+      } else {
+        // Remove temp on failure
+        subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter(s => s.id !== tempId)
+        renderQueues()
+      }
+    } catch (err) {
+      subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter(s => s.id !== tempId)
+      renderQueues()
+    }
+  }
+
+  async function deleteSubtask(subtaskId) {
+    // Find and remove the subtask
+    let parentTaskId = null
+    let subtaskIndex = -1
+    let subtask = null
+    for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
+      const idx = subtasks.findIndex(s => s.id === subtaskId)
+      if (idx >= 0) {
+        parentTaskId = taskId
+        subtaskIndex = idx
+        subtask = subtasks[idx]
+        break
+      }
+    }
+    if (!subtask) return
+
+    pendingOperations.add(subtaskId)
+
+    // Optimistic delete
+    subtasksByTaskId[parentTaskId].splice(subtaskIndex, 1)
+    renderQueues()
+
+    try {
+      const res = await fetch('/api/tasks/subtasks', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: subtaskId })
+      })
+      if (!res.ok) {
+        // Restore on failure
+        subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
+        renderQueues()
+      }
+    } catch (err) {
+      subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
+      renderQueues()
+    } finally {
+      pendingOperations.delete(subtaskId)
+    }
   }
 
   function saveWorkTasks() {
@@ -1031,6 +1256,24 @@ export const prerender = false
     if (!actionEl) return
 
     const action = actionEl.dataset.action
+
+    // Handle subtask actions
+    if (action === 'toggle-subtask') {
+      e.stopPropagation()
+      const subtaskId = actionEl.dataset.subtaskId
+      if (!subtaskId || pendingOperations.has(subtaskId)) return
+      await toggleSubtask(subtaskId)
+      return
+    }
+
+    if (action === 'delete-subtask') {
+      e.stopPropagation()
+      const subtaskId = actionEl.dataset.subtaskId
+      if (!subtaskId || pendingOperations.has(subtaskId)) return
+      await deleteSubtask(subtaskId)
+      return
+    }
+
     const id = actionEl.dataset.id || actionEl.closest('[data-id]')?.dataset.id
 
     if (!action || !id) return
@@ -1045,6 +1288,13 @@ export const prerender = false
     if (action === 'complete') {
       e.stopPropagation()
       if (pendingOperations.has(id)) return // Prevent duplicate
+
+      // Block completion if subtasks are incomplete
+      const progress = getSubtaskProgress(id)
+      if (progress && progress.completed < progress.total) {
+        alert(`Complete all subtasks first (${progress.completed}/${progress.total} done)`)
+        return
+      }
 
       // Add loading state
       pendingOperations.add(id)
@@ -1198,6 +1448,26 @@ export const prerender = false
       } finally {
         pendingOperations.delete(id)
       }
+    }
+  })
+
+  // Subtask input handler (Enter to add)
+  document.addEventListener('keydown', async (e) => {
+    if (e.key !== 'Enter') return
+    const input = e.target.closest('.subtask-input')
+    if (!input) return
+
+    e.preventDefault()
+    const taskId = input.dataset.taskId
+    const description = input.value.trim()
+    if (taskId && description) {
+      input.value = ''
+      await addSubtask(taskId, description)
+      // Re-focus the input after render
+      setTimeout(() => {
+        const newInput = document.querySelector(`.subtask-input[data-task-id="${taskId}"]`)
+        if (newInput) newInput.focus()
+      }, 0)
     }
   })
 
