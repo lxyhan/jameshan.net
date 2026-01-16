@@ -320,18 +320,14 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   .resume-link {
     font-size: 1rem;
     color: var(--text-primary);
-    text-decoration: underline;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.4rem;
   }
 
-  .resume-link svg {
-    color: var(--text-secondary);
-  }
-
   .resume-link:hover {
-    color: var(--primary);
+    text-decoration: underline;
   }
 
   .footer-folder {
