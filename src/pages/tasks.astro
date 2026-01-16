@@ -214,7 +214,7 @@ export const prerender = false
   const DOMAINS = ['career', 'school', 'life']
   let tasks = []
   let completedTasks = []
-  let selectedTaskId = null
+  const selectedTaskId = null
   let expandedTaskId = null
   let editingTaskId = null
   // let showBacklog = { career: false, school: false, life: false }
@@ -223,7 +223,7 @@ export const prerender = false
   let selectedArea = ''
   let workTaskIds = JSON.parse(localStorage.getItem('workTaskIds') || '[]')
   let studyTaskIds = JSON.parse(localStorage.getItem('studyTaskIds') || '[]')
-  let pendingOperations = new Set() // Track task IDs with in-flight API requests
+  const pendingOperations = new Set() // Track task IDs with in-flight API requests
   let subtasksByTaskId = {} // { taskId: [subtask, ...] }
 
   // Schedule by day of week (0 = Sunday, 1 = Monday, etc.)

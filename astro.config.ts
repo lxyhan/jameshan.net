@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import playformInline from '@playform/inline'
 
 import remarkMath from 'remark-math'
 import remarkDirective from 'remark-directive'
