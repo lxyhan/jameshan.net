@@ -176,15 +176,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   <hr class="tree-divider" />
   <div class="tree-footer">
     <div class="footer-section">
-      <span class="footer-label">recent</span>
-      {recentPosts.map(post => {
-        const folder = post.id.includes('/') ? post.id.split('/')[0] : null
-        return (
-          <a href={`/${post.id}`} class={`footer-link ${currentPath === `/${post.id}` ? 'active' : ''}`}>
-            {folder && <span class="footer-folder">{folder}/</span>}{post.data.title}
-          </a>
-        )
-      })}
+      <a href="/resume_swe_base.pdf" target="_blank" rel="noopener" class="resume-link">resume.pdf</a>
     </div>
     <div class="tree-links">
       <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>changelog</a>
@@ -322,6 +314,16 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .footer-link.active {
     color: var(--primary);
+  }
+
+  .resume-link {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .resume-link:hover {
+    text-decoration: underline;
   }
 
   .footer-folder {
