@@ -58,12 +58,14 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
     })
   })
 
-  // Sort alphabetically by name, but pin hello-2026 to top
+  // Sort: folders first, then alphabetically by name
   function sortTree(node: TreeNode) {
     if (node.children) {
       node.children.sort((a, b) => {
-        if (a.name.startsWith('hello-2026')) return -1
-        if (b.name.startsWith('hello-2026')) return 1
+        // Folders first
+        if (a.type === 'folder' && b.type === 'file') return -1
+        if (a.type === 'file' && b.type === 'folder') return 1
+        // Then alphabetically
         return a.name.localeCompare(b.name)
       })
       node.children.forEach(sortTree)
@@ -197,7 +199,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .header-left {
@@ -277,7 +279,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   .tree-divider {
     border: none;
     border-top: 1px solid var(--border);
-    margin: 0.75rem 0;
+    margin: 0.5rem 0;
   }
 
   .tree-footer {
@@ -344,7 +346,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   }
 
   .tree-folder {
-    margin: 0.25rem 0;
+    margin: 0;
   }
 
   .tree-folder summary {
@@ -352,7 +354,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    padding: 0.25rem 0;
+    padding: 0.05rem 0;
     list-style: none;
     user-select: none;
     position: relative;
@@ -381,7 +383,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   }
 
   .tree-children {
-    padding-left: 1.25rem;
+    padding-left: 1rem;
     border-left: 1px solid var(--border);
     margin-left: 0.5rem;
   }
@@ -390,7 +392,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    padding: 0.25rem 0;
+    padding: 0.025rem 0;
     color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;

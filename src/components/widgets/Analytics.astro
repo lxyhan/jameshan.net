@@ -1,6 +1,6 @@
 <div class="analytics">
   <span class="analytics-text" id="analytics-stats">
-    👁️ <span class="loading">...</span>
+    <span class="loading">...</span>
   </span>
   <a href="/changelog" class="analytics-text version-link">v4.4</a>
 </div>
@@ -13,14 +13,14 @@
         const data = await response.json();
         const statsElement = document.getElementById('analytics-stats');
         if (statsElement) {
-          statsElement.innerHTML = `👁️ ${data.today} today · ${data.allTime} views`;
+          statsElement.innerHTML = `${data.today} views today`;
         }
       }
     } catch (error) {
       console.debug('Failed to fetch analytics:', error);
       const statsElement = document.getElementById('analytics-stats');
       if (statsElement) {
-        statsElement.innerHTML = '👁️ --';
+        statsElement.innerHTML = '-- views today';
       }
     }
   }
