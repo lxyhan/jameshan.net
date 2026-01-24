@@ -36,11 +36,11 @@ const posts = await getSortedFilteredPosts()
 
     <script is:inline>
       document.addEventListener('astro:before-preparation', () => {
-        document.body.style.transition = 'opacity 0.2s ease-out';
+        document.body.style.transition = 'opacity 0.1s ease-out';
         document.body.style.opacity = '0';
       });
       document.addEventListener('astro:after-swap', () => {
-        document.body.style.transition = 'opacity 0.3s ease-out';
+        document.body.style.transition = 'opacity 0.1s ease-out';
         document.body.style.opacity = '1';
       });
     </script>
@@ -86,11 +86,29 @@ const posts = await getSortedFilteredPosts()
 
   .site-grid {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    padding: 4rem 0 1.5rem 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-grid > * {
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 769px) {
+    .site-grid {
+      padding-top: 6rem;
+    }
   }
 
   .layout-wrapper {
-    min-height: calc(100vh - 7.5rem);
+    flex: 1;
   }
 
   /* Two Column Layout */
@@ -122,10 +140,11 @@ const posts = await getSortedFilteredPosts()
   @media (min-width: 900px) {
     .two-col-grid {
       flex-direction: row;
-      gap: 4rem;
       padding: 0 2rem;
       align-items: flex-start;
       justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .sidebar-area {
@@ -135,31 +154,32 @@ const posts = await getSortedFilteredPosts()
       margin-top: 0;
       padding-top: 0;
       border-top: none;
-      position: sticky;
+      position: fixed;
       top: 6rem;
+      left: max(2rem, calc(50% - 600px + 2rem));
       max-height: calc(100vh - 8rem);
       overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: none;
     }
 
     .content-area {
       order: 2;
       width: 65ch;
       flex-shrink: 0;
+      margin-left: calc(300px + 4rem);
     }
   }
 
   /* Large screens: wider content */
   @media (min-width: 1200px) {
-    .two-col-grid {
-      gap: 5rem;
-    }
-
     .sidebar-area {
       width: 320px;
     }
 
     .content-area {
       width: 75ch;
+      margin-left: calc(320px + 5rem);
     }
   }
 
