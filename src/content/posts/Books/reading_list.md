@@ -8,3 +8,5 @@ Currently reading:
 - Chatwin - In Patagonia
 - John Fraser — The Chinese, Portrait Of A People
 - Fei-Fei Li — The Worlds I See
+
+Please email me book recommendations at jameshan.cs@gmail.com. Thank you!
