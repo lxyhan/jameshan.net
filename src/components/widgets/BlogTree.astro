@@ -99,7 +99,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 <div class="blog-tree">
   <div class="tree-header-row">
     <div class="header-left">
-      <a href="/" class="tree-header">~/jhan</a>
+      <a href="/" class="tree-header">library</a>
       <div class="social-icons">
         <a href="https://github.com/lxyhan" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -189,9 +189,9 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
 <style>
   .blog-tree {
-    font-family: var(--serif);
-    font-size: 1rem;
-    line-height: 2;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
     padding: 0.5rem 0;
   }
 
@@ -374,7 +374,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     flex-shrink: 0;
   }
 
-  .tree-folder[open] summary::before {
+  .tree-folder[open] > summary::before {
     transform: rotate(90deg);
   }
 

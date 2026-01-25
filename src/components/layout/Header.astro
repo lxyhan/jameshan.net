@@ -1,7 +1,6 @@
 ---
 import { themeConfig } from '@/config'
 import ThemeToggle from '@/components/ui/ThemeToggle.astro'
-import FontToggle from '@/components/ui/FontToggle.astro'
 ---
 
 <header>
@@ -20,7 +19,6 @@ import FontToggle from '@/components/ui/FontToggle.astro'
       <div class="name-row">
         <span class="name">{themeConfig.site.title}</span>
         <div class="toggle-group">
-          <FontToggle />
           <ThemeToggle />
         </div>
       </div>
@@ -89,7 +87,7 @@ import FontToggle from '@/components/ui/FontToggle.astro'
   }
   
   .name {
-    font-size: var(--font-size-l);
+    font-size: 1rem;
     font-weight: var(--font-weight-regular);
   }
   .subtitle-container {
@@ -99,7 +97,7 @@ import FontToggle from '@/components/ui/FontToggle.astro'
     margin-top: -0.25rem;
   }
   .subtitle {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: var(--font-weight-regular);
     line-height: 1.3;
     color: var(--text-primary);

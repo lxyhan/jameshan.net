@@ -6,10 +6,9 @@
   --content-width: 25rem;
 
   /* Typography */
-  --sans:
-    'CMU Serif', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --serif: 'CMU Serif', serif;
-  --mono: 'CMU Typewriter Text', monospace;
+  --mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 
   --font-size-xs: 1rem; /* 16px */
   --font-size-s: 1.125rem; /* 18px */
