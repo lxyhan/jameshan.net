@@ -21,12 +21,6 @@ const posts = await getSortedFilteredPosts()
 
 <html lang={language}>
   <head>
-    <script is:inline>
-      (function() {
-        const savedFont = localStorage.getItem('font-preference') || 'serif';
-        document.documentElement.setAttribute('data-font', savedFont);
-      })();
-    </script>
     <ThemeManager />
     <ViewTransitions />
     <slot name="head" />

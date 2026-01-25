@@ -6,7 +6,7 @@
   --content-width: 25rem;
 
   /* Typography */
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sans: 'Merriweather', Georgia, serif;
   --serif: 'CMU Serif', serif;
   --mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 
@@ -17,7 +17,7 @@
 
   --font-weight-light: 350;
   --font-weight-regular: 400;
-  --font-weight-bold: 700;
+  --font-weight-bold: 600;
 
   --spacing-s: -0.08em;
   --spacing-m: -0.02em;
@@ -127,36 +127,6 @@ body {
   width: 100%;
 }
 
-/* Font switching */
-html[data-font='sans'] body,
-html[data-font='sans'] .prose,
-html[data-font='sans'] .blog-tree,
-html[data-font='sans'] * {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif !important;
-  letter-spacing: -0.02em;
-}
-
-/* Keep math in serif font always - exclude from font toggle */
-html[data-font='sans'] .katex,
-html[data-font='sans'] .katex *,
-html[data-font='sans'] .math,
-html[data-font='sans'] .math-display,
-html[data-font='sans'] .math-inline {
-  font-family: inherit !important;
-  letter-spacing: normal !important;
-}
-
-/* Preserve KaTeX-specific font families */
-html[data-font='sans'] .katex .mord,
-html[data-font='sans'] .katex .mop,
-html[data-font='sans'] .katex .mbin,
-html[data-font='sans'] .katex .mrel,
-html[data-font='sans'] .katex .mopen,
-html[data-font='sans'] .katex .mclose,
-html[data-font='sans'] .katex .mpunct,
-html[data-font='sans'] .katex .minner {
-  font-family: inherit !important;
-}
 
 
 /* Page transition animations */
