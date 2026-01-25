@@ -34,21 +34,21 @@
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=86400, s-maxage=172800"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 # Blog posts
 [[headers]]
   for = "/*/"
   [headers.values]
-    Cache-Control = "public, max-age=86400, s-maxage=172800"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 # Homepage
 [[headers]]
   for = "/"
   [headers.values]
-    Cache-Control = "public, max-age=1800, s-maxage=3600"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 # Static assets
@@ -61,25 +61,25 @@
 [[headers]]
   for = "/_astro/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "no-cache, no-store, must-revalidate"
     Vary = "Accept-Encoding"
 
 # Images

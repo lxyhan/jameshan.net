@@ -17,420 +17,441 @@ export const prerender = false
   </head>
   <body class="tasks-body">
     <div class="tasks-container">
-    <!-- Auth Gate -->
-    <div id="auth-gate" class="auth-gate">
-      <h1>Tasks</h1>
-      <form class="auth-form" id="auth-form">
-        <input type="password" id="password-input" placeholder="Password" autocomplete="current-password" />
-        <button type="submit">Enter</button>
-      </form>
-      <p id="auth-error" class="auth-error" style="display: none;"></p>
-    </div>
-
-    <!-- Main App (hidden until authenticated) -->
-    <div id="tasks-app" style="display: none;">
-      <!-- Header -->
-      <header class="tasks-header">
-        <h1 class="tasks-title" id="date-title"></h1>
-        <button class="add-task-btn" id="add-task-btn">+ Add Task <span class="keyboard-hint">n</span></button>
-      </header>
-
-      <!-- Main Layout with Today Column -->
-      <div class="main-layout">
-        <!-- Queue Section -->
-        <div class="queues-section">
-          <div class="queues-container">
-            <!-- Career Queue -->
-            <div class="queue" id="career-queue" data-domain="career">
-              <div class="queue-header">Career</div>
-              <div id="career-tasks" class="queue-tasks" data-droppable="queue">
-                <div class="loading">Loading...</div>
-              </div>
-            </div>
-
-            <!-- School Queue -->
-            <div class="queue" id="school-queue" data-domain="school">
-              <div class="queue-header">School</div>
-              <div id="school-tasks" class="queue-tasks" data-droppable="queue">
-                <div class="loading">Loading...</div>
-              </div>
-            </div>
-
-            <!-- Life Queue -->
-            <div class="queue" id="life-queue" data-domain="life">
-              <div class="queue-header">Life</div>
-              <div id="life-tasks" class="queue-tasks" data-droppable="queue">
-                <div class="loading">Loading...</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="today-divider"></div>
-
-        <!-- Today Column -->
-        <div class="today-section">
-          <div class="queue" id="work-queue">
-            <div class="queue-header">Work <span class="hours-display" id="work-hours"></span></div>
-            <div id="work-tasks" class="queue-tasks" data-droppable="work">
-              <div class="empty-state">Drag tasks here</div>
-            </div>
-          </div>
-          <div class="queue" id="study-queue">
-            <div class="queue-header">Study <span class="hours-display" id="study-hours"></span></div>
-            <div id="study-tasks" class="queue-tasks" data-droppable="study">
-              <div class="empty-state">Drag tasks here</div>
-            </div>
-          </div>
-        </div>
+      <!-- Auth Gate -->
+      <div id="auth-gate" class="auth-gate">
+        <h1>Tasks</h1>
+        <form class="auth-form" id="auth-form">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Password"
+            autocomplete="current-password"
+          />
+          <button type="submit">Enter</button>
+        </form>
+        <p id="auth-error" class="auth-error" style="display: none;"></p>
       </div>
 
-      <!-- Completed Log Toggle -->
-      <div class="completed-toggle">
-        <button id="completed-toggle-btn">Show Completed <span class="keyboard-hint">c</span></button>
-      </div>
-      <div id="completed-log" class="completed-log" style="display: none;"></div>
-    </div>
+      <!-- Main App (hidden until authenticated) -->
+      <div id="tasks-app" style="display: none;">
+        <!-- Header -->
+        <header class="tasks-header">
+          <h1 class="tasks-title" id="date-title"></h1>
+          <button class="add-task-btn" id="add-task-btn"
+            >+ Add Task <span class="keyboard-hint">n</span></button
+          >
+        </header>
 
-    <!-- Add/Edit Modal -->
-    <div id="task-modal" class="modal-overlay" style="display: none;">
-      <div class="modal">
-        <div class="modal-header">
-          <h2 class="modal-title" id="modal-title">Add Task</h2>
-          <button class="modal-close" id="modal-close">&times;</button>
-        </div>
-        <form class="modal-body" id="task-form">
-          <div class="modal-form">
-            <div class="form-group">
-              <label for="task-description">What's the next physical action?</label>
-              <input type="text" id="task-description" required placeholder="e.g., Read chapter 5 and do problems 1-10" />
-            </div>
-
-            <div class="form-group">
-              <label for="task-due-date">Due Date</label>
-              <input type="date" id="task-due-date" />
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Domain</label>
-                <div class="domain-toggle">
-                  <button type="button" data-domain="career" class="active">Career</button>
-                  <button type="button" data-domain="school">School</button>
-                  <button type="button" data-domain="life">Life</button>
+        <!-- Main Layout with Today Column -->
+        <div class="main-layout">
+          <!-- Queue Section -->
+          <div class="queues-section">
+            <div class="queues-container">
+              <!-- Career Queue -->
+              <div class="queue" id="career-queue" data-domain="career">
+                <div class="queue-header">Career</div>
+                <div id="career-tasks" class="queue-tasks" data-droppable="queue">
+                  <div class="loading">Loading...</div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="task-area">Area</label>
-                <select id="task-area">
-                  <option value="">None</option>
-                </select>
+
+              <!-- School Queue -->
+              <div class="queue" id="school-queue" data-domain="school">
+                <div class="queue-header">School</div>
+                <div id="school-tasks" class="queue-tasks" data-droppable="queue">
+                  <div class="loading">Loading...</div>
+                </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="task-time">Estimated Time</label>
-                <select id="task-time">
-                  <option value="15">15 min</option>
-                  <option value="30" selected>30 min</option>
-                  <option value="45">45 min</option>
-                  <option value="60">1 hour</option>
-                  <option value="90">1.5 hours</option>
-                  <option value="120">2 hours</option>
-                  <option value="180">3 hours</option>
-                  <option value="240">4 hours</option>
-                </select>
+              <!-- Life Queue -->
+              <div class="queue" id="life-queue" data-domain="life">
+                <div class="queue-header">Life</div>
+                <div id="life-tasks" class="queue-tasks" data-droppable="queue">
+                  <div class="loading">Loading...</div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="task-priority">Priority</label>
-                <select id="task-priority">
-                  <option value="1">1 - Lowest</option>
-                  <option value="2">2 - Low</option>
-                  <option value="3" selected>3 - Medium</option>
-                  <option value="4">4 - High</option>
-                  <option value="5">5 - Highest</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="task-criteria">Completion criteria (optional)</label>
-              <input type="text" id="task-criteria" placeholder="How will you know it's done?" />
-            </div>
-
-            <div class="form-group">
-              <label for="task-resources">Resources (optional)</label>
-              <textarea id="task-resources" placeholder="Links, files, context to reduce friction"></textarea>
-            </div>
-
-            <div id="do-now-container" class="do-now-option" style="display: none;">
-              <input type="checkbox" id="do-now" />
-              <label for="do-now">Do now (skip queue, log as completed)</label>
             </div>
           </div>
-        </form>
-        <div class="modal-footer">
-          <button type="button" class="delete-btn" id="modal-delete" style="display: none;">Delete</button>
-          <div class="modal-footer-right">
-            <button type="button" class="cancel-btn" id="modal-cancel">Cancel</button>
-            <button type="submit" class="submit-btn" id="modal-submit">Add Task</button>
+
+          <!-- Divider -->
+          <div class="today-divider"></div>
+
+          <!-- Today Column -->
+          <div class="today-section">
+            <div class="queue" id="work-queue">
+              <div class="queue-header">
+                Work <span class="hours-display" id="work-hours"></span>
+              </div>
+              <div id="work-tasks" class="queue-tasks" data-droppable="work">
+                <div class="empty-state">Drag tasks here</div>
+              </div>
+            </div>
+            <div class="queue" id="study-queue">
+              <div class="queue-header">
+                Study <span class="hours-display" id="study-hours"></span>
+              </div>
+              <div id="study-tasks" class="queue-tasks" data-droppable="study">
+                <div class="empty-state">Drag tasks here</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Log Toggle -->
+        <div class="completed-toggle">
+          <button id="completed-toggle-btn"
+            >Show Completed <span class="keyboard-hint">c</span></button
+          >
+        </div>
+        <div id="completed-log" class="completed-log" style="display: none;"></div>
+      </div>
+
+      <!-- Add/Edit Modal -->
+      <div id="task-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modal-title">Add Task</h2>
+            <button class="modal-close" id="modal-close">&times;</button>
+          </div>
+          <form class="modal-body" id="task-form">
+            <div class="modal-form">
+              <div class="form-group">
+                <label for="task-description">What's the next physical action?</label>
+                <input
+                  type="text"
+                  id="task-description"
+                  required
+                  placeholder="e.g., Read chapter 5 and do problems 1-10"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="task-due-date">Due Date</label>
+                <input type="date" id="task-due-date" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Domain</label>
+                  <div class="domain-toggle">
+                    <button type="button" data-domain="career" class="active">Career</button>
+                    <button type="button" data-domain="school">School</button>
+                    <button type="button" data-domain="life">Life</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="task-area">Area</label>
+                  <select id="task-area">
+                    <option value="">None</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="task-time">Estimated Time</label>
+                  <select id="task-time">
+                    <option value="15">15 min</option>
+                    <option value="30" selected>30 min</option>
+                    <option value="45">45 min</option>
+                    <option value="60">1 hour</option>
+                    <option value="90">1.5 hours</option>
+                    <option value="120">2 hours</option>
+                    <option value="180">3 hours</option>
+                    <option value="240">4 hours</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="task-priority">Priority</label>
+                  <select id="task-priority">
+                    <option value="1">1 - Lowest</option>
+                    <option value="2">2 - Low</option>
+                    <option value="3" selected>3 - Medium</option>
+                    <option value="4">4 - High</option>
+                    <option value="5">5 - Highest</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="task-criteria">Completion criteria (optional)</label>
+                <input type="text" id="task-criteria" placeholder="How will you know it's done?" />
+              </div>
+
+              <div class="form-group">
+                <label for="task-resources">Resources (optional)</label>
+                <textarea id="task-resources" placeholder="Links, files, context to reduce friction"
+                ></textarea>
+              </div>
+
+              <div id="do-now-container" class="do-now-option" style="display: none;">
+                <input type="checkbox" id="do-now" />
+                <label for="do-now">Do now (skip queue, log as completed)</label>
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="delete-btn" id="modal-delete" style="display: none;"
+              >Delete</button
+            >
+            <div class="modal-footer-right">
+              <button type="button" class="cancel-btn" id="modal-cancel">Cancel</button>
+              <button type="submit" class="submit-btn" id="modal-submit">Add Task</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-<script is:inline>
-(function() {
-  // Hardcoded areas - edit this list as needed
-  const AREAS = [
-    // Career
-    { id: 'firefox', label: 'Firefox', domain: 'career' },
-    { id: 'anthropic', label: 'Anthropic', domain: 'career' },
-    { id: 'Trinity College', label: 'Trinity College', domain: 'career' },
-    { id: 'UofT AI', label: 'UofT AI', domain: 'career' },
-    { id: 'UofT Blueprint', label: 'UofT Blueprint', domain: 'career' },
-    { id: 'linkedkey', label: 'LinkedKey', domain: 'career' },
-    { id: 'personal-site', label: 'Personal Site', domain: 'career' },
-    // School
-    { id: 'csc311', label: 'CSC311', domain: 'school' },
-    { id: 'csc369', label: 'CSC369', domain: 'school' },
-    { id: 'sta238', label: 'STA238', domain: 'school' },
-    // Life
-    { id: 'housekeeping', label: 'Housekeeping', domain: 'life' },
-    { id: 'dating', label: 'Dating', domain: 'life' },
-    { id: 'VISA / Citizenship', label: 'VISA / Citizenship', domain: 'life' },
-  ]
+    <script is:inline>
+      ;(function () {
+        // Hardcoded areas - edit this list as needed
+        const AREAS = [
+          // Career
+          { id: 'firefox', label: 'Firefox', domain: 'career' },
+          { id: 'anthropic', label: 'Anthropic', domain: 'career' },
+          { id: 'Trinity College', label: 'Trinity College', domain: 'career' },
+          { id: 'UofT AI', label: 'UofT AI', domain: 'career' },
+          { id: 'UofT Blueprint', label: 'UofT Blueprint', domain: 'career' },
+          { id: 'linkedkey', label: 'LinkedKey', domain: 'career' },
+          { id: 'personal-site', label: 'Personal Site', domain: 'career' },
+          // School
+          { id: 'csc311', label: 'CSC311', domain: 'school' },
+          { id: 'csc369', label: 'CSC369', domain: 'school' },
+          { id: 'sta238', label: 'STA238', domain: 'school' },
+          // Life
+          { id: 'housekeeping', label: 'Housekeeping', domain: 'life' },
+          { id: 'dating', label: 'Dating', domain: 'life' },
+          { id: 'VISA / Citizenship', label: 'VISA / Citizenship', domain: 'life' }
+        ]
 
-  // State
-  const DOMAINS = ['career', 'school', 'life']
-  let tasks = []
-  let completedTasks = []
-  const selectedTaskId = null
-  let expandedTaskId = null
-  let editingTaskId = null
-  // let showBacklog = { career: false, school: false, life: false }
-  let showCompleted = false
-  let selectedDomain = 'career'
-  let selectedArea = ''
-  let workTaskIds = JSON.parse(localStorage.getItem('workTaskIds') || '[]')
-  let studyTaskIds = JSON.parse(localStorage.getItem('studyTaskIds') || '[]')
-  const pendingOperations = new Set() // Track task IDs with in-flight API requests
-  let subtasksByTaskId = {} // { taskId: [subtask, ...] }
+        // State
+        const DOMAINS = ['career', 'school', 'life']
+        let tasks = []
+        let completedTasks = []
+        const selectedTaskId = null
+        let expandedTaskId = null
+        let editingTaskId = null
+        // let showBacklog = { career: false, school: false, life: false }
+        let showCompleted = false
+        let selectedDomain = 'career'
+        let selectedArea = ''
+        let workTaskIds = JSON.parse(localStorage.getItem('workTaskIds') || '[]')
+        let studyTaskIds = JSON.parse(localStorage.getItem('studyTaskIds') || '[]')
+        const pendingOperations = new Set() // Track task IDs with in-flight API requests
+        let subtasksByTaskId = {} // { taskId: [subtask, ...] }
 
-  // Schedule by day of week (0 = Sunday, 1 = Monday, etc.)
-  const SCHEDULE = {
-    work: {
-      1: '9am–1pm',   // Monday
-      2: '9am–4pm',   // Tuesday
-      3: '9am–1pm',   // Wednesday
-      4: '9am–4pm',   // Thursday
-      5: '9am–1pm',   // Friday
-    },
-    study: {
-      1: '4–9pm',     // Monday
-      2: '8–9pm',     // Tuesday
-      3: '6–9pm',     // Wednesday
-      4: '8–9pm',     // Thursday
-      5: '4–9pm',     // Friday
-    }
-  }
-
-  // DOM Elements
-  const authGate = document.getElementById('auth-gate')
-  const authForm = document.getElementById('auth-form')
-  const authError = document.getElementById('auth-error')
-  const passwordInput = document.getElementById('password-input')
-  const tasksApp = document.getElementById('tasks-app')
-  const addTaskBtn = document.getElementById('add-task-btn')
-  const taskModal = document.getElementById('task-modal')
-  const modalTitle = document.getElementById('modal-title')
-  const modalClose = document.getElementById('modal-close')
-  const modalCancel = document.getElementById('modal-cancel')
-  const modalSubmit = document.getElementById('modal-submit')
-  const modalDelete = document.getElementById('modal-delete')
-  const taskForm = document.getElementById('task-form')
-  const domainToggle = document.querySelector('.domain-toggle')
-  const doNowContainer = document.getElementById('do-now-container')
-  const doNowCheckbox = document.getElementById('do-now')
-  const timeSelect = document.getElementById('task-time')
-  const areaSelect = document.getElementById('task-area')
-  const completedToggleBtn = document.getElementById('completed-toggle-btn')
-  const completedLog = document.getElementById('completed-log')
-
-  // Check authentication on load
-  async function checkAuth() {
-    try {
-      const res = await fetch('/api/tasks')
-      if (res.ok) {
-        authGate.style.display = 'none'
-        tasksApp.style.display = 'block'
-        loadTasks()
-      }
-    } catch (e) {
-      // Not authenticated
-    }
-  }
-
-  // Authentication
-  authForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const password = passwordInput.value
-
-    try {
-      const res = await fetch('/api/tasks/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password })
-      })
-
-      if (res.ok) {
-        authGate.style.display = 'none'
-        tasksApp.style.display = 'block'
-        loadTasks()
-      } else {
-        authError.textContent = 'Invalid password'
-        authError.style.display = 'block'
-      }
-    } catch (e) {
-      authError.textContent = 'Connection error'
-      authError.style.display = 'block'
-    }
-  })
-
-  // Load tasks
-  async function loadTasks() {
-    try {
-      const [tasksRes, completedRes, subtasksRes] = await Promise.all([
-        fetch('/api/tasks'),
-        fetch('/api/tasks?completed=true'),
-        fetch('/api/tasks/subtasks')
-      ])
-
-      if (tasksRes.ok) {
-        const data = await tasksRes.json()
-        tasks = data.tasks || []
-      }
-
-      if (completedRes.ok) {
-        const data = await completedRes.json()
-        completedTasks = data.tasks || []
-      }
-
-      if (subtasksRes.ok) {
-        const data = await subtasksRes.json()
-        subtasksByTaskId = {}
-        for (const subtask of data.subtasks || []) {
-          if (!subtasksByTaskId[subtask.task_id]) {
-            subtasksByTaskId[subtask.task_id] = []
+        // Schedule by day of week (0 = Sunday, 1 = Monday, etc.)
+        const SCHEDULE = {
+          work: {
+            1: '9am–1pm', // Monday
+            2: '9am–4pm', // Tuesday
+            3: '9am–1pm', // Wednesday
+            4: '9am–4pm', // Thursday
+            5: '9am–1pm' // Friday
+          },
+          study: {
+            1: '4–9pm', // Monday
+            2: '8–9pm', // Tuesday
+            3: '6–9pm', // Wednesday
+            4: '8–9pm', // Thursday
+            5: '4–9pm' // Friday
           }
-          subtasksByTaskId[subtask.task_id].push(subtask)
         }
-      }
 
-      renderQueues()
-      if (showCompleted) renderCompletedLog()
-    } catch (e) {
-      console.error('Failed to load tasks:', e)
-    }
-  }
+        // DOM Elements
+        const authGate = document.getElementById('auth-gate')
+        const authForm = document.getElementById('auth-form')
+        const authError = document.getElementById('auth-error')
+        const passwordInput = document.getElementById('password-input')
+        const tasksApp = document.getElementById('tasks-app')
+        const addTaskBtn = document.getElementById('add-task-btn')
+        const taskModal = document.getElementById('task-modal')
+        const modalTitle = document.getElementById('modal-title')
+        const modalClose = document.getElementById('modal-close')
+        const modalCancel = document.getElementById('modal-cancel')
+        const modalSubmit = document.getElementById('modal-submit')
+        const modalDelete = document.getElementById('modal-delete')
+        const taskForm = document.getElementById('task-form')
+        const domainToggle = document.querySelector('.domain-toggle')
+        const doNowContainer = document.getElementById('do-now-container')
+        const doNowCheckbox = document.getElementById('do-now')
+        const timeSelect = document.getElementById('task-time')
+        const areaSelect = document.getElementById('task-area')
+        const completedToggleBtn = document.getElementById('completed-toggle-btn')
+        const completedLog = document.getElementById('completed-log')
 
-  // Date helpers
-  function isToday(dateStr) {
-    if (!dateStr) return false
-    const date = new Date(dateStr + 'T00:00:00')
-    const today = new Date()
-    return date.toDateString() === today.toDateString()
-  }
+        // Check authentication on load
+        async function checkAuth() {
+          try {
+            const res = await fetch('/api/tasks')
+            if (res.ok) {
+              authGate.style.display = 'none'
+              tasksApp.style.display = 'block'
+              loadTasks()
+            }
+          } catch (e) {
+            // Not authenticated
+          }
+        }
 
-  function isTomorrow(dateStr) {
-    if (!dateStr) return false
-    const date = new Date(dateStr + 'T00:00:00')
-    const tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
-    return date.toDateString() === tomorrow.toDateString()
-  }
+        // Authentication
+        authForm.addEventListener('submit', async (e) => {
+          e.preventDefault()
+          const password = passwordInput.value
 
-  function isThisWeek(dateStr) {
-    if (!dateStr) return false
-    const date = new Date(dateStr + 'T00:00:00')
-    const today = new Date()
-    const endOfWeek = new Date()
-    endOfWeek.setDate(today.getDate() + (7 - today.getDay()))
-    return date > today && date <= endOfWeek
-  }
+          try {
+            const res = await fetch('/api/tasks/auth', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ password })
+            })
 
-  function isOverdue(dateStr) {
-    if (!dateStr) return false
-    const date = new Date(dateStr + 'T00:00:00')
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    return date < today
-  }
+            if (res.ok) {
+              authGate.style.display = 'none'
+              tasksApp.style.display = 'block'
+              loadTasks()
+            } else {
+              authError.textContent = 'Invalid password'
+              authError.style.display = 'block'
+            }
+          } catch (e) {
+            authError.textContent = 'Connection error'
+            authError.style.display = 'block'
+          }
+        })
 
-  function isBacklog(dateStr) {
-    if (!dateStr) return true
-    const date = new Date(dateStr + 'T00:00:00')
-    const fourWeeks = new Date()
-    fourWeeks.setDate(fourWeeks.getDate() + 28)
-    return date > fourWeeks
-  }
+        // Load tasks
+        async function loadTasks() {
+          try {
+            const [tasksRes, completedRes, subtasksRes] = await Promise.all([
+              fetch('/api/tasks'),
+              fetch('/api/tasks?completed=true'),
+              fetch('/api/tasks/subtasks')
+            ])
 
-  function formatTime(minutes) {
-    if (minutes < 60) return `${minutes}m`
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
-    return mins ? `${hours}h${mins}m` : `${hours}h`
-  }
+            if (tasksRes.ok) {
+              const data = await tasksRes.json()
+              tasks = data.tasks || []
+            }
 
-  function formatDate(dateStr) {
-    if (!dateStr) return ''
-    const date = new Date(dateStr + 'T00:00:00')
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-  }
+            if (completedRes.ok) {
+              const data = await completedRes.json()
+              completedTasks = data.tasks || []
+            }
 
-  // Group tasks by time period
-  function groupTasks(domainTasks) {
-    const groups = {
-      overdue: [],
-      today: [],
-      tomorrow: [],
-      thisWeek: [],
-      later: [],
-      backlog: []
-    }
+            if (subtasksRes.ok) {
+              const data = await subtasksRes.json()
+              subtasksByTaskId = {}
+              for (const subtask of data.subtasks || []) {
+                if (!subtasksByTaskId[subtask.task_id]) {
+                  subtasksByTaskId[subtask.task_id] = []
+                }
+                subtasksByTaskId[subtask.task_id].push(subtask)
+              }
+            }
 
-    for (const task of domainTasks) {
-      if (isBacklog(task.due_date)) {
-        groups.backlog.push(task)
-      } else if (isOverdue(task.due_date)) {
-        groups.overdue.push(task)
-      } else if (isToday(task.due_date)) {
-        groups.today.push(task)
-      } else if (isTomorrow(task.due_date)) {
-        groups.tomorrow.push(task)
-      } else if (isThisWeek(task.due_date)) {
-        groups.thisWeek.push(task)
-      } else {
-        groups.later.push(task)
-      }
-    }
+            renderQueues()
+            if (showCompleted) renderCompletedLog()
+          } catch (e) {
+            console.error('Failed to load tasks:', e)
+          }
+        }
 
-    return groups
-  }
+        // Date helpers
+        function isToday(dateStr) {
+          if (!dateStr) return false
+          const date = new Date(dateStr + 'T00:00:00')
+          const today = new Date()
+          return date.toDateString() === today.toDateString()
+        }
 
-  // Render a single task
-  function renderTask(task, isCompleted = false) {
-    const isExpanded = expandedTaskId === task.id
-    const isSelected = selectedTaskId === task.id
+        function isTomorrow(dateStr) {
+          if (!dateStr) return false
+          const date = new Date(dateStr + 'T00:00:00')
+          const tomorrow = new Date()
+          tomorrow.setDate(tomorrow.getDate() + 1)
+          return date.toDateString() === tomorrow.toDateString()
+        }
 
-    const areaLabel = getAreaLabel(task.area)
+        function isThisWeek(dateStr) {
+          if (!dateStr) return false
+          const date = new Date(dateStr + 'T00:00:00')
+          const today = new Date()
+          const endOfWeek = new Date()
+          endOfWeek.setDate(today.getDate() + (7 - today.getDay()))
+          return date > today && date <= endOfWeek
+        }
 
-    if (isCompleted) {
-      if (isExpanded) {
-        return `
+        function isOverdue(dateStr) {
+          if (!dateStr) return false
+          const date = new Date(dateStr + 'T00:00:00')
+          const today = new Date()
+          today.setHours(0, 0, 0, 0)
+          return date < today
+        }
+
+        function isBacklog(dateStr) {
+          if (!dateStr) return true
+          const date = new Date(dateStr + 'T00:00:00')
+          const fourWeeks = new Date()
+          fourWeeks.setDate(fourWeeks.getDate() + 28)
+          return date > fourWeeks
+        }
+
+        function formatTime(minutes) {
+          if (minutes < 60) return `${minutes}m`
+          const hours = Math.floor(minutes / 60)
+          const mins = minutes % 60
+          return mins ? `${hours}h${mins}m` : `${hours}h`
+        }
+
+        function formatDate(dateStr) {
+          if (!dateStr) return ''
+          const date = new Date(dateStr + 'T00:00:00')
+          return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        }
+
+        // Group tasks by time period
+        function groupTasks(domainTasks) {
+          const groups = {
+            overdue: [],
+            today: [],
+            tomorrow: [],
+            thisWeek: [],
+            later: [],
+            backlog: []
+          }
+
+          for (const task of domainTasks) {
+            if (isBacklog(task.due_date)) {
+              groups.backlog.push(task)
+            } else if (isOverdue(task.due_date)) {
+              groups.overdue.push(task)
+            } else if (isToday(task.due_date)) {
+              groups.today.push(task)
+            } else if (isTomorrow(task.due_date)) {
+              groups.tomorrow.push(task)
+            } else if (isThisWeek(task.due_date)) {
+              groups.thisWeek.push(task)
+            } else {
+              groups.later.push(task)
+            }
+          }
+
+          return groups
+        }
+
+        // Render a single task
+        function renderTask(task, isCompleted = false) {
+          const isExpanded = expandedTaskId === task.id
+          const isSelected = selectedTaskId === task.id
+
+          const areaLabel = getAreaLabel(task.area)
+
+          if (isCompleted) {
+            if (isExpanded) {
+              return `
           <div class="completed-task expanded" data-id="${task.id}">
             <span class="task-checkbox" data-action="uncomplete" data-id="${task.id}">✓</span>
             <div class="task-content">
@@ -441,18 +462,26 @@ export const prerender = false
                 ${task.due_date ? `<span class="task-due">${formatDate(task.due_date)}</span>` : ''}
               </div>
               <div class="task-expanded-fields">
-                ${task.completion_criteria ? `
+                ${
+                  task.completion_criteria
+                    ? `
                   <div class="task-field">
                     <span class="task-field-label">Done when:</span>
                     <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
                   </div>
-                ` : ''}
-                ${task.resources ? `
+                `
+                    : ''
+                }
+                ${
+                  task.resources
+                    ? `
                   <div class="task-field">
                     <span class="task-field-label">Resources:</span>
                     <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
                   </div>
-                ` : ''}
+                `
+                    : ''
+                }
               </div>
               <div class="task-actions">
                 <button data-action="uncomplete" data-id="${task.id}">Restore</button>
@@ -462,8 +491,8 @@ export const prerender = false
             </div>
           </div>
         `
-      }
-      return `
+            }
+            return `
         <div class="completed-task" data-id="${task.id}" data-action="expand-completed">
           <span class="task-checkbox" data-action="uncomplete" data-id="${task.id}">✓</span>
           <div class="task-content">
@@ -475,12 +504,12 @@ export const prerender = false
           </div>
         </div>
       `
-    }
+          }
 
-    if (isExpanded) {
-      const progress = getSubtaskProgress(task.id)
-      const hasFields = task.completion_criteria || task.resources
-      return `
+          if (isExpanded) {
+            const progress = getSubtaskProgress(task.id)
+            const hasFields = task.completion_criteria || task.resources
+            return `
         <div class="task-expanded" data-id="${task.id}" draggable="true">
           <div class="task-item" data-action="expand" data-id="${task.id}">
             <span class="task-drag-handle" title="Drag to Today">⋮⋮</span>
@@ -495,22 +524,34 @@ export const prerender = false
               </div>
             </div>
           </div>
-          ${hasFields ? `
+          ${
+            hasFields
+              ? `
             <div class="task-expanded-fields">
-              ${task.completion_criteria ? `
+              ${
+                task.completion_criteria
+                  ? `
                 <div class="task-field">
                   <span class="task-field-label">Done when:</span>
                   <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
                 </div>
-              ` : ''}
-              ${task.resources ? `
+              `
+                  : ''
+              }
+              ${
+                task.resources
+                  ? `
                 <div class="task-field">
                   <span class="task-field-label">Notes:</span>
                   <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
                 </div>
-              ` : ''}
+              `
+                  : ''
+              }
             </div>
-          ` : ''}
+          `
+              : ''
+          }
           ${renderSubtasksSection(task.id)}
           <div class="task-actions">
             <button data-action="edit" data-id="${task.id}">Edit</button>
@@ -518,11 +559,11 @@ export const prerender = false
           </div>
         </div>
       `
-    }
+          }
 
-    const inToday = isInToday(task.id)
-    const progress = getSubtaskProgress(task.id)
-    return `
+          const inToday = isInToday(task.id)
+          const progress = getSubtaskProgress(task.id)
+          return `
       <div class="task-item ${isSelected ? 'selected' : ''}" data-id="${task.id}" data-action="expand" draggable="true">
         <span class="task-drag-handle" title="Drag to Today">⋮⋮</span>
                 <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
@@ -537,70 +578,71 @@ export const prerender = false
         </div>
       </div>
     `
-  }
+        }
 
-  // Render a time group
-  function renderTimeGroup(label, tasks, className = '') {
-    if (tasks.length === 0) return ''
-    return `
+        // Render a time group
+        function renderTimeGroup(label, tasks, className = '') {
+          if (tasks.length === 0) return ''
+          return `
       <div class="time-group ${className}">
         <div class="time-group-header">${label}</div>
-        ${tasks.map(t => renderTask(t)).join('')}
+        ${tasks.map((t) => renderTask(t)).join('')}
       </div>
     `
-  }
+        }
 
-  // Render queues
-  function renderQueues() {
-    // Filter out tasks that are in the Today column
-    const queueTasks = tasks.filter(t => !isInToday(t.id))
+        // Render queues
+        function renderQueues() {
+          // Filter out tasks that are in the Today column
+          const queueTasks = tasks.filter((t) => !isInToday(t.id))
 
-    for (const domain of DOMAINS) {
-      const domainTasks = queueTasks.filter(t => t.domain === domain)
-      const groups = groupTasks(domainTasks)
+          for (const domain of DOMAINS) {
+            const domainTasks = queueTasks.filter((t) => t.domain === domain)
+            const groups = groupTasks(domainTasks)
 
-      const container = document.getElementById(`${domain}-tasks`)
+            const container = document.getElementById(`${domain}-tasks`)
 
-      const mainHtml = [
-        renderTimeGroup('Overdue', groups.overdue, 'overdue'),
-        renderTimeGroup('Due Today', groups.today),
-        renderTimeGroup('Due Tomorrow', groups.tomorrow),
-        renderTimeGroup('Due This Week', groups.thisWeek),
-        renderTimeGroup('Due Later', groups.later),
-        renderTimeGroup('No Due Date', groups.backlog)
-      ].join('')
+            const mainHtml = [
+              renderTimeGroup('Overdue', groups.overdue, 'overdue'),
+              renderTimeGroup('Due Today', groups.today),
+              renderTimeGroup('Due Tomorrow', groups.tomorrow),
+              renderTimeGroup('Due This Week', groups.thisWeek),
+              renderTimeGroup('Due Later', groups.later),
+              renderTimeGroup('No Due Date', groups.backlog)
+            ].join('')
 
-      container.innerHTML = mainHtml || '<div class="empty-state">No tasks</div>'
-    }
+            container.innerHTML = mainHtml || '<div class="empty-state">No tasks</div>'
+          }
 
-    // Render Today column
-    renderTodayColumn()
-  }
+          // Render Today column
+          renderTodayColumn()
+        }
 
-  // Render Today column (work + study sections)
-  function renderTodayColumn() {
-    updateScheduleDisplay()
-    renderTodaySection('work', workTaskIds)
-    renderTodaySection('study', studyTaskIds)
-  }
+        // Render Today column (work + study sections)
+        function renderTodayColumn() {
+          updateScheduleDisplay()
+          renderTodaySection('work', workTaskIds)
+          renderTodaySection('study', studyTaskIds)
+        }
 
-  function renderTodaySection(type, taskIds) {
-    const container = document.getElementById(`${type}-tasks`)
-    const sectionTasks = tasks.filter(t => taskIds.includes(t.id))
+        function renderTodaySection(type, taskIds) {
+          const container = document.getElementById(`${type}-tasks`)
+          const sectionTasks = tasks.filter((t) => taskIds.includes(t.id))
 
-    if (sectionTasks.length === 0) {
-      container.innerHTML = '<div class="empty-state">Drag tasks here</div>'
-      return
-    }
+          if (sectionTasks.length === 0) {
+            container.innerHTML = '<div class="empty-state">Drag tasks here</div>'
+            return
+          }
 
-    const html = sectionTasks.map(task => {
-      const isExpanded = expandedTaskId === task.id
-      const areaLabel = getAreaLabel(task.area)
-      const progress = getSubtaskProgress(task.id)
+          const html = sectionTasks
+            .map((task) => {
+              const isExpanded = expandedTaskId === task.id
+              const areaLabel = getAreaLabel(task.area)
+              const progress = getSubtaskProgress(task.id)
 
-      if (isExpanded) {
-        const hasFields = task.completion_criteria || task.resources
-        return `
+              if (isExpanded) {
+                const hasFields = task.completion_criteria || task.resources
+                return `
           <div class="task-expanded" data-id="${task.id}" draggable="true">
             <div class="task-item" data-action="expand" data-id="${task.id}">
               <span class="task-drag-handle task-remove-from-today" data-action="remove-from-today" data-id="${task.id}" title="Remove">✕</span>
@@ -615,22 +657,34 @@ export const prerender = false
                 </div>
               </div>
             </div>
-            ${hasFields ? `
+            ${
+              hasFields
+                ? `
               <div class="task-expanded-fields">
-                ${task.completion_criteria ? `
+                ${
+                  task.completion_criteria
+                    ? `
                   <div class="task-field">
                     <span class="task-field-label">Done when:</span>
                     <span class="task-field-value">${escapeHtml(task.completion_criteria)}</span>
                   </div>
-                ` : ''}
-                ${task.resources ? `
+                `
+                    : ''
+                }
+                ${
+                  task.resources
+                    ? `
                   <div class="task-field">
                     <span class="task-field-label">Notes:</span>
                     <span class="task-field-value">${linkify(escapeHtml(task.resources))}</span>
                   </div>
-                ` : ''}
+                `
+                    : ''
+                }
               </div>
-            ` : ''}
+            `
+                : ''
+            }
             ${renderSubtasksSection(task.id)}
             <div class="task-actions">
               <button data-action="edit" data-id="${task.id}">Edit</button>
@@ -638,9 +692,9 @@ export const prerender = false
             </div>
           </div>
         `
-      }
+              }
 
-      return `
+              return `
         <div class="task-item" data-id="${task.id}" data-action="expand" draggable="true">
           <span class="task-drag-handle task-remove-from-today" data-action="remove-from-today" data-id="${task.id}" title="Remove">✕</span>
                     <span class="task-checkbox" data-action="complete" data-id="${task.id}"></span>
@@ -655,876 +709,887 @@ export const prerender = false
           </div>
         </div>
       `
-    }).join('')
+            })
+            .join('')
 
-    container.innerHTML = html
-  }
+          container.innerHTML = html
+        }
 
-  // Render completed log
-  function renderCompletedLog() {
-    const grouped = {}
+        // Render completed log
+        function renderCompletedLog() {
+          const grouped = {}
 
-    for (const task of completedTasks) {
-      const date = new Date(task.completed_at).toLocaleDateString('en-US', {
-        weekday: 'short', month: 'short', day: 'numeric'
-      })
-      if (!grouped[date]) grouped[date] = []
-      grouped[date].push(task)
-    }
+          for (const task of completedTasks) {
+            const date = new Date(task.completed_at).toLocaleDateString('en-US', {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric'
+            })
+            if (!grouped[date]) grouped[date] = []
+            grouped[date].push(task)
+          }
 
-    let html = ''
-    for (const [date, tasks] of Object.entries(grouped)) {
-      html += `
+          let html = ''
+          for (const [date, tasks] of Object.entries(grouped)) {
+            html += `
         <div class="completed-date-group">
           <div class="completed-date-header">${date}</div>
-          ${tasks.map(t => renderTask(t, true)).join('')}
+          ${tasks.map((t) => renderTask(t, true)).join('')}
         </div>
       `
-    }
+          }
 
-    completedLog.innerHTML = html || '<div class="empty-state">No completed tasks</div>'
-  }
+          completedLog.innerHTML = html || '<div class="empty-state">No completed tasks</div>'
+        }
 
-  // Escape HTML
-  function escapeHtml(str) {
-    if (!str) return ''
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-  }
+        // Escape HTML
+        function escapeHtml(str) {
+          if (!str) return ''
+          return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+        }
 
-  // Convert URLs to links
-  function linkify(str) {
-    const urlRegex = /(https?:\/\/[^\s]+)/g
-    return str.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener">$1</a>')
-  }
+        // Convert URLs to links
+        function linkify(str) {
+          const urlRegex = /(https?:\/\/[^\s]+)/g
+          return str.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+        }
 
-  // Modal functions
-  function openModal(taskId = null) {
-    editingTaskId = taskId
+        // Modal functions
+        function openModal(taskId = null) {
+          editingTaskId = taskId
 
-    if (taskId) {
-      const task = tasks.find(t => t.id === taskId) || completedTasks.find(t => t.id === taskId)
-      if (task) {
-        modalTitle.textContent = 'Edit Task'
-        modalSubmit.textContent = 'Save'
-        document.getElementById('task-description').value = task.description
-        document.getElementById('task-due-date').value = task.due_date || ''
-        document.getElementById('task-priority').value = task.priority
-        document.getElementById('task-time').value = task.estimated_minutes
-        document.getElementById('task-criteria').value = task.completion_criteria || ''
-        document.getElementById('task-resources').value = task.resources || ''
-        selectedDomain = task.domain
-        selectedArea = task.area || ''
-        updateDomainToggle()
-        areaSelect.value = selectedArea
-        doNowContainer.style.display = 'none'
-        modalDelete.style.display = 'block'
-      }
-    } else {
-      modalTitle.textContent = 'Add Task'
-      modalSubmit.textContent = 'Add Task'
-      taskForm.reset()
-      document.getElementById('task-priority').value = '3'
-      document.getElementById('task-time').value = '30'
-      selectedDomain = 'career'
-      selectedArea = ''
-      updateDomainToggle()
-      checkDoNow()
-      modalDelete.style.display = 'none'
-    }
+          if (taskId) {
+            const task =
+              tasks.find((t) => t.id === taskId) || completedTasks.find((t) => t.id === taskId)
+            if (task) {
+              modalTitle.textContent = 'Edit Task'
+              modalSubmit.textContent = 'Save'
+              document.getElementById('task-description').value = task.description
+              document.getElementById('task-due-date').value = task.due_date || ''
+              document.getElementById('task-priority').value = task.priority
+              document.getElementById('task-time').value = task.estimated_minutes
+              document.getElementById('task-criteria').value = task.completion_criteria || ''
+              document.getElementById('task-resources').value = task.resources || ''
+              selectedDomain = task.domain
+              selectedArea = task.area || ''
+              updateDomainToggle()
+              areaSelect.value = selectedArea
+              doNowContainer.style.display = 'none'
+              modalDelete.style.display = 'block'
+            }
+          } else {
+            modalTitle.textContent = 'Add Task'
+            modalSubmit.textContent = 'Add Task'
+            taskForm.reset()
+            document.getElementById('task-priority').value = '3'
+            document.getElementById('task-time').value = '30'
+            selectedDomain = 'career'
+            selectedArea = ''
+            updateDomainToggle()
+            checkDoNow()
+            modalDelete.style.display = 'none'
+          }
 
-    // Ensure area dropdown is populated before showing modal
-    updateAreaDropdown()
-    // Reset button states
-    modalSubmit.disabled = false
-    modalDelete.disabled = false
-    taskModal.style.display = 'flex'
-    document.getElementById('task-description').focus()
-  }
+          // Ensure area dropdown is populated before showing modal
+          updateAreaDropdown()
+          // Reset button states
+          modalSubmit.disabled = false
+          modalDelete.disabled = false
+          taskModal.style.display = 'flex'
+          document.getElementById('task-description').focus()
+        }
 
-  function closeModal() {
-    taskModal.style.display = 'none'
-    editingTaskId = null
-    expandedTaskId = null
-    renderQueues()
-    if (showCompleted) renderCompletedLog()
-  }
+        function closeModal() {
+          taskModal.style.display = 'none'
+          editingTaskId = null
+          expandedTaskId = null
+          renderQueues()
+          if (showCompleted) renderCompletedLog()
+        }
 
-  function updateDomainToggle() {
-    domainToggle.querySelectorAll('button').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.domain === selectedDomain)
-    })
-    updateAreaDropdown()
-  }
+        function updateDomainToggle() {
+          domainToggle.querySelectorAll('button').forEach((btn) => {
+            btn.classList.toggle('active', btn.dataset.domain === selectedDomain)
+          })
+          updateAreaDropdown()
+        }
 
-  function updateAreaDropdown() {
-    const domainAreas = AREAS.filter(a => a.domain === selectedDomain)
-    areaSelect.innerHTML = '<option value="">None</option>' +
-      domainAreas.map(a => `<option value="${a.id}">${a.label}</option>`).join('')
-    // Keep selection if still valid
-    if (selectedArea && domainAreas.some(a => a.id === selectedArea)) {
-      areaSelect.value = selectedArea
-    } else {
-      selectedArea = ''
-      areaSelect.value = ''
-    }
-  }
+        function updateAreaDropdown() {
+          const domainAreas = AREAS.filter((a) => a.domain === selectedDomain)
+          areaSelect.innerHTML =
+            '<option value="">None</option>' +
+            domainAreas.map((a) => `<option value="${a.id}">${a.label}</option>`).join('')
+          // Keep selection if still valid
+          if (selectedArea && domainAreas.some((a) => a.id === selectedArea)) {
+            areaSelect.value = selectedArea
+          } else {
+            selectedArea = ''
+            areaSelect.value = ''
+          }
+        }
 
-  function getAreaLabel(areaId) {
-    const area = AREAS.find(a => a.id === areaId)
-    return area ? area.label : null
-  }
+        function getAreaLabel(areaId) {
+          const area = AREAS.find((a) => a.id === areaId)
+          return area ? area.label : null
+        }
 
-  function getSubtaskProgress(taskId) {
-    const subtasks = subtasksByTaskId[taskId] || []
-    if (subtasks.length === 0) return null
-    const completed = subtasks.filter(s => s.completed).length
-    return { completed, total: subtasks.length }
-  }
+        function getSubtaskProgress(taskId) {
+          const subtasks = subtasksByTaskId[taskId] || []
+          if (subtasks.length === 0) return null
+          const completed = subtasks.filter((s) => s.completed).length
+          return { completed, total: subtasks.length }
+        }
 
-  function renderSubtasksSection(taskId) {
-    const subtasks = subtasksByTaskId[taskId] || []
-    const progress = getSubtaskProgress(taskId)
+        function renderSubtasksSection(taskId) {
+          const subtasks = subtasksByTaskId[taskId] || []
+          const progress = getSubtaskProgress(taskId)
 
-    return `
+          return `
       <div class="subtasks-section">
         <div class="subtasks-header">
           Subtasks${progress ? ` (${progress.completed}/${progress.total})` : ''}
         </div>
         <div class="subtasks-list">
-          ${subtasks.map(s => `
+          ${subtasks
+            .map(
+              (s) => `
             <div class="subtask-item ${s.completed ? 'completed' : ''}" data-subtask-id="${s.id}">
               <span class="subtask-checkbox ${s.completed ? 'checked' : ''}" data-action="toggle-subtask" data-subtask-id="${s.id}">${s.completed ? '✓' : ''}</span>
               <span class="subtask-description">${escapeHtml(s.description)}</span>
               <button class="subtask-delete" data-action="delete-subtask" data-subtask-id="${s.id}" title="Delete">×</button>
             </div>
-          `).join('')}
+          `
+            )
+            .join('')}
         </div>
         <div class="subtask-add">
           <input type="text" class="subtask-input" placeholder="Add subtask..." data-task-id="${taskId}" />
         </div>
       </div>
     `
-  }
-
-  async function toggleSubtask(subtaskId) {
-    // Find the subtask and its parent task
-    let parentTaskId = null
-    let subtask = null
-    for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
-      const found = subtasks.find(s => s.id === subtaskId)
-      if (found) {
-        parentTaskId = taskId
-        subtask = found
-        break
-      }
-    }
-    if (!subtask) return
-
-    pendingOperations.add(subtaskId)
-    const prevCompleted = subtask.completed
-
-    // Optimistic update
-    subtask.completed = !subtask.completed
-    renderQueues()
-
-    try {
-      const res = await fetch('/api/tasks/subtasks', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: subtaskId, completed: subtask.completed })
-      })
-      if (!res.ok) {
-        subtask.completed = prevCompleted
-        renderQueues()
-      }
-    } catch (err) {
-      subtask.completed = prevCompleted
-      renderQueues()
-    } finally {
-      pendingOperations.delete(subtaskId)
-    }
-  }
-
-  async function addSubtask(taskId, description) {
-    if (!description.trim()) return
-
-    const tempId = 'temp-' + Date.now()
-    const tempSubtask = {
-      id: tempId,
-      task_id: taskId,
-      description: description.trim(),
-      completed: false,
-      position: (subtasksByTaskId[taskId]?.length || 0)
-    }
-
-    // Optimistic add
-    if (!subtasksByTaskId[taskId]) {
-      subtasksByTaskId[taskId] = []
-    }
-    subtasksByTaskId[taskId].push(tempSubtask)
-    renderQueues()
-
-    try {
-      const res = await fetch('/api/tasks/subtasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ task_id: taskId, description: description.trim() })
-      })
-      if (res.ok) {
-        const data = await res.json()
-        // Replace temp subtask with real one
-        const idx = subtasksByTaskId[taskId].findIndex(s => s.id === tempId)
-        if (idx >= 0) {
-          subtasksByTaskId[taskId][idx] = data.subtask
-        }
-        renderQueues()
-      } else {
-        // Remove temp on failure
-        subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter(s => s.id !== tempId)
-        renderQueues()
-      }
-    } catch (err) {
-      subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter(s => s.id !== tempId)
-      renderQueues()
-    }
-  }
-
-  async function deleteSubtask(subtaskId) {
-    // Find and remove the subtask
-    let parentTaskId = null
-    let subtaskIndex = -1
-    let subtask = null
-    for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
-      const idx = subtasks.findIndex(s => s.id === subtaskId)
-      if (idx >= 0) {
-        parentTaskId = taskId
-        subtaskIndex = idx
-        subtask = subtasks[idx]
-        break
-      }
-    }
-    if (!subtask) return
-
-    pendingOperations.add(subtaskId)
-
-    // Optimistic delete
-    subtasksByTaskId[parentTaskId].splice(subtaskIndex, 1)
-    renderQueues()
-
-    try {
-      const res = await fetch('/api/tasks/subtasks', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: subtaskId })
-      })
-      if (!res.ok) {
-        // Restore on failure
-        subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
-        renderQueues()
-      }
-    } catch (err) {
-      subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
-      renderQueues()
-    } finally {
-      pendingOperations.delete(subtaskId)
-    }
-  }
-
-  function saveWorkTasks() {
-    localStorage.setItem('workTaskIds', JSON.stringify(workTaskIds))
-  }
-
-  function saveStudyTasks() {
-    localStorage.setItem('studyTaskIds', JSON.stringify(studyTaskIds))
-  }
-
-  function addToWork(taskId) {
-    // Remove from study if present
-    studyTaskIds = studyTaskIds.filter(id => id !== taskId)
-    saveStudyTasks()
-    if (!workTaskIds.includes(taskId)) {
-      workTaskIds.push(taskId)
-      saveWorkTasks()
-    }
-  }
-
-  function addToStudy(taskId) {
-    // Remove from work if present
-    workTaskIds = workTaskIds.filter(id => id !== taskId)
-    saveWorkTasks()
-    if (!studyTaskIds.includes(taskId)) {
-      studyTaskIds.push(taskId)
-      saveStudyTasks()
-    }
-  }
-
-  function removeFromToday(taskId) {
-    workTaskIds = workTaskIds.filter(id => id !== taskId)
-    studyTaskIds = studyTaskIds.filter(id => id !== taskId)
-    saveWorkTasks()
-    saveStudyTasks()
-  }
-
-  function isInToday(taskId) {
-    return workTaskIds.includes(taskId) || studyTaskIds.includes(taskId)
-  }
-
-  function getScheduleHours(type) {
-    const day = new Date().getDay()
-    return SCHEDULE[type][day] || '—'
-  }
-
-  function updateScheduleDisplay() {
-    document.getElementById('work-hours').textContent = getScheduleHours('work')
-    document.getElementById('study-hours').textContent = getScheduleHours('study')
-  }
-
-  function updateDateTitle() {
-    const now = new Date()
-    const weekday = now.toLocaleDateString('en-US', { weekday: 'long' })
-    const month = now.toLocaleDateString('en-US', { month: 'short' })
-    const day = now.getDate()
-    const year = now.getFullYear()
-    document.getElementById('date-title').textContent = `${weekday}, ${month} ${day}, ${year}`
-  }
-
-  function checkDoNow() {
-    const time = parseInt(timeSelect.value)
-    doNowContainer.style.display = time < 15 ? 'flex' : 'none'
-    if (time >= 15) doNowCheckbox.checked = false
-  }
-
-  // Event listeners
-  addTaskBtn.addEventListener('click', () => openModal())
-  modalClose.addEventListener('click', closeModal)
-  modalCancel.addEventListener('click', closeModal)
-
-  modalDelete.addEventListener('click', async () => {
-    if (!editingTaskId) return
-    if (modalDelete.disabled) return
-    if (!confirm('Delete this task?')) return
-
-    // Disable button
-    modalDelete.disabled = true
-    const originalText = modalDelete.textContent
-    modalDelete.textContent = 'Deleting...'
-
-    const id = editingTaskId
-
-    // Save for potential restore
-    const taskIndex = tasks.findIndex(t => t.id === id)
-    const completedIndex = completedTasks.findIndex(t => t.id === id)
-    const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
-    const wasInTasks = taskIndex >= 0
-
-    // Optimistic delete
-    if (wasInTasks) {
-      tasks.splice(taskIndex, 1)
-    } else if (completedIndex >= 0) {
-      completedTasks.splice(completedIndex, 1)
-    }
-    removeFromToday(id)
-    closeModal()
-    renderQueues()
-    if (showCompleted) renderCompletedLog()
-
-    try {
-      const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
-      if (!res.ok && task) {
-        // Restore on failure
-        if (wasInTasks) {
-          tasks.push(task)
-        } else {
-          completedTasks.unshift(task)
-        }
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      }
-    } catch (err) {
-      // Restore on error
-      if (task) {
-        if (wasInTasks) {
-          tasks.push(task)
-        } else {
-          completedTasks.unshift(task)
-        }
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      }
-    }
-  })
-
-  taskModal.addEventListener('click', (e) => {
-    if (e.target === taskModal) closeModal()
-  })
-
-  domainToggle.addEventListener('click', (e) => {
-    if (e.target.dataset.domain) {
-      selectedDomain = e.target.dataset.domain
-      updateDomainToggle()
-    }
-  })
-
-  areaSelect.addEventListener('change', () => {
-    selectedArea = areaSelect.value
-  })
-
-  timeSelect.addEventListener('change', checkDoNow)
-
-  modalSubmit.addEventListener('click', async (e) => {
-    e.preventDefault()
-
-    const description = document.getElementById('task-description').value.trim()
-    if (!description) return
-
-    // Prevent duplicate submission
-    if (modalSubmit.disabled) return
-    modalSubmit.disabled = true
-    const originalText = modalSubmit.textContent
-    modalSubmit.textContent = 'Saving...'
-
-    const taskData = {
-      description,
-      due_date: document.getElementById('task-due-date').value || null,
-      priority: parseInt(document.getElementById('task-priority').value),
-      estimated_minutes: parseInt(document.getElementById('task-time').value),
-      domain: selectedDomain,
-      area: areaSelect.value || null,
-      completion_criteria: document.getElementById('task-criteria').value.trim() || null,
-      resources: document.getElementById('task-resources').value.trim() || null,
-    }
-
-    // If "do now" is checked, mark as completed immediately
-    if (doNowCheckbox.checked && !editingTaskId) {
-      taskData.completed_at = new Date().toISOString()
-    }
-
-    try {
-      let res
-      if (editingTaskId) {
-        // Editing existing task - optimistic update
-        const existingTask = tasks.find(t => t.id === editingTaskId) || completedTasks.find(t => t.id === editingTaskId)
-        const prevData = existingTask ? { ...existingTask } : null
-
-        if (existingTask) {
-          Object.assign(existingTask, taskData)
-          renderQueues()
-          if (showCompleted) renderCompletedLog()
         }
 
-        res = await fetch(`/api/tasks/${editingTaskId}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(taskData)
-        })
-
-        if (res.ok) {
-          closeModal()
-        } else if (prevData && existingTask) {
-          // Revert on failure
-          Object.assign(existingTask, prevData)
-          renderQueues()
-          if (showCompleted) renderCompletedLog()
-          modalSubmit.disabled = false
-          modalSubmit.textContent = originalText
-        }
-      } else {
-        // Creating new task - optimistic with temp ID
-        const tempId = 'temp-' + Date.now()
-        const tempTask = { id: tempId, ...taskData, created_at: new Date().toISOString() }
-
-        if (taskData.completed_at) {
-          completedTasks.unshift(tempTask)
-          if (showCompleted) renderCompletedLog()
-        } else {
-          tasks.push(tempTask)
-          renderQueues()
-        }
-        closeModal()
-
-        res = await fetch('/api/tasks', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(taskData)
-        })
-
-        if (res.ok) {
-          const data = await res.json()
-          // Replace temp task with real one
-          if (taskData.completed_at) {
-            const idx = completedTasks.findIndex(t => t.id === tempId)
-            if (idx >= 0) completedTasks[idx] = data.task
-            if (showCompleted) renderCompletedLog()
-          } else {
-            const idx = tasks.findIndex(t => t.id === tempId)
-            if (idx >= 0) tasks[idx] = data.task
-            renderQueues()
+        async function toggleSubtask(subtaskId) {
+          // Find the subtask and its parent task
+          let parentTaskId = null
+          let subtask = null
+          for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
+            const found = subtasks.find((s) => s.id === subtaskId)
+            if (found) {
+              parentTaskId = taskId
+              subtask = found
+              break
+            }
           }
-        } else {
-          // Remove temp task on failure
-          if (taskData.completed_at) {
-            completedTasks = completedTasks.filter(t => t.id !== tempId)
-            if (showCompleted) renderCompletedLog()
-          } else {
-            tasks = tasks.filter(t => t.id !== tempId)
+          if (!subtask) return
+
+          pendingOperations.add(subtaskId)
+          const prevCompleted = subtask.completed
+
+          // Optimistic update
+          subtask.completed = !subtask.completed
+          renderQueues()
+
+          try {
+            const res = await fetch('/api/tasks/subtasks', {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: subtaskId, completed: subtask.completed })
+            })
+            if (!res.ok) {
+              subtask.completed = prevCompleted
+              renderQueues()
+            }
+          } catch (err) {
+            subtask.completed = prevCompleted
+            renderQueues()
+          } finally {
+            pendingOperations.delete(subtaskId)
+          }
+        }
+
+        async function addSubtask(taskId, description) {
+          if (!description.trim()) return
+
+          const tempId = 'temp-' + Date.now()
+          const tempSubtask = {
+            id: tempId,
+            task_id: taskId,
+            description: description.trim(),
+            completed: false,
+            position: subtasksByTaskId[taskId]?.length || 0
+          }
+
+          // Optimistic add
+          if (!subtasksByTaskId[taskId]) {
+            subtasksByTaskId[taskId] = []
+          }
+          subtasksByTaskId[taskId].push(tempSubtask)
+          renderQueues()
+
+          try {
+            const res = await fetch('/api/tasks/subtasks', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ task_id: taskId, description: description.trim() })
+            })
+            if (res.ok) {
+              const data = await res.json()
+              // Replace temp subtask with real one
+              const idx = subtasksByTaskId[taskId].findIndex((s) => s.id === tempId)
+              if (idx >= 0) {
+                subtasksByTaskId[taskId][idx] = data.subtask
+              }
+              renderQueues()
+            } else {
+              // Remove temp on failure
+              subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter((s) => s.id !== tempId)
+              renderQueues()
+            }
+          } catch (err) {
+            subtasksByTaskId[taskId] = subtasksByTaskId[taskId].filter((s) => s.id !== tempId)
             renderQueues()
           }
         }
-      }
-    } catch (err) {
-      console.error('Failed to save task:', err)
-      modalSubmit.disabled = false
-      modalSubmit.textContent = originalText
-    }
-  })
 
-  // Drag and Drop for Today column
-  let draggedTaskId = null
-
-  document.addEventListener('dragstart', (e) => {
-    const taskItem = e.target.closest('.task-item[data-id]')
-    if (!taskItem) return
-
-    draggedTaskId = taskItem.dataset.id
-    taskItem.classList.add('dragging')
-    e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData('text/plain', draggedTaskId)
-  })
-
-  document.addEventListener('dragend', (e) => {
-    const taskItem = e.target.closest('.task-item[data-id]')
-    if (taskItem) {
-      taskItem.classList.remove('dragging')
-    }
-    draggedTaskId = null
-
-    // Remove all drag-over states
-    document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'))
-  })
-
-  document.addEventListener('dragover', (e) => {
-    const dropZone = e.target.closest('[data-droppable]')
-    if (!dropZone || !draggedTaskId) return
-
-    e.preventDefault()
-    e.dataTransfer.dropEffect = 'move'
-    dropZone.classList.add('drag-over')
-  })
-
-  document.addEventListener('dragleave', (e) => {
-    const dropZone = e.target.closest('[data-droppable]')
-    if (dropZone && !dropZone.contains(e.relatedTarget)) {
-      dropZone.classList.remove('drag-over')
-    }
-  })
-
-  document.addEventListener('drop', (e) => {
-    const dropZone = e.target.closest('[data-droppable]')
-    if (!dropZone || !draggedTaskId) return
-
-    e.preventDefault()
-    dropZone.classList.remove('drag-over')
-
-    const dropType = dropZone.dataset.droppable // 'work', 'study', or 'queue'
-
-    if (dropType === 'work') {
-      addToWork(draggedTaskId)
-    } else if (dropType === 'study') {
-      addToStudy(draggedTaskId)
-    } else if (dropType === 'queue') {
-      // Remove from today (goes back to queue automatically based on priority)
-      removeFromToday(draggedTaskId)
-    }
-
-    renderQueues()
-    draggedTaskId = null
-  })
-
-  // Task actions (delegated)
-  document.addEventListener('click', async (e) => {
-    const actionEl = e.target.closest('[data-action]')
-    if (!actionEl) return
-
-    const action = actionEl.dataset.action
-
-    // Handle subtask actions
-    if (action === 'toggle-subtask') {
-      e.stopPropagation()
-      const subtaskId = actionEl.dataset.subtaskId
-      if (!subtaskId || pendingOperations.has(subtaskId)) return
-      await toggleSubtask(subtaskId)
-      return
-    }
-
-    if (action === 'delete-subtask') {
-      e.stopPropagation()
-      const subtaskId = actionEl.dataset.subtaskId
-      if (!subtaskId || pendingOperations.has(subtaskId)) return
-      await deleteSubtask(subtaskId)
-      return
-    }
-
-    const id = actionEl.dataset.id || actionEl.closest('[data-id]')?.dataset.id
-
-    if (!action || !id) return
-
-    if (action === 'remove-from-today') {
-      e.stopPropagation()
-      removeFromToday(id)
-      renderQueues()
-      return
-    }
-
-    if (action === 'complete') {
-      e.stopPropagation()
-      if (pendingOperations.has(id)) return // Prevent duplicate
-
-      // Block completion if subtasks are incomplete
-      const progress = getSubtaskProgress(id)
-      if (progress && progress.completed < progress.total) {
-        alert(`Complete all subtasks first (${progress.completed}/${progress.total} done)`)
-        return
-      }
-
-      // Add loading state
-      pendingOperations.add(id)
-      const taskEl = document.querySelector(`.task-item[data-id="${id}"]`)
-      const checkboxEl = taskEl?.querySelector('.task-checkbox')
-      taskEl?.classList.add('loading')
-      checkboxEl?.classList.add('loading')
-
-      // Optimistic update: move task to completed
-      const taskIndex = tasks.findIndex(t => t.id === id)
-      const task = tasks[taskIndex]
-      if (task) {
-        task.completed_at = new Date().toISOString()
-        tasks.splice(taskIndex, 1)
-        completedTasks.unshift(task)
-        removeFromToday(id)
-        expandedTaskId = null
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      }
-
-      // API call in background
-      try {
-        const res = await fetch(`/api/tasks/${id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ completed_at: task.completed_at })
-        })
-        if (!res.ok) {
-          // Revert on failure
-          task.completed_at = null
-          completedTasks = completedTasks.filter(t => t.id !== id)
-          tasks.push(task)
-          renderQueues()
-          if (showCompleted) renderCompletedLog()
-        }
-      } catch (err) {
-        // Revert on error
-        task.completed_at = null
-        completedTasks = completedTasks.filter(t => t.id !== id)
-        tasks.push(task)
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      } finally {
-        pendingOperations.delete(id)
-      }
-    } else if (action === 'uncomplete') {
-      e.stopPropagation()
-      if (pendingOperations.has(id)) return // Prevent duplicate
-
-      // Add loading state
-      pendingOperations.add(id)
-      const taskEl = document.querySelector(`.completed-task[data-id="${id}"]`)
-      const checkboxEl = taskEl?.querySelector('.task-checkbox')
-      taskEl?.classList.add('loading')
-      checkboxEl?.classList.add('loading')
-
-      // Optimistic update: move task back to active
-      const taskIndex = completedTasks.findIndex(t => t.id === id)
-      const task = completedTasks[taskIndex]
-      const prevCompletedAt = task?.completed_at
-      if (task) {
-        task.completed_at = null
-        completedTasks.splice(taskIndex, 1)
-        tasks.push(task)
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      }
-
-      // API call in background
-      try {
-        const res = await fetch(`/api/tasks/${id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ completed_at: null })
-        })
-        if (!res.ok) {
-          // Revert on failure
-          task.completed_at = prevCompletedAt
-          tasks = tasks.filter(t => t.id !== id)
-          completedTasks.unshift(task)
-          renderQueues()
-          if (showCompleted) renderCompletedLog()
-        }
-      } catch (err) {
-        // Revert on error
-        task.completed_at = prevCompletedAt
-        tasks = tasks.filter(t => t.id !== id)
-        completedTasks.unshift(task)
-        renderQueues()
-        if (showCompleted) renderCompletedLog()
-      } finally {
-        pendingOperations.delete(id)
-      }
-    } else if (action === 'expand') {
-      expandedTaskId = expandedTaskId === id ? null : id
-      renderQueues()
-    } else if (action === 'expand-completed') {
-      expandedTaskId = expandedTaskId === id ? null : id
-      renderCompletedLog()
-    } else if (action === 'edit') {
-      openModal(id)
-    } else if (action === 'delete') {
-      if (pendingOperations.has(id)) return // Prevent duplicate
-      if (!confirm('Delete this task?')) return
-
-      // Add loading state
-      pendingOperations.add(id)
-
-      // Save task for potential restore
-      const taskIndex = tasks.findIndex(t => t.id === id)
-      const completedIndex = completedTasks.findIndex(t => t.id === id)
-      const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
-      const wasInTasks = taskIndex >= 0
-
-      // Optimistic delete
-      if (wasInTasks) {
-        tasks.splice(taskIndex, 1)
-      } else {
-        completedTasks.splice(completedIndex, 1)
-      }
-      removeFromToday(id)
-      expandedTaskId = null
-      renderQueues()
-      if (showCompleted) renderCompletedLog()
-
-      // API call in background
-      try {
-        const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
-        if (!res.ok && task) {
-          // Restore on failure
-          if (wasInTasks) {
-            tasks.push(task)
-          } else {
-            completedTasks.unshift(task)
+        async function deleteSubtask(subtaskId) {
+          // Find and remove the subtask
+          let parentTaskId = null
+          let subtaskIndex = -1
+          let subtask = null
+          for (const [taskId, subtasks] of Object.entries(subtasksByTaskId)) {
+            const idx = subtasks.findIndex((s) => s.id === subtaskId)
+            if (idx >= 0) {
+              parentTaskId = taskId
+              subtaskIndex = idx
+              subtask = subtasks[idx]
+              break
+            }
           }
+          if (!subtask) return
+
+          pendingOperations.add(subtaskId)
+
+          // Optimistic delete
+          subtasksByTaskId[parentTaskId].splice(subtaskIndex, 1)
           renderQueues()
-          if (showCompleted) renderCompletedLog()
-        }
-      } catch (err) {
-        // Restore on error
-        if (task) {
-          if (wasInTasks) {
-            tasks.push(task)
-          } else {
-            completedTasks.unshift(task)
+
+          try {
+            const res = await fetch('/api/tasks/subtasks', {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: subtaskId })
+            })
+            if (!res.ok) {
+              // Restore on failure
+              subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
+              renderQueues()
+            }
+          } catch (err) {
+            subtasksByTaskId[parentTaskId].splice(subtaskIndex, 0, subtask)
+            renderQueues()
+          } finally {
+            pendingOperations.delete(subtaskId)
           }
-          renderQueues()
-          if (showCompleted) renderCompletedLog()
         }
-      } finally {
-        pendingOperations.delete(id)
-      }
-    }
-  })
 
-  // Subtask input handler (Enter to add)
-  document.addEventListener('keydown', async (e) => {
-    if (e.key !== 'Enter') return
-    const input = e.target.closest('.subtask-input')
-    if (!input) return
+        function saveWorkTasks() {
+          localStorage.setItem('workTaskIds', JSON.stringify(workTaskIds))
+        }
 
-    e.preventDefault()
-    const taskId = input.dataset.taskId
-    const description = input.value.trim()
-    if (taskId && description) {
-      input.value = ''
-      await addSubtask(taskId, description)
-      // Re-focus the input after render
-      setTimeout(() => {
-        const newInput = document.querySelector(`.subtask-input[data-task-id="${taskId}"]`)
-        if (newInput) newInput.focus()
-      }, 0)
-    }
-  })
+        function saveStudyTasks() {
+          localStorage.setItem('studyTaskIds', JSON.stringify(studyTaskIds))
+        }
 
-  // Backlog toggles - disabled for now
-  // document.querySelectorAll('.backlog-toggle').forEach(btn => {
-  //   btn.addEventListener('click', () => {
-  //     const domain = btn.dataset.domain
-  //     showBacklog[domain] = !showBacklog[domain]
-  //     const backlog = document.getElementById(`${domain}-backlog`)
-  //     backlog.style.display = showBacklog[domain] ? 'block' : 'none'
-  //     btn.querySelector('span').textContent = showBacklog[domain] ? 'Hide Backlog' : 'Backlog'
-  //   })
-  // })
+        function addToWork(taskId) {
+          // Remove from study if present
+          studyTaskIds = studyTaskIds.filter((id) => id !== taskId)
+          saveStudyTasks()
+          if (!workTaskIds.includes(taskId)) {
+            workTaskIds.push(taskId)
+            saveWorkTasks()
+          }
+        }
 
-  // Completed toggle
-  completedToggleBtn.addEventListener('click', () => {
-    showCompleted = !showCompleted
-    completedLog.style.display = showCompleted ? 'block' : 'none'
-    completedToggleBtn.textContent = showCompleted ? 'Hide Completed' : 'Show Completed'
-    if (showCompleted) renderCompletedLog()
-  })
+        function addToStudy(taskId) {
+          // Remove from work if present
+          workTaskIds = workTaskIds.filter((id) => id !== taskId)
+          saveWorkTasks()
+          if (!studyTaskIds.includes(taskId)) {
+            studyTaskIds.push(taskId)
+            saveStudyTasks()
+          }
+        }
 
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    // Ignore if typing in input
-    if (e.target.matches('input, textarea, select')) return
-    // Ignore if modal is open and not escape
-    if (taskModal.style.display === 'flex' && e.key !== 'Escape') return
+        function removeFromToday(taskId) {
+          workTaskIds = workTaskIds.filter((id) => id !== taskId)
+          studyTaskIds = studyTaskIds.filter((id) => id !== taskId)
+          saveWorkTasks()
+          saveStudyTasks()
+        }
 
-    switch (e.key) {
-      case 'n':
-        e.preventDefault()
-        openModal()
-        break
-      // case 'b':
-      //   e.preventDefault()
-      //   for (const domain of DOMAINS) {
-      //     showBacklog[domain] = !showBacklog[domain]
-      //     const backlog = document.getElementById(`${domain}-backlog`)
-      //     const btn = document.querySelector(`.backlog-toggle[data-domain="${domain}"]`)
-      //     backlog.style.display = showBacklog[domain] ? 'block' : 'none'
-      //     btn.querySelector('span').textContent = showBacklog[domain] ? 'Hide Backlog' : 'Backlog'
-      //   }
-      //   break
-      case 'c':
-        e.preventDefault()
-        completedToggleBtn.click()
-        break
-      case 'Escape':
-        if (taskModal.style.display === 'flex') {
+        function isInToday(taskId) {
+          return workTaskIds.includes(taskId) || studyTaskIds.includes(taskId)
+        }
+
+        function getScheduleHours(type) {
+          const day = new Date().getDay()
+          return SCHEDULE[type][day] || '—'
+        }
+
+        function updateScheduleDisplay() {
+          document.getElementById('work-hours').textContent = getScheduleHours('work')
+          document.getElementById('study-hours').textContent = getScheduleHours('study')
+        }
+
+        function updateDateTitle() {
+          const now = new Date()
+          const weekday = now.toLocaleDateString('en-US', { weekday: 'long' })
+          const month = now.toLocaleDateString('en-US', { month: 'short' })
+          const day = now.getDate()
+          const year = now.getFullYear()
+          document.getElementById('date-title').textContent = `${weekday}, ${month} ${day}, ${year}`
+        }
+
+        function checkDoNow() {
+          const time = parseInt(timeSelect.value)
+          doNowContainer.style.display = time < 15 ? 'flex' : 'none'
+          if (time >= 15) doNowCheckbox.checked = false
+        }
+
+        // Event listeners
+        addTaskBtn.addEventListener('click', () => openModal())
+        modalClose.addEventListener('click', closeModal)
+        modalCancel.addEventListener('click', closeModal)
+
+        modalDelete.addEventListener('click', async () => {
+          if (!editingTaskId) return
+          if (modalDelete.disabled) return
+          if (!confirm('Delete this task?')) return
+
+          // Disable button
+          modalDelete.disabled = true
+          const originalText = modalDelete.textContent
+          modalDelete.textContent = 'Deleting...'
+
+          const id = editingTaskId
+
+          // Save for potential restore
+          const taskIndex = tasks.findIndex((t) => t.id === id)
+          const completedIndex = completedTasks.findIndex((t) => t.id === id)
+          const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
+          const wasInTasks = taskIndex >= 0
+
+          // Optimistic delete
+          if (wasInTasks) {
+            tasks.splice(taskIndex, 1)
+          } else if (completedIndex >= 0) {
+            completedTasks.splice(completedIndex, 1)
+          }
+          removeFromToday(id)
           closeModal()
-        } else if (expandedTaskId) {
-          expandedTaskId = null
           renderQueues()
-        }
-        break
-    }
-  })
+          if (showCompleted) renderCompletedLog()
 
-  // Initialize
-  updateDateTitle()
-  checkAuth()
-})()
-</script>
+          try {
+            const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
+            if (!res.ok && task) {
+              // Restore on failure
+              if (wasInTasks) {
+                tasks.push(task)
+              } else {
+                completedTasks.unshift(task)
+              }
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            }
+          } catch (err) {
+            // Restore on error
+            if (task) {
+              if (wasInTasks) {
+                tasks.push(task)
+              } else {
+                completedTasks.unshift(task)
+              }
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            }
+          }
+        })
+
+        taskModal.addEventListener('click', (e) => {
+          if (e.target === taskModal) closeModal()
+        })
+
+        domainToggle.addEventListener('click', (e) => {
+          if (e.target.dataset.domain) {
+            selectedDomain = e.target.dataset.domain
+            updateDomainToggle()
+          }
+        })
+
+        areaSelect.addEventListener('change', () => {
+          selectedArea = areaSelect.value
+        })
+
+        timeSelect.addEventListener('change', checkDoNow)
+
+        modalSubmit.addEventListener('click', async (e) => {
+          e.preventDefault()
+
+          const description = document.getElementById('task-description').value.trim()
+          if (!description) return
+
+          // Prevent duplicate submission
+          if (modalSubmit.disabled) return
+          modalSubmit.disabled = true
+          const originalText = modalSubmit.textContent
+          modalSubmit.textContent = 'Saving...'
+
+          const taskData = {
+            description,
+            due_date: document.getElementById('task-due-date').value || null,
+            priority: parseInt(document.getElementById('task-priority').value),
+            estimated_minutes: parseInt(document.getElementById('task-time').value),
+            domain: selectedDomain,
+            area: areaSelect.value || null,
+            completion_criteria: document.getElementById('task-criteria').value.trim() || null,
+            resources: document.getElementById('task-resources').value.trim() || null
+          }
+
+          // If "do now" is checked, mark as completed immediately
+          if (doNowCheckbox.checked && !editingTaskId) {
+            taskData.completed_at = new Date().toISOString()
+          }
+
+          try {
+            let res
+            if (editingTaskId) {
+              // Editing existing task - optimistic update
+              const existingTask =
+                tasks.find((t) => t.id === editingTaskId) ||
+                completedTasks.find((t) => t.id === editingTaskId)
+              const prevData = existingTask ? { ...existingTask } : null
+
+              if (existingTask) {
+                Object.assign(existingTask, taskData)
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+              }
+
+              res = await fetch(`/api/tasks/${editingTaskId}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(taskData)
+              })
+
+              if (res.ok) {
+                closeModal()
+              } else if (prevData && existingTask) {
+                // Revert on failure
+                Object.assign(existingTask, prevData)
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+                modalSubmit.disabled = false
+                modalSubmit.textContent = originalText
+              }
+            } else {
+              // Creating new task - optimistic with temp ID
+              const tempId = 'temp-' + Date.now()
+              const tempTask = { id: tempId, ...taskData, created_at: new Date().toISOString() }
+
+              if (taskData.completed_at) {
+                completedTasks.unshift(tempTask)
+                if (showCompleted) renderCompletedLog()
+              } else {
+                tasks.push(tempTask)
+                renderQueues()
+              }
+              closeModal()
+
+              res = await fetch('/api/tasks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(taskData)
+              })
+
+              if (res.ok) {
+                const data = await res.json()
+                // Replace temp task with real one
+                if (taskData.completed_at) {
+                  const idx = completedTasks.findIndex((t) => t.id === tempId)
+                  if (idx >= 0) completedTasks[idx] = data.task
+                  if (showCompleted) renderCompletedLog()
+                } else {
+                  const idx = tasks.findIndex((t) => t.id === tempId)
+                  if (idx >= 0) tasks[idx] = data.task
+                  renderQueues()
+                }
+              } else {
+                // Remove temp task on failure
+                if (taskData.completed_at) {
+                  completedTasks = completedTasks.filter((t) => t.id !== tempId)
+                  if (showCompleted) renderCompletedLog()
+                } else {
+                  tasks = tasks.filter((t) => t.id !== tempId)
+                  renderQueues()
+                }
+              }
+            }
+          } catch (err) {
+            console.error('Failed to save task:', err)
+            modalSubmit.disabled = false
+            modalSubmit.textContent = originalText
+          }
+        })
+
+        // Drag and Drop for Today column
+        let draggedTaskId = null
+
+        document.addEventListener('dragstart', (e) => {
+          const taskItem = e.target.closest('.task-item[data-id]')
+          if (!taskItem) return
+
+          draggedTaskId = taskItem.dataset.id
+          taskItem.classList.add('dragging')
+          e.dataTransfer.effectAllowed = 'move'
+          e.dataTransfer.setData('text/plain', draggedTaskId)
+        })
+
+        document.addEventListener('dragend', (e) => {
+          const taskItem = e.target.closest('.task-item[data-id]')
+          if (taskItem) {
+            taskItem.classList.remove('dragging')
+          }
+          draggedTaskId = null
+
+          // Remove all drag-over states
+          document.querySelectorAll('.drag-over').forEach((el) => el.classList.remove('drag-over'))
+        })
+
+        document.addEventListener('dragover', (e) => {
+          const dropZone = e.target.closest('[data-droppable]')
+          if (!dropZone || !draggedTaskId) return
+
+          e.preventDefault()
+          e.dataTransfer.dropEffect = 'move'
+          dropZone.classList.add('drag-over')
+        })
+
+        document.addEventListener('dragleave', (e) => {
+          const dropZone = e.target.closest('[data-droppable]')
+          if (dropZone && !dropZone.contains(e.relatedTarget)) {
+            dropZone.classList.remove('drag-over')
+          }
+        })
+
+        document.addEventListener('drop', (e) => {
+          const dropZone = e.target.closest('[data-droppable]')
+          if (!dropZone || !draggedTaskId) return
+
+          e.preventDefault()
+          dropZone.classList.remove('drag-over')
+
+          const dropType = dropZone.dataset.droppable // 'work', 'study', or 'queue'
+
+          if (dropType === 'work') {
+            addToWork(draggedTaskId)
+          } else if (dropType === 'study') {
+            addToStudy(draggedTaskId)
+          } else if (dropType === 'queue') {
+            // Remove from today (goes back to queue automatically based on priority)
+            removeFromToday(draggedTaskId)
+          }
+
+          renderQueues()
+          draggedTaskId = null
+        })
+
+        // Task actions (delegated)
+        document.addEventListener('click', async (e) => {
+          const actionEl = e.target.closest('[data-action]')
+          if (!actionEl) return
+
+          const action = actionEl.dataset.action
+
+          // Handle subtask actions
+          if (action === 'toggle-subtask') {
+            e.stopPropagation()
+            const subtaskId = actionEl.dataset.subtaskId
+            if (!subtaskId || pendingOperations.has(subtaskId)) return
+            await toggleSubtask(subtaskId)
+            return
+          }
+
+          if (action === 'delete-subtask') {
+            e.stopPropagation()
+            const subtaskId = actionEl.dataset.subtaskId
+            if (!subtaskId || pendingOperations.has(subtaskId)) return
+            await deleteSubtask(subtaskId)
+            return
+          }
+
+          const id = actionEl.dataset.id || actionEl.closest('[data-id]')?.dataset.id
+
+          if (!action || !id) return
+
+          if (action === 'remove-from-today') {
+            e.stopPropagation()
+            removeFromToday(id)
+            renderQueues()
+            return
+          }
+
+          if (action === 'complete') {
+            e.stopPropagation()
+            if (pendingOperations.has(id)) return // Prevent duplicate
+
+            // Block completion if subtasks are incomplete
+            const progress = getSubtaskProgress(id)
+            if (progress && progress.completed < progress.total) {
+              alert(`Complete all subtasks first (${progress.completed}/${progress.total} done)`)
+              return
+            }
+
+            // Add loading state
+            pendingOperations.add(id)
+            const taskEl = document.querySelector(`.task-item[data-id="${id}"]`)
+            const checkboxEl = taskEl?.querySelector('.task-checkbox')
+            taskEl?.classList.add('loading')
+            checkboxEl?.classList.add('loading')
+
+            // Optimistic update: move task to completed
+            const taskIndex = tasks.findIndex((t) => t.id === id)
+            const task = tasks[taskIndex]
+            if (task) {
+              task.completed_at = new Date().toISOString()
+              tasks.splice(taskIndex, 1)
+              completedTasks.unshift(task)
+              removeFromToday(id)
+              expandedTaskId = null
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            }
+
+            // API call in background
+            try {
+              const res = await fetch(`/api/tasks/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed_at: task.completed_at })
+              })
+              if (!res.ok) {
+                // Revert on failure
+                task.completed_at = null
+                completedTasks = completedTasks.filter((t) => t.id !== id)
+                tasks.push(task)
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+              }
+            } catch (err) {
+              // Revert on error
+              task.completed_at = null
+              completedTasks = completedTasks.filter((t) => t.id !== id)
+              tasks.push(task)
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            } finally {
+              pendingOperations.delete(id)
+            }
+          } else if (action === 'uncomplete') {
+            e.stopPropagation()
+            if (pendingOperations.has(id)) return // Prevent duplicate
+
+            // Add loading state
+            pendingOperations.add(id)
+            const taskEl = document.querySelector(`.completed-task[data-id="${id}"]`)
+            const checkboxEl = taskEl?.querySelector('.task-checkbox')
+            taskEl?.classList.add('loading')
+            checkboxEl?.classList.add('loading')
+
+            // Optimistic update: move task back to active
+            const taskIndex = completedTasks.findIndex((t) => t.id === id)
+            const task = completedTasks[taskIndex]
+            const prevCompletedAt = task?.completed_at
+            if (task) {
+              task.completed_at = null
+              completedTasks.splice(taskIndex, 1)
+              tasks.push(task)
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            }
+
+            // API call in background
+            try {
+              const res = await fetch(`/api/tasks/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed_at: null })
+              })
+              if (!res.ok) {
+                // Revert on failure
+                task.completed_at = prevCompletedAt
+                tasks = tasks.filter((t) => t.id !== id)
+                completedTasks.unshift(task)
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+              }
+            } catch (err) {
+              // Revert on error
+              task.completed_at = prevCompletedAt
+              tasks = tasks.filter((t) => t.id !== id)
+              completedTasks.unshift(task)
+              renderQueues()
+              if (showCompleted) renderCompletedLog()
+            } finally {
+              pendingOperations.delete(id)
+            }
+          } else if (action === 'expand') {
+            expandedTaskId = expandedTaskId === id ? null : id
+            renderQueues()
+          } else if (action === 'expand-completed') {
+            expandedTaskId = expandedTaskId === id ? null : id
+            renderCompletedLog()
+          } else if (action === 'edit') {
+            openModal(id)
+          } else if (action === 'delete') {
+            if (pendingOperations.has(id)) return // Prevent duplicate
+            if (!confirm('Delete this task?')) return
+
+            // Add loading state
+            pendingOperations.add(id)
+
+            // Save task for potential restore
+            const taskIndex = tasks.findIndex((t) => t.id === id)
+            const completedIndex = completedTasks.findIndex((t) => t.id === id)
+            const task = taskIndex >= 0 ? tasks[taskIndex] : completedTasks[completedIndex]
+            const wasInTasks = taskIndex >= 0
+
+            // Optimistic delete
+            if (wasInTasks) {
+              tasks.splice(taskIndex, 1)
+            } else {
+              completedTasks.splice(completedIndex, 1)
+            }
+            removeFromToday(id)
+            expandedTaskId = null
+            renderQueues()
+            if (showCompleted) renderCompletedLog()
+
+            // API call in background
+            try {
+              const res = await fetch(`/api/tasks/${id}`, { method: 'DELETE' })
+              if (!res.ok && task) {
+                // Restore on failure
+                if (wasInTasks) {
+                  tasks.push(task)
+                } else {
+                  completedTasks.unshift(task)
+                }
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+              }
+            } catch (err) {
+              // Restore on error
+              if (task) {
+                if (wasInTasks) {
+                  tasks.push(task)
+                } else {
+                  completedTasks.unshift(task)
+                }
+                renderQueues()
+                if (showCompleted) renderCompletedLog()
+              }
+            } finally {
+              pendingOperations.delete(id)
+            }
+          }
+        })
+
+        // Subtask input handler (Enter to add)
+        document.addEventListener('keydown', async (e) => {
+          if (e.key !== 'Enter') return
+          const input = e.target.closest('.subtask-input')
+          if (!input) return
+
+          e.preventDefault()
+          const taskId = input.dataset.taskId
+          const description = input.value.trim()
+          if (taskId && description) {
+            input.value = ''
+            await addSubtask(taskId, description)
+            // Re-focus the input after render
+            setTimeout(() => {
+              const newInput = document.querySelector(`.subtask-input[data-task-id="${taskId}"]`)
+              if (newInput) newInput.focus()
+            }, 0)
+          }
+        })
+
+        // Backlog toggles - disabled for now
+        // document.querySelectorAll('.backlog-toggle').forEach(btn => {
+        //   btn.addEventListener('click', () => {
+        //     const domain = btn.dataset.domain
+        //     showBacklog[domain] = !showBacklog[domain]
+        //     const backlog = document.getElementById(`${domain}-backlog`)
+        //     backlog.style.display = showBacklog[domain] ? 'block' : 'none'
+        //     btn.querySelector('span').textContent = showBacklog[domain] ? 'Hide Backlog' : 'Backlog'
+        //   })
+        // })
+
+        // Completed toggle
+        completedToggleBtn.addEventListener('click', () => {
+          showCompleted = !showCompleted
+          completedLog.style.display = showCompleted ? 'block' : 'none'
+          completedToggleBtn.textContent = showCompleted ? 'Hide Completed' : 'Show Completed'
+          if (showCompleted) renderCompletedLog()
+        })
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+          // Ignore if typing in input
+          if (e.target.matches('input, textarea, select')) return
+          // Ignore if modal is open and not escape
+          if (taskModal.style.display === 'flex' && e.key !== 'Escape') return
+
+          switch (e.key) {
+            case 'n':
+              e.preventDefault()
+              openModal()
+              break
+            // case 'b':
+            //   e.preventDefault()
+            //   for (const domain of DOMAINS) {
+            //     showBacklog[domain] = !showBacklog[domain]
+            //     const backlog = document.getElementById(`${domain}-backlog`)
+            //     const btn = document.querySelector(`.backlog-toggle[data-domain="${domain}"]`)
+            //     backlog.style.display = showBacklog[domain] ? 'block' : 'none'
+            //     btn.querySelector('span').textContent = showBacklog[domain] ? 'Hide Backlog' : 'Backlog'
+            //   }
+            //   break
+            case 'c':
+              e.preventDefault()
+              completedToggleBtn.click()
+              break
+            case 'Escape':
+              if (taskModal.style.display === 'flex') {
+                closeModal()
+              } else if (expandedTaskId) {
+                expandedTaskId = null
+                renderQueues()
+              }
+              break
+          }
+        })
+
+        // Initialize
+        updateDateTitle()
+        checkAuth()
+      })()
+    </script>
   </body>
 </html>

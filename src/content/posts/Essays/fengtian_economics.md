@@ -8,11 +8,13 @@ In 1928, Zhang Zuolin, a former bandit turned warlord, controlled Manchuria, com
 > **The Paradox**
 >
 > **What he didn't have:**
+>
 > - No formal education
 > - No democratic mandate
 > - No legal authority over the territory he governed
 >
 > **What he did have:**
+>
 > - Nearly two decades of sustained power
 > - Control of one of Asia's most resource-rich, strategically contested regions
 
@@ -35,6 +37,7 @@ Zhang Zuolin started as a common criminal, leading a bandit gang in rural Liaoni
 > He understood something most outlaws didn't: **legitimacy is cheaper than violence**.
 
 **The Rise:**
+
 - **1902**: Appointed local militia commander (offered services to Qing dynasty instead of fighting)
 - **1916**: Military governor of Fengtian province
 - **1926**: Controlled Beijing itself
@@ -63,7 +66,7 @@ The Fengtian clique wasn't a hierarchy—it was a **coalition of independent ope
 > 4. **Yang Yuting** — Chief of staff, managed Japanese relations and arms procurement
 > 5. **Japanese Kwantung Army officers** — Provided loans, weapons, and intelligence in exchange for economic concessions
 
-None of these actors *worked for* Zhang in the traditional sense. They were **allies with aligned incentives**.
+None of these actors _worked for_ Zhang in the traditional sense. They were **allies with aligned incentives**.
 
 ### Why Autonomy Worked
 
@@ -92,6 +95,7 @@ Zhang's core mechanism was **resource distribution**, not command-and-control.
 ### 1. Revenue Sharing
 
 **Manchuria's wealth came from:**
+
 - **Railway tariffs** (controlled by Wu Junsheng)
 - **Opium trade** (regulated but taxed heavily)
 - **Salt monopolies** (distributed among governors)
@@ -107,6 +111,7 @@ Zhang's core mechanism was **resource distribution**, not command-and-control.
 ### Why Governors Stayed
 
 Governors could get rich in their provinces. But they needed Zhang to:
+
 1. Protect them from rival warlords
 2. Secure external financing
 3. Arbitrate disputes with other coalition members
@@ -129,12 +134,13 @@ Zhang rarely issued direct orders. Instead, he used **soft power**:
 
 **Example: Yang Yuting's Weapons Deals**
 
-When Yang negotiated weapons purchases from Japan, he did so *on Zhang's behalf*. If the deal succeeded, Yang's reputation rose, but so did Zhang's, because Yang was "his man."
+When Yang negotiated weapons purchases from Japan, he did so _on Zhang's behalf_. If the deal succeeded, Yang's reputation rose, but so did Zhang's, because Yang was "his man."
 
 > **The Cost of Defection**
 >
 > If Yang defected, he'd lose:
-> - Access to Japanese contacts (who trusted him *because* he represented Zhang)
+>
+> - Access to Japanese contacts (who trusted him _because_ he represented Zhang)
 > - His position in the coalition (making him a target for rivals)
 > - His reputation (being labeled as disloyal in a world where trust was scarce)
 
@@ -144,9 +150,10 @@ When Yang negotiated weapons purchases from Japan, he did so *on Zhang's behalf*
 
 ### 3. Strategic Marriages
 
-Zhang's family didn't just rule—they *connected*.
+Zhang's family didn't just rule—they _connected_.
 
 **The Network:**
+
 - Zhang Xueliang (his son) married Yu Fengzhi, daughter of a wealthy merchant family
 - Zhang's daughters married into Japanese-aligned Manchurian aristocracy
 - His sons-in-law were given governorships or military commands
@@ -156,6 +163,7 @@ This wasn't romantic—it was **collateral**.
 > **The Social Cost of Betrayal**
 >
 > If a governor considered defecting, he had to weigh:
+>
 > - Would his daughter be disowned?
 > - Would his grandchildren lose their inheritance?
 > - Would his in-laws turn against him?
@@ -192,6 +200,7 @@ Zhang Zuolin never had formal authority over Manchuria. He wasn't elected, wasn'
 > **This Pattern Appears Everywhere**
 >
 > Power exists without formal authority in:
+>
 > - **Decentralized organizations** where influence flows through reputation, not hierarchy
 > - **Coalitions** where participants retain autonomy but benefit from collective strength
 > - **Networks** where the coordinator's value is in connection, not control
@@ -213,6 +222,7 @@ Zhang Zuolin never had formal authority over Manchuria. He wasn't elected, wasn'
 **1928**: Zhang Xueliang inherited the coalition
 
 **1931**: Japanese invaded outright, and the Fengtian clique dissolved
+
 - Local governors defected
 - Revenue streams dried up
 - The coalition that had lasted two decades collapsed in months

@@ -77,6 +77,11 @@ export default defineConfig({
       alias: {
         '@': path.resolve('./src')
       }
+    },
+    server: {
+      headers: {
+        'Cache-Control': 'no-store'
+      }
     }
   },
 

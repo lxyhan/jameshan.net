@@ -12,6 +12,7 @@ In 1906, the British Royal Navy launched the _HMS Dreadnought_.
 > Until that morning, naval power was a gradient. You had older battleships, newer battleships, some with more guns, some with fewer. It was a linear progression of utility.
 
 **But the _Dreadnought_ was different:**
+
 - First all-big-gun battleship
 - Powered by steam turbines
 - Faster, deadlier, and tougher than anything else on the water

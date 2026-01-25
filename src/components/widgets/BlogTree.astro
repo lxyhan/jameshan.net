@@ -78,6 +78,18 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
 
 const tree = buildTree(posts, ['changelog'])
 
+// Emoji mappings for folder names (use slugified names)
+const folderEmojis: Record<string, string> = {
+  'books': '📚',
+  'firefox': '🦊',
+  'data-structures-and-algorithms': '🧮',
+}
+
+function getFolderDisplayName(name: string): string {
+  const emoji = folderEmojis[name]
+  return emoji ? `${name} ${emoji}` : name
+}
+
 // Get recent posts (exclude changelog)
 const recentPosts = posts
   .filter(p => !p.id.includes('changelog'))
@@ -127,7 +139,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
           <details class="tree-folder" open={isFolderActive(node, currentPath)}>
             <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
               <span class="folder-icon">📂</span>
-              <span class="folder-name">{node.name}</span>
+              <span class="folder-name">{getFolderDisplayName(node.name)}</span>
             </summary>
             <div class="tree-children">
               {node.children && node.children.map(child => (
@@ -143,7 +155,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
                   <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
                     <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
                       <span class="folder-icon">📂</span>
-                      <span class="folder-name">{child.name}</span>
+                      <span class="folder-name">{getFolderDisplayName(child.name)}</span>
                     </summary>
                     <div class="tree-children">
                       {child.children && child.children.map(file => (
@@ -178,11 +190,9 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   <hr class="tree-divider" />
   <div class="tree-footer">
     <div class="tree-links">
-      <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>📋 Changelog</a>
-      <span class="link-sep">·</span>
-      <a href="/analytics" class={currentPath === '/analytics' ? 'active' : ''}>📊 Analytics</a>
-      <span class="link-sep">·</span>
-      <a href="https://github.com/lxyhan/jameshan.net" target="_blank" rel="noopener">💻 Source</a>
+      <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>Changelog</a>
+      <span class="link-sep">|</span>
+      <a href="https://github.com/lxyhan/jameshan.net" target="_blank" rel="noopener">Source</a>
     </div>
   </div>
 </div>
