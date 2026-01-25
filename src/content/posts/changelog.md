@@ -1,9 +1,21 @@
 ---
 title: 'Changelog'
-pubDate: '2025-12-29'
+pubDate: '2025-01-25'
 ---
 
 All notable changes to this project will be documented in this file.
+
+## [4.5] - 2025-01-25
+### Added
+- Emojis to folder titles (books 📚, firefox 🦊, data-structures-and-algorithms 🧮)
+
+### Changed
+- Consolidated sidebar footer into single line: Changelog v4.5 | Source | views today
+- Disabled CSS caching for faster development iteration
+- Reduced margins in sidebar footer section
+
+### Removed
+- Separate Analytics widget from homepage (moved to footer)
 
 ## [4.4] - 2025-12-29
 ### Added

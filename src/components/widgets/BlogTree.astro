@@ -191,9 +191,33 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   <div class="tree-footer">
     <div class="tree-links">
       <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>Changelog</a>
+      <span class="version-text">v4.5</span>
       <span class="link-sep">|</span>
       <a href="https://github.com/lxyhan/jameshan.net" target="_blank" rel="noopener">Source</a>
+      <span class="link-sep">|</span>
+      <span class="analytics-text" id="analytics-stats">...</span>
     </div>
+    <script>
+      async function fetchAnalytics() {
+        try {
+          const response = await fetch('/api/analytics');
+          if (response.ok) {
+            const data = await response.json();
+            const statsElement = document.getElementById('analytics-stats');
+            if (statsElement) {
+              statsElement.textContent = `${data.today} views today`;
+            }
+          }
+        } catch (error) {
+          const statsElement = document.getElementById('analytics-stats');
+          if (statsElement) {
+            statsElement.textContent = '-- views';
+          }
+        }
+      }
+      fetchAnalytics();
+      document.addEventListener('astro:page-load', fetchAnalytics);
+    </script>
   </div>
 </div>
 
@@ -215,13 +239,13 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   .header-left {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35rem;
   }
 
   .social-icons {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.25rem;
   }
 
   .social-icons a {
@@ -286,10 +310,15 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     opacity: 0.5;
   }
 
+  .version-text {
+    margin-left: 0.35rem;
+    opacity: 0.6;
+  }
+
   .tree-divider {
     border: none;
     border-top: 1px solid var(--border);
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
   }
 
   .tree-footer {
