@@ -85,9 +85,7 @@
 
 /* Italic text */
 .prose em {
-  font-family: var(--serif);
   font-style: italic;
-  letter-spacing: 0;
 }
 
 /* Links */
@@ -150,31 +148,12 @@
 .prose img {
   width: 100%;
   height: auto;
-  display: block;
-  margin: 1.25em 0; /* Less space around images */
-  box-sizing: border-box;
-  background: linear-gradient(90deg, var(--code-bg) 25%, var(--border) 50%, var(--code-bg) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  min-height: 200px;
-  color: transparent;
-  overflow: hidden;
+  max-height: 24rem;
   object-fit: cover;
-}
-
-.prose img[src] {
-  background: none;
-  animation: none;
-  color: inherit;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  display: block;
+  margin: 1.25em 0;
+  box-sizing: border-box;
+  background: var(--code-bg);
 }
 
 /* Multiple images in a row - responsive grid */
@@ -209,10 +188,9 @@
   display: block;
 }
 
-/* Loading state for images */
-.prose img[loading='lazy'] {
-  opacity: 0;
-  animation: fadeIn 0.3s ease-out forwards;
+/* Fade in when loaded */
+.prose img {
+  transition: opacity 0.3s ease-out;
 }
 
 @keyframes fadeIn {

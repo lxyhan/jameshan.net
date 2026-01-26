@@ -5,7 +5,7 @@ pubDate: '2025-01-25'
 
 Currently reading:
 
-- Fermor - A Time of Gifts
+- Fermor - [A Time of Gifts](/posts/books/a_time_of_gifts)
 - Chatwin - In Patagonia
 - John Fraser — The Chinese, Portrait Of A People
 - Fei-Fei Li — The Worlds I See
