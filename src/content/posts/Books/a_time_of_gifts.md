@@ -61,4 +61,4 @@ I think about what it would mean to walk somewhere now. Not as a stunt or an end
 
 Fermor didn't walk to Constantinople because it was difficult. He walked because he was eighteen and had nothing better to do, and because in 1933 it was still possible to move through the world that way: on foot, with charm and letters of introduction, sleeping in barns and castles.
 
-The book remains: a record of what it felt like to know a place by walking through it, mile by mile, feeling the ground.
+The book remains: a record of what it felt like to know a place by walking through it, mile by mile.
