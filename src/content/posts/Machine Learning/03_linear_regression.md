@@ -35,11 +35,17 @@ The simplest assumption we can make is that the relationship between inputs and 
 
 ### Model Definition
 
-$$y^{(i)} = w_1 x_1^{(i)} + w_2 x_2^{(i)} + \cdots + w_D x_D^{(i)} + b$$
+$$
+y^{(i)} = w_1 x_1^{(i)} + w_2 x_2^{(i)} + \cdots + w_D x_D^{(i)} + b
+$$
+
 
 Or in compact form:
 
-$$y^{(i)} = \sum_{j=1}^{D} w_j x_j^{(i)} + b$$
+$$
+y^{(i)} = \sum_{j=1}^{D} w_j x_j^{(i)} + b
+$$
+
 
 Where:
 - $w_j$ are the **weights** (model parameters)
@@ -57,7 +63,10 @@ Where:
 
 We can express this more compactly using vectors:
 
-$$y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)}$$
+$$
+y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)}
+$$
+
 
 where $\mathbf{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_D \end{bmatrix}$ and $\mathbf{x}^{(i)} = \begin{bmatrix} x_1^{(i)} \\ x_2^{(i)} \\ \vdots \\ x_D^{(i)} \end{bmatrix}$
 
@@ -65,26 +74,37 @@ where $\mathbf{w} = \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_D \end{bmatrix}$ a
 
 To simplify notation, we absorb the bias $b$ into the weight vector by adding a **dummy feature** $x_0^{(i)} = 1$:
 
-$$\mathbf{w} = \begin{bmatrix} b \\ w_1 \\ \vdots \\ w_D \end{bmatrix}, \quad \mathbf{x}^{(i)} = \begin{bmatrix} 1 \\ x_1^{(i)} \\ \vdots \\ x_D^{(i)} \end{bmatrix}$$
+$$
+\mathbf{w} = \begin{bmatrix} b \\ w_1 \\ \vdots \\ w_D \end{bmatrix}, \quad \mathbf{x}^{(i)} = \begin{bmatrix} 1 \\ x_1^{(i)} \\ \vdots \\ x_D^{(i)} \end{bmatrix}
+$$
+
 
 Now our model becomes simply:
 
-$$y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)}$$
+$$
+y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)}
+$$
+
 
 ### Predictions for All Training Examples
 
 Define the **design matrix** $\mathbf{X}$ (rows are transposed feature vectors):
 
-$$\mathbf{X} = \begin{bmatrix} \mathbf{x}^{(1)\top} \\ \mathbf{x}^{(2)\top} \\ \vdots \\ \mathbf{x}^{(N)\top} \end{bmatrix} = \begin{bmatrix}
+$$
+\mathbf{X} = \begin{bmatrix} \mathbf{x}^{(1)\top} \\ \mathbf{x}^{(2)\top} \\ \vdots \\ \mathbf{x}^{(N)\top} \end{bmatrix} = \begin{bmatrix}
 1 & x_1^{(1)} & \cdots & x_D^{(1)} \\
 1 & x_1^{(2)} & \cdots & x_D^{(2)} \\
 \vdots & \vdots & \ddots & \vdots \\
 1 & x_1^{(N)} & \cdots & x_D^{(N)}
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 Then predictions for all examples:
 
-$$\mathbf{y} = \mathbf{X}\mathbf{w}$$
+$$
+\mathbf{y} = \mathbf{X}\mathbf{w}
+$$
+
 
 where $\mathbf{y} = \begin{bmatrix} y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(N)} \end{bmatrix}$
 
@@ -98,7 +118,10 @@ The **loss function** $L(y^{(i)}, t^{(i)})$ quantifies how bad a prediction is f
 
 We use **squared error loss**:
 
-$$L(y^{(i)}, t^{(i)}) = \frac{1}{2}(y^{(i)} - t^{(i)})^2 = \frac{1}{2}(\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2$$
+$$
+L(y^{(i)}, t^{(i)}) = \frac{1}{2}(y^{(i)} - t^{(i)})^2 = \frac{1}{2}(\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2
+$$
+
 
 Why this form?
 - The square ensures we minimize the **magnitude of the residual** $(y^{(i)} - t^{(i)})$
@@ -108,11 +131,17 @@ Why this form?
 
 The **cost function** $\mathcal{E}(\mathbf{w})$ is the **average loss** across all training examples:
 
-$$\mathcal{E}(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} L(y^{(i)}, t^{(i)})$$
+$$
+\mathcal{E}(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} L(y^{(i)}, t^{(i)})
+$$
+
 
 Expanding with squared error:
 
-$$\mathcal{E}(\mathbf{w}) = \frac{1}{2N} \sum_{i=1}^{N} (y^{(i)} - t^{(i)})^2 = \frac{1}{2N} \sum_{i=1}^{N} (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2$$
+$$
+\mathcal{E}(\mathbf{w}) = \frac{1}{2N} \sum_{i=1}^{N} (y^{(i)} - t^{(i)})^2 = \frac{1}{2N} \sum_{i=1}^{N} (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2
+$$
+
 
 > **Note:** In practice, "loss" and "cost" are often used interchangeably.
 
@@ -122,9 +151,15 @@ Define the target vector: $\mathbf{t} = \begin{bmatrix} t^{(1)} \\ t^{(2)} \\ \v
 
 Then:
 
-$$\mathcal{E}(\mathbf{w}) = \frac{1}{2N} \sum_{i=1}^{N} (y^{(i)} - t^{(i)})^2 = \frac{1}{2N} (\mathbf{y} - \mathbf{t})^\top (\mathbf{y} - \mathbf{t})$$
+$$
+\mathcal{E}(\mathbf{w}) = \frac{1}{2N} \sum_{i=1}^{N} (y^{(i)} - t^{(i)})^2 = \frac{1}{2N} (\mathbf{y} - \mathbf{t})^\top (\mathbf{y} - \mathbf{t})
+$$
 
-$$= \frac{1}{2N} (\mathbf{X}\mathbf{w} - \mathbf{t})^\top (\mathbf{X}\mathbf{w} - \mathbf{t}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{t}\|_2^2$$
+
+$$
+= \frac{1}{2N} (\mathbf{X}\mathbf{w} - \mathbf{t})^\top (\mathbf{X}\mathbf{w} - \mathbf{t}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{t}\|_2^2
+$$
+
 
 This is called the **Mean Squared Error (MSE)** cost function.
 
@@ -145,7 +180,10 @@ Vectorized computations offer several advantages:
 
 To find optimal weights, we minimize the cost function:
 
-$$\min_{\mathbf{w}} \mathcal{E}(\mathbf{w})$$
+$$
+\min_{\mathbf{w}} \mathcal{E}(\mathbf{w})
+$$
+
 
 Strategy:
 1. Take derivatives of $\mathcal{E}(\mathbf{w})$ with respect to $\mathbf{w}$
@@ -158,11 +196,17 @@ Since the cost is the average of losses, we first compute $\nabla_{\mathbf{w}} L
 
 For a single example:
 
-$$L(y^{(i)}, t^{(i)}) = \frac{1}{2}(y^{(i)} - t^{(i)})^2 = \frac{1}{2}(\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2$$
+$$
+L(y^{(i)}, t^{(i)}) = \frac{1}{2}(y^{(i)} - t^{(i)})^2 = \frac{1}{2}(\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)})^2
+$$
+
 
 Using the chain rule:
 
-$$\frac{\partial L}{\partial w_j} = \frac{\partial L}{\partial y^{(i)}} \cdot \frac{\partial y^{(i)}}{\partial w_j}$$
+$$
+\frac{\partial L}{\partial w_j} = \frac{\partial L}{\partial y^{(i)}} \cdot \frac{\partial y^{(i)}}{\partial w_j}
+$$
+
 
 where:
 - $\frac{\partial L}{\partial y^{(i)}} = y^{(i)} - t^{(i)}$ (derivative of squared error)
@@ -170,17 +214,26 @@ where:
 
 Therefore:
 
-$$\frac{\partial L}{\partial w_j} = (y^{(i)} - t^{(i)}) x_j^{(i)} = (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) x_j^{(i)}$$
+$$
+\frac{\partial L}{\partial w_j} = (y^{(i)} - t^{(i)}) x_j^{(i)} = (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) x_j^{(i)}
+$$
+
 
 The full gradient vector:
 
-$$\nabla_{\mathbf{w}} L(\mathbf{w}) = \begin{bmatrix} \frac{\partial L}{\partial w_0} \\ \frac{\partial L}{\partial w_1} \\ \vdots \\ \frac{\partial L}{\partial w_D} \end{bmatrix} = (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) \mathbf{x}^{(i)}$$
+$$
+\nabla_{\mathbf{w}} L(\mathbf{w}) = \begin{bmatrix} \frac{\partial L}{\partial w_0} \\ \frac{\partial L}{\partial w_1} \\ \vdots \\ \frac{\partial L}{\partial w_D} \end{bmatrix} = (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) \mathbf{x}^{(i)}
+$$
+
 
 ### Gradient of the Cost Function
 
 The cost is the average of losses:
 
-$$\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} \nabla_{\mathbf{w}} L(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) \mathbf{x}^{(i)}$$
+$$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} \nabla_{\mathbf{w}} L(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^{N} (\mathbf{w}^\top \mathbf{x}^{(i)} - t^{(i)}) \mathbf{x}^{(i)}
+$$
+
 
 ### Vectorized Gradient
 
@@ -190,11 +243,17 @@ Define residuals: $\mathbf{r} = \mathbf{X}\mathbf{w} - \mathbf{t}$ (an $N \times
 
 Then:
 
-$$\sum_{i=1}^{N} r^{(i)} \mathbf{x}^{(i)} = \mathbf{X}^\top \mathbf{r} = \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t})$$
+$$
+\sum_{i=1}^{N} r^{(i)} \mathbf{x}^{(i)} = \mathbf{X}^\top \mathbf{r} = \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t})
+$$
+
 
 Therefore, the **vectorized gradient**:
 
-$$\boxed{\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t})}$$
+$$
+\boxed{\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t})}
+$$
+
 
 ---
 
@@ -202,11 +261,20 @@ $$\boxed{\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^\t
 
 Set the gradient to zero and solve:
 
-$$\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t}) = 0$$
+$$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{t}) = 0
+$$
 
-$$\Rightarrow \mathbf{X}^\top \mathbf{X} \mathbf{w} = \mathbf{X}^\top \mathbf{t}$$
 
-$$\Rightarrow \mathbf{w} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{t}$$
+$$
+\Rightarrow \mathbf{X}^\top \mathbf{X} \mathbf{w} = \mathbf{X}^\top \mathbf{t}
+$$
+
+
+$$
+\Rightarrow \mathbf{w} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{t}
+$$
+
 
 This is called the **normal equations** or **closed-form solution**.
 
