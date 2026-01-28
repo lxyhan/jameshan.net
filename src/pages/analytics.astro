@@ -50,6 +50,9 @@ import { themeConfig } from '@/config'
 
     <div class="locations-section">
       <h2>Views by country (all time)</h2>
+      <div class="map-container" id="map-container">
+        <div class="map-tooltip" id="map-tooltip"></div>
+      </div>
       <div class="locations-list" id="locations-list">
         <span class="loading-text">Loading...</span>
       </div>
@@ -196,9 +199,65 @@ import { themeConfig } from '@/config'
     EG: 'Egypt', NG: 'Nigeria', KE: 'Kenya', TR: 'Turkey',
   };
 
+  async function loadMap(data: { countries: Record<string, number>, total: number }) {
+    const mapContainer = document.getElementById('map-container');
+    if (!mapContainer) return;
+
+    try {
+      const response = await fetch('/world-map.svg');
+      const svgText = await response.text();
+      mapContainer.innerHTML = svgText + '<div class="map-tooltip" id="map-tooltip"></div>';
+
+      const svg = mapContainer.querySelector('svg');
+      if (!svg) return;
+
+      const entries = Object.entries(data.countries);
+      const maxCount = Math.max(...entries.map(([, c]) => c), 1);
+
+      // Color each country based on view count
+      entries.forEach(([code, count]) => {
+        const path = svg.querySelector(`#${code}`) as SVGPathElement;
+        if (path) {
+          const intensity = Math.min(count / maxCount, 1);
+          const lightness = 85 - (intensity * 50); // 85% (light) to 35% (dark)
+          path.style.fill = `hsl(210, 60%, ${lightness}%)`;
+          path.dataset.country = code;
+          path.dataset.count = count.toString();
+          path.classList.add('has-data');
+        }
+      });
+
+      // Add hover events
+      const tooltip = document.getElementById('map-tooltip');
+      svg.querySelectorAll('path').forEach(path => {
+        path.addEventListener('mouseenter', (e) => {
+          const target = e.target as SVGPathElement;
+          const code = target.dataset.country || target.id;
+          const count = target.dataset.count;
+          const name = countryNames[code] || code;
+
+          if (tooltip && count) {
+            tooltip.textContent = `${name}: ${count} views`;
+            tooltip.style.opacity = '1';
+          }
+        });
+        path.addEventListener('mouseleave', () => {
+          if (tooltip) tooltip.style.opacity = '0';
+        });
+      });
+
+      mapContainer.classList.add('loaded');
+    } catch (error) {
+      console.debug('Failed to load map:', error);
+    }
+  }
+
   function showLocations(data: { countries: Record<string, number>, total: number }) {
     const container = document.getElementById('locations-list');
     if (!container) return;
+
+    // Also update the map
+    loadMap(data);
 
     const entries = Object.entries(data.countries);
     if (entries.length === 0) {
@@ -429,6 +488,54 @@ import { themeConfig } from '@/config'
 
   .locations-section {
     margin-top: 2rem;
+  }
+
+  .map-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .map-container.loaded {
+    opacity: 1;
+  }
+
+  .map-container svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .map-container svg path {
+    fill: var(--border);
+    stroke: var(--bg);
+    stroke-width: 0.5;
+    transition: fill 0.2s ease, opacity 0.2s ease;
+    cursor: default;
+  }
+
+  .map-container svg path.has-data {
+    cursor: pointer;
+  }
+
+  .map-container svg path.has-data:hover {
+    opacity: 0.8;
+  }
+
+  .map-tooltip {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--bg);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
   }
 
   .locations-list {
