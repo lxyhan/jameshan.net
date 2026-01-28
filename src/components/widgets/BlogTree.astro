@@ -213,7 +213,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
         if (cached) {
           try {
             showAnalytics(JSON.parse(cached));
-          } catch {}
+          } catch { /* ignore parse errors */ }
         }
 
         // Fetch fresh data
