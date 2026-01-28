@@ -1,12 +1,11 @@
-/* Merriweather font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* Merriweather font - loaded via preload link in BaseHead.astro */
 
 /* System font for tilde character - CMU Serif has misaligned tilde */
 @font-face {
   font-family: "CMU Serif";
   font-style: normal;
   font-weight: 400 700;
-  font-display: swap;
+  font-display: optional;
   src: local("Georgia"), local("Times New Roman"), local("serif");
   unicode-range: U+007E; /* Tilde ~ */
 }
@@ -16,7 +15,7 @@
   font-family: "CMU Serif";
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
+  font-display: optional;
   src: url("/fonts/cmu-serif-500-roman.woff2") format("woff2");
 }
 
@@ -24,7 +23,7 @@
   font-family: "CMU Serif";
   font-style: italic;
   font-weight: 500;
-  font-display: swap;
+  font-display: optional;
   src: url("/fonts/cmu-serif-500-italic.woff2") format("woff2");
 }
 
@@ -32,7 +31,7 @@
   font-family: "CMU Serif";
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: optional;
   src: url("/fonts/cmu-serif-700-roman.woff2") format("woff2");
 }
 
@@ -40,6 +39,6 @@
   font-family: "CMU Serif";
   font-style: italic;
   font-weight: 700;
-  font-display: swap;
+  font-display: optional;
   src: url("/fonts/cmu-serif-700-italic.woff2") format("woff2");
 }

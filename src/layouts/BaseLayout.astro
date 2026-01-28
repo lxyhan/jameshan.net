@@ -25,10 +25,28 @@ const posts = await getSortedFilteredPosts()
     <ViewTransitions />
     <slot name="head" />
   </head>
-  <body data-centered={themeConfig.general.centeredLayout}>
+  <body data-centered={themeConfig.general.centeredLayout} class="fonts-loading">
     <FaviconThemeSwitcher />
 
     <script is:inline>
+      // Wait for fonts to load before showing content (prevents horizontal jank)
+      function showContent() {
+        document.body.classList.remove('fonts-loading');
+        document.body.classList.add('fonts-loaded');
+      }
+
+      if (document.fonts && document.fonts.ready) {
+        // Show content when fonts are ready, or after 500ms max
+        Promise.race([
+          document.fonts.ready,
+          new Promise(resolve => setTimeout(resolve, 500))
+        ]).then(showContent);
+      } else {
+        // Fallback for browsers without font loading API
+        showContent();
+      }
+
+      // Handle View Transitions
       document.addEventListener('astro:before-preparation', () => {
         document.body.style.transition = 'opacity 0.1s ease-out';
         document.body.style.opacity = '0';

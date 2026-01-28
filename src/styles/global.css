@@ -127,6 +127,16 @@ body {
   width: 100%;
 }
 
+/* Font loading states - prevents horizontal jank from font swap */
+body.fonts-loading {
+  opacity: 0;
+}
+
+body.fonts-loaded {
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+}
+
 /* Page transition animations */
 @keyframes fadeIn {
   from {

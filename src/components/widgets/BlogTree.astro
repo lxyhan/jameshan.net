@@ -194,24 +194,38 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
       <span class="version-text">v4.5</span>
       <span class="link-sep">|</span>
       <a href="/analytics" class={currentPath === '/analytics' ? 'active' : ''}>Analytics</a>
-      <span class="analytics-text" id="analytics-stats">...</span>
+      <span class="analytics-text" id="analytics-stats"></span>
     </div>
     <script>
+      const CACHE_KEY = 'analytics_cache';
+
+      function showAnalytics(data: any) {
+        const statsElement = document.getElementById('analytics-stats');
+        if (statsElement && data?.today !== undefined) {
+          statsElement.textContent = `${data.today} views today`;
+          statsElement.classList.add('loaded');
+        }
+      }
+
       async function fetchAnalytics() {
+        // Show cached data immediately
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          try {
+            showAnalytics(JSON.parse(cached));
+          } catch {}
+        }
+
+        // Fetch fresh data
         try {
           const response = await fetch('/api/analytics');
           if (response.ok) {
             const data = await response.json();
-            const statsElement = document.getElementById('analytics-stats');
-            if (statsElement) {
-              statsElement.textContent = `${data.today} views today`;
-            }
+            localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+            showAnalytics(data);
           }
         } catch (error) {
-          const statsElement = document.getElementById('analytics-stats');
-          if (statsElement) {
-            statsElement.textContent = '-- views';
-          }
+          // silently fail, cached data still showing
         }
       }
       fetchAnalytics();
@@ -315,8 +329,15 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   }
 
   .analytics-text {
-    opacity: 0.6;
     margin-left: 0.35rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    min-width: 85px;
+  }
+
+  .analytics-text.loaded {
+    opacity: 0.6;
   }
 
   .tree-divider {

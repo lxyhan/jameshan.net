@@ -7,7 +7,7 @@ const { path } = Astro.props;
 ---
 
 <span class="post-views" data-path={path}>
-  <span class="view-count">...</span> views
+  <span class="view-count"></span>
 </span>
 
 <script>
@@ -20,9 +20,10 @@ const { path } = Astro.props;
         const response = await fetch(`/api/analytics?path=${encodeURIComponent(path)}`);
         if (response.ok) {
           const data = await response.json();
-          const countEl = el.querySelector('.view-count');
+          const countEl = el.querySelector('.view-count') as HTMLElement;
           if (countEl) {
-            countEl.textContent = data.allTime || 0;
+            countEl.textContent = (data.allTime || 0) + ' views';
+            countEl.classList.add('loaded');
           }
         }
       } catch (error) {
@@ -40,5 +41,11 @@ const { path } = Astro.props;
 
   .view-count {
     font-family: var(--serif);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .view-count.loaded {
+    opacity: 1;
   }
 </style>

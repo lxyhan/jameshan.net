@@ -72,7 +72,7 @@ import { themeConfig } from '@/config'
     if (cached) {
       try {
         showStats(JSON.parse(cached));
-      } catch {}
+      } catch { /* ignore parse errors */ }
     }
 
     // Fetch fresh data
@@ -150,7 +150,7 @@ import { themeConfig } from '@/config'
     if (cached) {
       try {
         showHistogram(JSON.parse(cached));
-      } catch {}
+      } catch { /* ignore parse errors */ }
     }
 
     // Fetch fresh data

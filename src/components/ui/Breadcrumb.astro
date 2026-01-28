@@ -31,18 +31,21 @@ const fileName = parts[parts.length - 1].replace('.md', '')
   .breadcrumb {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-family: var(--serif);
-    font-size: var(--font-size-s);
+    gap: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
     color: var(--text-secondary);
     margin: 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
 
   .breadcrumb-item {
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s ease-out;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .breadcrumb-item:hover {
@@ -55,11 +58,16 @@ const fileName = parts[parts.length - 1].replace('.md', '')
 
   .breadcrumb-item.current {
     color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .breadcrumb-separator {
     color: var(--text-secondary);
     opacity: 0.5;
+    flex-shrink: 0;
   }
 
   .breadcrumb-arrow {
