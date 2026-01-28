@@ -7,9 +7,9 @@ const { type, class: className = '' } = Astro.props
 const transitionName = type === 'post' ? 'post-content' : 'page-content'
 ---
 
-<div transition:name={transitionName} class={className} id="transition-wrapper">
+<main transition:name={transitionName} class={className} id="transition-wrapper">
   <slot />
-</div>
+</main>
 
 <script is:inline>
   // Cleanup hover states after Astro page load and on touch events

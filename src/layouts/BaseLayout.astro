@@ -56,29 +56,22 @@ const posts = await getSortedFilteredPosts()
     </script>
 
     <div class="site-grid">
-      {fadeAnimation ? (
-        <TransitionWrapper type={type} class="layout-wrapper">
-          <div class="two-col-grid">
-            <aside class="sidebar-area">
-              <BlogTree posts={posts} />
-            </aside>
+      <div class="layout-wrapper">
+        <div class="two-col-grid">
+          <aside class="sidebar-area" transition:persist="sidebar">
+            <BlogTree posts={posts} />
+          </aside>
+          {fadeAnimation ? (
+            <TransitionWrapper type={type} class="content-area">
+              <slot />
+            </TransitionWrapper>
+          ) : (
             <main class="content-area">
               <slot />
             </main>
-          </div>
-        </TransitionWrapper>
-      ) : (
-        <div class="layout-wrapper">
-          <div class="two-col-grid">
-            <aside class="sidebar-area">
-              <BlogTree posts={posts} />
-            </aside>
-            <main class="content-area">
-              <slot />
-            </main>
-          </div>
+          )}
         </div>
-      )}
+      </div>
       {themeConfig.general.footer && (
         <div class="footer-wrapper">
           <Footer />
