@@ -3,6 +3,8 @@ import IndexLayout from '@/layouts/IndexLayout.astro'
 import { themeConfig } from '@/config'
 ---
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 <IndexLayout
   title={`Analytics · ${themeConfig.site.title}`}
   description="Site analytics and statistics"
@@ -50,11 +52,11 @@ import { themeConfig } from '@/config'
 
     <div class="locations-section">
       <h2>Views by country (all time)</h2>
-      <div class="map-container" id="map-container">
-        <div class="map-tooltip" id="map-tooltip"></div>
-      </div>
-      <div class="locations-list" id="locations-list">
-        <span class="loading-text">Loading...</span>
+      <div class="locations-grid">
+        <div class="map-container" id="map-container"></div>
+        <div class="locations-list" id="locations-list">
+          <span class="loading-text">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -199,53 +201,116 @@ import { themeConfig } from '@/config'
     EG: 'Egypt', NG: 'Nigeria', KE: 'Kenya', TR: 'Turkey',
   };
 
+  // ISO Alpha-3 to Alpha-2 mapping for GeoJSON
+  const iso3to2: Record<string, string> = {
+    AFG: 'AF', ALB: 'AL', DZA: 'DZ', AGO: 'AO', ARG: 'AR', ARM: 'AM', AUS: 'AU', AUT: 'AT',
+    AZE: 'AZ', BHS: 'BS', BGD: 'BD', BLR: 'BY', BEL: 'BE', BLZ: 'BZ', BEN: 'BJ', BTN: 'BT',
+    BOL: 'BO', BIH: 'BA', BWA: 'BW', BRA: 'BR', BRN: 'BN', BGR: 'BG', BFA: 'BF', BDI: 'BI',
+    KHM: 'KH', CMR: 'CM', CAN: 'CA', CAF: 'CF', TCD: 'TD', CHL: 'CL', CHN: 'CN', COL: 'CO',
+    COG: 'CG', COD: 'CD', CRI: 'CR', HRV: 'HR', CUB: 'CU', CYP: 'CY', CZE: 'CZ', DNK: 'DK',
+    DOM: 'DO', ECU: 'EC', EGY: 'EG', SLV: 'SV', GNQ: 'GQ', ERI: 'ER', EST: 'EE', ETH: 'ET',
+    FIN: 'FI', FRA: 'FR', GAB: 'GA', GMB: 'GM', GEO: 'GE', DEU: 'DE', GHA: 'GH', GRC: 'GR',
+    GTM: 'GT', GIN: 'GN', GNB: 'GW', GUY: 'GY', HTI: 'HT', HND: 'HN', HKG: 'HK', HUN: 'HU',
+    ISL: 'IS', IND: 'IN', IDN: 'ID', IRN: 'IR', IRQ: 'IQ', IRL: 'IE', ISR: 'IL', ITA: 'IT',
+    JAM: 'JM', JPN: 'JP', JOR: 'JO', KAZ: 'KZ', KEN: 'KE', PRK: 'KP', KOR: 'KR', KWT: 'KW',
+    KGZ: 'KG', LAO: 'LA', LVA: 'LV', LBN: 'LB', LSO: 'LS', LBR: 'LR', LBY: 'LY', LTU: 'LT',
+    LUX: 'LU', MKD: 'MK', MDG: 'MG', MWI: 'MW', MYS: 'MY', MLI: 'ML', MRT: 'MR', MEX: 'MX',
+    MDA: 'MD', MNG: 'MN', MNE: 'ME', MAR: 'MA', MOZ: 'MZ', MMR: 'MM', NAM: 'NA', NPL: 'NP',
+    NLD: 'NL', NZL: 'NZ', NIC: 'NI', NER: 'NE', NGA: 'NG', NOR: 'NO', OMN: 'OM', PAK: 'PK',
+    PAN: 'PA', PNG: 'PG', PRY: 'PY', PER: 'PE', PHL: 'PH', POL: 'PL', PRT: 'PT', PRI: 'PR',
+    QAT: 'QA', ROU: 'RO', RUS: 'RU', RWA: 'RW', SAU: 'SA', SEN: 'SN', SRB: 'RS', SLE: 'SL',
+    SGP: 'SG', SVK: 'SK', SVN: 'SI', SOM: 'SO', ZAF: 'ZA', SSD: 'SS', ESP: 'ES', LKA: 'LK',
+    SDN: 'SD', SUR: 'SR', SWZ: 'SZ', SWE: 'SE', CHE: 'CH', SYR: 'SY', TWN: 'TW', TJK: 'TJ',
+    TZA: 'TZ', THA: 'TH', TGO: 'TG', TTO: 'TT', TUN: 'TN', TUR: 'TR', TKM: 'TM', UGA: 'UG',
+    UKR: 'UA', ARE: 'AE', GBR: 'GB', USA: 'US', URY: 'UY', UZB: 'UZ', VEN: 'VE', VNM: 'VN',
+    YEM: 'YE', ZMB: 'ZM', ZWE: 'ZW',
+  };
+
+  let mapInstance: any = null;
+
   async function loadMap(data: { countries: Record<string, number>, total: number }) {
     const mapContainer = document.getElementById('map-container');
     if (!mapContainer) return;
 
-    try {
-      const response = await fetch('/world-map.svg');
-      const svgText = await response.text();
-      mapContainer.innerHTML = svgText + '<div class="map-tooltip" id="map-tooltip"></div>';
+    // Dynamically import Leaflet
+    const leaflet = await import('leaflet');
+    const L = leaflet.default || leaflet;
 
-      const svg = mapContainer.querySelector('svg');
-      if (!svg) return;
+    // Clean up existing map
+    if (mapInstance) {
+      mapInstance.remove();
+    }
+
+    try {
+      // Fetch GeoJSON
+      const geoResponse = await fetch('/countries.geo.json');
+      const geoData = await geoResponse.json();
 
       const entries = Object.entries(data.countries);
       const maxCount = Math.max(...entries.map(([, c]) => c), 1);
 
-      // Color each country based on view count
-      entries.forEach(([code, count]) => {
-        const path = svg.querySelector(`#${code}`) as SVGPathElement;
-        if (path) {
-          const intensity = Math.min(count / maxCount, 1);
-          const lightness = 85 - (intensity * 50); // 85% (light) to 35% (dark)
-          path.style.fill = `hsl(210, 60%, ${lightness}%)`;
-          path.dataset.country = code;
-          path.dataset.count = count.toString();
-          path.classList.add('has-data');
+      // Get color based on count
+      function getColor(count: number): string {
+        if (!count) return 'var(--border)';
+        const intensity = Math.min(count / maxCount, 1);
+        // Use a blue scale
+        const lightness = 80 - (intensity * 45);
+        return `hsl(210, 50%, ${lightness}%)`;
+      }
+
+      // Create map
+      mapInstance = L.map(mapContainer, {
+        zoomControl: false,
+        attributionControl: false,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        touchZoom: false,
+      }).fitWorld().setView([35, 0], 1);
+
+      // Style function
+      function style(feature: any) {
+        const iso3 = feature.id;
+        const iso2 = iso3to2[iso3] || iso3;
+        const count = data.countries[iso2] || 0;
+        return {
+          fillColor: getColor(count),
+          weight: 0.5,
+          opacity: 1,
+          color: 'var(--bg)',
+          fillOpacity: 0.9,
+        };
+      }
+
+      // Hover handlers
+      function onEachFeature(feature: any, layer: any) {
+        const iso3 = feature.id;
+        const iso2 = iso3to2[iso3] || iso3;
+        const count = data.countries[iso2] || 0;
+        const name = feature.properties.name;
+
+        if (count > 0) {
+          layer.bindTooltip(`${name}: ${count} views`, {
+            sticky: true,
+            className: 'map-tooltip-leaflet',
+          });
         }
-      });
 
-      // Add hover events
-      const tooltip = document.getElementById('map-tooltip');
-      svg.querySelectorAll('path').forEach(path => {
-        path.addEventListener('mouseenter', (e) => {
-          const target = e.target as SVGPathElement;
-          const code = target.dataset.country || target.id;
-          const count = target.dataset.count;
-          const name = countryNames[code] || code;
-
-          if (tooltip && count) {
-            tooltip.textContent = `${name}: ${count} views`;
-            tooltip.style.opacity = '1';
-          }
+        layer.on({
+          mouseover: (e: any) => {
+            if (count > 0) {
+              e.target.setStyle({ fillOpacity: 0.7 });
+            }
+          },
+          mouseout: (e: any) => {
+            if (count > 0) {
+              e.target.setStyle({ fillOpacity: 0.9 });
+            }
+          },
         });
-        path.addEventListener('mouseleave', () => {
-          if (tooltip) tooltip.style.opacity = '0';
-        });
-      });
+      }
 
+      L.geoJSON(geoData, { style, onEachFeature }).addTo(mapInstance);
       mapContainer.classList.add('loaded');
     } catch (error) {
       console.debug('Failed to load map:', error);
@@ -490,52 +555,56 @@ import { themeConfig } from '@/config'
     margin-top: 2rem;
   }
 
+  .locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
   .map-container {
     position: relative;
     width: 100%;
-    margin-bottom: 1.5rem;
+    height: 380px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
   }
 
   .map-container.loaded {
     opacity: 1;
   }
 
-  .map-container svg {
+  /* Leaflet map overrides */
+  .map-container .leaflet-container {
+    background: var(--bg-secondary);
+    height: 100%;
     width: 100%;
-    height: auto;
   }
 
-  .map-container svg path {
-    fill: var(--border);
-    stroke: var(--bg);
-    stroke-width: 0.5;
-    transition: fill 0.2s ease, opacity 0.2s ease;
-    cursor: default;
-  }
-
-  .map-container svg path.has-data {
-    cursor: pointer;
-  }
-
-  .map-container svg path.has-data:hover {
-    opacity: 0.8;
-  }
-
-  .map-tooltip {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  .map-tooltip-leaflet {
     background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     color: var(--text-secondary);
-    opacity: 0;
-    transition: opacity 0.15s;
-    pointer-events: none;
-    border: 1px solid var(--border);
-    border-radius: 2px;
+    box-shadow: none;
+  }
+
+  .map-tooltip-leaflet::before {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
+    .map-container {
+      height: 200px;
+    }
   }
 
   .locations-list {

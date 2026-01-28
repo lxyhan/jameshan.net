@@ -6,28 +6,6 @@ export const prerender = false;
 // Cache for IP lookups to avoid repeated API calls
 const ipCache = new Map<string, string>();
 
-async function getCountryFromIP(ip: string): Promise<string | null> {
-  // Check cache first
-  if (ipCache.has(ip)) {
-    return ipCache.get(ip) || null;
-  }
-
-  try {
-    // Use ip-api.com (free, no key needed, 45 req/min)
-    const response = await fetch(`http://ip-api.com/json/${ip}?fields=countryCode`);
-    if (response.ok) {
-      const data = await response.json();
-      if (data.countryCode) {
-        ipCache.set(ip, data.countryCode);
-        return data.countryCode;
-      }
-    }
-  } catch {
-    // Silent fail
-  }
-  return null;
-}
-
 async function batchGetCountries(ips: string[]): Promise<Map<string, string>> {
   const results = new Map<string, string>();
   const uncachedIps: string[] = [];
