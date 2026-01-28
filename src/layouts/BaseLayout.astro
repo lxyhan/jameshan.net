@@ -46,22 +46,7 @@ const posts = await getSortedFilteredPosts()
         showContent();
       }
 
-      // Handle View Transitions - only fade content area, not sidebar
-      document.addEventListener('astro:before-preparation', () => {
-        const content = document.querySelector('.content-area');
-        if (content) {
-          content.style.transition = 'opacity 0.1s ease-out';
-          content.style.opacity = '0';
-        }
-      });
-      document.addEventListener('astro:after-swap', () => {
-        const content = document.querySelector('.content-area');
-        if (content) {
-          content.style.transition = 'opacity 0.1s ease-out';
-          content.style.opacity = '1';
-        }
-      });
-    </script>
+          </script>
 
     <div class="site-grid">
       <div class="layout-wrapper">
