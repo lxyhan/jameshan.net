@@ -6,6 +6,7 @@ import { themeConfig } from '@/config'
 <IndexLayout
   title={`Analytics · ${themeConfig.site.title}`}
   description="Site analytics and statistics"
+  hideHeader={true}
 >
   <div class="analytics-page">
     <h1>Analytics</h1>
@@ -225,14 +226,13 @@ import { themeConfig } from '@/config'
   .bar {
     flex: 1;
     background: var(--text-primary);
-    opacity: 0.7;
     min-width: 2px;
     transition: opacity 0.15s;
     cursor: pointer;
   }
 
   .bar:hover {
-    opacity: 1;
+    opacity: 0.7;
   }
 
   .histogram-labels {
