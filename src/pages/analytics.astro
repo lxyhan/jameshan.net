@@ -10,135 +10,88 @@ import { themeConfig } from '@/config'
   <div class="analytics-page">
     <h1>Analytics</h1>
 
-    <div class="stats-section">
-      <h2>humans</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-label">today:</span>
-          <span class="stat-value" id="human-today">...</span>
-          <span class="stat-label">(<span id="human-today-unique">...</span> unique)</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">all time:</span>
-          <span class="stat-value" id="human-all">...</span>
-          <span class="stat-label">(<span id="human-all-unique">...</span> unique)</span>
-        </div>
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-value" id="today-views">...</span>
+        <span class="stat-label">views today</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="all-views">...</span>
+        <span class="stat-label">views all time</span>
       </div>
     </div>
 
-    <div class="stats-section">
-      <h2>bots</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-label">today:</span>
-          <span class="stat-value" id="bot-today">...</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">all time:</span>
-          <span class="stat-value" id="bot-all">...</span>
-        </div>
+    <div class="histogram-section">
+      <h2>Last 60 days</h2>
+      <div class="histogram" id="histogram">
+        <div class="loading">loading...</div>
       </div>
-    </div>
-
-    <div class="stats-section">
-      <h2>total</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-label">today:</span>
-          <span class="stat-value" id="today-views">...</span>
-          <span class="stat-label">(<span id="today-unique">...</span> unique)</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">all time:</span>
-          <span class="stat-value" id="all-views">...</span>
-          <span class="stat-label">(<span id="all-unique">...</span> unique)</span>
-        </div>
+      <div class="histogram-labels">
+        <span id="start-date">...</span>
+        <span id="end-date">...</span>
       </div>
-    </div>
-
-    <h2>top pages</h2>
-    <div class="top-pages" id="top-pages">
-      <p class="loading">loading...</p>
     </div>
   </div>
 </IndexLayout>
 
 <script>
-  async function loadAnalytics() {
+  async function loadStats() {
     try {
       const response = await fetch('/api/analytics');
       if (response.ok) {
         const data = await response.json();
-
-        // Human stats
-        const humanTodayEl = document.getElementById('human-today');
-        const humanTodayUniqueEl = document.getElementById('human-today-unique');
-        const humanAllEl = document.getElementById('human-all');
-        const humanAllUniqueEl = document.getElementById('human-all-unique');
-
-        if (humanTodayEl) humanTodayEl.textContent = data.humanToday?.toLocaleString() || '0';
-        if (humanTodayUniqueEl) humanTodayUniqueEl.textContent = data.uniqueHumanToday?.toLocaleString() || '0';
-        if (humanAllEl) humanAllEl.textContent = data.humanAllTime?.toLocaleString() || '0';
-        if (humanAllUniqueEl) humanAllUniqueEl.textContent = data.uniqueHumanAllTime?.toLocaleString() || '0';
-
-        // Bot stats
-        const botTodayEl = document.getElementById('bot-today');
-        const botAllEl = document.getElementById('bot-all');
-
-        if (botTodayEl) botTodayEl.textContent = data.botToday?.toLocaleString() || '0';
-        if (botAllEl) botAllEl.textContent = data.botAllTime?.toLocaleString() || '0';
-
-        // Total stats
         const todayEl = document.getElementById('today-views');
-        const todayUniqueEl = document.getElementById('today-unique');
         const allEl = document.getElementById('all-views');
-        const allUniqueEl = document.getElementById('all-unique');
-
-        if (todayEl) todayEl.textContent = data.today?.toLocaleString() || '0';
-        if (todayUniqueEl) todayUniqueEl.textContent = data.uniqueToday?.toLocaleString() || '0';
-        if (allEl) allEl.textContent = data.allTime?.toLocaleString() || '0';
-        if (allUniqueEl) allUniqueEl.textContent = data.uniqueAllTime?.toLocaleString() || '0';
+        if (todayEl) todayEl.textContent = data.humanToday?.toLocaleString() || '0';
+        if (allEl) allEl.textContent = data.humanAllTime?.toLocaleString() || '0';
       }
     } catch (error) {
-      console.debug('Failed to load analytics:', error);
+      console.debug('Failed to load stats:', error);
     }
   }
 
-  async function loadTopPages() {
+  async function loadHistogram() {
     try {
-      const response = await fetch('/api/analytics/top');
-      const container = document.getElementById('top-pages');
-
-      if (response.ok && container) {
+      const response = await fetch('/api/analytics/daily?days=60');
+      if (response.ok) {
         const data = await response.json();
+        const container = document.getElementById('histogram');
+        const startLabel = document.getElementById('start-date');
+        const endLabel = document.getElementById('end-date');
 
-        if (data.pages && data.pages.length > 0) {
-          container.innerHTML = data.pages.map((page: { path: string; views: number; unique: number }, i: number) => `
-            <div class="page-row">
-              <span class="page-rank">${i + 1}</span>
-              <a href="${page.path}" class="page-path">${page.path}</a>
-              <span class="page-views">${page.views} views</span>
-              <span class="page-unique">${page.unique} unique</span>
-            </div>
-          `).join('');
-        } else {
-          container.innerHTML = '<p class="no-data">No page data yet</p>';
+        if (container && data.days && data.days.length > 0) {
+          const maxViews = Math.max(...data.days.map((d: any) => d.views), 1);
+
+          container.innerHTML = data.days.map((day: any) => {
+            const height = Math.max((day.views / maxViews) * 100, 2);
+            const date = new Date(day.date + 'T00:00:00');
+            const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return `<div class="bar" style="height: ${height}%" title="${formatted}: ${day.views} views"></div>`;
+          }).join('');
+
+          if (startLabel && data.days[0]) {
+            const d = new Date(data.days[0].date + 'T00:00:00');
+            startLabel.textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          }
+          if (endLabel && data.days[data.days.length - 1]) {
+            const d = new Date(data.days[data.days.length - 1].date + 'T00:00:00');
+            endLabel.textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          }
         }
       }
     } catch (error) {
-      const container = document.getElementById('top-pages');
-      if (container) container.innerHTML = '<p class="no-data">Failed to load</p>';
+      console.debug('Failed to load histogram:', error);
+      const container = document.getElementById('histogram');
+      if (container) container.innerHTML = '<div class="error">Failed to load</div>';
     }
   }
 
-  // Load on initial page load
-  loadAnalytics();
-  loadTopPages();
+  loadStats();
+  loadHistogram();
 
-  // Re-load on View Transitions navigation
   document.addEventListener('astro:page-load', () => {
-    loadAnalytics();
-    loadTopPages();
+    loadStats();
+    loadHistogram();
   });
 </script>
 
@@ -149,35 +102,32 @@ import { themeConfig } from '@/config'
 
   h1 {
     font-size: 1rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     font-weight: var(--font-weight-bold);
   }
 
   h2 {
     font-size: 0.85rem;
-    margin: 1.25rem 0 0.5rem;
+    margin-bottom: 0.5rem;
     color: var(--text-secondary);
+    font-weight: normal;
   }
 
-  .stats-section h2 {
-    margin-top: 0;
-    margin-bottom: 0.3rem;
-  }
-
-  .stats-section {
-    margin-bottom: 0.75rem;
-  }
-
-  .stats-grid {
+  .stats-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
   }
 
-  .stat-card {
+  .stat {
     display: flex;
-    align-items: baseline;
-    gap: 0.35rem;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
   }
 
   .stat-label {
@@ -185,55 +135,47 @@ import { themeConfig } from '@/config'
     color: var(--text-secondary);
   }
 
-  .stat-value {
-    font-size: 0.9rem;
-    font-weight: var(--font-weight-bold);
+  .histogram-section {
+    margin-top: 1.5rem;
   }
 
-  .stat-sub {
-    display: none;
-  }
-
-  .top-pages {
+  .histogram {
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    height: 120px;
+    padding: 0.5rem 0;
   }
 
-  .page-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.2rem 0;
-    font-size: 0.85rem;
-  }
-
-  .page-rank {
-    color: var(--text-tertiary);
-    font-size: 0.75rem;
-    width: 1.25rem;
-  }
-
-  .page-path {
+  .bar {
     flex: 1;
-    color: var(--text-primary);
-    text-decoration: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    background: var(--text-primary);
+    opacity: 0.7;
+    min-width: 2px;
+    transition: opacity 0.15s;
+    cursor: pointer;
   }
 
-  .page-path:hover {
-    text-decoration: underline;
+  .bar:hover {
+    opacity: 1;
   }
 
-  .page-views, .page-unique {
+  .histogram-labels {
+    display: flex;
+    justify-content: space-between;
     font-size: 0.75rem;
     color: var(--text-secondary);
-    white-space: nowrap;
+    margin-top: 0.25rem;
   }
 
-  .loading, .no-data {
-    color: var(--text-secondary);
+  .loading, .error {
     font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .histogram {
+      height: 80px;
+    }
   }
 </style>
