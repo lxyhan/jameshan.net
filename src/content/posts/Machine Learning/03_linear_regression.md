@@ -468,3 +468,262 @@ $
 4. **Standard convention** — Matches most ML libraries
 
 The cost: each data point and weight vector increases in dimension by 1 (from $D$ to $D+1$).
+
+---
+
+## Worked Example: Single-Feature Linear Regression
+
+**Problem:** Consider the linear regression model with one feature:
+
+$
+y = wx + b
+$
+
+The cost function is:
+
+$
+\mathcal{E}(w, b) = \frac{1}{2N} \sum_{i=1}^{N} ((wx^{(i)} + b) - t^{(i)})^2
+$
+
+**(a) Derive the partial derivatives $\frac{\partial \mathcal{E}}{\partial w}$ and $\frac{\partial \mathcal{E}}{\partial b}$.**
+
+**(b) Solve for $w$ and $b$ that minimize the cost function.**
+
+---
+
+### Solution
+
+#### Part (a): Deriving the Gradients
+
+For each training example, the residual is:
+
+$
+r^{(i)} = wx^{(i)} + b - t^{(i)}
+$
+
+**Derivative with respect to $w$:**
+
+Using the chain rule on $(r^{(i)})^2$:
+
+$
+\frac{\partial}{\partial w} \left[ \frac{1}{2}(r^{(i)})^2 \right] = r^{(i)} \cdot \frac{\partial r^{(i)}}{\partial w} = r^{(i)} \cdot x^{(i)}
+$
+
+Summing over all examples and dividing by $N$:
+
+$
+\frac{\partial \mathcal{E}}{\partial w} = \frac{1}{N} \sum_{i=1}^{N} (wx^{(i)} + b - t^{(i)}) \cdot x^{(i)}
+$
+
+**Derivative with respect to $b$:**
+
+Similarly:
+
+$
+\frac{\partial}{\partial b} \left[ \frac{1}{2}(r^{(i)})^2 \right] = r^{(i)} \cdot \frac{\partial r^{(i)}}{\partial b} = r^{(i)} \cdot 1
+$
+
+Summing over all examples:
+
+$
+\frac{\partial \mathcal{E}}{\partial b} = \frac{1}{N} \sum_{i=1}^{N} (wx^{(i)} + b - t^{(i)})
+$
+
+---
+
+#### Part (b): Solving for Optimal Parameters
+
+Set both partial derivatives to zero.
+
+**From $\frac{\partial \mathcal{E}}{\partial b} = 0$:**
+
+$
+\frac{1}{N} \sum_{i=1}^{N} (wx^{(i)} + b - t^{(i)}) = 0
+$
+
+Multiply both sides by $N$:
+
+$
+\sum_{i=1}^{N} wx^{(i)} + \sum_{i=1}^{N} b - \sum_{i=1}^{N} t^{(i)} = 0
+$
+
+Factor out constants:
+
+$
+w \sum_{i=1}^{N} x^{(i)} + Nb - \sum_{i=1}^{N} t^{(i)} = 0
+$
+
+Note that $\sum_{i=1}^{N} x^{(i)} = N\bar{x}$ and $\sum_{i=1}^{N} t^{(i)} = N\bar{t}$ where $\bar{x}$ and $\bar{t}$ are the means. Dividing by $N$:
+
+$
+w\bar{x} + b = \bar{t}
+$
+
+Solving for $b$:
+
+$
+\boxed{b = \bar{t} - w\bar{x}}
+$
+
+**Geometric interpretation:** The regression line passes through the centroid $(\bar{x}, \bar{t})$ of the data.
+
+---
+
+**From $\frac{\partial \mathcal{E}}{\partial w} = 0$:**
+
+$
+\sum_{i=1}^{N} (wx^{(i)} + b - t^{(i)}) \cdot x^{(i)} = 0
+$
+
+Expand:
+
+$
+\sum_{i=1}^{N} wx^{(i)} \cdot x^{(i)} + \sum_{i=1}^{N} b \cdot x^{(i)} - \sum_{i=1}^{N} t^{(i)} \cdot x^{(i)} = 0
+$
+
+$
+w \sum_{i=1}^{N} (x^{(i)})^2 + b \sum_{i=1}^{N} x^{(i)} - \sum_{i=1}^{N} t^{(i)} x^{(i)} = 0
+$
+
+Substitute $b = \bar{t} - w\bar{x}$:
+
+$
+w \sum_{i=1}^{N} (x^{(i)})^2 + (\bar{t} - w\bar{x}) \sum_{i=1}^{N} x^{(i)} - \sum_{i=1}^{N} t^{(i)} x^{(i)} = 0
+$
+
+Since $\sum_{i=1}^{N} x^{(i)} = N\bar{x}$:
+
+$
+w \sum_{i=1}^{N} (x^{(i)})^2 + \bar{t} \cdot N\bar{x} - w\bar{x} \cdot N\bar{x} - \sum_{i=1}^{N} t^{(i)} x^{(i)} = 0
+$
+
+Group terms with $w$:
+
+$
+w \left[ \sum_{i=1}^{N} (x^{(i)})^2 - N\bar{x}^2 \right] = \sum_{i=1}^{N} t^{(i)} x^{(i)} - N\bar{t}\bar{x}
+$
+
+Therefore:
+
+$
+\boxed{w = \frac{\sum_{i=1}^{N} t^{(i)} x^{(i)} - N\bar{t}\bar{x}}{\sum_{i=1}^{N} (x^{(i)})^2 - N\bar{x}^2}}
+$
+
+**Alternative form using covariance and variance:**
+
+The numerator measures how $x$ and $t$ co-vary:
+
+$
+\sum_{i=1}^{N} (t^{(i)} - \bar{t})(x^{(i)} - \bar{x}) = \sum_{i=1}^{N} t^{(i)} x^{(i)} - N\bar{t}\bar{x}
+$
+
+The denominator is the variance of $x$ times $N$:
+
+$
+N \cdot \text{Var}(x) = \sum_{i=1}^{N} (x^{(i)} - \bar{x})^2 = \sum_{i=1}^{N} (x^{(i)})^2 - N\bar{x}^2
+$
+
+So:
+
+$
+w = \frac{\text{Cov}(x, t)}{\text{Var}(x)}
+$
+
+This is the classic formula for the slope of the best-fit line.
+
+---
+
+### Problem 8: Step-by-Step Gradient Derivation
+
+**Question:** Derive the gradient $\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w})$ for the cost function $\mathcal{E}(\mathbf{w}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{t}\|_2^2$ using the chain rule.
+
+**Solution:**
+
+We'll work through this systematically using intermediate variables and the chain rule.
+
+**(a) Define the prediction vector:**
+
+$
+\mathbf{y} = \mathbf{X}\mathbf{w}
+$
+
+Taking the derivative:
+
+$
+\frac{\partial \mathbf{y}}{\partial \mathbf{w}} = \mathbf{X}
+$
+
+This makes sense dimensionally: $\mathbf{y}$ is $N \times 1$, $\mathbf{w}$ is $(D+1) \times 1$, so the Jacobian must be $N \times (D+1)$, which is exactly $\mathbf{X}$.
+
+**(b) Define the residual vector:**
+
+$
+\mathbf{r} = \mathbf{y} - \mathbf{t} = \mathbf{X}\mathbf{w} - \mathbf{t}
+$
+
+Since $\mathbf{t}$ is constant with respect to $\mathbf{w}$:
+
+$
+\frac{\partial \mathbf{r}}{\partial \mathbf{w}} = \frac{\partial \mathbf{y}}{\partial \mathbf{w}} = \mathbf{X}
+$
+
+**(c) Define the squared norm:**
+
+$
+s = \|\mathbf{r}\|_2^2 = \mathbf{r}^{\top} \mathbf{r} = \sum_{i=1}^{N} (r^{(i)})^2
+$
+
+This is a scalar. Taking the derivative with respect to the vector $\mathbf{r}$:
+
+$
+\frac{\partial s}{\partial \mathbf{r}} = 2\mathbf{r}^{\top}
+$
+
+**Explanation:** For each component $r_j$, we have $\frac{\partial s}{\partial r_j} = 2r_j$ (from the chain rule on $(r_j)^2$). Stacking these gives $2\mathbf{r}^{\top}$ (a row vector).
+
+**(d) Define the cost function:**
+
+$
+\mathcal{E}(\mathbf{w}) = \frac{1}{2N} s = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{t}\|_2^2
+$
+
+The derivative with respect to $s$:
+
+$
+\frac{\partial \mathcal{E}}{\partial s} = \frac{1}{2N}
+$
+
+**(e) Apply the chain rule:**
+
+Now we chain everything together:
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{\partial \mathcal{E}}{\partial s} \cdot \frac{\partial s}{\partial \mathbf{r}} \cdot \frac{\partial \mathbf{r}}{\partial \mathbf{w}}
+$
+
+Substituting:
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{2N} \cdot 2\mathbf{r}^{\top} \cdot \mathbf{X}
+$
+
+Simplifying:
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{r}^{\top} \mathbf{X}
+$
+
+**Wait—wrong shape!** This gives a row vector $(1 \times (D+1))$, but we need a column vector $((D+1) \times 1)$.
+
+**Correct form:** Take the transpose:
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^{\top} \mathbf{r} = \frac{1}{N} \mathbf{X}^{\top} (\mathbf{X}\mathbf{w} - \mathbf{t})
+$
+
+**Dimension check:**
+- $\mathbf{X}^{\top}$ is $(D+1) \times N$
+- $\mathbf{r} = (\mathbf{X}\mathbf{w} - \mathbf{t})$ is $N \times 1$
+- Product: $((D+1) \times N) \times (N \times 1) = (D+1) \times 1$ ✓
+
+**Key Insight:** The gradient must be a column vector to match the shape of $\mathbf{w}$ for gradient descent updates. The chain rule naturally gives us $\mathbf{r}^{\top} \mathbf{X}$, but we transpose the entire expression to get the conventional form $\mathbf{X}^{\top} \mathbf{r}$.
