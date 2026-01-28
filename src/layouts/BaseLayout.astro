@@ -35,18 +35,25 @@ const posts = await getSortedFilteredPosts()
         document.body.classList.add('fonts-loaded');
       }
 
-      if (document.fonts && document.fonts.ready) {
-        // Show content when fonts are ready, or after 500ms max
-        Promise.race([
-          document.fonts.ready,
-          new Promise(resolve => setTimeout(resolve, 500))
-        ]).then(showContent);
-      } else {
-        // Fallback for browsers without font loading API
-        showContent();
+      function initFontLoading() {
+        if (document.fonts && document.fonts.ready) {
+          // Show content when fonts are ready, or after 300ms max
+          Promise.race([
+            document.fonts.ready,
+            new Promise(resolve => setTimeout(resolve, 300))
+          ]).then(showContent);
+        } else {
+          // Fallback for browsers without font loading API
+          showContent();
+        }
       }
 
-          </script>
+      // Run on initial load
+      initFontLoading();
+
+      // Run after View Transitions swap
+      document.addEventListener('astro:after-swap', initFontLoading);
+    </script>
 
     <div class="site-grid">
       {fadeAnimation ? (
