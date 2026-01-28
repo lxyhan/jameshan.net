@@ -333,3 +333,138 @@ This is called the **normal equations** or **closed-form solution**.
 - **Regularization:** Prevent overfitting with L2 (ridge) or L1 (lasso) penalties
 - **Feature Engineering:** Polynomial features to capture nonlinearity
 - **Variants:** Ridge regression, lasso, elastic net
+
+---
+
+## Practice Problems
+
+### Problem 1: Nonlinear Relationships
+
+**Question:** True or False: Linear regression can only model linear relationships between input features and output.
+
+**Answer:** **False**. While the model is linear in the **weights**, we can capture nonlinear relationships through feature engineering. For example:
+- Adding polynomial features: $x_1, x_1^2, x_1^3$
+- Including interaction terms: $x_1 x_2$
+- Creating correlated features: $\sin(x_1), \log(x_2)$
+
+The key insight: the model $y = w_1 x_1 + w_2 x_1^2 + b$ is still **linear in the weights** $\mathbf{w}$, even though it represents a nonlinear (quadratic) relationship in the original feature $x_1$.
+
+### Problem 2: Alternative Cost Functions
+
+**Question:** True or False: We could use $L(y^{(i)}, t^{(i)}) = \frac{1}{(y^{(i)} - t^{(i)})^2}$ as a valid cost function.
+
+**Answer:** **False**. This cost function is problematic because:
+1. **Minimizing** $\frac{1}{\text{residual}^2}$ actually **maximizes** the residual (the denominator)
+2. As the error gets larger, the loss gets smaller — the opposite of what we want
+3. Division by zero when prediction is perfect
+
+A valid cost function should **decrease** as predictions improve, not increase.
+
+### Problem 3: Exponential Loss
+
+**Question:** True or False: We could use $L(y^{(i)}, t^{(i)}) = e^{(y^{(i)} - t^{(i)})^2}$ as a cost function.
+
+**Answer:** **True**. This is a valid cost function because:
+- It's always positive: $e^{(\cdot)^2} > 0$
+- It increases with larger errors
+- It's differentiable everywhere
+- Minimum occurs at zero error
+
+**However**, this loss is **very aggressive** — it exponentially penalizes outliers, making the model extremely sensitive to large residuals. In practice, squared error is preferred for its mathematical convenience and balanced behavior.
+
+### Problem 4: Pros and Cons of Linear Regression
+
+**Question:** List key advantages and disadvantages of linear regression.
+
+**Answer:**
+
+**Advantages:**
+1. **Interpretability** — Weights directly show feature importance and direction of influence
+2. **Computational efficiency** — Fast to train on moderate datasets
+3. **Closed-form solution** — Direct solution via normal equations (no iteration needed)
+4. **Good baseline** — Establishes performance floor for complex models
+5. **Well-understood theory** — Statistical properties thoroughly studied
+
+**Disadvantages:**
+1. **Assumes linearity** — Poor fit for inherently nonlinear relationships (without feature engineering)
+2. **Sensitive to outliers** — Squared error heavily penalizes large residuals
+3. **Multicollinearity** — Performance degrades when features are highly correlated
+4. **Requires numerical features** — Categorical variables need encoding
+5. **High bias** — May underfit complex data (simple model hypothesis class)
+6. **Computational cost of direct solution** — $O(D^3)$ for matrix inversion when $D$ is large
+
+### Problem 5: Number of Parameters
+
+**Question:** True or False: The number of parameters in a linear regression model equals the number of training examples $N$.
+
+**Answer:** **False**. The number of parameters equals $D+1$ (or just $D$ if we count the bias separately):
+- $D$ weights for the features: $w_1, w_2, \ldots, w_D$
+- $1$ bias term: $b$ (or $w_0$ when absorbed)
+
+The number of training examples $N$ determines how much data we have to estimate these parameters, but doesn't affect how many parameters exist. In fact, we typically want $N \gg D$ to avoid overfitting.
+
+### Problem 6: Gradient Vector Shape
+
+**Question:** Makayla computed the gradient as:
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = (\mathbf{X}\mathbf{w} - \mathbf{t})^{\top} \mathbf{X}
+$
+
+Is this correct? What is the shape of her result?
+
+**Answer:** **Incorrect**. Makayla's result has the wrong shape:
+
+**Her computation:**
+- $(\mathbf{X}\mathbf{w} - \mathbf{t})^{\top}$ has shape $1 \times N$ (row vector)
+- $\mathbf{X}$ has shape $N \times (D+1)$
+- Product: $(1 \times N) \times (N \times (D+1)) = 1 \times (D+1)$ — a **row vector**
+
+**Problem:** The gradient must be a **column vector** with shape $(D+1) \times 1$ to match the shape of $\mathbf{w}$ for gradient descent updates: $\mathbf{w} \leftarrow \mathbf{w} - \alpha \nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w})$.
+
+**Correct gradient:**
+
+$
+\nabla_{\mathbf{w}} \mathcal{E}(\mathbf{w}) = \frac{1}{N} \mathbf{X}^{\top} (\mathbf{X}\mathbf{w} - \mathbf{t})
+$
+
+This gives:
+- $\mathbf{X}^{\top}$ has shape $(D+1) \times N$
+- $(\mathbf{X}\mathbf{w} - \mathbf{t})$ has shape $N \times 1$ (column vector)
+- Product: $((D+1) \times N) \times (N \times 1) = (D+1) \times 1$ — **correct shape**
+
+### Problem 7: Absorbing the Bias
+
+**Question:** Why do we absorb the bias term $b$ into the weight vector? Show how this simplifies the model equation.
+
+**Answer:**
+
+**Original formulation:**
+
+$
+y^{(i)} = w_1 x_1^{(i)} + w_2 x_2^{(i)} + \cdots + w_D x_D^{(i)} + b
+$
+
+This requires treating $b$ separately in all computations.
+
+**After absorbing bias:**
+
+Define augmented vectors with a dummy feature $x_0^{(i)} = 1$:
+
+$
+\mathbf{w} = \begin{bmatrix} b \\ w_1 \\ w_2 \\ \vdots \\ w_D \end{bmatrix}, \quad \mathbf{x}^{(i)} = \begin{bmatrix} 1 \\ x_1^{(i)} \\ x_2^{(i)} \\ \vdots \\ x_D^{(i)} \end{bmatrix}
+$
+
+Now the model becomes simply:
+
+$
+y^{(i)} = \mathbf{w}^{\top} \mathbf{x}^{(i)} = b \cdot 1 + w_1 x_1^{(i)} + \cdots + w_D x_D^{(i)}
+$
+
+**Benefits:**
+1. **Unified notation** — No special case for bias in equations
+2. **Simpler code** — Vectorized operations handle bias automatically
+3. **Cleaner gradient** — Single formula for all parameters
+4. **Standard convention** — Matches most ML libraries
+
+The cost: each data point and weight vector increases in dimension by 1 (from $D$ to $D+1$).
