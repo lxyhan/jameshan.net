@@ -45,7 +45,7 @@ export const GET: APIRoute = async ({ request }) => {
       while (hasMore) {
         let query = supabase
           .from('page_views')
-          .select('ip_address, session_id, fingerprint, is_bot, page_path')
+          .select('ip_address, session_id, fingerprint, is_bot, page_path, viewed_at')
           .order('viewed_at', { ascending: false })
           .range(offset, offset + batchSize - 1);
 
