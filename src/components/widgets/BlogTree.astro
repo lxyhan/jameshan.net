@@ -201,8 +201,8 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
       function showAnalytics(data: any) {
         const statsElement = document.getElementById('analytics-stats');
-        if (statsElement && data?.today !== undefined) {
-          statsElement.textContent = `${data.today} views today`;
+        if (statsElement && data?.humanToday !== undefined) {
+          statsElement.textContent = `${data.humanToday} views today`;
           statsElement.classList.add('loaded');
         }
       }
