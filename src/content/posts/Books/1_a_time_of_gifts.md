@@ -1,5 +1,5 @@
 ---
-title: '1: A Time of Gifts'
+title: 'A Time of Gifts (Patrick Leigh Fermor, 1977)'
 pubDate: '2025-01-25'
 ---
 

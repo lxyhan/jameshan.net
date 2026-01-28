@@ -3,7 +3,12 @@ title: '0: Watchlist'
 pubDate: '2025-01-26'
 ---
 
-## Movies
+## I've Written About
+
+- [Andrei Rublev (Andrei Tarkovsky, 1966)](/movies/1_andrei_rublev)
+- [In the Heat of the Sun (Jiang Wen, 1994)](/movies/2_in_the_heat_of_the_sun)
+
+## Movies I've Watched
 
 1. **Shawshank Redemption** (Frank Darabont, 1994) — First watched this as a kid on my dad's old hard drive. A slow burn that earns its payoff. Hope as something you choose.
 2. **Blind Shaft** (Li Yang, 2003) — Set in Sanmenxia, not far from where I was born. Brutal portrait of the coal mines and the people ground down by them.
@@ -109,7 +114,7 @@ pubDate: '2025-01-26'
 102. **The Warlords** (Peter Chan, 2007) — Blood brothers in the Taiping Rebellion. Loyalty betrayed, ambition rewarded with death.
 103. **Youth** (Feng Xiaogang, 2017) — A military arts troupe through the Cultural Revolution. Beauty and waste.
 
-## Series
+## Series I've Watched
 
 1. **Suits** (2011-2019) — Legal fantasy where everyone talks fast and looks good. Comfort TV.
 2. **Babylon Berlin** (2017-) — Weimar Republic noir. Decadence before the fall.
