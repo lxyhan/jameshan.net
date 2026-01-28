@@ -47,6 +47,13 @@ import { themeConfig } from '@/config'
         <span id="end-date">...</span>
       </div>
     </div>
+
+    <div class="locations-section">
+      <h2>Visitor locations</h2>
+      <div class="locations-list" id="locations-list">
+        <span class="loading-text">Loading...</span>
+      </div>
+    </div>
   </div>
 </IndexLayout>
 
@@ -174,12 +181,78 @@ import { themeConfig } from '@/config'
     });
   }
 
+  // Country code to name mapping
+  const countryNames: Record<string, string> = {
+    US: 'United States', CA: 'Canada', GB: 'United Kingdom', DE: 'Germany',
+    FR: 'France', JP: 'Japan', AU: 'Australia', CN: 'China', IN: 'India',
+    BR: 'Brazil', MX: 'Mexico', KR: 'South Korea', IT: 'Italy', ES: 'Spain',
+    NL: 'Netherlands', SE: 'Sweden', NO: 'Norway', DK: 'Denmark', FI: 'Finland',
+    PL: 'Poland', RU: 'Russia', UA: 'Ukraine', SG: 'Singapore', HK: 'Hong Kong',
+    TW: 'Taiwan', NZ: 'New Zealand', IE: 'Ireland', CH: 'Switzerland', AT: 'Austria',
+    BE: 'Belgium', PT: 'Portugal', CZ: 'Czech Republic', RO: 'Romania', HU: 'Hungary',
+    GR: 'Greece', IL: 'Israel', AE: 'UAE', SA: 'Saudi Arabia', ZA: 'South Africa',
+    AR: 'Argentina', CL: 'Chile', CO: 'Colombia', PH: 'Philippines', MY: 'Malaysia',
+    TH: 'Thailand', VN: 'Vietnam', ID: 'Indonesia', PK: 'Pakistan', BD: 'Bangladesh',
+    EG: 'Egypt', NG: 'Nigeria', KE: 'Kenya', TR: 'Turkey',
+  };
+
+  function showLocations(data: { countries: Record<string, number>, total: number }) {
+    const container = document.getElementById('locations-list');
+    if (!container) return;
+
+    const entries = Object.entries(data.countries);
+    if (entries.length === 0) {
+      container.innerHTML = '<span class="no-data">No location data yet</span>';
+      return;
+    }
+
+    container.innerHTML = entries
+      .slice(0, 15) // Show top 15 countries
+      .map(([code, count]) => {
+        const name = countryNames[code] || code;
+        const percent = ((count / data.total) * 100).toFixed(1);
+        return `<div class="location-item">
+          <span class="country-name">${name}</span>
+          <span class="country-count">${count} (${percent}%)</span>
+        </div>`;
+      })
+      .join('');
+
+    container.classList.add('loaded');
+  }
+
+  async function loadLocations() {
+    const cacheKey = 'analytics_locations_cache';
+
+    // Show cached data immediately
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      try {
+        showLocations(JSON.parse(cached));
+      } catch { /* ignore parse errors */ }
+    }
+
+    // Fetch fresh data
+    try {
+      const response = await fetch('/api/analytics/locations');
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem(cacheKey, JSON.stringify(data));
+        showLocations(data);
+      }
+    } catch (error) {
+      console.debug('Failed to load locations:', error);
+    }
+  }
+
   loadStats();
   loadHistogram(60);
+  loadLocations();
 
   document.addEventListener('astro:page-load', () => {
     loadStats();
     loadHistogram();
+    loadLocations();
   });
 </script>
 
@@ -352,5 +425,47 @@ import { themeConfig } from '@/config'
     .y-axis {
       height: 80px;
     }
+  }
+
+  .locations-section {
+    margin-top: 2rem;
+  }
+
+  .locations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .locations-list.loaded {
+    opacity: 1;
+  }
+
+  .loading-text, .no-data {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .location-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .location-item:last-child {
+    border-bottom: none;
+  }
+
+  .country-name {
+    color: var(--text-primary);
+  }
+
+  .country-count {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
   }
 </style>
