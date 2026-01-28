@@ -69,13 +69,35 @@ export const GET: APIRoute = async ({ request }) => {
       return allData;
     };
 
-    const allData = await fetchAllData();
+    const allDataRaw = await fetchAllData();
+
+    // Fallback filter for old data: remove views within 2.5 min of previous view (same IP + page)
+    const filterSessionDupes = (data: any[]) => {
+      const sorted = [...data].sort((a, b) => new Date(a.viewed_at).getTime() - new Date(b.viewed_at).getTime());
+      const lastView = new Map<string, number>(); // "ip|path" -> timestamp
+      const cooldownMs = 2.5 * 60 * 1000;
+
+      return sorted.filter(v => {
+        const key = `${v.ip_address}|${v.page_path}`;
+        const viewTime = new Date(v.viewed_at).getTime();
+        const last = lastView.get(key);
+
+        if (!last || viewTime - last >= cooldownMs) {
+          lastView.set(key, viewTime);
+          return true;
+        }
+        return false;
+      });
+    };
+
+    const allData = filterSessionDupes(allDataRaw);
+    const filteredTodayData = filterSessionDupes(todayData || []);
 
     // Separate bots and humans
     const humanData = allData.filter(d => !d.is_bot);
     const botData = allData.filter(d => d.is_bot);
-    const humanTodayData = todayData?.filter(d => !d.is_bot) || [];
-    const botTodayData = todayData?.filter(d => d.is_bot) || [];
+    const humanTodayData = filteredTodayData.filter(d => !d.is_bot);
+    const botTodayData = filteredTodayData.filter(d => d.is_bot);
 
     // Count unique by IP > fingerprint > session_id
     // Improved to handle multiple identifiers per visitor
@@ -113,12 +135,12 @@ export const GET: APIRoute = async ({ request }) => {
     };
 
     const stats = {
-      // Total views
-      today: todayData?.length || 0,
+      // Total views (after session-based deduplication)
+      today: filteredTodayData.length,
       allTime: allData.length,
 
       // Unique visitors
-      uniqueToday: getUniqueCount(todayData || []),
+      uniqueToday: getUniqueCount(filteredTodayData),
       uniqueAllTime: getUniqueCount(allData),
 
       // Human vs Bot breakdown
