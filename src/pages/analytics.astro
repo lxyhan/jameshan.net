@@ -22,9 +22,18 @@ import { themeConfig } from '@/config'
     </div>
 
     <div class="histogram-section">
-      <h2>Last 60 days</h2>
-      <div class="histogram" id="histogram">
-        <div class="loading">loading...</div>
+      <div class="histogram-header">
+        <h2>Last <select id="days-select">
+          <option value="7">7</option>
+          <option value="30">30</option>
+          <option value="60" selected>60</option>
+        </select> days</h2>
+      </div>
+      <div class="histogram-container">
+        <div class="histogram" id="histogram">
+          <div class="loading">loading...</div>
+        </div>
+        <div class="tooltip" id="tooltip"></div>
       </div>
       <div class="histogram-labels">
         <span id="start-date">...</span>
@@ -50,24 +59,40 @@ import { themeConfig } from '@/config'
     }
   }
 
-  async function loadHistogram() {
+  async function loadHistogram(days = 60) {
     try {
-      const response = await fetch('/api/analytics/daily?days=60');
+      const response = await fetch(`/api/analytics/daily?days=${days}`);
       if (response.ok) {
         const data = await response.json();
         const container = document.getElementById('histogram');
         const startLabel = document.getElementById('start-date');
         const endLabel = document.getElementById('end-date');
+        const tooltip = document.getElementById('tooltip');
 
         if (container && data.days && data.days.length > 0) {
           const maxViews = Math.max(...data.days.map((d: any) => d.views), 1);
 
-          container.innerHTML = data.days.map((day: any) => {
+          container.innerHTML = data.days.map((day: any, i: number) => {
             const height = Math.max((day.views / maxViews) * 100, 2);
-            const date = new Date(day.date + 'T00:00:00');
-            const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            return `<div class="bar" style="height: ${height}%" title="${formatted}: ${day.views} views"></div>`;
+            return `<div class="bar" style="height: ${height}%" data-date="${day.date}" data-views="${day.views}"></div>`;
           }).join('');
+
+          // Add hover listeners
+          container.querySelectorAll('.bar').forEach(bar => {
+            bar.addEventListener('mouseenter', (e) => {
+              const target = e.target as HTMLElement;
+              const date = new Date(target.dataset.date + 'T00:00:00');
+              const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+              const views = target.dataset.views;
+              if (tooltip) {
+                tooltip.textContent = `${formatted}: ${views}`;
+                tooltip.style.opacity = '1';
+              }
+            });
+            bar.addEventListener('mouseleave', () => {
+              if (tooltip) tooltip.style.opacity = '0';
+            });
+          });
 
           if (startLabel && data.days[0]) {
             const d = new Date(data.days[0].date + 'T00:00:00');
@@ -86,8 +111,16 @@ import { themeConfig } from '@/config'
     }
   }
 
+  // Dropdown handler
+  const daysSelect = document.getElementById('days-select') as HTMLSelectElement;
+  if (daysSelect) {
+    daysSelect.addEventListener('change', () => {
+      loadHistogram(parseInt(daysSelect.value, 10));
+    });
+  }
+
   loadStats();
-  loadHistogram();
+  loadHistogram(60);
 
   document.addEventListener('astro:page-load', () => {
     loadStats();
@@ -139,12 +172,54 @@ import { themeConfig } from '@/config'
     margin-top: 1.5rem;
   }
 
+  .histogram-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .histogram-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  #days-select {
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0 0.25rem;
+  }
+
+  #days-select:focus {
+    outline: none;
+    border-bottom-color: var(--text-primary);
+  }
+
+  .histogram-container {
+    position: relative;
+  }
+
   .histogram {
     display: flex;
     align-items: flex-end;
     gap: 2px;
     height: 120px;
     padding: 0.5rem 0;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
   }
 
   .bar {
