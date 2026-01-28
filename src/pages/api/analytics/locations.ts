@@ -131,17 +131,21 @@ export const GET: APIRoute = async () => {
     };
 
     const allIps = await fetchAllIps();
+    const totalViews = allIps.length;
 
-    // Get unique IPs
+    // Get unique IPs for lookup
     const uniqueIps = [...new Set(allIps)];
 
-    // Get countries for all IPs
+    // Get countries for unique IPs
     const ipCountries = await batchGetCountries(uniqueIps);
 
-    // Count by country
+    // Count VIEWS per country (not unique IPs)
     const countryCounts: Record<string, number> = {};
-    for (const country of ipCountries.values()) {
-      countryCounts[country] = (countryCounts[country] || 0) + 1;
+    for (const ip of allIps) {
+      const country = ipCountries.get(ip);
+      if (country) {
+        countryCounts[country] = (countryCounts[country] || 0) + 1;
+      }
     }
 
     // Sort by count descending
@@ -149,17 +153,14 @@ export const GET: APIRoute = async () => {
       .sort((a, b) => b[1] - a[1])
       .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 
-    // Debug: sample some IPs to see what they look like
-    const sampleIps = uniqueIps.slice(0, 5);
+    // Calculate resolved views
+    const resolvedViews = Object.values(countryCounts).reduce((a, b) => a + b, 0);
 
     return new Response(JSON.stringify({
       countries: sortedCountries,
-      total: uniqueIps.length,
-      resolved: ipCountries.size,
-      debug: {
-        sampleIps,
-        failedCount: uniqueIps.length - ipCountries.size,
-      }
+      total: totalViews,
+      resolved: resolvedViews,
+      uniqueVisitors: uniqueIps.length,
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
