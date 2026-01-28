@@ -193,8 +193,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
       <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>Changelog</a>
       <span class="version-text">v4.5</span>
       <span class="link-sep">|</span>
-      <a href="https://github.com/lxyhan/jameshan.net" target="_blank" rel="noopener">Source</a>
-      <span class="link-sep">|</span>
+      <a href="/analytics" class={currentPath === '/analytics' ? 'active' : ''}>Analytics</a>
       <span class="analytics-text" id="analytics-stats">...</span>
     </div>
     <script>
@@ -313,6 +312,11 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   .version-text {
     margin-left: 0.35rem;
     opacity: 0.6;
+  }
+
+  .analytics-text {
+    opacity: 0.6;
+    margin-left: 0.35rem;
   }
 
   .tree-divider {
