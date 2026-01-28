@@ -46,41 +46,40 @@ const posts = await getSortedFilteredPosts()
         showContent();
       }
 
-      // Handle View Transitions
+      // Handle View Transitions - only fade content area, not sidebar
       document.addEventListener('astro:before-preparation', () => {
-        document.body.style.transition = 'opacity 0.1s ease-out';
-        document.body.style.opacity = '0';
+        const content = document.querySelector('.content-area');
+        if (content) {
+          content.style.transition = 'opacity 0.1s ease-out';
+          content.style.opacity = '0';
+        }
       });
       document.addEventListener('astro:after-swap', () => {
-        document.body.style.transition = 'opacity 0.1s ease-out';
-        document.body.style.opacity = '1';
+        const content = document.querySelector('.content-area');
+        if (content) {
+          content.style.transition = 'opacity 0.1s ease-out';
+          content.style.opacity = '1';
+        }
       });
     </script>
 
     <div class="site-grid">
-      {fadeAnimation ? (
-        <TransitionWrapper type={type} class="layout-wrapper">
-          <div class="two-col-grid">
-            <aside class="sidebar-area">
-              <BlogTree posts={posts} />
-            </aside>
+      <div class="layout-wrapper">
+        <div class="two-col-grid">
+          <aside class="sidebar-area">
+            <BlogTree posts={posts} />
+          </aside>
+          {fadeAnimation ? (
+            <TransitionWrapper type={type} class="content-area">
+              <slot />
+            </TransitionWrapper>
+          ) : (
             <main class="content-area">
               <slot />
             </main>
-          </div>
-        </TransitionWrapper>
-      ) : (
-        <div class="layout-wrapper">
-          <div class="two-col-grid">
-            <aside class="sidebar-area">
-              <BlogTree posts={posts} />
-            </aside>
-            <main class="content-area">
-              <slot />
-            </main>
-          </div>
+          )}
         </div>
-      )}
+      </div>
       {themeConfig.general.footer && (
         <div class="footer-wrapper">
           <Footer />
