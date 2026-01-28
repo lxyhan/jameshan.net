@@ -101,17 +101,39 @@ export const GET: APIRoute = async () => {
   }
 
   try {
-    // Get unique IPs (non-bot only)
-    const { data, error } = await supabase
-      .from('page_views')
-      .select('ip_address')
-      .eq('is_bot', false)
-      .not('ip_address', 'is', null);
+    // Fetch all IPs with pagination (Supabase default limit is 1000)
+    const fetchAllIps = async () => {
+      const batchSize = 1000;
+      let allIps: string[] = [];
+      let offset = 0;
+      let hasMore = true;
 
-    if (error) throw error;
+      while (hasMore) {
+        const { data, error } = await supabase
+          .from('page_views')
+          .select('ip_address')
+          .eq('is_bot', false)
+          .not('ip_address', 'is', null)
+          .range(offset, offset + batchSize - 1);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          allIps = allIps.concat(data.map(d => d.ip_address).filter(Boolean));
+          offset += batchSize;
+          hasMore = data.length === batchSize;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      return allIps;
+    };
+
+    const allIps = await fetchAllIps();
 
     // Get unique IPs
-    const uniqueIps = [...new Set((data || []).map(d => d.ip_address).filter(Boolean))];
+    const uniqueIps = [...new Set(allIps)];
 
     // Get countries for all IPs
     const ipCountries = await batchGetCountries(uniqueIps);
