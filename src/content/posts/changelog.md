@@ -5,6 +5,29 @@ pubDate: '2025-01-25'
 
 All notable changes to this project will be documented in this file.
 
+## [5.1] - 2025-01-28
+### Added
+- New analytics page at /analytics with daily views histogram
+- Movie reviews: Andrei Rublev, In the Heat of the Sun
+- "I've Written About" section on watchlist page
+- Y-axis scale on analytics histogram
+- Hover tooltips showing date and view count
+- Methodology blurb explaining how views are tracked
+
+### Changed
+- Rebuilt analytics system with Supabase Postgres backend
+- Session-based deduplication (2.5 min cooldown per IP per page)
+- Bot filtering via user-agent pattern matching
+- IP addresses stored as SHA-256 hashes for privacy
+- Page transitions now only fade content area, not sidebar
+- Improved font loading: preload Merriweather, use `font-display: optional`
+- Post views now fade in smoothly instead of showing "..."
+- Standardized title format for movie/book reviews: "Title (Author/Director, Year)"
+
+### Fixed
+- Empty catch block lint errors
+- Font loading jank on production builds
+
 ## [4.5] - 2025-01-25
 ### Added
 - Emojis to folder titles (books 📚, firefox 🦊, data-structures-and-algorithms 🧮)
