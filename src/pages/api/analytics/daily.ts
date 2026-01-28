@@ -22,14 +22,36 @@ export const GET: APIRoute = async ({ request }) => {
     startDate.setDate(startDate.getDate() - numDays);
     startDate.setHours(0, 0, 0, 0);
 
-    // Fetch all views in the date range
-    const { data, error } = await supabase
-      .from('page_views')
-      .select('viewed_at, ip_address, page_path, is_bot')
-      .gte('viewed_at', startDate.toISOString())
-      .order('viewed_at', { ascending: true });
+    // Fetch all views in the date range (with pagination)
+    const fetchAllViews = async () => {
+      const batchSize = 1000;
+      let allViews: any[] = [];
+      let offset = 0;
+      let hasMore = true;
 
-    if (error) throw error;
+      while (hasMore) {
+        const { data, error } = await supabase
+          .from('page_views')
+          .select('viewed_at, ip_address, page_path, is_bot')
+          .gte('viewed_at', startDate.toISOString())
+          .order('viewed_at', { ascending: true })
+          .range(offset, offset + batchSize - 1);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          allViews = allViews.concat(data);
+          offset += batchSize;
+          hasMore = data.length === batchSize;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      return allViews;
+    };
+
+    const data = await fetchAllViews();
 
     // Apply session-based deduplication (2.5 min cooldown per IP per page)
     const filterSessionDupes = (views: any[]) => {
