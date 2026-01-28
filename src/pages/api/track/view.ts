@@ -89,6 +89,11 @@ export const POST: APIRoute = async ({ request }) => {
     const referer = request.headers.get('referer') || null;
     const language = request.headers.get('accept-language')?.split(',')[0] || null;
 
+    // Get country from Netlify geolocation header (free, no API call needed)
+    const country = request.headers.get('x-country') ||
+                    request.headers.get('x-nf-country') ||
+                    request.headers.get('cf-ipcountry') || null;
+
     const { error } = await supabase.from('page_views').insert({
       page_path: path,
       session_id: sessionId || null,
@@ -98,6 +103,7 @@ export const POST: APIRoute = async ({ request }) => {
       referer: referer,
       language: language,
       is_bot: isBot(userAgent),
+      country: country,
     });
 
     if (error) {

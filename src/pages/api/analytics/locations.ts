@@ -49,11 +49,25 @@ async function batchGetCountries(ips: string[]): Promise<Map<string, string>> {
   }
 
   for (const batch of batches) {
+    // Filter out invalid IPs before making the request
+    const validIps = batch.filter(ip =>
+      ip &&
+      ip !== 'unknown' &&
+      ip !== 'debug-test' &&
+      !ip.startsWith('192.168.') &&
+      !ip.startsWith('10.') &&
+      !ip.startsWith('127.') &&
+      ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)
+    );
+
+    if (validIps.length === 0) continue;
+
     try {
+      // Use HTTP (ip-api.com free tier doesn't support HTTPS)
       const response = await fetch('http://ip-api.com/batch?fields=query,countryCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(batch),
+        body: JSON.stringify(validIps),
       });
 
       if (response.ok) {
@@ -113,10 +127,17 @@ export const GET: APIRoute = async () => {
       .sort((a, b) => b[1] - a[1])
       .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 
+    // Debug: sample some IPs to see what they look like
+    const sampleIps = uniqueIps.slice(0, 5);
+
     return new Response(JSON.stringify({
       countries: sortedCountries,
       total: uniqueIps.length,
       resolved: ipCountries.size,
+      debug: {
+        sampleIps,
+        failedCount: uniqueIps.length - ipCountries.size,
+      }
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
