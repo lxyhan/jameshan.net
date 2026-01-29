@@ -7,6 +7,8 @@ These are my notes for **CSC263: Data Structures and Analysis** and **CSC373: Al
 
 CSC263 covers core data structures and their analysis. CSC373 extends into algorithm design techniques: divide-and-conquer, greedy strategies, dynamic programming, network flows, and computational complexity.
 
+These notes assume full knowledge of CSC165 (mathematical expression and reasoning) and CSC236 (algorithm analysis, induction, recursion).
+
 The focus: **what** each structure does, **when** to use it, **how** to implement it using the standard definitions, and **why** the runtime is what it is.
 
 ---

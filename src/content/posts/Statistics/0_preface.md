@@ -3,7 +3,7 @@ title: '0: Preface'
 pubDate: '2025-12-31'
 ---
 
-These are my notes for **STA238H1: Probability, Statistics and Data Analysis II** at the University of Toronto.
+Notes on probability and statistical inference.
 
 ---
 

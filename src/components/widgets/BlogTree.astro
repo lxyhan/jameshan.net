@@ -58,11 +58,17 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
     })
   })
 
-  // Sort: folders first, then alphabetically by name
+  // Sort: preface files first, then folders, then other files alphabetically
   function sortTree(node: TreeNode) {
     if (node.children) {
       node.children.sort((a, b) => {
-        // Folders first
+        // Preface files always first
+        const aIsPreface = a.name.toLowerCase().includes('preface')
+        const bIsPreface = b.name.toLowerCase().includes('preface')
+        if (aIsPreface && !bIsPreface) return -1
+        if (!aIsPreface && bIsPreface) return 1
+
+        // Then folders before other files
         if (a.type === 'folder' && b.type === 'file') return -1
         if (a.type === 'file' && b.type === 'folder') return 1
         // Then alphabetically
@@ -85,9 +91,17 @@ const folderEmojis: Record<string, string> = {
   'Movies': '🎬',
 }
 
+// Display name mappings for slugified folder names
+const folderDisplayNames: Record<string, string> = {
+  '1-k-nearest-neighbors': '1: K-Nearest Neighbors',
+  '2-decision-trees': '2: Decision Trees',
+  '3-linear-regression': '3: Linear Regression',
+}
+
 function getFolderDisplayName(name: string): string {
+  const displayName = folderDisplayNames[name] || name
   const emoji = folderEmojis[name]
-  return emoji ? `${name} ${emoji}` : name
+  return emoji ? `${displayName} ${emoji}` : displayName
 }
 
 // Get recent posts (exclude changelog)
@@ -416,7 +430,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   .tree-folder summary {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35rem;
     cursor: pointer;
     padding: 0.05rem 0;
     list-style: none;
@@ -431,9 +445,13 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   /* Chevron icon */
   .tree-folder summary::before {
     content: '›';
-    display: inline-block;
-    width: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.75rem;
+    height: 1.2rem;
     font-size: 1.2rem;
+    line-height: 1;
     transition: transform 0.2s ease;
     flex-shrink: 0;
   }
@@ -454,7 +472,7 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .tree-file {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
     padding: 0.025rem 0;
     color: var(--text-primary);
@@ -484,9 +502,9 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     flex: 1;
     min-width: 0;
     max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .nested {
