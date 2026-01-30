@@ -1,5 +1,5 @@
 ---
-title: 'Andrei Rublev (Andrei Tarkovsky, 1966)'
+title: 'Andrei Rublev and the Problem of Creation Under Uncertainty'
 pubDate: '2025-01-28'
 ---
 

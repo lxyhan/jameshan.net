@@ -1,5 +1,5 @@
 ---
-title: 'A Concert in Bagram (Каскад, 1988)'
+title: 'Каскад at Bagram: VIA Music and the Compression Ratio of Sincerity'
 pubDate: '2025-01-30'
 draft: true
 ---

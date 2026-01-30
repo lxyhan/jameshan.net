@@ -1,5 +1,5 @@
 ---
-title: 'Reflections on Bonapartism'
+title: "The Feeling You Can't Verify: Napoleon, Tukhachevsky, and Bonapartism"
 pubDate: '2025-12-28'
 draft: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'A Coalition of Bandits'
+title: 'Coordination Without Authority: Zhang Zuolin and the Fengtian Clique'
 pubDate: '2025-12-06'
 ---
 

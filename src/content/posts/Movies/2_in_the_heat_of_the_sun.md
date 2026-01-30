@@ -1,5 +1,5 @@
 ---
-title: 'In the Heat of the Sun (Jiang Wen, 1994)'
+title: 'In the Heat of the Sun: Memory as Authorship'
 pubDate: '2025-01-28'
 ---
 

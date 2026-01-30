@@ -10,7 +10,9 @@ I read a lot of history & geopolitics in my spare time (see [reading list](/book
 
 I love to write. Some topics I've recently written about:
 
-- [Coordination games and soft power in 1920s Manchuria](/essays/a_coalition_of_bandits)
-- [VIA music, афганская песня, and sincerity's compression ratio](/essays/kaskad_bagram)
-- [Tarkovsky on creation under uncertainty](/movies/1_andrei_rublev)
-- [Memory as authorship in Jiang Wen's Beijing](/movies/2_in_the_heat_of_the_sun)
+- [Discontinuous Utility and the Jutland Paradox](/essays/dreadnought_economics)
+- [Coordination Without Authority: Zhang Zuolin and the Fengtian Clique](/essays/a_coalition_of_bandits)
+- [Каскад at Bagram: VIA Music and the Compression Ratio of Sincerity](/essays/kaskad_bagram)
+- [The Feeling You Can't Verify: Napoleon, Tukhachevsky, and Bonapartism](/essays/bonapartism)
+- [Andrei Rublev and the Problem of Creation Under Uncertainty](/movies/1_andrei_rublev)
+- [In the Heat of the Sun: Memory as Authorship](/movies/2_in_the_heat_of_the_sun)
