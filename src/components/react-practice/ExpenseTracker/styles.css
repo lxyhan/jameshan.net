@@ -1,0 +1,39 @@
+.expenseForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.expenseCard {
+    padding: 1rem;
+    border: 1px Solid;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+}
+
+input, select, button {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: rgb(76, 76, 223);
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1)
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+th {
+  text-align: left;
+}
+
+td {
+    border-bottom: 1px solid;
+    padding: 5px;
+}

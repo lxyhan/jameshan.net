@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
+import react from '@astrojs/react'
 
 import remarkMath from 'remark-math'
 import remarkDirective from 'remark-directive'
@@ -68,6 +69,7 @@ export default defineConfig({
     //     (file) => file.toLowerCase().includes('astro-code')
     //   ]
     // }),
+    react(),
     mdx(),
     sitemap()
   ],
