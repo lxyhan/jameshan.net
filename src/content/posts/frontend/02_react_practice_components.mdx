@@ -3,6 +3,10 @@ title: '2: React Practice Components'
 pubDate: '2026-02-14'
 ---
 
+import ProfileCard from '@/components/react-practice/ProfileCard'
+import TodoList from '@/components/react-practice/TodoList'
+import ThemeSwitcher from '@/components/react-practice/ThemeSwitcher'
+
 Three components built using the Quick Start concepts. Each one combines multiple fundamentals into a working, interactive piece of UI.
 
 ---
@@ -51,6 +55,10 @@ export default function ProfileCard({ user = defaultUser }: { user?: User }) {
   );
 }
 ```
+
+**Live demo:**
+
+<ProfileCard client:load />
 
 **Key takeaway:** The component receives `user` as an optional prop with a default value. All data display uses curly braces `{}`, and the green/red dot is a single ternary — no if/else needed for simple inline conditionals.
 
@@ -108,7 +116,7 @@ export default function TodoList() {
   );
 }
 
-function TodoItem({id, text, done, handleCheck, index}: Todo & {handleCheck: (id: number) => void} & {index: number}) {
+function TodoItem({id, text, done, handleCheck, index}) {
   return (
     <span style={{ display: "flex", flexDirection: "row", gap: 3 }}>
       <input type="checkbox" checked={done} onChange={() => handleCheck(id)} style={{margin: 0}} />
@@ -118,10 +126,14 @@ function TodoItem({id, text, done, handleCheck, index}: Todo & {handleCheck: (id
 }
 ```
 
+**Live demo:**
+
+<TodoList client:load />
+
 **Key takeaways:**
-- **Controlled input:** The `<input>` value is driven by React state (`value={text}` + `onChange`), not by the DOM. This is the standard React pattern for form inputs.
-- **Immutable updates:** `handleDone` uses `.map()` to create a new array with the toggled item, rather than mutating the existing array. React needs new references to detect changes.
-- **Component extraction:** `TodoItem` was pulled into its own component. The `{...todo}` spread passes all Todo properties as individual props.
+- **Controlled input:** The `<input>` value is driven by React state (`value={text}` + `onChange`), not by the DOM.
+- **Immutable updates:** `handleDone` uses `.map()` to create a new array with the toggled item.
+- **Component extraction:** `TodoItem` was pulled into its own component.
 - **`Date.now()` for IDs:** Avoids duplicate ID bugs that `array.length + 1` would cause after deletions.
 
 ---
@@ -163,4 +175,8 @@ export default function ThemeSwitcher() {
 }
 ```
 
-**Key takeaway:** Neither `ThemeToggle` nor `ThemedBox` calls `useState` — they are **stateless** components driven entirely by props. The parent `ThemeSwitcher` is the single source of truth. This "lifting state up" pattern is how React apps share data between sibling components: move the state to their nearest common ancestor and pass it down.
+**Live demo:**
+
+<ThemeSwitcher client:load />
+
+**Key takeaway:** Neither `ThemeToggle` nor `ThemedBox` calls `useState` — they are **stateless** components driven entirely by props. The parent `ThemeSwitcher` is the single source of truth.
