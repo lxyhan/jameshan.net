@@ -263,16 +263,18 @@ import { useState } from 'react'
 // The key: C and D are NOT state. They're computed from A and B on every render.
 
 function MiniCalc() {
+  const [a, setA] = useState(0)
+  const [b, setB] = useState(0)
+
+  const c = a + b
+  const d = c * 2
+
   return (
     <div>
-      <p>
-        A: <input />
-      </p>
-      <p>
-        B: <input />
-      </p>
-      <p>C (A + B): ???</p>
-      <p>D (C × 2): ???</p>
+      <p>A: <input type="number" value={a} onChange={e => setA(Number(e.target.value))} /></p>
+      <p>B: <input type="number" value={b} onChange={e => setB(Number(e.target.value))} /></p>
+      <p>C (A + B): {c}</p>
+      <p>D (C × 2): {d}</p>
     </div>
   )
 }

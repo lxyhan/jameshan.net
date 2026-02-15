@@ -89,7 +89,9 @@ function RepoTable({repos, user} : {repos: Repo[], user: string}) {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <GithubRepos client:load />
+</div>
 
 **Key takeaways:**
 - **`res.ok` check:** `fetch` doesn't reject on 404/500 — you must check `res.ok` yourself and throw.
@@ -162,7 +164,9 @@ export default function TechSearch() {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <TechSearch client:load />
+</div>
 
 **Key takeaways:**
 - **Derived state:** `filtered` is not stored in state — it's computed from `techStack` + `category` + `name` on every render.
@@ -237,7 +241,9 @@ export default function ContactForm() {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <ContactForm client:load />
+</div>
 
 **Key takeaways:**
 - **Stale state fix:** The `validate()` function computes `newError` first, sets state, then returns based on `newError` — not `error` (which would be stale).

@@ -58,7 +58,9 @@ export default function ProfileCard({ user = defaultUser }: { user?: User }) {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <ProfileCard client:load />
+</div>
 
 **Key takeaway:** The component receives `user` as an optional prop with a default value. All data display uses curly braces `{}`, and the green/red dot is a single ternary — no if/else needed for simple inline conditionals.
 
@@ -128,7 +130,9 @@ function TodoItem({id, text, done, handleCheck, index}) {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <TodoList client:load />
+</div>
 
 **Key takeaways:**
 - **Controlled input:** The `<input>` value is driven by React state (`value={text}` + `onChange`), not by the DOM.
@@ -177,6 +181,8 @@ export default function ThemeSwitcher() {
 
 **Live demo:**
 
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
 <ThemeSwitcher client:load />
+</div>
 
 **Key takeaway:** Neither `ThemeToggle` nor `ThemedBox` calls `useState` — they are **stateless** components driven entirely by props. The parent `ThemeSwitcher` is the single source of truth.
