@@ -1,0 +1,10 @@
+.highlighted {
+    background-color: rgb(211, 221, 229);
+    border-radius: 40;
+    border: 1px
+}
+
+.post {
+    border: solid 1px;
+    padding: 10px
+}

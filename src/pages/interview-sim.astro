@@ -1,0 +1,41 @@
+---
+import IndexLayout from '@/layouts/IndexLayout.astro'
+import JobBoard from '@/components/react-practice/interview-sims/JobBoard'
+import DayCalendar from '@/components/react-practice/interview-sims/DayCalendar'
+---
+
+<IndexLayout title="Interview Sim" description="Ramp-style live coding challenges">
+  <div class="sim-container">
+    <h1>Interview Simulations</h1>
+
+    <section>
+      <h3>Challenge 1: Master-Detail Job Board</h3>
+      <JobBoard client:load />
+    </section>
+
+    <section>
+      <h3>Challenge 2: Single-Day Calendar</h3>
+      <DayCalendar client:load />
+    </section>
+  </div>
+</IndexLayout>
+
+<style>
+  .sim-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  h1 {
+    margin-bottom: 2rem;
+  }
+  h3 {
+    margin-bottom: 1rem;
+  }
+</style>
