@@ -39,7 +39,15 @@ export default function DayCalendar() {
   }
 
   const endHour = startHour ? startHour + newEvent.duration : null
-  const withinEventDuration = (hour: number) => startHour && endHour && (hour >= startHour && hour < endHour)
+  const withinEventDuration = (hour: number) => {
+    const inScheduledEvents = events.find(event => hour >= event.startHour && hour < (event.startHour + event.duration))
+    if (inScheduledEvents) return inScheduledEvents
+  }
+
+  const isNewEvent = (hour: number) => {
+    return startHour != null && endHour != null && hour > startHour && hour < endHour
+  }
+
   const startAMPM = startHour !=null && (startHour === 12 ? "12 PM " : startHour >= 12 ? (startHour) % 12 + " PM " : startHour + " AM ")
   const endAMPM = endHour != null && (endHour === 12 ? " 12 PM" : endHour >= 12 ? (endHour) % 12 + " PM" : endHour + " AM")
 
@@ -47,24 +55,24 @@ export default function DayCalendar() {
     <div style = {{display: "flex", gap: "10px"}}>
       <div style={{width: "100%"}}>
         {hours.map(hour => {
-          const isEvent = withinEventDuration(hour)
-          const prevIsEvent = withinEventDuration(hour - 1)
-          const nextIsEvent = withinEventDuration(hour + 1)
-
+          const event = withinEventDuration(hour)
+          const prevIsEvent = withinEventDuration(hour - 1) != null
+          const nextIsEvent = withinEventDuration(hour + 1) != null
+          
           return (
           <div 
             key={hour} 
             style={{
               borderLeft: "1px solid black",
               borderRight: "1px solid black",
-              borderTop: (isEvent && prevIsEvent) ? "1px solid transparent" : "1px solid black",
-              borderBottom: (isEvent && nextIsEvent) ? "1px solid transparent" : "1px solid black",
-              backgroundColor: isEvent ? "#cbcbcb" : "" }} 
+              borderTop: (event && prevIsEvent) ? "1px solid transparent" : "1px solid black",
+              borderBottom: (event && nextIsEvent) ? "1px solid transparent" : "1px solid black",
+              backgroundColor: event ? "#cbcbcb" : "" }} 
             onClick={() => handleNewEvent(hour)}>
-            {isEvent && !withinEventDuration(hour -1) ? (
-              <p style={{marginLeft: "10px"}}>{newEvent.title}, {startAMPM} to {endAMPM}</p>
-            ) : isEvent ? (
-              <div style={{height: "40px"}}> </div>
+            {event != null && !prevIsEvent ? (
+              <p style={{marginLeft: "10px"}}>{event.title}, {event.startHour} to {event.startHour + event.duration}</p>
+            ) : event ? (
+              <div style={{height: "30px"}}> </div>
             ) : (
               <p style={{marginLeft: "10px"}}>{hour === 12 ? "12 PM" : hour >= 12 ? (hour) % 12 + " PM" : hour + " AM"} </p>
             )}

@@ -2,6 +2,10 @@
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import JobBoard from '@/components/react-practice/interview-sims/JobBoard'
 import DayCalendar from '@/components/react-practice/interview-sims/DayCalendar'
+import Spreadsheet from '@/components/react-practice/interview-sims/Spreadsheet'
+import DynamicDisplayDemo from '@/components/react-practice/interview-sims/DynamicDisplay'
+import TransactionLedger from '@/components/react-practice/interview-sims/TransactionLedger'
+import UserDirectory from '@/components/react-practice/interview-sims/UserDirectory'
 ---
 
 <IndexLayout title="Interview Sim" description="Ramp-style live coding challenges">
@@ -16,6 +20,26 @@ import DayCalendar from '@/components/react-practice/interview-sims/DayCalendar'
     <section>
       <h3>Challenge 2: Single-Day Calendar</h3>
       <DayCalendar client:load />
+    </section>
+
+    <section>
+      <h3>Challenge 3: Mini Spreadsheet</h3>
+      <Spreadsheet client:load />
+    </section>
+
+    <section>
+      <h3>Challenge 4: Dynamic Prop Component</h3>
+      <DynamicDisplayDemo client:load />
+    </section>
+
+    <section>
+      <h3>Challenge 5: Transaction Ledger</h3>
+      <TransactionLedger client:load />
+    </section>
+
+    <section>
+      <h3>Challenge 6: User Directory with Tabs</h3>
+      <UserDirectory client:load />
     </section>
   </div>
 </IndexLayout>

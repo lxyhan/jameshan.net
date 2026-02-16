@@ -1,0 +1,280 @@
+---
+title: '6: Interview Simulation Components'
+pubDate: '2026-02-16'
+---
+
+import JobBoard from '@/components/react-practice/interview-sims/JobBoard'
+import DayCalendar from '@/components/react-practice/interview-sims/DayCalendar'
+import Spreadsheet from '@/components/react-practice/interview-sims/Spreadsheet'
+import DynamicDisplayDemo from '@/components/react-practice/interview-sims/DynamicDisplay'
+import TransactionLedger from '@/components/react-practice/interview-sims/TransactionLedger'
+
+Timed Ramp-style live coding challenges. Each one was built from a spec with no help, simulating a 50-minute interview screen. Components are listed in the order they were attempted.
+
+---
+
+## 1. Dynamic Prop Component (20 min — warmup)
+
+**Concepts used:** `useEffect` cleanup, `useRef`, `Array.isArray()`, conditional rendering, runtime type checking
+
+A component that renders differently based on what type its `input` prop is. The falsy case renders a live clock that cleans up its interval on unmount.
+
+```tsx
+import { useEffect, useRef, useState } from "react"
+
+function DynamicDisplay({input} : {input?: any}) {
+  const [date, setDate] = useState(new Date())
+  const intervalId = useRef(0)
+
+  useEffect(() => {
+    if (!input) {
+      intervalId.current = window.setInterval(() => setDate(new Date()), 1000)
+      return () => window.clearInterval(intervalId.current)
+    }
+  }, [])
+
+  if (!input) {
+    return <div><p>{date.toLocaleString()}</p></div>
+  } else if (Array.isArray(input)) {
+    return <div>{input.map(item => <div>{item}</div>)}</div>
+  } else {
+    return <div>{input}</div>
+  }
+}
+```
+
+**Live demo:**
+
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+<DynamicDisplayDemo client:load />
+</div>
+
+**Key takeaways:**
+- **Runtime type checks:** `!input` for falsy, `Array.isArray()` for arrays, else for everything else. `typeof` won't distinguish arrays from objects.
+- **Conditional cleanup:** The `useEffect` only sets up the interval when `!input`, preventing unnecessary timers for the array/primitive cases.
+
+---
+
+## 2. Master-Detail Job Board (45 min — medium)
+
+**Concepts used:** `useEffect` + fetch, loading/error states, search filter, master-detail selection, component extraction
+
+A LinkedIn-style job board that fetches listings from an API, filters by search, and shows details for the selected job. Split across 4 files: `index.tsx`, `JobTable.tsx`, `JobDetail.tsx`, `interface.ts`.
+
+```tsx
+// index.tsx — parent component
+import { useState, useEffect } from 'react'
+
+export default function JobBoard() {
+  const [loading, setLoading] = useState(true)
+  const [showError, setShowError] = useState(false)
+  const [draft, setDraft] = useState("")
+  const [highlighted, setHighlighted] = useState<Job | null>(null)
+  const [jobs, setJobs] = useState<Job[]>([])
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts?_limit=20")
+      .then(res => {if (!res.ok) throw new Error("Failed to fetch"); return res.json()})
+      .then(data => {setLoading(false); setJobs(data)})
+      .catch(err => {setLoading(false); setShowError(true)})
+  }, [])
+
+  if (loading) return <p>Loading</p>
+  if (showError) return <p>Failed to Fetch</p>
+
+  return (
+    <div style={{display: "flex", gap: "30px"}}>
+      <div>
+        <input placeholder="Search by Job Title" value={draft}
+          onChange={(e) => setDraft(e.target.value)} />
+        <JobTable
+          posts={jobs.filter(job => job.title.toLowerCase().includes(draft.toLowerCase()))}
+          highlighted={highlighted}
+          handleSelect={(job) => setHighlighted(job)} />
+      </div>
+      <JobDetail job={highlighted} />
+    </div>
+  );
+}
+```
+
+```tsx
+// JobTable.tsx — list with highlight
+function JobTable({posts, highlighted, handleSelect}) {
+  return (
+    <>
+      {posts.map(post =>
+        <div key={post.id} onClick={() => handleSelect(post)}
+          className={`post ${highlighted?.id === post.id ? "highlighted" : ""}`}>
+          <h3 style={{fontSize: "13px", margin: 0}}>{post.title}</h3>
+        </div>
+      )}
+    </>
+  )
+}
+```
+
+```tsx
+// JobDetail.tsx — detail panel
+function JobDetail({job}) {
+  if (job) {
+    return <div><h3>{job.title}</h3><p>{job.body}</p></div>
+  } else {
+    return <p>Select a Job Listing</p>
+  }
+}
+```
+
+**Live demo:**
+
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+<JobBoard client:load />
+</div>
+
+**Key takeaways:**
+- **Master-detail pattern:** One `highlighted` state (`Job | null`) drives both the list highlighting and the detail panel content.
+- **Early return for loading/error:** Cleaner than nesting ternaries inside the main JSX.
+- **`highlighted?.id === post.id`:** Optional chaining handles the null case without an explicit check.
+- **Component extraction emerged naturally:** `JobTable` handles rendering, `JobDetail` handles display, parent handles state.
+
+---
+
+## 3. Day Calendar (50 min — hard, WIP)
+
+**Concepts used:** `useState`, computed values, conditional styling, form with controlled select, event spanning
+
+A single-day calendar where clicking an hour slot opens a form to schedule an event. Events span multiple rows based on duration. Work in progress — saved events render but delete and overlap prevention are not yet implemented.
+
+```tsx
+import { useState } from 'react'
+
+interface Event {
+  title: string, duration: number, startHour: number
+}
+
+export default function DayCalendar() {
+  const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  const [events, SetEvents] = useState<Event[]>([])
+  const [openForm, SetOpenForm] = useState(false)
+  const [newEvent, setNewEvent] = useState<Event>({
+    title: "untitled event", duration: 1, startHour: 0
+  })
+  const [startHour, setStartHour] = useState<number | null>(null)
+
+  // Check if any saved event covers this hour
+  const withinEventDuration = (hour: number) => {
+    return events.find(event =>
+      hour >= event.startHour && hour < (event.startHour + event.duration))
+  }
+
+  // Render: hour rows on left, form on right
+  // Events get gray background + merged borders for multi-hour spans
+}
+```
+
+**Live demo:**
+
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+<DayCalendar client:load />
+</div>
+
+**Key takeaways:**
+- **Event spanning:** `withinEventDuration` checks if any saved event's range covers a given hour — used for both rendering and border merging.
+- **Border merging:** Adjacent event slots hide their shared border using conditional `borderTop`/`borderBottom` with `transparent`.
+- **Still needs:** Delete functionality, overlap prevention (block clicks on occupied slots), and reading saved events properly.
+
+---
+
+## 4. Mini Spreadsheet (50 min — hard)
+
+**Concepts used:** `useState`, editable cell toggle, `Array.from` + `String.fromCharCode` for grid generation, formula parsing
+
+A 5x5 spreadsheet with editable cells that supports `=SUM(A1:A3)` formulas. Clicking a cell enters edit mode; pressing Enter saves.
+
+```tsx
+import { useState } from 'react'
+
+export default function Spreadsheet() {
+  const horizontalIndices = Array.from({length: 5}, (_, i) => String.fromCharCode(65 + i))
+  const verticalIndices = Array.from({length: 5}, (_, i) => i + 1)
+  const [data, setData] = useState(horizontalIndices.map(() => verticalIndices.map(() => "")))
+
+  const handleEdit = (cell: string, newValue: string) => {
+    let sum = 0;
+    if (newValue.startsWith("=SUM(")) {
+      // Parse =SUM(A1:A3) → extract column, start row, end row
+      // Reduce over the column's rows to compute the sum
+    }
+    // Update the target cell with immutable nested .map()
+  }
+  // Grid renders columns as flex row, cells as editable divs
+}
+
+function Cell({value, location, handleEdit}) {
+  const [draft, setDraft] = useState('')
+  const [isEditing, setIsEditing] = useState(false)
+  // Click → edit mode, Enter → save, Blur → exit
+}
+```
+
+**Live demo:**
+
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+<Spreadsheet client:load />
+</div>
+
+**Key takeaways:**
+- **Grid generation:** `Array.from({length: 5}, (_, i) => String.fromCharCode(65 + i))` generates `['A', 'B', 'C', 'D', 'E']` without hardcoding.
+- **Editable cell pattern:** `isEditing` boolean toggles between `<div>` (display) and `<input>` (edit). Same pattern from the advanced exercises.
+- **Architectural gap:** SUM computes at save time and stores the result. A better approach: store the raw formula, resolve at render time so dependent cells auto-update.
+
+---
+
+## 5. Transaction Ledger (35 min — intern level)
+
+**Concepts used:** `useState`, form validation, derived state (running total), filter dropdown, delete, component extraction
+
+A financial transaction tracker with add/delete, income/expense color coding, running total, and category filtering. Running total uses derived state (`.reduce()` on render) instead of a separate state variable.
+
+```tsx
+import { useState } from "react"
+
+interface transaction {
+  description: string, amount: number, type: string, id: number
+}
+
+export default function TransactionLedger() {
+  const [transactions, setTransactions] = useState<transaction[]>([])
+  const [filterCategory, setfilterCategory] = useState("All")
+  const [error, setError] = useState("")
+
+  const handleSaveTransaction = (newTransaction: transaction) => {
+    if (newTransaction.description == "") {
+      setError("Description must not be empty"); return
+    } else if (newTransaction.amount <= 0) {
+      setError("Amount must be a positive sum"); return
+    } else {
+      setTransactions([...transactions, newTransaction])
+    }
+  }
+
+  const handleDeleteTransaction = (id: number) => {
+    setTransactions(transactions.filter(item => item.id != id))
+  }
+
+  // Total derived from state — no separate useState needed
+  // Total: {transactions.reduce((sum, t) =>
+  //   t.type === "Income" ? sum + Number(t.amount) : sum - Number(t.amount), 0)}
+}
+```
+
+**Live demo:**
+
+<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+<TransactionLedger client:load />
+</div>
+
+**Key takeaways:**
+- **Derived state for total:** Instead of a separate `total` useState that can drift out of sync, the total is computed from `transactions` on every render using `.reduce()`.
+- **Validation with early return:** Check conditions, set error, `return` — clean pattern that avoids deeply nested if/else.
+- **`e.target.name` pattern:** One `onChange` handler for all form inputs, keyed by the `name` attribute.

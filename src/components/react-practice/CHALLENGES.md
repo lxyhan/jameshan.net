@@ -94,3 +94,64 @@ Build a React component that renders differently based on its input prop.
 2. **Challenge 1** (medium — 45 min) — the most commonly reported Ramp question
 3. **Challenge 2** (hard — 50 min) — confirmed Ramp live screen question
 4. **Challenge 3** (hard — 50 min) — confirmed Ramp live screen question
+
+---
+
+# Intern-Level Challenges
+
+These are calibrated to what you'd actually see in an intern live coding screen. The emphasis is on building a lot of simple functionality fast — not one hard algorithmic problem.
+
+---
+
+## Challenge 5: Transaction Ledger
+
+Build a transaction history view with running balance.
+
+**Requirements:**
+- Display a form with: description (text), amount (number), type (select: "income" or "expense")
+- Clicking "Add" appends the transaction to a list below
+- Each transaction row shows: description, amount (green for income, red for expense), and a **delete** button
+- Show the **running total** at the top (income adds, expense subtracts)
+- Add a **filter dropdown** above the list: "All", "Income", "Expense"
+- Validate: description can't be empty, amount must be > 0
+
+**Time:** 35 minutes
+
+**File:** `TransactionLedger/index.tsx`
+
+---
+
+## Challenge 6: User Directory with Tabs
+
+Build a user list fetched from an API with tabbed category views.
+
+**Requirements:**
+- Fetch users from `https://jsonplaceholder.typicode.com/users`
+- Show **loading** and **error** states
+- Display users in **card** layout (name, email, company name)
+- Add **3 tab buttons** at the top that filter by company name suffix: "LLC", "Inc", "Group" (check if `user.company.name` contains the keyword). Plus an "All" tab.
+- Clicking a user card **expands** it to show additional info: phone, website, city
+- Only **one card** can be expanded at a time (clicking another collapses the first)
+
+**Time:** 40 minutes
+
+**File:** `UserDirectory/index.tsx`
+
+---
+
+## Challenge 7: Multi-Step Form
+
+Build a form wizard that collects info across 3 steps.
+
+**Requirements:**
+- **Step 1:** Name and email fields
+- **Step 2:** Select a plan from 3 options (Basic $10, Pro $25, Enterprise $50) — show as clickable cards, highlight the selected one
+- **Step 3:** Review page showing all selections, with a "Confirm" button
+- **Back** and **Next** buttons to navigate between steps
+- Show a **step indicator** (e.g., "Step 2 of 3") at the top
+- **Validate** each step before allowing Next: Step 1 requires both fields filled + email has @, Step 2 requires a plan selected
+- After confirming, show a success message with the summary
+
+**Time:** 40 minutes
+
+**File:** `MultiStepForm/index.tsx`
