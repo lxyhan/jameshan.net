@@ -207,6 +207,28 @@ body.fonts-loaded {
   scrollbar-color: var(--border) transparent;
 }
 
+/* Sidebar scrollbar: hidden until hover */
+.sidebar-area::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-area::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.sidebar-area:hover::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+.sidebar-area {
+  scrollbar-color: transparent transparent;
+}
+
+.sidebar-area:hover {
+  scrollbar-color: var(--border) transparent;
+}
+
 :focus {
   outline: 2px solid var(--text-tertiary);
   outline-offset: 2px;

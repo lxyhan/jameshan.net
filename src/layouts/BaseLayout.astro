@@ -164,6 +164,12 @@ const posts = await getSortedFilteredPosts()
       overflow-y: auto;
       overflow-x: hidden;
       overscroll-behavior: none;
+      direction: rtl;
+      padding-left: 1rem;
+    }
+
+    .sidebar-area > * {
+      direction: ltr;
     }
 
     .content-area {

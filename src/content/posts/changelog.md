@@ -5,6 +5,61 @@ pubDate: '2025-01-25'
 
 All notable changes to this project will be documented in this file.
 
+## [5.6] - 2026-03-16
+### Added
+- Effective goal setting content
+
+### Changed
+- Sidebar scrollbar moved to left side with hover-only visibility
+
+## [5.5] - 2026-02-16
+### Added
+- Interview sim challenges: Job Board and Day Calendar
+- Vanilla JS crash course
+- Sim components MDX page
+
+## [5.4] - 2026-02-15
+### Added
+- React learning materials: quick start, intermediate, advanced posts
+- Practice components with live React embeds
+- MDX live component demos with border/padding boxes
+- MiniCalc exercise
+
+### Changed
+- Converted practice posts to MDX with live React component embeds
+
+## [5.3] - 2026-02-05
+### Changed
+- Updated about page: softened quant research mention, removed writing section
+
+## [5.2] - 2026-01-29
+### Added
+- Feature mapping, regularization, and linear classification notes
+- OG preview image for social sharing
+- JH favicon
+- Software Design articles
+- Top 5 albums list
+- Interactive world map for analytics visitor locations
+- Country tracking at view time with IP geolocation
+- Visitor locations section on analytics page
+
+### Changed
+- Rewrite dreadnought essay, renamed all essay titles
+- Updated about page writing section formatting
+- Renamed Calculus folder, updated prefaces
+- Clean up ML folder structure, created linear classification folder
+- Map highlight changed to black scale
+- Simplified album list to titles and years
+- Locations count views per country instead of unique IPs
+- Persisted sidebar across page transitions, only animate content
+
+### Fixed
+- Font loading on View Transitions navigation
+- White screen bug on page transitions
+- Reading list link, added watchlist link to homepage
+- Consistent humanToday view counts
+- IP pagination for locations fetch
+
 ## [5.1] - 2025-01-28
 ### Added
 - New analytics page at /analytics with daily views histogram
