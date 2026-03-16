@@ -1,110 +1,51 @@
 ---
-title: "Training Schedule"
-pubDate: "2024-12-18"
+title: "Training Plan"
+pubDate: "2026-03-16"
 ---
 
-High-volume training plan. Indoor bike, running, and 5x/week strength.
+## Run Training Zones
+
+| Zone | Name | Pace/km |
+|------|------|---------|
+| Z1 | Recovery | 5\:45-6\:15 |
+| Z2 | Easy Aerobic | 5\:00-5\:30 |
+| Z3 | Tempo | 4\:20-4\:40 |
+| Z4 | Threshold | 3\:50-4\:10 |
+| Z5 | VO2max | 3\:15-3\:40 |
+
+---
 
 ## Weekly Structure
 
-| Day | AM | PM |
-|-----|----|----|
-| Mon | Strength (Lower) | Easy Run |
-| Tue | Bike Intervals | Strength (Push) |
-| Wed | Tempo Run | Strength (Posterior) |
-| Thu | Endurance Bike | Strength (Pull) |
-| Fri | Speed Run | Strength (Power) |
-| Sat | Long Bike | - |
-| Sun | Long Run | Recovery |
+| Day | Session | Focus |
+|-----|---------|-------|
+| Monday | Easy Run + Strides | Aerobic base, neuromuscular activation |
+| Tuesday | **KEY** Intervals/Speed | VO2max development |
+| Wednesday | Strength A - Power + Legs | Explosive power, single-leg strength |
+| Thursday | **KEY** Tempo/Threshold | Lactate threshold, race pace |
+| Friday | Strength B - Full Body | Upper pull, posterior chain |
+| Saturday | Long Run | Aerobic endurance |
+| Sunday | **REST** | Recovery and adaptation |
 
 ---
 
-## Running
+## Strength Philosophy
 
-**Monday - Easy:** 45-60 min Zone 2
+- **Explosive power** - plyometrics and box jumps when fresh
+- **Single-leg stability** - Bulgarian split squats, SL leg press, SL RDL
+- **Core stiffness** - Pallof press, dead bugs, Copenhagen planks
+- **Calf/Achilles loading** - weighted calf raises with slow eccentrics
+- **Arm accessories** - lateral raises, curls, tricep work for swim support
 
-**Wednesday - Tempo:** 15 min warm-up → 4x8 min @ threshold (2 min jog) → 10 min cool-down
-
-**Friday - Speed:** 20 min warm-up → 10x400m @ 5K pace (90s rest) → 8x200m @ mile pace (60s rest) → cool-down
-
-**Sunday - Long:** 14-18 miles, vary by week
-
----
-
-## Bike
-
-**Tuesday - VO2max:** 15 min warm-up → 5x5 min @ 105-110% FTP (3 min rest) → cool-down
-
-**Thursday - Sweet Spot:** 20 min Z2 → 3x20 min @ 88-93% FTP (5 min rest) → 15 min Z2
-
-**Saturday - Long:** 2.5-3.5 hours Zone 2
+**If tired, cut lift volume. NEVER cut a key run session.**
 
 ---
 
-## Strength
+## Volume Progression
 
-### Monday: Lower
-| Exercise | Sets x Reps |
-|----------|-------------|
-| Back Squat | 4x6 |
-| Romanian Deadlift | 4x8 |
-| Bulgarian Split Squat | 3x10 each |
-| Nordic Curls | 3x6 |
-| Calf Raises | 4x15 |
-
-### Tuesday: Push
-| Exercise | Sets x Reps |
-|----------|-------------|
-| Bench Press | 4x6 |
-| Overhead Press | 4x8 |
-| Incline DB Press | 3x10 |
-| Dips | 3x12 |
-| Face Pulls | 3x15 |
-
-### Wednesday: Posterior
-| Exercise | Sets x Reps |
-|----------|-------------|
-| Trap Bar Deadlift | 4x5 |
-| Hip Thrust | 4x10 |
-| Good Mornings | 3x10 |
-| Single Leg RDL | 3x8 each |
-| Pallof Press | 3x12 each |
-
-### Thursday: Pull
-| Exercise | Sets x Reps |
-|----------|-------------|
-| Weighted Pull-ups | 4x6 |
-| Barbell Row | 4x8 |
-| Seated Cable Row | 3x10 |
-| Lat Pulldown | 3x12 |
-| Farmer's Carries | 3x40m |
-
-### Friday: Power
-| Exercise | Sets x Reps |
-|----------|-------------|
-| Power Cleans | 5x3 |
-| Box Jumps | 4x5 |
-| Push Press | 4x5 |
-| Kettlebell Swings | 4x15 |
-| Sled Push | 4x20m |
-
-**Progression:** +2.5-5 lbs weekly on main lifts.
-
----
-
-## Periodization
-
-| Week | Volume | Intensity |
-|------|--------|-----------|
-| 1 | Base | 75% |
-| 2 | +15% | 80% |
-| 3 | +25% | 85% |
-| 4 | -40% | 60% (deload) |
-
----
-
-## Recovery
-
-- 8+ hours sleep
-- Foam roll AM, stretch PM
-- Back off if resting HR elevated >5 bpm or soreness >72 hours
+| Week | Dates | Volume | Runs | Strength | Focus |
+|------|-------|--------|------|----------|-------|
+| 1 | Mar 16-22 | 22-24 km | 3 | 2 | Establish baselines |
+| 2 | Mar 23-29 | 26-28 km | 3 | 2 | Threshold development |
+| 3 | Mar 30 - Apr 5 | 30-32 km | 3 | 2 | Peak volume |
+| 4 | Apr 6-12 | 18-20 km | 3 | 1 | Deload |

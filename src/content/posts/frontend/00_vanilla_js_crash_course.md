@@ -26,13 +26,13 @@ const items = document.querySelectorAll('.list-item')
 
 ```js
 // Select the element with id="app"
-const app = document._______('app')
+const app = document.getElementById('app')
 
 // Select the first <p> tag inside a div with class "content"
-const paragraph = document._______('.content p')
+const paragraph = document.querySelector('.content p')
 
 // Select ALL elements with class "card"
-const cards = document._______('.card')
+const cards = document.querySelectorAll('.card')
 ```
 
 ---
@@ -53,16 +53,16 @@ document.body.appendChild(div)                 // attach to page
 
 ```js
 // Create a <button> element
-const btn = document._______('button')
+const btn = document.createElement('button')
 
 // Set its text to "Click Me"
-btn._______ = 'Click Me'
+btn.textContent = 'Click Me'
 
 // Give it a class of "primary"
-btn._______ = 'primary'
+btn.className = 'primary'
 
 // Add it inside the element with id="toolbar"
-document.getElementById('toolbar')._______(btn)
+document.getElementById('toolbar').appendChild(btn)
 ```
 
 ---
@@ -90,13 +90,13 @@ button.addEventListener('click', (e) => {
 const input = document.querySelector('#search')
 
 // Listen for typing (same event as React's onChange)
-input._______('input', (e) => {
-  console.log('User typed:', e._______.value)
+input.addEventListener('input', (e) => {
+  console.log('User typed:', e.target.value)
 })
 
 // Listen for Enter key
-input._______('keydown', (e) => {
-  if (e._______ === 'Enter') {
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
     console.log('Submitted:', e.target.value)
   }
 })
@@ -125,16 +125,16 @@ title.classList.toggle('active')           // toggle a CSS class
 const card = document.querySelector('.card')
 
 // Change the text inside the card
-card._______ = 'Updated content'
+card.textContent = 'Updated content'
 
 // Add the CSS class "selected"
-card.classList._______('selected')
+card.classList.style.backgroundColor('selected')
 
 // Set a custom data attribute
-card._______('data-status', 'active')
+card.setAttribute('data-status', 'active')
 
 // Change the background color
-card._______.backgroundColor = 'lightblue'
+card.classList.backgroundColor = 'lightblue'
 ```
 
 ---
@@ -170,12 +170,12 @@ const names = ['Alice', 'Bob', 'Charlie']
 const container = document.querySelector('#names')
 
 names.forEach(name => {
-  const div = document._______('div')
+  const div = document.getElement ById('div')
   div._______ = name
-  div._______('click', () => {
+  div.addEventListener('click', () => {
     alert('You clicked: ' + name)
   })
-  container._______(div)
+  container.appendChild(div)
 })
 ```
 

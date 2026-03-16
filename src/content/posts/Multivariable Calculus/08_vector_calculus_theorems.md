@@ -183,3 +183,4 @@ $$
 | Green's (circulation) | $\oint_C P\,dx + Q\,dy = \iint_D (Q_x - P_y)\,dA$ |
 | Stokes' | $\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot d\mathbf{S}$ |
 | Divergence | $\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_E (\nabla \cdot \mathbf{F})\,dV$ |
+

@@ -82,20 +82,51 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
   return root
 }
 
+// Hide these folders from the tree entirely
+const hiddenFolders = ['_drafts', '_assets', '_statistics', 'examples']
+
 const tree = buildTree(posts, ['changelog'])
 
 // Emoji mappings for folder names (use slugified names)
 const folderEmojis: Record<string, string> = {
-  'books': '📖',
-  'firefox': '🦊',
-  'Movies': '🎬',
 }
 
 // Display name mappings for slugified folder names
 const folderDisplayNames: Record<string, string> = {
-  '1-k-nearest-neighbors': '1: K-Nearest Neighbors',
-  '2-decision-trees': '2: Decision Trees',
-  '3-linear-regression': '3: Linear Regression',
+  // Top-level
+  'data-structures-and-algorithms': 'Data Structures & Algorithms',
+  'department-of-computer-science': 'Dept. of Computer Science',
+  'linear-algebra': 'Linear Algebra',
+  'machine-learning': 'Machine Learning',
+  'multivariable-calculus': 'Multivariable Calculus',
+  'software-design': 'Software Design',
+  'triathlon-program': 'Aquathlon Program',
+  'us-government': 'US Government',
+  'frontend': 'Frontend Programming',
+  'books': 'Books',
+  'essays': 'Essays',
+  'movies': 'Movies',
+  'thoughts': 'Thoughts',
+  'effective-goal-setting': 'Effective Goal Setting',
+  'firefox': 'Firefox',
+  // Nested — DSA
+  'leetcode-patterns': 'Leetcode Patterns',
+  // Nested — Dept. of CS
+  '1-pythonta': 'PythonTA',
+  '2-markus': 'MarkUs',
+  // Nested — Machine Learning
+  '1-k-nearest-neighbors': 'K-Nearest Neighbors',
+  '2-decision-trees': 'Decision Trees',
+  '3-linear-regression': 'Linear Regression',
+  '4-linear-classification': 'Linear Classification',
+  // Nested — US Government
+  '1-foundations': 'Foundations',
+  '2-branches': 'Branches',
+  '3-civil-liberties': 'Civil Liberties',
+  '4-political-ideologies': 'Political Ideologies',
+  '5-political-participation': 'Political Participation',
+  // Nested — Thoughts (date folders)
+  '14': 'March 14',
 }
 
 function getFolderDisplayName(name: string): string {
@@ -104,11 +135,49 @@ function getFolderDisplayName(name: string): string {
   return emoji ? `${displayName} ${emoji}` : displayName
 }
 
-// Get recent posts (exclude changelog)
-const recentPosts = posts
-  .filter(p => !p.id.includes('changelog'))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
-  .slice(0, 3)
+// Section groupings for the tree (use slugified names as they appear in post IDs)
+const sectionMap: Record<string, string[]> = {
+  'Computer Science': [
+    'data-structures-and-algorithms',
+    'department-of-computer-science',
+    'firefox',
+    'linear-algebra',
+    'machine-learning',
+    'multivariable-calculus',
+    'software-design',
+    'frontend',
+  ],
+  'Writing': [
+    'books',
+    'essays',
+    'movies',
+    'thoughts',
+    'us-government',
+  ],
+  'Triathlon': [
+    'triathlon-program',
+  ],
+  'Decision Making': [
+    'effective-goal-setting',
+  ],
+}
+
+// Build section nodes from the tree
+interface Section {
+  name: string
+  nodes: TreeNode[]
+}
+
+const sections: Section[] = Object.entries(sectionMap).map(([sectionName, folderNames]) => ({
+  name: sectionName,
+  nodes: (tree.children || []).filter(node => folderNames.includes(node.name)),
+}))
+
+// Catch any ungrouped top-level nodes (files or folders not in a section and not hidden)
+const allGroupedFolders = Object.values(sectionMap).flat()
+const ungroupedNodes = (tree.children || []).filter(
+  node => !allGroupedFolders.includes(node.name) && !hiddenFolders.includes(node.name)
+)
 
 // Helper function to check if a folder contains the current path
 function isFolderActive(node: TreeNode, currentPath: string): boolean {
@@ -119,6 +188,10 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     return node.children.some(child => isFolderActive(child, currentPath))
   }
   return false
+}
+
+function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
+  return nodes.some(node => isFolderActive(node, currentPath))
 }
 ---
 
@@ -147,59 +220,103 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
     <span class="search-hint"><kbd>⌘K</kbd> to search</span>
   </div>
   <div class="tree-content">
-    {tree.children && tree.children.map(node => (
-      <Fragment>
-        {node.type === 'folder' ? (
-          <details class="tree-folder" open={isFolderActive(node, currentPath)}>
-            <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
-              <span class="folder-icon">📂</span>
-              <span class="folder-name">{getFolderDisplayName(node.name)}</span>
-            </summary>
-            <div class="tree-children">
-              {node.children && node.children.map(child => (
-                child.type === 'file' && child.post ? (
-                  <a
-                    href={`/${child.post.id}`}
-                    class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
-                  >
-                    <span class="file-icon">📄</span>
-                    <span class="file-name">{child.post.data.title}</span>
-                  </a>
-                ) : child.type === 'folder' ? (
-                  <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
-                    <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
-                      <span class="folder-icon">📂</span>
-                      <span class="folder-name">{getFolderDisplayName(child.name)}</span>
-                    </summary>
-                    <div class="tree-children">
-                      {child.children && child.children.map(file => (
-                        file.post && (
-                          <a
-                            href={`/${file.post.id}`}
-                            class={`tree-file ${currentPath === `/${file.post.id}` ? 'active' : ''}`}
-                          >
-                            <span class="file-icon">📄</span>
-                            <span class="file-name">{file.post.data.title}</span>
-                          </a>
-                        )
-                      ))}
-                    </div>
-                  </details>
-                ) : null
-              ))}
-            </div>
-          </details>
-        ) : node.post ? (
-          <a
-            href={`/${node.post.id}`}
-            class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
-          >
-            <span class="file-icon">📄</span>
-            <span class="file-name">{node.post.data.title}</span>
-          </a>
-        ) : null}
-      </Fragment>
+    {sections.map(section => (
+      section.nodes.length > 0 && (
+        <div class="tree-section">
+          <div class="section-heading">{section.name}</div>
+          {section.nodes.map(node => (
+            <Fragment>
+              {node.type === 'folder' ? (
+                <details class="tree-folder" open={isFolderActive(node, currentPath)}>
+                  <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
+                    <span class="folder-icon">📂</span>
+                    <span class="folder-name">{getFolderDisplayName(node.name)}</span>
+                  </summary>
+                  <div class="tree-children">
+                    {node.children && node.children.map(child => (
+                      child.type === 'file' && child.post ? (
+                        <a
+                          href={`/${child.post.id}`}
+                          class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
+                        >
+                          <span class="file-icon">📄</span>
+                          <span class="file-name">{child.post.data.title}</span>
+                        </a>
+                      ) : child.type === 'folder' ? (
+                        <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
+                          <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
+                            <span class="folder-icon">📂</span>
+                            <span class="folder-name">{getFolderDisplayName(child.name)}</span>
+                          </summary>
+                          <div class="tree-children">
+                            {child.children && child.children.map(file => (
+                              file.post && (
+                                <a
+                                  href={`/${file.post.id}`}
+                                  class={`tree-file ${currentPath === `/${file.post.id}` ? 'active' : ''}`}
+                                >
+                                  <span class="file-icon">📄</span>
+                                  <span class="file-name">{file.post.data.title}</span>
+                                </a>
+                              )
+                            ))}
+                          </div>
+                        </details>
+                      ) : null
+                    ))}
+                  </div>
+                </details>
+              ) : node.post ? (
+                <a
+                  href={`/${node.post.id}`}
+                  class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
+                >
+                  <span class="file-icon">📄</span>
+                  <span class="file-name">{node.post.data.title}</span>
+                </a>
+              ) : null}
+            </Fragment>
+          ))}
+        </div>
+      )
     ))}
+    {ungroupedNodes.length > 0 && (
+      <div class="tree-section">
+        {ungroupedNodes.map(node => (
+          <Fragment>
+            {node.type === 'folder' ? (
+              <details class="tree-folder" open={isFolderActive(node, currentPath)}>
+                <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
+                  <span class="folder-icon">📂</span>
+                  <span class="folder-name">{getFolderDisplayName(node.name)}</span>
+                </summary>
+                <div class="tree-children">
+                  {node.children && node.children.map(child => (
+                    child.type === 'file' && child.post ? (
+                      <a
+                        href={`/${child.post.id}`}
+                        class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
+                      >
+                        <span class="file-icon">📄</span>
+                        <span class="file-name">{child.post.data.title}</span>
+                      </a>
+                    ) : null
+                  ))}
+                </div>
+              </details>
+            ) : node.post ? (
+              <a
+                href={`/${node.post.id}`}
+                class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
+              >
+                <span class="file-icon">📄</span>
+                <span class="file-name">{node.post.data.title}</span>
+              </a>
+            ) : null}
+          </Fragment>
+        ))}
+      </div>
+    )}
   </div>
   <hr class="tree-divider" />
   <div class="tree-footer">
@@ -287,7 +404,8 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
   }
 
   .tree-header {
-    font-weight: var(--font-weight-bold);
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
@@ -509,5 +627,20 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 
   .nested {
     margin-left: 0;
+  }
+
+  .tree-section {
+    margin-bottom: 0.5rem;
+  }
+
+  .section-heading {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0.75rem 0 0.25rem 0;
+  }
+
+  .tree-section:first-child .section-heading {
+    margin-top: 0;
   }
 </style>
