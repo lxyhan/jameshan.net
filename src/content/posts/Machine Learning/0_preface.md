@@ -1,42 +1,24 @@
 ---
-title: '0: Preface'
+title: 'Machine Learning: Overview'
 pubDate: '2025-12-31'
 ---
 
-These are my notes for **CSC311H1: Introduction to Machine Learning** at the University of Toronto.
+A series on machine learning fundamentals — from nearest neighbors to neural networks — with hands-on experiments and a capstone project.
 
 ---
 
-## Course Overview
-
-An introduction to methods for automated learning of relationships on the basis of empirical data:
-
-- Classification and regression using nearest neighbour methods, decision trees, linear models, and neural networks
-- Clustering algorithms
-- Problems of overfitting and assessing accuracy
-
----
-
-## The Articles
-
-### Part I: Supervised Learning — Classification & Regression
+## Topics
 
 1. **K-Nearest Neighbors** — Distance metrics, decision boundaries, curse of dimensionality
 2. **Decision Trees** — Splitting criteria, information gain, pruning
-3. **Linear Regression** — Least squares, closed-form solution, gradient descent
-4. **Linear Classification** — Logistic regression, softmax, cross-entropy loss
-5. **Neural Networks** — Architecture, activation functions, forward pass
-6. **Training Neural Networks** — Backpropagation, optimization, regularization
+3. **Linear Regression and Gradient Descent** — Least squares, closed-form solution, gradient descent
+4. **Logistic Regression and Regularization** — Feature mapping, softmax, cross-entropy loss, L1/L2 regularization
+5. **Neural Networks** — Multi-class classification, limitations of linear models, multi-layer perceptrons
+6. **Backpropagation** — Computational graphs, chain rule, optimization
+7. **Bias-Variance Tradeoff and Bagging** — Decomposition, ensembles, statistical learning
+8. **Naive Bayes** — Generative models, conditional independence, text classification
+9. **Gaussian Discriminant Analysis** — Multivariate Gaussians, LDA/QDA, decision boundaries
 
-### Part II: Unsupervised Learning
+### Experiments
 
-7. **Clustering** — K-means, hierarchical clustering, evaluation metrics
-
-### Part III: Model Selection & Evaluation
-
-8. **Overfitting & Regularization** — Bias-variance tradeoff, L1/L2 regularization, dropout
-9. **Model Evaluation** — Cross-validation, precision/recall, ROC curves
-
----
-
-*Coming Winter 2026.*
+10. **Painting Classifier** — End-to-end ML project: feature engineering, model comparison (logistic regression vs random forest vs MLP), and evaluation on tabular survey data

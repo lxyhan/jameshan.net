@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import fs from 'node:fs'
+import path from 'node:path'
 
 interface Props {
   posts: CollectionEntry<'posts'>[]
@@ -11,9 +13,10 @@ const currentPath = Astro.url.pathname
 // Build tree structure from posts
 interface TreeNode {
   name: string
-  type: 'folder' | 'file'
+  type: 'folder' | 'file' | 'pdf'
   path: string
   post?: CollectionEntry<'posts'>
+  pdfHref?: string
   children?: TreeNode[]
 }
 
@@ -87,6 +90,65 @@ const hiddenFolders = ['_drafts', '_assets', '_statistics', 'examples']
 
 const tree = buildTree(posts, ['changelog'])
 
+// Scan for PDFs in public/pdfs/ and inject into the tree
+function findPdfs(dir: string, base = ''): string[] {
+  const results: string[] = []
+  if (!fs.existsSync(dir)) return results
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = base ? `${base}/${entry.name}` : entry.name
+    if (entry.isDirectory()) results.push(...findPdfs(path.join(dir, entry.name), rel))
+    else if (entry.name.endsWith('.pdf')) results.push(rel)
+  }
+  return results
+}
+
+const pdfRoot = path.join(process.cwd(), 'public', 'pdfs')
+for (const relative of findPdfs(pdfRoot)) {
+  const parts = relative.split('/')
+  const filename = parts.pop()!
+
+  // Walk/create folder path in the tree
+  let currentNode = tree
+  for (const folderName of parts) {
+    if (!currentNode.children) currentNode.children = []
+    let child = currentNode.children.find(n => n.name === folderName)
+    if (!child) {
+      child = { name: folderName, type: 'folder', path: '', children: [] }
+      currentNode.children.push(child)
+    }
+    currentNode = child
+  }
+
+  // Add PDF node — links to embedded viewer page
+  if (!currentNode.children) currentNode.children = []
+  currentNode.children.push({
+    name: filename,
+    type: 'pdf',
+    path: relative,
+    pdfHref: `/pdf/${relative}`,
+  })
+}
+
+// Re-sort after injecting PDFs
+function sortTreeFinal(node: TreeNode) {
+  if (node.children) {
+    node.children.sort((a, b) => {
+      const aIsPreface = a.name.toLowerCase().includes('preface')
+      const bIsPreface = b.name.toLowerCase().includes('preface')
+      if (aIsPreface && !bIsPreface) return -1
+      if (!aIsPreface && bIsPreface) return 1
+      if (a.type === 'folder' && a.type !== b.type) return -1
+      if (b.type === 'folder' && a.type !== b.type) return 1
+      // PDFs after markdown files
+      if (a.type === 'pdf' && b.type === 'file') return 1
+      if (a.type === 'file' && b.type === 'pdf') return -1
+      return a.name.localeCompare(b.name)
+    })
+    node.children.forEach(sortTreeFinal)
+  }
+}
+sortTreeFinal(tree)
+
 // Emoji mappings for folder names (use slugified names)
 const folderEmojis: Record<string, string> = {
 }
@@ -100,7 +162,8 @@ const folderDisplayNames: Record<string, string> = {
   'machine-learning': 'Machine Learning',
   'multivariable-calculus': 'Multivariable Calculus',
   'software-design': 'Software Design',
-  'triathlon-program': 'Aquathlon Program',
+  'national-qualifiers-2027': 'Triathlon Nationals 2027',
+  'resistance-training': 'Resistance Training',
   'us-government': 'US Government',
   'frontend': 'Frontend Programming',
   'books': 'Books',
@@ -115,10 +178,16 @@ const folderDisplayNames: Record<string, string> = {
   '1-pythonta': 'PythonTA',
   '2-markus': 'MarkUs',
   // Nested — Machine Learning
-  '1-k-nearest-neighbors': 'K-Nearest Neighbors',
-  '2-decision-trees': 'Decision Trees',
-  '3-linear-regression': 'Linear Regression',
-  '4-linear-classification': 'Linear Classification',
+  '01-k-nearest-neighbors': 'K-Nearest Neighbors',
+  '02-decision-trees': 'Decision Trees',
+  '03-linear-regression': 'Linear Regression',
+  '04-logistic-regression-and-regularization': 'Logistic Regression & Regularization',
+  '05-neural-networks': 'Neural Networks',
+  '06-backpropagation': 'Backpropagation',
+  '07-bias-variance-tradeoff-and-bagging': 'Bias-Variance & Bagging',
+  '08-naive-bayes': 'Naive Bayes',
+  '09-gaussian-discriminant-analysis': 'Gaussian Discriminant Analysis',
+  '10-painting-classifier': 'Painting Classifier',
   // Nested — US Government
   '1-foundations': 'Foundations',
   '2-branches': 'Branches',
@@ -154,8 +223,9 @@ const sectionMap: Record<string, string[]> = {
     'thoughts',
     'us-government',
   ],
-  'Triathlon': [
-    'triathlon-program',
+  'Athletics': [
+    'resistance-training',
+    'national-qualifiers-2027',
   ],
   'Decision Making': [
     'effective-goal-setting',
@@ -242,6 +312,16 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                           <span class="file-icon">📄</span>
                           <span class="file-name">{child.post.data.title}</span>
                         </a>
+                      ) : child.type === 'pdf' && child.pdfHref ? (
+                        <a
+                          href={child.pdfHref}
+                          class="tree-file tree-pdf"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <span class="file-icon pdf-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+                          <span class="file-name">{child.name.replace(/\.pdf$/i, '').replace(/[-_]/g, ' ')}</span>
+                        </a>
                       ) : child.type === 'folder' ? (
                         <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
                           <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
@@ -250,7 +330,17 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                           </summary>
                           <div class="tree-children">
                             {child.children && child.children.map(file => (
-                              file.post && (
+                              file.type === 'pdf' && file.pdfHref ? (
+                                <a
+                                  href={file.pdfHref}
+                                  class="tree-file tree-pdf"
+                                  target="_blank"
+                                  rel="noopener"
+                                >
+                                  <span class="file-icon pdf-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+                                  <span class="file-name">{file.name.replace(/\.pdf$/i, '').replace(/[-_]/g, ' ')}</span>
+                                </a>
+                              ) : file.post ? (
                                 <a
                                   href={`/${file.post.id}`}
                                   class={`tree-file ${currentPath === `/${file.post.id}` ? 'active' : ''}`}
@@ -258,7 +348,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                                   <span class="file-icon">📄</span>
                                   <span class="file-name">{file.post.data.title}</span>
                                 </a>
-                              )
+                              ) : null
                             ))}
                           </div>
                         </details>
@@ -534,6 +624,16 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
   .file-icon {
     font-size: 1rem;
     flex-shrink: 0;
+  }
+
+  .pdf-icon {
+    display: inline-flex;
+    align-items: center;
+    color: #e74c3c;
+  }
+
+  .tree-pdf:hover .pdf-icon {
+    color: #c0392b;
   }
 
   .file,
