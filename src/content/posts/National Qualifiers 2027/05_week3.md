@@ -1,19 +1,19 @@
 ---
-title: "Mar 30 - Apr 5"
+title: "Week 3: Mar 30 - Apr 5"
 pubDate: "2026-03-30"
 ---
 
-> **COACH'S NOTE:** Z5 CEILING UNLOCKED. If Weeks 1-2 went well (HR stayed below 185 at capped paces, 2\:2 breathing held, no nausea), you are cleared for full Z5 range: 3\:15-3\:40/km. If W1-2 had issues, stay at 3\:35-3\:40/km for one more week.
+> Meso 1, Week 3. Peak week. Volume hits 30 km. First swim. VO2max work gets harder.
 
 ## Monday - Easy Run + Strides
 
 - **Distance:** 7 km
-- **Pace:** Z1-Z2 (5\:15-5\:45/km). Err SLOW. Big week ahead.
-- **Strides:** 6 x 80m after. Smooth and fast.
+- **Pace:** Z2 (5\:30-6\:00/km)
+- **Strides:** 6 x 80m. Make these fast -- approaching race turnover.
 
 ---
 
-## Tuesday - KEY: VO2max Intervals (Race Pace)
+## Tuesday - KEY: VO2max Intervals (Progression)
 
 - **Pre-fuel:** 30-50g fast carbs 60 min before.
 - **Warm-up:** 10 min easy jog into 4 x strides
@@ -22,79 +22,84 @@ pubDate: "2026-03-30"
 
 | Interval | Reps | Pace | Recovery |
 |----------|------|------|----------|
-| 800m | 5 | Z5 (3\:15-3\:30/km) | 2\:30 easy jog |
+| 800m | 4 | Z5 (4\:00-4\:20/km) | 2\:00 easy jog |
 
-- **Total quality:** 4 km at VO2max
-- **Pacing:** Each 800m in \~2\:36-2\:48. THIS IS R1 TARGET PACE.
-- **HR management:** Full Z5 unlocked. Expect 185-192 BPM. Monitor for nausea; if it returns, back off.
-- **Breathing:** 2\:2 may be difficult at this pace. 2\:1 (inhale 2, exhale 1) is acceptable for Z5.
+- **Total quality:** 3.2 km at VO2max
+- **Progression from W2:** Longer reps (800 vs 600), tighter pace range. Each 800m in ~3\:12-3\:28.
+- **HR:** 185-192 expected. This should hurt in a productive way.
 - **Cool-down:** 10 min easy jog
 
-> **WHY:** 3\:15/km should now feel recognizable, not scary. Two weeks of capped Z5 work has built ventilatory capacity and CO2 tolerance. If 5x800m at 3\:20/km comes in with controlled breathing and no nausea, you are on track for the August R1 target. Record splits.
+*Total ~8-9 km. If 4\:20 felt easy last week, push toward 4\:05 this week. The zones are a floor to push through, not a ceiling to hide under.*
 
 ---
 
-## Wednesday - Strength A: Power + Legs + Core (PEAK)
+## Wednesday - Strength A + Swim
 
-**Warm-up:** 5 min incline walk + activation circuit
+### Strength A
 
-### A. Plyometrics
+**Warm-up:** 5 min incline walk + leg swings + glute activation
 
-| Exercise | Sets | Reps | Rest | Notes |
-|----------|------|------|------|-------|
-| Box Jump (increase height) | 4 | 4 | 2\:00 | Highest clean landing of the block. |
-| Bounding | 3 | 8 each | 90s | More reps than W1-2. Cover more ground. |
-
-### B. Single-Leg Strength (heaviest week)
+**A. Plyometrics**
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Single-Leg Leg Press | 4 | 8 each | 90s | Heaviest of the block. 4 sets. |
-| Leg Extension (single-leg) | 3 | 10 each | 60s | Heavier than W2. |
-| SL Calf Raise (weighted) | 4 | 10 each | 60s | Heavy DB. Achilles loading peak. |
+| Box Jumps (step down) | 3 | 5 | 90s | Try slightly higher box. |
+| Bounding | 3 | 8 each | 90s | More reps. Cover more ground. |
 
-### C. Core
-
-| Exercise | Sets | Reps | Rest | Notes |
-|----------|------|------|------|-------|
-| Dead Bug (heavier band) | 3 | 10 each | 45s | Increase band resistance. Breathing still primary focus. |
-| Hanging Knee Raise | 3 | 10-12 | 60s | Controlled. No swinging. |
-| Side Plank + Cable Row | 2 | 8 each | 60s | Anti-rotation + pulling. |
-
-### D. Accessories
+**B. Single-Leg Strength**
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| DB Lateral Raise | 2 | 12-15 | 45s | Controlled. |
-| DB Bicep Curl | 2 | 10-12 | 45s | Full ROM. |
+| Single-Leg Leg Press | 3 | 10 each | 75s | Add 5-10 lbs from W2. |
+| Leg Extension (single-leg) | 2 | 12 each | 60s | |
+| SL Calf Raise (weighted) | 3 | 12 each | 60s | 3-sec eccentric. Heavier DB. |
 
-*40-45 min. Hardest strength day of the block.*
+**C. Core**
+
+| Exercise | Sets | Reps | Rest | Notes |
+|----------|------|------|------|-------|
+| Dead Bug (breathing) | 3 | 10 each | 45s | |
+| Pallof Press | 3 | 10 each | 45s | Step further from cable. |
+| Side Plank | 2 | 40s each | 30s | |
+
+**D. Accessories**
+
+| Exercise | Sets | Reps | Rest | Notes |
+|----------|------|------|------|-------|
+| DB Lateral Raise | 2 | 12-15 | 45s | |
+| DB Bicep Curl | 2 | 10-12 | 45s | |
+
+### First Swim Session
+
+- **Duration:** 25-30 min
+- **Structure:** Easy freestyle laps. Get in the water, remember how to swim.
+- **Purpose:** Re-establish comfort. Don't try to go fast. Just move.
 
 ---
 
-## Thursday - KEY: RACE SIMULATION (BENCHMARK)
+## Thursday - KEY: Tempo + Threshold Push
 
-- **Pre-fuel:** 30-50g fast carbs 60 min before. This is THE session.
+- **Pre-fuel:** 30-50g fast carbs 60 min before.
 - **Warm-up:** 10 min easy jog into strides
 
 **Workout:**
 
-| Segment | Distance | Pace |
+| Segment | Duration | Pace |
 |---------|----------|------|
-| R1 Simulation | 2.5 km | Z5 (3\:15-3\:25/km) |
-| Recovery Jog | 3 min | Easy |
-| R2 Simulation | 2.5 km | Z4 (4\:00-4\:10/km) |
+| Tempo | 12 min | Z3 (5\:00-5\:20/km) |
+| Recovery jog | 2 min | Z1 |
+| Threshold | 5 min | Z4 (4\:30-4\:50/km) |
 
-- **Total quality:** 5 km at race paces
-- **Purpose:** Simulates R1 > rest > R2. The 3 min jog replaces the swim.
-- **Breathing:** R1: 2\:1 acceptable. Recovery jog: reset to 2\:2. R2: 2\:2 cadence.
-- **Cool-down:** 10 min easy jog + stretching
+- **Total quality:** 17 min
+- **Progression from W2:** Added 5 min of Z4 threshold work after the tempo block. This is the first time touching Z4.
+- **Breathing:** 2\:2 through tempo. May need focused effort to hold through Z4.
+- **Cool-down:** 10 min easy jog
 
-> **COACH'S NOTE:** BENCHMARK SESSION. Record every split. Compare R1 pace to your Tuesday 800m splits. Compare R2 pace to W1-2 Thursday tempos. This tells you exactly where you are. Total \~10-11 km.
+*Total ~9 km. The Z4 block should feel hard. If 4\:50 feels like death, that's fine -- it's the first exposure. If it feels merely hard, push toward 4\:35 and note the HR.*
 
 ---
 
-## Friday - Strength B: Upper + Posterior Chain (PEAK)
+## Friday - Strength B
 
 **Warm-up:** 5 min incline walk + band work
 
@@ -102,48 +107,57 @@ pubDate: "2026-03-30"
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Weighted Pull-ups | 4 | 5-6 | 2\:00 | Heaviest of the block. |
-| Cable Face Pulls | 3 | 15 | 60s | Maintain. |
-| DB Incline Press | 3 | 8 | 75s | Heaviest comfortable. |
+| Pull-ups | 4 | AMRAP | 90s | Try to beat W2 count. |
+| Cable Face Pulls | 3 | 15 | 60s | |
+| DB Incline Press | 3 | 10 | 75s | Small weight increase. |
 
 ### B. Posterior Chain
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Hip Thrust | 4 | 8 | 90s | Heaviest of the block. |
-| Leg Curl (slow eccentric) | 3 | 6-8 slow | 90s | Control deeper. 5-sec lowering. |
-| SL RDL (heavier) | 3 | 8 each | 75s | Progress DB weight. |
+| Hip Thrust | 3 | 10 | 75s | Progress load. |
+| Leg Curl (SLOW eccentric) | 3 | 6 slow | 90s | One more rep. 4-5 sec lowering. |
+| DB Romanian Deadlift | 3 | 12 | 60s | Slight weight increase. |
 
 ### C. Core
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Plank Walkout | 3 | 10-12 | 60s | Walk out as far as possible. |
-| Copenhagen Plank | 3 | 30s each | 45s | 3 sets this week. |
+| Plank Walkout | 3 | 10 | 60s | |
+| Copenhagen Plank | 2 | 30s each | 45s | |
 
 ### D. Accessories
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Tricep Pushdown | 2 | 12-15 | 45s | Squeeze. |
-| DB Hammer Curl | 2 | 10-12 | 45s | Controlled. |
-
-*40 min. Do not skip slow eccentric curls. Hamstring insurance.*
+| Tricep Pushdown | 2 | 12-15 | 45s | |
+| DB Hammer Curl | 2 | 10-12 | 45s | |
 
 ---
 
-## Saturday - Long Run: Aerobic + Tempo Finish
+## Saturday - Long Run
 
-- **Distance:** 12 km
-- **Structure:** 10 km @ Z2 (5\:00-5\:20/km) into last 2 km @ Z3 (4\:30-4\:40/km)
-- **Purpose:** Longest run. Tempo finish teaches pushing when tired.
-- **Breathing:** 2\:2 through Z2. Hold 2\:2 through tempo finish. This is the test.
-- **Cool-down:** 5 min walk + thorough foam rolling
+- **Distance:** 10 km
+- **Pace:** Z2 (5\:30-6\:00/km). All easy.
+- **Cool-down:** 5 min walk + foam roll
 
-*Peak mileage. If beat up, drop tempo finish and run all Z2.*
+*First double-digit run. With my background this should be fine. If not, the deconditioning is deeper than expected.*
 
 ---
 
-## Sunday - REST
+## Sunday - Easy Run
 
-Peak week done. Deload starts tomorrow.
+- **Distance:** 4 km
+- **Pace:** Z2. Recovery.
+
+---
+
+## Week 3 Totals
+
+| | Volume |
+|--|--------|
+| Running | ~30 km |
+| Strength | 2 sessions |
+| Swim | 1 session |
+
+*Peak week of Meso 1. Deload next week. Then the real work begins.*

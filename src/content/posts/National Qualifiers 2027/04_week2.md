@@ -1,17 +1,19 @@
 ---
-title: "Mar 23 - Mar 29"
+title: "Week 2: Mar 23 - Mar 29"
 pubDate: "2026-03-23"
 ---
 
+> Meso 1, Week 2. Second quality session introduced. Volume jumps to ~25 km. The re-entry phase is over -- now we train.
+
 ## Monday - Easy Run + Strides
 
-- **Distance:** 7 km
-- **Pace:** Z2 (5\:00-5\:30/km)
-- **Strides:** 5 x 80m after, walk back
+- **Distance:** 6 km
+- **Pace:** Z2 (5\:30-6\:00/km)
+- **Strides:** 5 x 80m, walk-back. Smooth and quick.
 
 ---
 
-## Tuesday - KEY: Threshold Cruise Intervals [REVISED]
+## Tuesday - KEY: VO2max Intervals
 
 - **Pre-fuel:** 30-50g fast carbs 60 min before.
 - **Warm-up:** 10 min easy jog into 4 x strides
@@ -20,127 +22,136 @@ pubDate: "2026-03-23"
 
 | Interval | Reps | Pace | Recovery |
 |----------|------|------|----------|
-| 1200m | 4 | Z4 (3\:55-4\:10/km) | 90s easy jog |
+| 600m | 5 | Z5 (4\:00-4\:20/km) | 2\:00 easy jog |
 
-- **Total quality:** 4.8 km at threshold
-- **Pacing:** Each 1200m in \~4\:45-5\:00. Short rest is the point.
-- **HR ceiling:** 185 BPM still applies.
-- **Breathing:** 2\:2 cadence. If it breaks on the 3rd or 4th rep, that's your current limit.
+- **Total quality:** 3 km at VO2max
+- **Pacing:** Each 600m in ~2\:24-2\:36. Consistent across all reps.
+- **HR:** Push toward 185-190. This should be genuinely hard.
+- **Breathing:** 2\:2 if possible, 2\:1 acceptable on later reps.
 - **Cool-down:** 10 min easy jog
 
-> **WHY:** Cruise intervals at threshold with short recovery simulate the metabolic environment of running R2 post-swim. Incomplete recovery between reps forces lactate clearance at pace, training the exact physiological demand of the aquathlon second run leg.
+*Total ~8 km. If last week's Tuesday at the old paces felt manageable, this week tests the corrected Z5. These should feel like real work.*
+
+Note to self: if 4\:00-4\:20 feels surprisingly doable, the zones are already too conservative. Push the pace down on rep 4-5 and see what happens.
 
 ---
 
 ## Wednesday - Strength A: Power + Legs + Core
 
-**Warm-up:** 5 min incline walk + leg swings + glute activation
+**Warm-up:** 5 min incline walk + leg swings + glute bridges x10 + BW squat jumps x5
 
 ### A. Plyometrics
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Depth Drop into Broad Jump | 3 | 4 | 2\:00 | Step off 30cm box, land, immediately jump forward. Reactive power. |
-| Single-Leg Hop (forward) | 3 | 5 each | 90s | Stick landing 2 sec. Proprioceptive challenge. |
+| Box Jumps (step down) | 3 | 5 | 90s | Same height as W1. Quality landings. |
+| Bounding (alt. leg) | 3 | 6 each | 90s | Drive knees, cover ground. |
 
 ### B. Single-Leg Strength
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Single-Leg Leg Press | 3 | 10 each | 75s | Add 5-10 lbs from W1. Track weight. |
-| Leg Extension (single-leg) | 2 | 12 each | 60s | Same or slight bump. |
-| Seated Calf Raise (heavy) | 4 | 10 | 60s | Slow eccentric. Soleus-biased. |
+| Single-Leg Leg Press | 3 | 10 each | 75s | Same weight as W1. Establish consistency. |
+| Leg Extension (single-leg) | 2 | 12 each | 60s | VMO activation. |
+| SL Calf Raise (weighted) | 3 | 12 each | 60s | 3-sec eccentric. Achilles insurance. |
 
 ### C. Core
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Dead Bug w/ band | 3 | 8 each | 45s | Band around feet. Resist extension. Breathe. |
-| Pallof Press (further from cable) | 3 | 10 each | 45s | Progress by stepping further out. |
-| Plank Shoulder Tap | 3 | 10 each | 45s | Anti-rotation. |
+| Dead Bug (breathing drill) | 3 | 8 each | 45s | Lower back glued. Breathing primary focus. |
+| Pallof Press (cable) | 3 | 10 each | 45s | Anti-rotation. |
+| Side Plank | 2 | 30-40s each | 30s | |
 
 ### D. Accessories
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| DB Lateral Raise | 2 | 12-15 | 45s | Controlled. |
-| DB Bicep Curl | 2 | 10-12 | 45s | Full ROM. |
-
-*35-40 min. Track leg press weight for progression.*
+| DB Lateral Raise | 2 | 12-15 | 45s | |
+| DB Bicep Curl | 2 | 10-12 | 45s | |
 
 ---
 
-## Thursday - KEY: Tempo + Fast Finish [REVISED]
+## Thursday - KEY: Tempo Run
+
+First Thursday quality session. this is where threshold development starts.
 
 - **Pre-fuel:** 30-50g fast carbs 60 min before.
-- **Warm-up:** 10 min easy jog into strides
+- **Warm-up:** 10 min easy jog into 4 x strides
 
 **Workout:**
 
 | Segment | Duration | Pace |
 |---------|----------|------|
-| Tempo | 15 min | Z3 (4\:30/km) |
-| Threshold | 5 min | Z4 (4\:00-4\:10/km) |
-| VO2max finish | 2 min | Z5 (3\:40/km) |
+| Tempo | 10 min | Z3 (5\:00-5\:20/km) |
+| Recovery jog | 2 min | Z1 |
+| Tempo | 10 min | Z3, push toward 5\:00 if first block felt smooth |
 
-- **Total quality:** \~22 min progressive
-- **Pacing:** Start controlled, get faster. Z5 finish simulates closing kick at CAPPED intensity.
-- **HR ceiling:** 185 BPM through the Z4 block. Z5 finish may exceed briefly; that's OK for 2 min.
-- **Breathing:** 2\:2 through Z3-Z4. May shift to 2\:1 for the Z5 finish; that's acceptable.
+- **Total quality:** 20 min at tempo
+- **Breathing:** 2\:2 cadence the entire effort. If it breaks, back off 5 sec/km.
 - **Cool-down:** 10 min easy jog
 
-> **COACH'S NOTE:** CHANGE FROM v1: Z5 finish capped at 3\:40/km instead of 3\:30/km. The fast finish should hurt, but it should be controlled hurt, not survival mode. If the 2 min Z5 feels smooth, that's a signal we can unlock full pace in W3.
+*Total ~8-9 km. First real tempo session at corrected paces. If 5\:10/km feels controlled, push to 5\:00 on the second block. Zones are fluid -- don't wait for permission.*
 
 ---
 
-## Friday - Strength B: Upper + Posterior Chain + Core
+## Friday - Strength B: Upper + Posterior Chain
 
-**Warm-up:** 5 min incline walk + band work + light pressing
+**Warm-up:** 5 min incline walk + band pull-aparts + light pressing
 
 ### A. Upper
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Weighted Pull-ups | 4 | 6-8 | 2\:00 | Add 5-10 lbs. BW if not ready. |
-| Cable Face Pulls | 3 | 15 | 60s | Posture. |
-| DB Incline Press | 3 | 10 | 75s | Slight increase from W1. |
+| Pull-ups (strict) | 4 | AMRAP | 90s | |
+| Cable Face Pulls | 3 | 15 | 60s | |
+| DB Incline Press | 3 | 10 | 75s | |
 
 ### B. Posterior Chain
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Hip Thrust (heavier) | 3 | 10 | 75s | Progress load from W1. |
-| Leg Curl (slow eccentric) | 3 | 5-6 slow | 90s | Slower descent than W1. 5-sec lowering. |
-| Single-Leg RDL (DB) | 3 | 8 each | 75s | Heavy DB opposite hand. Balance challenge. |
+| Hip Thrust | 3 | 10 | 75s | |
+| Leg Curl (SLOW eccentric) | 3 | 5 slow | 90s | 4-5 sec lowering. |
+| DB Romanian Deadlift | 3 | 12 | 60s | |
 
 ### C. Core
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Plank Walkout | 3 | 10 | 60s | Full extension. Slow. |
-| Copenhagen Plank | 2 | 25-35s each | 45s | Progress hold from W1. |
+| Plank Walkout | 3 | 8-10 | 60s | |
+| Copenhagen Plank | 2 | 20-30s each | 45s | |
 
 ### D. Accessories
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
-| Tricep Pushdown | 2 | 12-15 | 45s | Squeeze at bottom. |
-| DB Hammer Curl | 2 | 10-12 | 45s | Neutral grip. |
+| Tricep Pushdown | 2 | 12-15 | 45s | |
+| DB Hammer Curl | 2 | 10-12 | 45s | |
 
-*40 min. SL RDL replaces bilateral RDL for unilateral balance.*
+*35-40 min. No leg work.*
 
 ---
 
-## Saturday - Long Run: Aerobic
+## Saturday - Long Run
 
-- **Distance:** 10 km
-- **Pace:** Z2 (5\:00-5\:30/km). Last 2 km can drop to 4\:50 if feeling great.
+- **Distance:** 9 km
+- **Pace:** Z2 (5\:30-6\:00/km). Steady. No speeding up.
 - **Cool-down:** 5 min walk + foam roll
 
-*Volume bump 8 to 10 km. Treadmill at 1% if bad weather.*
+---
+
+## Sunday - Easy Run
+
+- **Distance:** 4 km
+- **Pace:** Z2. Shake out.
 
 ---
 
-## Sunday - REST
+## Week 2 Totals
 
-Full rest. **Sleep is the best PED on a cut.**
+| | Volume |
+|--|--------|
+| Running | ~25 km |
+| Strength | 2 sessions |
+| Swim | -- |

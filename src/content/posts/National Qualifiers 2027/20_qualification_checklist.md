@@ -89,8 +89,8 @@ pubDate: "2026-03-18"
 
 - [ ] Monitor email from agegroupteams@triathloncanada.com -- direct qual: 4-8 weeks post-race
 - [ ] Check TC website for roll-down -- must be top-8 + EOI filed -- first-come first-served
-- [ ] If qualified: pay Team Management Fee (\~$190) -- non-refundable, check email
-- [ ] If qualified: order mandatory Team Canada uniform (\~$350-400) -- race suit, jacket, hat, socks
+- [ ] If qualified: pay Team Management Fee (~$190) -- non-refundable, check email
+- [ ] If qualified: order mandatory Team Canada uniform (~$350-400) -- race suit, jacket, hat, socks
 - [ ] If qualified: register for 2027 Worlds race entry (Edmonton LOC) -- paid to Do North Events
 
 ---

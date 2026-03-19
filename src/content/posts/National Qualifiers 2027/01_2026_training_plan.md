@@ -1,148 +1,194 @@
 ---
-title: "Training Plan"
+title: "Training Plan v4"
 pubDate: "2026-03-16"
 ---
+
+Revised again after v3 was too conservative. I'm not a beginner -- I have years of running background (half marathons, full marathon, Ironman 70.3, 20-30 km weeks last year). I'm deconditioned, not untrained. The plan needs to reflect that.
 
 ## Athlete Profile
 
 - **Goal:** Team Canada Age Group Aquathlon (M20-24), August 2026
 - **Race Format:** 2.5K Run (R1) > 1K Swim > 2.5K Run (R2)
-- **R1 Target:** \~3\:15/km (8\:07 total) -- deferred to W3+; ceiling capped at 3\:40/km for W1-2
-- **R2 Target:** \~4\:05/km (10\:12 total)
-- **Current 5K:** \~20\:00-22\:00 unstructured (\~4\:00-4\:24/km)
-- **Schedule:** 6 days/week, evenings. Outdoor + treadmill mix.
-- **Nutrition:** Cutting \~2,600-2,800 cal, 200g+ protein. Pre-session carb protocol added.
-- **Equipment:** Condo gym (machines, cables, DBs, pull-up) + Hart House (UofT)
-- **Injuries:** Shoulder RC recovered. DB pressing only. No barbell bench.
+- **R1 Target:** ~3\:15/km (8\:07 total)
+- **R2 Target:** ~4\:05/km (10\:12 total)
+- **Current 5K:** ~22\:00 (~4\:24/km), estimated, deconditioned
+- **Background:** Marathon, half marathons, Ironman 70.3, 20-30 km/week last year
+- **Current Volume:** ~15 km/week (off-season)
+- **Schedule:** 7 days/week, afternoons (1-3 PM)
+- **Nutrition:** Cutting ~2,600-2,800 cal, 200g+ protein
+- **Equipment:** Condo gym + Hart House (UofT)
+- **Injuries:** Shoulder RC recovered. DB pressing only.
 - **Shoes:** Hoka Mach 6
 
 ---
 
-## Key Revisions from Coaching Assessment
+## Philosophy Changes from v3
 
-### 1. Zone 5 Ceiling Capped (Weeks 1-2)
+### 1. You're Deconditioned, Not Untrained
 
-Tuesday intervals capped at 3\:40-3\:45/km instead of 3\:20/km. Observed HR of 196-197 BPM with nausea indicates maximal aerobic power was exceeded before the ventilatory system adapted. CO2 clearance capacity must develop before pace targets increase. The goal is to build VO2max at a sustainable intensity, not to repeatedly trigger the autonomic kill-switch.
+v3 treated me like a beginner. It's not. My cardiovascular system, tendons, and neuromuscular patterns are dormant, not absent. The return-to-fitness curve for someone with my background is dramatically steeper than for someone who's never run. The plan needs to exploit that.
 
-### 2. Breathing Mechanics Protocol
+### 2. If It Doesn't Stress the System, It's Not Training
 
-Calisthenics background created a bracing pattern (Valsalva-adjacent) that restricts diaphragmatic excursion during running. Fix: 2\:2 respiratory cadence (inhale 2 steps, exhale 2 steps) enforced on all tempo and threshold work. Dead Bugs replace crunches as the primary core exercise to train belly breathing under core tension. If breathing rhythm breaks at target pace, pace is too fast.
+4 km at 5\:30 is trivial. It's barely a warm-up. Easy runs need to be long enough to genuinely stress the aerobic system. Hard days need to be genuinely hard. The plan should make me uncomfortable, let me recover, then make me more uncomfortable.
 
-### 3. Tendon Loading Prioritized
+### 3. Zones Are Fluid, Not Static
 
-Volume jump from \~15 to 32 km/week with high-impact intervals creates tendon overload risk. The tendons are the weakest structural link given no prior lower-body training history. Single-Leg Leg Press replaces Bulgarian Split Squats (machine stability reduces proprioceptive demand on untrained connective tissue). Slow eccentric hamstring curls (4-5 sec lowering) and heavy calf raises are non-negotiable for Achilles and hamstring resilience.
+v3 had formal recalibrations at weeks 8 and 12. That's too slow. New rule: if a session feels easy and HR is 10+ beats below ceiling, push the pace down immediately. Zones are a starting point, not a ceiling I have to wait for permission to break through. Recalibrate by feel every session, formally every 4 weeks.
 
-### 4. Pre-Session Fueling on a Cut
+### 4. Force Adaptation, Don't Wait For It
 
-Glycogen-depleted state on a caloric deficit accelerates onset of nausea and cognitive fog during high-intensity work. Fix: 30-50g fast-acting carbohydrates 60 min before all KEY sessions (Tuesday/Thursday). Examples: banana + honey, white rice cake, sports drink. Do not run KEY sessions fasted or on slow-digesting protein.
+v3's speed development strategy was "do intervals and pray the zones shift." That's not a strategy. This version has progressive overload built into every quality session -- shorter rest, longer reps, faster pace, or some combination. Every week should be harder than the last (within a mesocycle).
 
----
+### 5. Race-Pace Exposure Starts Early
 
-## Training Philosophy
-
-**Strength for Racing, Not for Size.** Every strength session serves a specific biomechanical purpose for race performance. If fatigued: cut lift volume first. Never sacrifice a KEY run session for a lift.
-
-| Modality | Race-Specific Rationale |
-|----------|------------------------|
-| Explosive power (plyos, box jumps) | Improve ground contact time and finishing kick acceleration |
-| Single-leg machine work | Build connective tissue tolerance for higher mileage (tendon-safe progression) |
-| Core anti-rotation (Pallof, Dead Bugs) | Maintain upright posture exiting the swim when trunk is fatigued |
-| Calf/Achilles loading | Harden the spring mechanism; absorb eccentric forces at race pace |
-| Arm accessories (curls, raises) | Preserve upper body lean mass during caloric deficit |
+Neuromuscular patterning at 3\:15/km needs to start by week 5, not week 13. Short reps (200m) at goal pace teach the legs what race turnover feels like. By the time I'm doing full race-pace intervals in Meso 4, it shouldn't feel foreign.
 
 ---
 
-## Revised Run Training Zones
+## Starting Training Zones (based on watch HR data)
 
-Zone 5 is capped at 3\:40/km for Weeks 1-2 to allow ventilatory adaptation. Full Z5 range (3\:15-3\:40) unlocked in Week 3 based on HR response.
+Calibrated from actual watch data, not reverse-engineered from a guessed 5K. My max HR is ~204 and the aerobic system is genuinely detrained despite the running background. These are starting points -- push them down as soon as they feel comfortable.
 
-| Zone | Name | Pace/km | HR (est.) | Feel | Purpose |
-|------|------|---------|-----------|------|---------|
-| Z1 | Recovery | 5\:45-6\:15 | < 130 | Could talk nonstop | Recovery between hard days |
-| Z2 | Easy Aerobic | 5\:00-5\:30 | 130-150 | Comfortable, conversational | Aerobic base; majority of mileage |
-| Z3 | Tempo | 4\:20-4\:40 | 155-170 | Comfortably hard | Lactate threshold development |
-| Z4 | Threshold | 3\:50-4\:10 | 170-182 | Hard, race pace (R2) | R2 pace development |
-| Z5 | VO2max | 3\:40-3\:45 (W1-2) / 3\:15-3\:40 (W3+) | 182-192 | Very hard | R1 pace; capped W1-2 |
+| Zone | Name | Pace/km | HR (est.) | Purpose |
+|------|------|---------|-----------|---------|
+| Z1 | Recovery | 6\:00-6\:30 | < 130 | Recovery |
+| Z2 | Easy Aerobic | 5\:30-6\:00 | 130-150 | Aerobic base |
+| Z3 | Tempo | 5\:00-5\:20 | 155-170 | Lactate threshold |
+| Z4 | Threshold | 4\:30-4\:50 | 170-182 | R2 pace development |
+| Z5 | VO2max | 4\:00-4\:20 | 182-192 | VO2max development |
 
-> **COACH'S NOTE:** HR ceiling for KEY sessions (W1-2): 185 BPM. If you cross 185, back off pace immediately. We are building threshold, not failure. The 2\:2 breathing cadence is your governor: if it breaks, you're too fast.
+> Watch data is ground truth. The aggression in this plan comes from volume, frequency, and progressive overload -- not from running easy days at tempo pace. Zones are fluid: if a session feels easy and HR is well below ceiling, push the pace down.
 
-> **WHY:** At 196-197 BPM, arterial CO2 was likely elevated past the respiratory compensation point. The nausea was a brainstem-mediated response to acute respiratory acidosis. Capping intensity below this threshold for 2 weeks allows ventilatory muscle adaptation (external intercostals, diaphragm) and improved CO2 clearance before pushing pace.
+---
+
+## Training Principles
+
+**Strength for Racing, Not for Size.** If fatigued, cut lift volume. Never sacrifice a KEY run for a lift.
+
+**The Breathing Governor Still Applies.** 2\:2 cadence on all tempo/threshold work. If it breaks, the pace is too fast for that session -- but that doesn't mean the pace is wrong for next session.
+
+**Pre-Fuel KEY Days.** 30-50g fast carbs 60 min before Tuesday and Thursday. Non-negotiable on a cut.
+
+---
+
+## 16-Week Macro Plan (Mar 16 - Jun 28)
+
+Four mesocycles. 3 build + 1 deload. But the base phase is compressed and the progression is aggressive.
+
+### Meso 1: Re-Entry + Ramp (Weeks 1-4)
+
+| Week | Run Vol | Quality Runs | Swim | Strength | Focus |
+|------|---------|-------------|------|----------|-------|
+| W1 (Mar 16) | ~20 km | 1x | -- | 2x | Re-entry. Establish rhythm. |
+| W2 (Mar 23) | ~25 km | 2x | -- | 2x | Add 2nd quality session immediately. |
+| W3 (Mar 30) | ~30 km | 2x | 1x | 2x | Z5 work starts. First swim. |
+| W4 (Apr 6) | ~20 km | 1x (sharpening) | 1x | 1x | **DELOAD** |
+
+### Meso 2: Threshold + VO2max (Weeks 5-8)
+
+| Week | Run Vol | Quality Runs | Swim | Strength | Focus |
+|------|---------|-------------|------|----------|-------|
+| W5 (Apr 13) | ~32 km | 2x | 2x | 2x | Race-pace strides introduced (200m) |
+| W6 (Apr 20) | ~36 km | 2x | 2x | 2x | Longer VO2max reps, progressive tempo |
+| W7 (Apr 27) | ~40 km | 2x | 2x | 2x | Push VO2max pace if ready |
+| W8 (May 4) | ~27 km | 1x (sharpening) | 1x | 1x | **DELOAD + formal zone recalibration** |
+
+### Meso 3: Speed Development (Weeks 9-12)
+
+| Week | Run Vol | Quality Runs | Swim | Strength | Focus |
+|------|---------|-------------|------|----------|-------|
+| W9 (May 11) | ~40 km | 2x | 2x | 2x | Race-pace 400s, long threshold |
+| W10 (May 18) | ~44 km | 2x | 2x | 2x | Longer race-pace reps |
+| W11 (May 25) | ~48 km | 2x | 2x | 2x | **Peak volume + intensity** |
+| W12 (Jun 1) | ~32 km | 1x (sharpening) | 1x | 1x | **DELOAD + zone recalibration** |
+
+### Meso 4: Race Prep + Taper (Weeks 13-16)
+
+| Week | Run Vol | Quality Runs | Swim | Strength | Focus |
+|------|---------|-------------|------|----------|-------|
+| W13 (Jun 8) | ~42 km | 2x | 2x | 2x | Brick sessions, race-pace 600-800s |
+| W14 (Jun 15) | ~40 km | 2x | 2x | 2x | Race simulation #1 |
+| W15 (Jun 22) | ~35 km | 2x | 1x | 1x | Race simulation #2 (full dress) |
+| W16 (Jun 28) | ~20 km | 1x (sharpening) | 1x | 0 | **TAPER** |
 
 ---
 
 ## Weekly Structure
 
-| Day | Session | Purpose / Notes |
-|-----|---------|----------------|
-| Monday | Easy Run + Strides | Aerobic + neuromuscular activation |
-| Tuesday | **KEY:** Intervals / Speed (Z5 CAPPED) | Most important run. Pre-fuel 60 min before. |
-| Wednesday | Strength A: Power + Legs | Plyos, single-leg MACHINE work, core (Dead Bugs), arm accessories |
-| Thursday | **KEY:** Tempo / Threshold | Sustained race-pace work. 2\:2 breathing. Pre-fuel 60 min before. |
-| Friday | Strength B: Full Body | Pull/push, posterior chain, core, arm accessories |
-| Saturday | Long Run | Aerobic base; longest run of the week |
-| Sunday | **REST** | Full recovery. Sleep 8+ hrs. |
+### Build Weeks (most weeks)
+
+| Day | Session | Notes |
+|-----|---------|-------|
+| Mon | Easy run + strides | 5-8 km, Z2. Strides get faster over weeks. |
+| Tue | **KEY:** VO2max intervals | Pre-fuel. Hardest run of the week. |
+| Wed | Strength A + swim | Legs/plyos/core, then easy swim |
+| Thu | **KEY:** Tempo/threshold | Pre-fuel. Progressive pacing. |
+| Fri | Strength B | Upper + posterior chain. NO legs. |
+| Sat | Long run | Z2, longest run of the week. |
+| Sun | Easy run or swim | Recovery. Low impact. |
+
+### Deload Weeks (W4, W8, W12)
+
+| Day | Session |
+|-----|---------|
+| Mon | Easy run (4-5 km) |
+| Tue | Sharpening (short, fast, full recovery) |
+| Wed | Strength (light, 1 session) |
+| Thu | Zone recalibration test (TT or tempo check) |
+| Fri | Rest |
+| Sat | Easy long run (reduced) |
+| Sun | Easy swim or rest |
 
 ---
 
-## 4-Week Volume Progression
+## Strength Structure
 
-| Week | Run Volume | Run Sessions | Strength | Focus |
-|------|-----------|-------------|----------|-------|
-| Week 1 (Base) | \~22-24 km | 3 runs | 2 sessions | Establish baselines. Z5 capped at 3\:40/km. |
-| Week 2 (Build) | \~26-28 km | 3 runs | 2 sessions | Threshold development. Z5 still capped. |
-| Week 3 (Peak) | \~30-32 km | 3 runs | 2 sessions | Peak volume. Full Z5 unlocked if HR stable. |
-| Week 4 (Deload) | \~18-20 km | 3 runs | 1 session | Absorb and sharpen. Supercompensation window. |
+### Strength A (Wednesday) -- Running Support
 
----
+- Plyometrics (box jumps, bounding) -- FIRST when fresh
+- Single-leg machine work (leg press, calf raises)
+- Core with breathing (dead bugs, pallof press)
+- Light arm accessories
+- ~40-45 min
 
-## Pre-Session Fueling Protocol (KEY Days)
+### Strength B (Friday) -- Muscle Preservation
 
-- **Timing:** 60 minutes before KEY sessions (Tuesday and Thursday)
-- **Amount:** 30-50g fast-acting carbohydrate
-- **Good options:** Banana + 1 tbsp honey, 2 white rice cakes, 300ml sports drink, 2 medjool dates
-- **Avoid:** High-fat, high-fiber, or slow-digesting protein meals within 90 min
-- **Hydration:** 250-500ml water with electrolytes in the 2 hours prior
-
-> **WHY:** On a caloric deficit, liver glycogen is chronically low. High-intensity work (Z4-Z5) relies heavily on carbohydrate oxidation. Pre-loading fast carbs 60 min prior tops off muscle glycogen without disrupting the overall deficit, delays the onset of central fatigue, and prevents the hypoglycemia-driven nausea that compounds respiratory acidosis.
+- Upper pull (pull-ups, face pulls)
+- Upper push (DB incline press)
+- Posterior chain (hip thrust, slow eccentric leg curl, RDL)
+- Core (plank walkout, copenhagen plank)
+- **NO plyos, NO leg press, NO squats**
+- ~35-40 min
 
 ---
 
-## Breathing Mechanics Protocol
+## Progression Targets
 
-Your calisthenics background has trained a bracing pattern where the core locks the ribcage in a compressed position. This restricts diaphragmatic excursion and tidal volume, meaning less air per breath. At high intensities, this forces breathing rate to compensate, which fails above \~180 BPM and causes CO2 accumulation, blood pH drop, and nausea.
-
-### The 2\:2 Cadence
-
-Inhale for 2 footstrikes, exhale for 2 footstrikes. This is your pacing governor on KEY days. Practice it on easy runs first. On Tempo/Threshold runs, if the rhythm breaks and you're gasping or reverting to shallow chest breathing, you are running too fast. Back off until the rhythm locks in.
-
-### Dead Bug Breathing Drill
-
-Dead Bugs are now your primary core exercise across all strength sessions. The purpose is dual: anti-extension core stability AND diaphragmatic breathing under tension. Protocol: lower back MUST stay glued to the floor (posterior pelvic tilt). Inhale through nose as you extend opposite arm/leg. Exhale fully through mouth as you return. If your back lifts, you've lost the position. This teaches your body to breathe deeply while maintaining core stiffness, the exact demand of running at threshold.
+| Metric | Week 1 | Week 8 | Week 12 | Week 16 |
+|--------|--------|--------|---------|---------|
+| Weekly volume | ~20 km | ~40 km | ~48 km | ~42 km (pre-taper) |
+| Easy pace | 5\:30-6\:00 | ~5\:15-5\:35 | ~5\:00-5\:20 | Natural |
+| Tempo pace | 5\:00-5\:20 | ~4\:40-4\:55 | ~4\:20-4\:35 | Near R2 target |
+| VO2max pace | 4\:00-4\:20 | ~3\:45-4\:00 | ~3\:30-3\:45 | Near R1 target |
+| R1 pace (3\:15) | Not yet | Short strides | 400m reps | 800m reps, sim |
+| Long run | 7 km | 12 km | 16 km | 12 km (tapering) |
 
 ---
 
-## Progress Markers & Decision Points
+## Pre-Session Fueling (KEY Days)
 
-### End of Week 2: Z5 Unlock Decision
+- **Timing:** 60 min before KEY sessions
+- **Amount:** 30-50g fast-acting carbs
+- **Options:** Banana + honey, rice cakes, sports drink, medjool dates
+- **Hydration:** 250-500ml water + electrolytes in the 2 hours prior
 
-| Decision | Criteria |
-|----------|----------|
-| **UNLOCK** full Z5 (3\:15-3\:40) | HR stayed below 185 on all capped sessions, 2\:2 breathing held on tempos, no nausea on any session, W2 Thursday fast finish felt controlled |
-| **STAY CAPPED** one more week | HR exceeded 185 regularly, breathing rhythm broke on tempos, any nausea, W2 fast finish felt like survival |
+Do NOT run KEY sessions fasted.
 
-### End of Week 3: Benchmark Assessment
+---
 
-Thursday W3 race simulation splits tell you exactly where you stand. Compare R1 (2.5 km at Z5) to your Tuesday 800m pace. Compare R2 (2.5 km at Z4) to your W1-2 Thursday tempos. If R1 came in at 3\:20-3\:25/km and R2 at 4\:05-4\:10/km, you are on trajectory for August targets.
+## Breathing Protocol
 
-### End of Week 4: Block Completion Metrics
+2\:2 cadence (inhale 2 steps, exhale 2 steps) on all tempo/threshold. Shifts to 2\:1 for Z5 work. If 2\:2 breaks at tempo pace, the pace is too fast for that session.
 
-| Metric | Start (W1) | Target (W4) |
-|--------|-----------|-------------|
-| Z5 pace (controlled) | 3\:40-3\:45/km (capped) | 3\:15-3\:30/km (smooth) |
-| 2\:2 breathing at Z4 | Breaking / inconsistent | Locked in through 4\:10/km |
-| HR at 4\:10/km | Near or above 185 | Below 180 |
-| Nausea on intervals | Present (W1 Tuesday) | Absent |
-| Tuesday 600m consistency | Variable | Within 3 sec per rep |
-| Leg press (single leg) | Baseline | +10-15% from W1 |
-
-**NEXT PHASE:** Block 2 introduces swim sessions and run-swim-run bricks. Strength shifts to maintenance volume. Run intensity holds or progresses based on Block 1 benchmarks.
+Dead Bugs remain primary core exercise for diaphragmatic retraining.

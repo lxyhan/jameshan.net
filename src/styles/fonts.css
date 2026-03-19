@@ -1,21 +1,12 @@
 /* Computer Modern Serif - LaTeX's default font, self-hosted */
 
-/* System font for tilde character - CMU Serif has misaligned tilde */
-@font-face {
-  font-family: "CMU Serif";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: local("Georgia"), local("Times New Roman"), local("serif");
-  unicode-range: U+007E; /* Tilde ~ */
-}
-
 @font-face {
   font-family: "CMU Serif";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url("/fonts/cmu-serif-500-roman.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF; /* Everything except tilde */
 }
 
 @font-face {
@@ -24,6 +15,7 @@
   font-weight: 400;
   font-display: swap;
   src: url("/fonts/cmu-serif-500-italic.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF;
 }
 
 @font-face {
@@ -32,6 +24,7 @@
   font-weight: 500;
   font-display: swap;
   src: url("/fonts/cmu-serif-500-roman.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF;
 }
 
 @font-face {
@@ -40,6 +33,7 @@
   font-weight: 500;
   font-display: swap;
   src: url("/fonts/cmu-serif-500-italic.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF;
 }
 
 @font-face {
@@ -48,6 +42,7 @@
   font-weight: 700;
   font-display: swap;
   src: url("/fonts/cmu-serif-700-roman.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF;
 }
 
 @font-face {
@@ -56,4 +51,42 @@
   font-weight: 700;
   font-display: swap;
   src: url("/fonts/cmu-serif-700-italic.woff2") format("woff2");
+  unicode-range: U+0000-007D, U+007F-10FFFF;
+}
+
+/* System font for tilde character - CMU Serif has misaligned tilde glyph */
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Georgia"), local("Times New Roman"), local("serif");
+  unicode-range: U+007E;
+}
+
+@font-face {
+  font-family: "CMU Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Georgia"), local("Times New Roman"), local("serif");
+  unicode-range: U+007E;
+}
+
+@font-face {
+  font-family: "CMU Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Georgia"), local("Times New Roman"), local("serif");
+  unicode-range: U+007E;
+}
+
+@font-face {
+  font-family: "CMU Serif";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Georgia"), local("Times New Roman"), local("serif");
+  unicode-range: U+007E;
 }

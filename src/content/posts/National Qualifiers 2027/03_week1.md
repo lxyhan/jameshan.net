@@ -1,5 +1,5 @@
 ---
-title: "Mar 16 - Mar 22"
+title: "Week 1: Mar 16 - Mar 22"
 pubDate: "2026-03-16"
 ---
 
@@ -8,7 +8,7 @@ pubDate: "2026-03-16"
 - **Warm-up:** 5 min brisk walk into 5 min very easy jog
 - **Distance:** 6 km total
 - **Pace:** Z2 (5\:00-5\:30/km). Conversational the entire way.
-- **Strides:** After main run: 4 x 80m strides at \~90% effort, walk-back recovery
+- **Strides:** After main run: 4 x 80m strides at ~90% effort, walk-back recovery
 - **Cool-down:** 5 min walk + light stretching
 - **Breathing:** Practice 2\:2 cadence. Get it locked in at easy pace before harder days.
 
@@ -28,16 +28,16 @@ pubDate: "2026-03-16"
 | 600m | 6 | 3\:40-3\:45/km | 2\:00 easy jog |
 
 - **Total quality:** 3.6 km at capped VO2max effort
-- **Pacing:** Each 600m in \~2\:12-2\:15. Be **CONSISTENT** across all reps. No hero reps.
+- **Pacing:** Each 600m in ~2\:12-2\:15. Be **CONSISTENT** across all reps. No hero reps.
 - **HR ceiling:** 185 BPM. If you cross it, slow the next rep.
 - **Breathing:** 2\:2 cadence. If it breaks, you're too fast.
 - **Cool-down:** 10 min very easy jog + stretching
 
-*Total \~8-9 km. Hardest run of the week. Respect rest intervals.*
+*Total ~8-9 km. Hardest run of the week. Respect rest intervals.*
 
 > **COACH'S NOTE:** CHANGE FROM v1: Pace target lowered from 3\:20/km to 3\:40-3\:45/km. Your ventilatory system needs 2 weeks to adapt before pushing full Z5. Consistency across reps matters more than peak pace on any single rep.
 
-> **WHY:** VO2max adaptations (mitochondrial biogenesis, capillary density, stroke volume) occur across a range of intensities from \~85-100% of maximal aerobic power. Training at 90-95% (3\:40/km for you) produces nearly identical aerobic stimulus with dramatically lower autonomic stress, reduced injury risk, and better session-to-session recovery. The additional 20 sec/km of pace at 3\:20 was buying almost no extra adaptation while creating unsustainable physiological strain.
+> **WHY:** VO2max adaptations (mitochondrial biogenesis, capillary density, stroke volume) occur across a range of intensities from ~85-100% of maximal aerobic power. Training at 90-95% (3\:40/km for you) produces nearly identical aerobic stimulus with dramatically lower autonomic stress, reduced injury risk, and better session-to-session recovery. The additional 20 sec/km of pace at 3\:20 was buying almost no extra adaptation while creating unsustainable physiological strain.
 
 ---
 
@@ -83,30 +83,20 @@ pubDate: "2026-03-16"
 
 ---
 
-## Thursday - KEY: Tempo Run (Threshold) [REVISED]
+## Thursday - Easy Run
 
-- **Pre-fuel:** 30-50g fast carbs 60 min before.
-- **Warm-up:** 10 min easy jog (Z1) into 4 x 80m strides
+Re-entry week so no second quality session yet. But this isn't a jog around the block -- it needs to be long enough to actually do something.
 
-**Workout:**
-
-| Interval | Reps | Pace | Recovery |
-|----------|------|------|----------|
-| 10 min | 2 | Z3-Z4 (4\:20-4\:10/km) | 3 min easy jog |
-
-- **Total quality:** \~20 min at tempo effort
-- **Pacing:** Start at 4\:20. If strong, push toward 4\:10 in second rep.
-- **HR ceiling:** 185 BPM. If you cross it, back off.
-- **Breathing:** 2\:2 cadence locked in the ENTIRE tempo effort. This is the test.
-- **Cool-down:** 10 min easy jog + stretching
-
-*Total \~9-10 km. Hard but holdable. If gasping, you're too fast.*
-
-> **COACH'S NOTE:** The Thursday session is where breathing mechanics get tested under load. If you can hold 4\:15/km with 2\:2 breathing and HR below 185, that is a WIN. Do not chase pace at the expense of respiratory control.
+- **Distance:** 6 km
+- **Pace:** Z2 (5\:30-6\:00/km). Conversational but purposeful.
+- **Breathing:** 2\:2 cadence practice.
+- **Cool-down:** 5 min walk
 
 ---
 
 ## Friday - Strength B: Upper + Posterior Chain + Core
+
+**NO leg-taxing exercises.** No plyos, no leg press, no squats. Posterior chain is hip hinge only. Saturday's long run needs fresh legs.
 
 **Warm-up:** 5 min incline walk + band pull-aparts x15 + light DB press x10
 
@@ -118,15 +108,13 @@ pubDate: "2026-03-16"
 | Cable Face Pulls | 3 | 15 | 60s | Rear delts + external rotation. |
 | DB Incline Press | 3 | 10 | 75s | 30-degree angle. Shoulder-safe. |
 
-### B. Posterior Chain [TENDON FOCUS]
+### B. Posterior Chain
 
 | Exercise | Sets | Reps | Rest | Notes |
 |----------|------|------|------|-------|
 | Hip Thrust (DB/machine) | 3 | 10 | 75s | Squeeze glutes. 2-sec hold at top. |
-| Leg Curl (SLOW eccentric) | 3 | 5 slow | 90s | 4-5 sec lowering phase EACH rep. Sprint insurance. |
-| DB Romanian Deadlift | 3 | 12 | 60s | Hinge forward, slight knee bend. Hamstring stretch at bottom. |
-
-> **WHY:** Slow eccentric hamstring curls (Nordic-adjacent loading) increase fascicle length and tendon stiffness. This is the primary prophylactic against hamstring strain during the swim-to-run transition, where cold, fatigued hamstrings are asked to generate force at 3\:15-4\:00/km immediately.
+| Leg Curl (SLOW eccentric) | 3 | 5 slow | 90s | 4-5 sec lowering phase EACH rep. Hamstring + tendon insurance. |
+| DB Romanian Deadlift | 3 | 12 | 60s | Hinge pattern. Slight knee bend. Hamstring stretch at bottom. |
 
 ### C. Core
 
@@ -142,23 +130,36 @@ pubDate: "2026-03-16"
 | Tricep Pushdown (cable) | 2 | 12-15 | 45s | Squeeze at bottom. |
 | DB Hammer Curl | 2 | 10-12 | 45s | Neutral grip. Controlled. |
 
-*40-45 min. Pull-ups + posterior chain support upright form when fatigued.*
+*35-40 min.*
 
 ---
 
-## Saturday - Long Run: Aerobic Base
+## Saturday - Long Run
 
-- **Warm-up:** 5 min walk into 5 min very easy jog
-- **Distance:** 8 km
-- **Pace:** Z2 (5\:00-5\:30/km) entire run. DO NOT speed up.
-- **Terrain:** Flat preferred. Treadmill at 1% incline if weather is bad.
-- **Breathing:** 2\:2 cadence practice. Should be effortless at this pace.
+- **Distance:** 7 km
+- **Pace:** Z2 (5\:30-6\:00/km). Steady the whole way.
+- **Breathing:** 2\:2 cadence. Should be comfortable at this pace.
 - **Cool-down:** 5 min walk + foam roll quads, calves, hip flexors
 
-*Longest run of the week. Easy pace builds the base for everything.*
+*This is re-entry, not base-from-scratch. 7 km at Z2 should be manageable with my running history.*
 
 ---
 
-## Sunday - REST
+## Sunday - Easy Run
 
-Full rest. Sleep 8+ hrs. Eat well. Optional 20-30 min walk.
+- **Distance:** 4 km
+- **Pace:** Z2 (5\:30-6\:00/km). Shake out the legs.
+
+*Not a rest day. Active recovery. The volume needs to start accumulating.*
+
+---
+
+## Week 1 Totals
+
+| | Volume |
+|--|--------|
+| Running | ~20 km (Mon 6 + Tue ~8 + Thu 6 + Sat 7 + Sun 4 = ~31 with warm/cool, ~20 quality+easy) |
+| Strength | 2 sessions (Wed A, Fri B) |
+| Swim | -- |
+
+*Re-entry week. Getting the rhythm back. Next week the second quality session comes in and the volume jumps.*
