@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content'
+
+const allPosts = await getCollection('posts')
+
+const featuredSlugs = [
+  { slug: 'essays/film_shurik_and_gaidai', title: "Gaidai, Shurik, and 76 million tickets" },
+  { slug: 'essays/book_a_farewell_to_arms', title: "A Farewell to Arms (Hemingway, 1929)" },
+  { slug: 'essays/book_red_star_over_china', title: "Red Star Over China (Snow, 1937)" },
+  { slug: 'essays/film_no_mans_land', title: "No Man's Land and the Comedy of Observers" },
+  { slug: 'essays/dreadnought_economics', title: "Discontinuous Utility and the Jutland Paradox" },
+  { slug: 'essays/a_coalition_of_bandits', title: "The Old Marshal's coalition" },
+  { slug: 'essays/film_in_the_heat_of_the_sun', title: "In the Heat of the Sun: Memory as Authorship" },
+  { slug: 'essays/film_andrei_rublev', title: "Andrei Rublev and the Problem of Creation" },
+  { slug: 'essays/book_a_time_of_gifts', title: "A Time of Gifts (Fermor, 1977)" },
+  { slug: 'essays/transit_ml_proposal', title: "ML for Latent Transit Demand Detection in Unserved Communities" },
+]
+
+const featured = featuredSlugs.map(({ slug, title }) => {
+  const post = allPosts.find(p => p.id === slug)
+  const date = post?.data.pubDate
+  const formatted = date
+    ? `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`
+    : ''
+  return { title, href: `/${slug}`, date: formatted, raw: date }
+}).filter(e => e.date).sort((a, b) => b.raw!.getTime() - a.raw!.getTime())
+---
+
+<div class="recent-writing">
+  <div class="label">Notes, essays, thoughts</div>
+  <ul>
+    {featured.map(essay => (
+      <li>
+        <a href={essay.href}>{essay.title}</a>
+        <span class="date">{essay.date}</span>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .recent-writing {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .label {
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    line-height: 1.8;
+  }
+
+  li a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  li a:hover {
+    text-decoration: underline;
+  }
+
+  .date {
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>

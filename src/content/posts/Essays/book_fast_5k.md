@@ -1,6 +1,6 @@
 ---
 title: 'Fast 5K (Pete Magill, 2019)'
-pubDate: '2026-03-22'
+pubDate: '2026-03-19'
 ---
 
 I picked this up because I'd been training for triathlons without really understanding what I was doing on the run side. I could put in the miles, but I had no framework for why certain workouts existed or how they connected to each other. Magill's book is the first thing I've read that made the physiology behind run training click for me.

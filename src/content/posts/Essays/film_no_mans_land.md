@@ -1,57 +1,79 @@
 ---
 title: "No Man's Land and the Comedy of Observers"
-pubDate: '2026-03-22'
+pubDate: '2026-03-12'
 ---
 
-Two soldiers are stuck in a trench between the lines. One Bosniak, one Serb. A third man is lying on a bouncing mine: if he moves, everyone dies. A UN peacekeeping force is parked a few hundred meters away, and the international press is circling.
+Two soldiers are stuck in a trench between the lines. One Bosniak, one Serb. A third man is lying on a bouncing mine: if he moves, everyone dies.
 
-The setup sounds like a joke. That's because it is one. Danis Tanovic's *No Man's Land* (2001) is a war comedy, and the comedy comes from the same place the horror does: everyone can see what's happening, and no one can do anything about it.
+The first thing Ciki and Nino do when they realize they're stuck together is threaten each other. The second thing they do is share a cigarette. The third thing is argue about who started the war. Then they help each other. Then they nearly kill each other again. The oscillation is the entire film and, I think, the entire point.
 
----
-
-I watched this after reading a lot about the Bosnian War and feeling like I understood the broad strokes: the siege of Sarajevo, Srebrenica, the failure of international intervention. *No Man's Land* made me realize I'd been understanding it from the outside, which is exactly the position the film is interested in dismantling.
-
-The trench is the entire movie. Ciki (the Bosniak) and Nino (the Serb) are trapped together. They argue, threaten each other, share cigarettes, nearly kill each other, have moments of absurd tenderness. Cera lies on the mine between them, alive but unable to move. The situation is impossible and completely static. Nothing can be resolved from inside the trench.
-
-So the film keeps cutting to the people outside. The UN soldiers who want to help but need authorization. The commander who wants to avoid a political incident. The journalist who smells a story. Each layer of observer adds another layer of paralysis. Everyone is watching. Everyone has a reason not to act.
+Danis Tanovic's *No Man's Land* (2001) is usually described as an anti-war comedy about the failure of international intervention. I think it's about something more specific: what happens when groupthink meets the individual. Ciki and Nino can't sustain their enmity face to face. They keep defaulting to being normal with each other. The hatred only works at a distance, at the level of "Serbs" and "Bosniaks" as categories. In the trench, they're just two guys who speak the same language and know the same people.
 
 ---
 
-The UN scenes are where the comedy gets sharpest. Sergeant Marchand, a French peacekeeper, is the only person who actually tries to do something. He drives to the trench. He talks to the soldiers. He calls for a bomb disposal team. And at every step, he's blocked by his own chain of command. The order comes down: do not get involved. The mandate doesn't cover this. Pull back.
+## The Same Country
 
-I found myself laughing at these scenes, which is an uncomfortable thing to admit about a film set during a genocide. But the laughter is the point. The bureaucratic language is absurd because the situation is absurd. A man is lying on a mine and the institutional response is to check the mandate. The gap between what everyone can see and what anyone is authorized to do is where the comedy lives.
+The thing I kept thinking about while watching is how recent the division was. These aren't ancient enemies from separate civilizations. Yugoslavia was a functioning multinational state with real integration. Intermarriage rates in Bosnia were significant. The 1984 Winter Olympics were held in Sarajevo. The Yugoslav People's Army, the JNA, was deliberately multi-ethnic: officers rotated across republics, units mixed, the whole structure designed to prevent exactly the kind of fracture that happened eight years later.
 
-Tanovic served in the Bosnian Army. He's not making fun of war from a safe distance. He's making fun of the specific structure that allowed the war to continue while the entire world watched. The joke isn't that war is absurd. The joke is that the apparatus of international order is absurd, and that its absurdity has a body count.
+Ciki and Nino reflect this. They speak the same language. They know the same references. There's a moment where they realize they almost certainly know the same girl. The trench between them is a recent invention. Everything else about them is shared.
 
----
-
-The journalist, Jane Livingstone, is the character who made me most uncomfortable. She's aggressive, principled, willing to break rules to get the story out. She forces the UN's hand by broadcasting the trench situation live, which compels them to act. She's the reason anything happens at all.
-
-And she still can't help. The camera turns the trench into a media event. The soldiers become a story. The man on the mine becomes a problem to be solved on television. Livingstone does exactly what a good journalist should do: she makes the invisible visible, she holds power accountable, she refuses to look away. And the result is a circus. The trench fills up with cameras and uniforms and people whose presence changes nothing about the fundamental situation: two men who hate each other, a third man who can't move, and a mine that doesn't care who's watching.
-
-I keep thinking about what it means to be a good observer of something terrible. Livingstone is good at her job. The UN soldiers, some of them, are good people. Marchand genuinely cares. But the film suggests that observation itself, no matter how well-intentioned, becomes its own form of paralysis. The act of watching, documenting, reporting, broadcasting: it creates the feeling of response without the substance of one.
+The mine under Cera is a PROM-1. Yugoslav manufacture. I looked it up after watching. Bounding fragmentation mine, launches a meter into the air before detonating, shrapnel at chest height. Built by the country all three of them used to share. The mine doesn't know which side it's on because there weren't sides when it was made.
 
 ---
 
-The ending is the thing I can't stop thinking about.
+## Manufactured Enmity
+
+The standard narrative about the Bosnian War involves "ancient hatreds" boiling over after Tito's death. I've been reading around this and I don't think it holds up. The hatreds weren't ancient, or rather, they were ancient and also inoperable for decades. What changed wasn't that people remembered they hated each other. What changed was that the hatred was deliberately reactivated from above.
+
+The violence was organized, not spontaneous. Paramilitary groups like Arkan's Tigers were deployed to terrorize mixed communities. The point wasn't to win battles. It was to make coexistence impossible. Burn a few houses in a mixed village. The remaining residents flee. The community that existed there is gone. You can't reconstruct coexistence after the coexisters have been expelled or killed.
+
+This is what the film captures without ever stating it directly. The groupthink required for the war to work had to be manufactured because people like Ciki and Nino weren't naturally inclined to kill each other. Left alone in a trench, they share cigarettes and argue about girls. The categories "Bosniak" and "Serb" only produce violence when there's an institutional structure enforcing them: armies, paramilitaries, propaganda, chain of command. The trench strips all of that away and what's left is two people who have far more in common than not.
+
+Milosevic needed paramilitaries precisely because ordinary people wouldn't do it on their own. That's the thing the "ancient hatreds" narrative obscures. The hatred had to be built. It was a project, not an eruption.
+
+---
+
+## The Observers
+
+Then there's everyone outside the trench.
+
+The UN peacekeepers want to help but need authorization. The commander wants to avoid an incident. The journalist broadcasts the situation, which forces action, which produces a circus, which resolves nothing. Each layer of observer adds another layer of paralysis.
+
+Sergeant Marchand, the French peacekeeper, is the only person who tries to do something. He drives to the trench. He talks to the soldiers. He calls for a bomb disposal team. At every step he's blocked by his chain of command. The mandate doesn't cover this. Pull back.
+
+I found myself laughing at these scenes. The bureaucratic language is absurd because the situation is absurd. A man is lying on a mine and the institutional response is to check the mandate. But then I started reading about UNPROFOR's actual mandate and the comedy stopped being funny. "Safe areas" that weren't defended. Protection forces that couldn't use force. Srebrenica was a UN-designated safe area. Dutch peacekeepers were there when Mladic arrived in July 1995. They requested air support. It was denied, delayed, denied again. 8,000 men and boys were killed.
+
+The film's comedy comes from the gap between what everyone can see and what anyone is authorized to do. That gap is real. It killed people.
+
+---
+
+## The Trench as the War in Miniature
+
+What I think Tanovic is doing, and why the film works better than most anti-war films, is compressing the entire structure of the conflict into one location. The trench contains everything:
+
+The shared humanity that had to be erased for the war to happen (Ciki and Nino defaulting to being normal with each other). The manufactured enmity that keeps reasserting itself (they pick up their guns again, because the war is still there even if the reasons for it dissolve up close). The Yugoslav infrastructure that became the mechanism of its own destruction (the PROM-1 under Cera). And the international community that watches, documents, and leaves.
+
+The bobsled track from the 1984 Sarajevo Olympics was used as an artillery position during the siege. I don't know what to do with that fact except put it next to the PROM-1 and let them sit together. A country builds an Olympic venue and a bounding mine. Eight years later, one is used to kill the people who cheered at the other.
+
+---
+
+## The Last Shot
 
 The UN declares the situation resolved. The bomb disposal expert says the mine can't be defused. Everyone leaves. The cameras leave. The soldiers leave. Cera is left alone in the trench, on the mine, alive, in a wide shot that holds for a long time.
 
-The film doesn't cut away. It doesn't offer a resolution or a moral. It just shows you a man who has been abandoned by every institution that was supposed to help him, lying perfectly still in a trench between two lines, while the credits roll.
+Tanovic served in the Bosnian Army. He shot documentary footage during the siege of Sarajevo. He knows what it looks like when institutions decide a problem is unsolvable and move on.
 
-I sat with that shot for a while after the film ended. It's the image of the entire Bosnian War compressed into a single frame. Not the violence. Not the ethnic hatred. The abandonment. The moment when the world decides a problem is unsolvable and moves on, and the person inside the problem is still there.
+The Dayton Agreement ended the war by freezing the ethnic cleansing in place. The Republika Srpska, the entity created through genocide and displacement, was recognized as part of Bosnia and Herzegovina. Karadzic wasn't arrested until 2008. Mladic until 2011.
 
----
-
-What stays with me is how the film connects comedy and cruelty without letting either one cancel the other out. The UN scenes are genuinely funny. The trench scenes are genuinely tense. Cera's situation is genuinely unbearable. The film holds all of these together and refuses to choose. It doesn't say war is tragic, or absurd, or that the international community is villainous, or incompetent, or well-meaning but constrained. It says all of these things are true at the same time, and that the simultaneity is the horror.
-
-I think about this now whenever I read about international responses to ongoing conflicts. The language of concern, the resolutions, the mandates, the observers. *No Man's Land* is the film that taught me to hear the comedy in that language, and to understand that the comedy is not separate from the suffering. It's the mechanism by which the suffering is maintained.
+The situation was declared resolved. Cera is still on the mine.
 
 ---
 
 ## Notes
 
-- Tanovic made this as his first feature. He'd been shooting documentary footage during the siege of Sarajevo. The tonal control, the ability to hold comedy and tragedy in the same frame, is remarkable for a debut.
-- The film won the Academy Award for Best Foreign Language Film in 2002, beating *Amelie*. Worth noting because *Amelie* is a film about how charming Paris is, and *No Man's Land* is a film about how the international community watched a genocide and did nothing. The Academy, for once, made the right call.
-- Compare to *Underground* (Kusturica, 1995): another Balkan war film that uses absurdist comedy, but Kusturica's politics are murkier and the film has been criticized for Serbian nationalist undertones. Tanovic is more precise about who failed and how.
-- The bouncing mine is a real weapon (PROM-1, Yugoslav manufacture). The detail matters. The Bosnian War was fought largely with Yugoslav People's Army weapons, meaning all sides were killing each other with equipment they'd jointly manufactured. The mine in the film is, in a sense, everyone's mine.
+- The 1984 Sarajevo Olympics bobsled track on Trebevic mountain is still there, covered in graffiti. It was used as a firing position during the siege.
+- Tanovic's first feature. Beat *Amelie* for the Academy Award in 2002.
+- The PROM-1 is Yugoslav People's Army standard issue. All sides in the Bosnian War used JNA equipment, because all sides were, organizationally, fragments of the same army.
+- I want to read more about intermarriage rates in pre-war Sarajevo. The numbers I've seen vary but consistently suggest a city where ethnic categories were background noise, not identity.
+- Samantha Power's *A Problem from Hell* covers the international response. David Rieff's *Slaughterhouse* is angrier and more specific.
+- Compare to *Underground* (Kusturica, 1995): similar absurdist comedy, but Kusturica's politics are murkier. Tanovic is more precise about who failed and how.

@@ -1,9 +1,11 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import About from '@/components/widgets/About.astro'
+import RecentWriting from '@/components/widgets/RecentWriting.astro'
 import { themeConfig } from '@/config'
 ---
 
 <IndexLayout title={themeConfig.site.title} description={themeConfig.site.description}>
   <About />
+  <RecentWriting />
 </IndexLayout>

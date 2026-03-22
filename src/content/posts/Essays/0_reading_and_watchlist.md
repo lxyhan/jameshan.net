@@ -25,6 +25,7 @@ pubDate: '2025-01-25'
 - Tarkovsky - [Andrei Rublev](/essays/film_andrei_rublev)
 - Jiang Wen - [In the Heat of the Sun](/essays/film_in_the_heat_of_the_sun)
 - Tanovic - [No Man's Land](/essays/film_no_mans_land)
+- Gaidai - [Shurik, Gaidai, and the Soviet Laugh](/essays/film_shurik_and_gaidai)
 
 ## Movies I've Watched
 
