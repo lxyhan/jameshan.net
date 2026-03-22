@@ -1,7 +1,6 @@
 ---
 title: "How We Got Here"
 pubDate: "2026-03-15"
-draft: true
 ---
 
 ## Athletic Background

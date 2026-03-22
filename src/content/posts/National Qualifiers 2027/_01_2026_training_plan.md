@@ -1,7 +1,6 @@
 ---
 title: "Training Plan v4"
 pubDate: "2026-03-16"
-draft: true
 ---
 
 Revised again after v3 was too conservative. I'm not a beginner -- I have years of running background (half marathons, full marathon, Ironman 70.3, 20-30 km weeks last year). I'm deconditioned, not untrained. The plan needs to reflect that.

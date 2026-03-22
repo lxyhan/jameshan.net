@@ -1,7 +1,6 @@
 ---
 title: "Qualification Checklist"
 pubDate: "2026-03-18"
-draft: true
 ---
 
 ## 2027 World Triathlon Multisport Championships
