@@ -1,6 +1,7 @@
 ---
 title: '13: Linear Programming'
 pubDate: '2025-12-31'
+order: 13
 ---
 
 *Coming soon.*

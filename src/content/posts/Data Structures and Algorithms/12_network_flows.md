@@ -1,6 +1,7 @@
 ---
 title: '12: Network Flows'
 pubDate: '2025-12-31'
+order: 12
 ---
 
 *Coming soon.*

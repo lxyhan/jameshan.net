@@ -6,8 +6,8 @@
   --content-width: 25rem;
 
   /* Typography */
-  --sans: 'CMU Serif', Georgia, serif;
-  --serif: 'CMU Serif', Georgia, serif;
+  --sans: 'Calibri', 'Carlito', sans-serif;
+  --serif: 'Calibri', 'Carlito', sans-serif;
   --mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 
   --font-size-xs: 1rem; /* 16px */

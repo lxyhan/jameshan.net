@@ -1,6 +1,7 @@
 ---
 title: '10: Greedy Algorithms'
 pubDate: '2025-01-26'
+order: 10
 ---
 
 Greedy algorithms build solutions incrementally, making locally optimal choices at each step. The challenge: proving these myopic decisions lead to globally optimal solutions.

@@ -1,6 +1,7 @@
 ---
 title: '10: Eigenvalues and Eigenvectors'
 pubDate: '2025-12-08'
+order: 10
 ---
 
 Most vectors change direction when you apply a matrix to them. But **eigenvectors** don't,they stay on their own line, just getting stretched or compressed. These special directions reveal the "skeleton" of a transformation. The stretch factor is the **eigenvalue**. Together, eigenvalues and eigenvectors tell you what a matrix really does, stripped of coordinate system noise.

@@ -1,6 +1,7 @@
 ---
 title: '15: PCA in Finance'
 pubDate: '2025-12-13'
+order: 15
 ---
 
 Principal Component Analysis is the SVD applied to data. In finance, it answers a fundamental question: **what are the hidden factors driving asset returns?** The math reveals that a few eigenvectors often explain most of the variance in hundreds of correlated assets.

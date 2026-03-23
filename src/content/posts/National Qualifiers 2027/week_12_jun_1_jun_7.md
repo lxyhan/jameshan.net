@@ -1,0 +1,94 @@
+---
+title: "Week 12: Jun 1 - Jun 7"
+pubDate: "2026-06-01"
+order: 14
+---
+
+> Meso 3, **DELOAD.** Volume drops to ~32 km. Second zone recalibration.
+
+This is the most important deload of the plan. The body has been building for 8 straight weeks (with deloads at W4 and W8). The next mesocycle introduces full race-specific work, so arriving at W13 fresh is critical.
+
+## Monday - Easy Run
+
+- **Distance:** 5 km
+- **Pace:** Z1-Z2. Easy.
+
+---
+
+## Tuesday - Easy Run + Strides
+
+- **Distance:** 6 km
+- **Pace:** Z2
+- **Strides:** 4 x 80m. Keep the neuromuscular system awake.
+
+---
+
+## Wednesday - Strength (Light, Single Session)
+
+| Exercise | Sets | Reps | Rest | Notes |
+|----------|------|------|------|-------|
+| Single-Leg Leg Press | 2 | 6 each | 90s | Same weight as W11 peak. |
+| Pull-ups (BW) | 2 | Max reps | 90s | |
+| Hip Thrust | 2 | 8 | 75s | |
+| Dead Bug (breathing) | 2 | 8 each | 45s | |
+| SL Calf Raise | 2 | 10 each | 60s | |
+| DB Lateral Raise | 1 | 15 | 45s | |
+| DB Curl | 1 | 12 | 45s | |
+
+*25 min.*
+
+---
+
+## Thursday - Zone Recalibration: 2K Time Trial
+
+- **Warm-up:** 15 min easy jog + 4 x strides
+- **Run 2 km as fast as you can sustain evenly.**
+- **Record:** Total time, average pace, max HR, breathing quality.
+- **Cool-down:** 10 min easy jog
+
+Compare to W8 TT. The improvement tells you exactly how much fitness has been gained. Recalculate all zones for Meso 4.
+
+---
+
+## Friday - Easy Run
+
+- **Distance:** 5 km
+- **Pace:** Z2
+
+---
+
+## Saturday - Easy Long Run
+
+- **Distance:** 9 km
+- **Pace:** Z2. All easy.
+- **Cool-down:** Foam roll
+
+---
+
+## Sunday - Easy Swim
+
+- **Duration:** 25-30 min easy freestyle
+
+---
+
+## Week 12 Totals
+
+| | Volume |
+|--|--------|
+| Running | ~32 km |
+| Strength | 1 session (light) |
+| Swim | 1 session |
+
+---
+
+## End of Meso 3
+
+| Question | Assessment |
+|----------|-----------|
+| How much did the 2K TT improve from W8? | Even 10-15 sec over 2K is significant. |
+| Can I sustain 22 min Z3 then 10 min Z4? | If yes, threshold fitness is real. |
+| How did race-pace 800s feel in W11? | If 3\:20-3\:25/km felt controlled, ready for Meso 4. |
+| How did the 16 km long run feel? | If sustainable at Z2, the base handles race-prep work. |
+| Any injuries? | Must be 100% before race-pace volume. |
+
+**Meso 4 starts next week.** Brick sessions. Full race-pace intervals. Race simulations. The fitness should be there. Now we sharpen it.

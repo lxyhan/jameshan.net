@@ -4,16 +4,16 @@ import { getCollection } from 'astro:content'
 const allPosts = await getCollection('posts')
 
 const featuredSlugs = [
-  { slug: 'essays/film_shurik_and_gaidai', title: "Gaidai, Shurik, and 76 million tickets" },
-  { slug: 'essays/book_a_farewell_to_arms', title: "A Farewell to Arms (Hemingway, 1929)" },
-  { slug: 'essays/book_red_star_over_china', title: "Red Star Over China (Snow, 1937)" },
-  { slug: 'essays/film_no_mans_land', title: "No Man's Land and the Comedy of Observers" },
-  { slug: 'essays/dreadnought_economics', title: "Discontinuous Utility and the Jutland Paradox" },
-  { slug: 'essays/a_coalition_of_bandits', title: "The Old Marshal's coalition" },
-  { slug: 'essays/film_in_the_heat_of_the_sun', title: "In the Heat of the Sun: Memory as Authorship" },
-  { slug: 'essays/film_andrei_rublev', title: "Andrei Rublev and the Problem of Creation" },
-  { slug: 'essays/book_a_time_of_gifts', title: "A Time of Gifts (Fermor, 1977)" },
-  { slug: 'essays/transit_ml_proposal', title: "ML for Latent Transit Demand Detection in Unserved Communities" },
+  { slug: 'essays/shurik_gaidai_and_the_soviet_laugh', title: "Gaidai, Shurik, and 76 million tickets" },
+  { slug: 'essays/a_farewell_to_arms_ernest_hemingway_1929', title: "A Farewell to Arms (Hemingway, 1929)" },
+  { slug: 'essays/red_star_over_china_edgar_snow_1937', title: "Red Star Over China (Snow, 1937)" },
+  { slug: 'essays/no_mans_land_and_the_comedy_of_observers', title: "No Man's Land and the Comedy of Observers" },
+  { slug: 'essays/discontinuous_utility_and_the_jutland_paradox', title: "Discontinuous Utility and the Jutland Paradox" },
+  { slug: 'essays/coordination_without_authority_zhang_zuolin_and_the_fengtian_clique', title: "The Old Marshal's coalition" },
+  { slug: 'essays/in_the_heat_of_the_sun_memory_as_authorship', title: "In the Heat of the Sun: Memory as Authorship" },
+  { slug: 'essays/andrei_rublev_and_the_problem_of_creation_under_uncertainty', title: "Andrei Rublev and the Problem of Creation" },
+  { slug: 'essays/a_time_of_gifts_patrick_leigh_fermor_1977', title: "A Time of Gifts (Fermor, 1977)" },
+  { slug: 'essays/bridging_the_transit_data_gap', title: "ML for Latent Transit Demand Detection in Unserved Communities" },
 ]
 
 const featured = featuredSlugs.map(({ slug, title }) => {

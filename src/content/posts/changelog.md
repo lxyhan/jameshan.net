@@ -5,6 +5,46 @@ pubDate: '2025-01-25'
 
 All notable changes to this project will be documented in this file.
 
+## [6.0] - 2026-03-23
+### Added
+- Frontmatter `order` field for article ordering (replaces filename-based hacks)
+- Mandatory `index.md` for every content folder with build-time check
+- Root-level index page linking to all sections
+- "Choosing High EV Goals" series: Taleb and Asymmetric Bets, plus 5 follow-up stubs
+- Blue book emoji (📘) for index files in sidebar
+- Folder display names derived from index file titles (no more hardcoded map)
+- Scripts: `generate-indexes.mjs`, `check-indexes.mjs`, `rename-to-slugs.mjs`, `rename-to-title-slugs.mjs`
+
+### Changed
+- Renamed all files site-wide to match article titles as slugs
+- Merged all preface/overview files into folder indexes
+- Sidebar header: "📘 index" linking to root index
+- Font changed to Calibri
+- Sidebar sorting: `order` field takes priority over folder-vs-file type
+- Folders inherit order from their index file for sorting
+
+## [5.9] - 2026-03-22
+### Added
+- Homepage recent writing section with 10 featured essays
+- New essays: A Farewell to Arms, Red Star Over China, Fast 5K, Goal Gradient, Shurik & Gaidai
+
+### Changed
+- Revised existing essay drafts
+
+## [5.8] - 2026-03-22
+### Changed
+- Restructured content: merged Books/Movies/Writing into Essays
+- Promoted PythonTA and MarkUs to top-level folders
+
+## [5.7] - 2026-03-19
+### Added
+- Sleep & Nutrition section under Athletics
+- 16-week aquathlon training plan v4
+
+### Changed
+- Athletics sidebar section with Sleep & Nutrition folder routing fix
+- Tilde font rendering fix
+
 ## [5.6] - 2026-03-16
 ### Added
 - Effective goal setting content

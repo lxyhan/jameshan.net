@@ -20,6 +20,18 @@ interface TreeNode {
   children?: TreeNode[]
 }
 
+// Get the effective order for a node (folders inherit order from their index file)
+function getNodeOrder(node: TreeNode): number | undefined {
+  if (node.post?.data.order != null) return node.post.data.order
+  if (node.type === 'folder' && node.children) {
+    const indexChild = node.children.find(c =>
+      c.name.toLowerCase().includes('index') || c.name.toLowerCase().includes('preface')
+    )
+    return indexChild?.post?.data.order
+  }
+  return undefined
+}
+
 function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = []): TreeNode {
   const filteredPosts = posts.filter(p => !excludeIds.includes(p.id))
   const root: TreeNode = {
@@ -61,19 +73,27 @@ function buildTree(posts: CollectionEntry<'posts'>[], excludeIds: string[] = [])
     })
   })
 
-  // Sort: preface files first, then folders, then other files alphabetically
+  // Sort: index first within its folder, then by order field, then folders before files, then alphabetically
   function sortTree(node: TreeNode) {
     if (node.children) {
       node.children.sort((a, b) => {
-        // Preface files always first
-        const aIsPreface = a.name.toLowerCase().includes('preface')
-        const bIsPreface = b.name.toLowerCase().includes('preface')
-        if (aIsPreface && !bIsPreface) return -1
-        if (!aIsPreface && bIsPreface) return 1
+        // Index files always first within their folder
+        const aIsIndex = a.name.toLowerCase().includes('index') || a.name.toLowerCase().includes('preface')
+        const bIsIndex = b.name.toLowerCase().includes('index') || b.name.toLowerCase().includes('preface')
+        if (aIsIndex && !bIsIndex) return -1
+        if (!aIsIndex && bIsIndex) return 1
 
-        // Then folders before other files
+        // Then by order field (ascending) — folders inherit from their index
+        const aOrder = getNodeOrder(a)
+        const bOrder = getNodeOrder(b)
+        if (aOrder != null && bOrder != null) return aOrder - bOrder
+        if (aOrder != null) return -1
+        if (bOrder != null) return 1
+
+        // Then folders before files as tiebreaker
         if (a.type === 'folder' && b.type === 'file') return -1
         if (a.type === 'file' && b.type === 'folder') return 1
+
         // Then alphabetically
         return a.name.localeCompare(b.name)
       })
@@ -133,10 +153,20 @@ for (const relative of findPdfs(pdfRoot)) {
 function sortTreeFinal(node: TreeNode) {
   if (node.children) {
     node.children.sort((a, b) => {
-      const aIsPreface = a.name.toLowerCase().includes('preface')
-      const bIsPreface = b.name.toLowerCase().includes('preface')
-      if (aIsPreface && !bIsPreface) return -1
-      if (!aIsPreface && bIsPreface) return 1
+      // Index files always first within their folder
+      const aIsIndex = a.name.toLowerCase().includes('index') || a.name.toLowerCase().includes('preface')
+      const bIsIndex = b.name.toLowerCase().includes('index') || b.name.toLowerCase().includes('preface')
+      if (aIsIndex && !bIsIndex) return -1
+      if (!aIsIndex && bIsIndex) return 1
+
+      // Then by order field — folders inherit from their index
+      const aOrder = getNodeOrder(a)
+      const bOrder = getNodeOrder(b)
+      if (aOrder != null && bOrder != null) return aOrder - bOrder
+      if (aOrder != null) return -1
+      if (bOrder != null) return 1
+
+      // Then folders before files as tiebreaker
       if (a.type === 'folder' && a.type !== b.type) return -1
       if (b.type === 'folder' && a.type !== b.type) return 1
       // PDFs after markdown files
@@ -149,59 +179,18 @@ function sortTreeFinal(node: TreeNode) {
 }
 sortTreeFinal(tree)
 
-// Emoji mappings for folder names (use slugified names)
-const folderEmojis: Record<string, string> = {
-}
-
-// Display name mappings for slugified folder names
-const folderDisplayNames: Record<string, string> = {
-  // Top-level
-  'data-structures-and-algorithms': 'Data Structures & Algorithms',
-  'department-of-computer-science': 'Dept. of Computer Science',
-  'linear-algebra': 'Linear Algebra',
-  'machine-learning': 'Machine Learning',
-  'multivariable-calculus': 'Multivariable Calculus',
-  'software-design': 'Software Design',
-  'national-qualifiers-2027': 'Triathlon Nationals 2027',
-  'sleep--nutrition': 'Sleep & Nutrition',
-  'us-government': 'US Government',
-  'frontend': 'Frontend Programming',
-  'essays': 'Essays',
-  'thoughts': 'Thoughts',
-  'pythonta': 'PythonTA',
-  'markus': 'MarkUs',
-  'effective-goal-setting': 'Effective Goal Setting',
-  'firefox': 'Firefox',
-  // Nested — DSA
-  'leetcode-patterns': 'Leetcode Patterns',
-  // Nested — Dept. of CS
-  '1-pythonta': 'PythonTA',
-  '2-markus': 'MarkUs',
-  // Nested — Machine Learning
-  '01-k-nearest-neighbors': 'K-Nearest Neighbors',
-  '02-decision-trees': 'Decision Trees',
-  '03-linear-regression': 'Linear Regression',
-  '04-logistic-regression-and-regularization': 'Logistic Regression & Regularization',
-  '05-neural-networks': 'Neural Networks',
-  '06-backpropagation': 'Backpropagation',
-  '07-bias-variance-tradeoff-and-bagging': 'Bias-Variance & Bagging',
-  '08-naive-bayes': 'Naive Bayes',
-  '09-gaussian-discriminant-analysis': 'Gaussian Discriminant Analysis',
-  '10-painting-classifier': 'Painting Classifier',
-  // Nested — US Government
-  '1-foundations': 'Foundations',
-  '2-branches': 'Branches',
-  '3-civil-liberties': 'Civil Liberties',
-  '4-political-ideologies': 'Political Ideologies',
-  '5-political-participation': 'Political Participation',
-  // Nested — Thoughts (date folders)
-  '14': 'March 14',
-}
-
-function getFolderDisplayName(name: string): string {
-  const displayName = folderDisplayNames[name] || name
-  const emoji = folderEmojis[name]
-  return emoji ? `${displayName} ${emoji}` : displayName
+// Derive folder display name from its index file's title ("Index: Folder Name" -> "Folder Name")
+function getFolderDisplayName(node: TreeNode): string {
+  if (node.children) {
+    const indexChild = node.children.find(c =>
+      c.name.toLowerCase().includes('index') || c.name.toLowerCase().includes('preface')
+    )
+    if (indexChild?.post?.data.title) {
+      const title = indexChild.post.data.title
+      return title.startsWith('Index: ') ? title.slice(7) : title
+    }
+  }
+  return node.name
 }
 
 // Section groupings for the tree (use slugified names as they appear in post IDs)
@@ -224,7 +213,7 @@ const sectionMap: Record<string, string[]> = {
   ],
   'Athletics': [
     'national-qualifiers-2027',
-    'sleep--nutrition',
+    'sleep-and-nutrition',
   ],
   'Decision Making': [
     'effective-goal-setting',
@@ -245,7 +234,7 @@ const sections: Section[] = Object.entries(sectionMap).map(([sectionName, folder
 // Catch any ungrouped top-level nodes (files or folders not in a section and not hidden)
 const allGroupedFolders = Object.values(sectionMap).flat()
 const ungroupedNodes = (tree.children || []).filter(
-  node => !allGroupedFolders.includes(node.name) && !hiddenFolders.includes(node.name)
+  node => !allGroupedFolders.includes(node.name) && !hiddenFolders.includes(node.name) && node.name !== 'index'
 )
 
 // Helper function to check if a folder contains the current path
@@ -262,12 +251,20 @@ function isFolderActive(node: TreeNode, currentPath: string): boolean {
 function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
   return nodes.some(node => isFolderActive(node, currentPath))
 }
+
+function isIndexFile(node: TreeNode): boolean {
+  return node.name.toLowerCase().includes('index')
+}
+
+function fileIcon(node: TreeNode): string {
+  return isIndexFile(node) ? '📘' : '📄'
+}
 ---
 
 <div class="blog-tree">
   <div class="tree-header-row">
     <div class="header-left">
-      <a href="/" class="tree-header">library</a>
+      <a href="/index" class="tree-header">📘 index</a>
       <div class="social-icons">
         <a href="https://github.com/lxyhan" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -289,6 +286,43 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
     <span class="search-hint"><kbd>⌘K</kbd> to search</span>
   </div>
   <div class="tree-content">
+    {ungroupedNodes.length > 0 && (
+      <div class="tree-section">
+        {ungroupedNodes.map(node => (
+          <Fragment>
+            {node.type === 'folder' ? (
+              <details class="tree-folder" open={isFolderActive(node, currentPath)}>
+                <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
+                  <span class="folder-icon">📂</span>
+                  <span class="folder-name">{getFolderDisplayName(node)}</span>
+                </summary>
+                <div class="tree-children">
+                  {node.children && node.children.map(child => (
+                    child.type === 'file' && child.post ? (
+                      <a
+                        href={`/${child.post.id}`}
+                        class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
+                      >
+                        <span class="file-icon">{fileIcon(child)}</span>
+                        <span class="file-name">{child.post.data.title}</span>
+                      </a>
+                    ) : null
+                  ))}
+                </div>
+              </details>
+            ) : node.post ? (
+              <a
+                href={`/${node.post.id}`}
+                class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
+              >
+                <span class="file-icon">{fileIcon(node)}</span>
+                <span class="file-name">{node.post.data.title}</span>
+              </a>
+            ) : null}
+          </Fragment>
+        ))}
+      </div>
+    )}
     {sections.map(section => (
       section.nodes.length > 0 && (
         <div class="tree-section">
@@ -299,7 +333,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                 <details class="tree-folder" open={isFolderActive(node, currentPath)}>
                   <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
                     <span class="folder-icon">📂</span>
-                    <span class="folder-name">{getFolderDisplayName(node.name)}</span>
+                    <span class="folder-name">{getFolderDisplayName(node)}</span>
                   </summary>
                   <div class="tree-children">
                     {node.children && node.children.map(child => (
@@ -308,7 +342,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                           href={`/${child.post.id}`}
                           class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
                         >
-                          <span class="file-icon">📄</span>
+                          <span class="file-icon">{fileIcon(child)}</span>
                           <span class="file-name">{child.post.data.title}</span>
                         </a>
                       ) : child.type === 'pdf' && child.pdfHref ? (
@@ -325,7 +359,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                         <details class="tree-folder nested" open={isFolderActive(child, currentPath)}>
                           <summary role="button" tabindex="0" aria-label={`Toggle ${child.name} folder`}>
                             <span class="folder-icon">📂</span>
-                            <span class="folder-name">{getFolderDisplayName(child.name)}</span>
+                            <span class="folder-name">{getFolderDisplayName(child)}</span>
                           </summary>
                           <div class="tree-children">
                             {child.children && child.children.map(file => (
@@ -344,7 +378,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                                   href={`/${file.post.id}`}
                                   class={`tree-file ${currentPath === `/${file.post.id}` ? 'active' : ''}`}
                                 >
-                                  <span class="file-icon">📄</span>
+                                  <span class="file-icon">{fileIcon(file)}</span>
                                   <span class="file-name">{file.post.data.title}</span>
                                 </a>
                               ) : null
@@ -360,7 +394,7 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
                   href={`/${node.post.id}`}
                   class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
                 >
-                  <span class="file-icon">📄</span>
+                  <span class="file-icon">{fileIcon(node)}</span>
                   <span class="file-name">{node.post.data.title}</span>
                 </a>
               ) : null}
@@ -369,49 +403,12 @@ function isSectionActive(nodes: TreeNode[], currentPath: string): boolean {
         </div>
       )
     ))}
-    {ungroupedNodes.length > 0 && (
-      <div class="tree-section">
-        {ungroupedNodes.map(node => (
-          <Fragment>
-            {node.type === 'folder' ? (
-              <details class="tree-folder" open={isFolderActive(node, currentPath)}>
-                <summary role="button" tabindex="0" aria-label={`Toggle ${node.name} folder`}>
-                  <span class="folder-icon">📂</span>
-                  <span class="folder-name">{getFolderDisplayName(node.name)}</span>
-                </summary>
-                <div class="tree-children">
-                  {node.children && node.children.map(child => (
-                    child.type === 'file' && child.post ? (
-                      <a
-                        href={`/${child.post.id}`}
-                        class={`tree-file ${currentPath === `/${child.post.id}` ? 'active' : ''}`}
-                      >
-                        <span class="file-icon">📄</span>
-                        <span class="file-name">{child.post.data.title}</span>
-                      </a>
-                    ) : null
-                  ))}
-                </div>
-              </details>
-            ) : node.post ? (
-              <a
-                href={`/${node.post.id}`}
-                class={`tree-file ${currentPath === `/${node.post.id}` ? 'active' : ''}`}
-              >
-                <span class="file-icon">📄</span>
-                <span class="file-name">{node.post.data.title}</span>
-              </a>
-            ) : null}
-          </Fragment>
-        ))}
-      </div>
-    )}
   </div>
   <hr class="tree-divider" />
   <div class="tree-footer">
     <div class="tree-links">
       <a href="/changelog" class={currentPath === '/changelog' ? 'active' : ''}>Changelog</a>
-      <span class="version-text">v4.5</span>
+      <span class="version-text">v6.0</span>
       <span class="link-sep">|</span>
       <a href="/analytics" class={currentPath === '/analytics' ? 'active' : ''}>Analytics</a>
       <span class="analytics-text" id="analytics-stats"></span>

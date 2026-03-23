@@ -1,6 +1,7 @@
 ---
 title: '15: Approximation Algorithms'
 pubDate: '2025-12-31'
+order: 15
 ---
 
 *Coming soon.*
