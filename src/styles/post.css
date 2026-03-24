@@ -138,8 +138,7 @@
 .prose img {
   width: 100%;
   height: auto;
-  max-height: 24rem;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   margin: 1.25em 0;
   box-sizing: border-box;
@@ -220,7 +219,7 @@
   width: 100%;
   text-align: center;
   color: var(--text-secondary);
-  font-size: var(--font-size-s);
+  font-size: 0.75em;
   margin-top: 0.75em;
 }
 
@@ -313,20 +312,23 @@
   border-left-color: rgb(100, 116, 139);
 }
 
-/* Asides - small highlighted annotation boxes */
+/* Asides - inline footnotes */
 .prose aside {
-  font-size: 0.85em;
-  line-height: 1.4;
-  color: var(--text-primary);
+  font-size: 0.78em;
+  line-height: 1.45;
+  color: var(--text-secondary);
   background: transparent;
-  border: 1px solid var(--border);
-  padding: 0.5em 0.75em;
-  margin: 0.5em 0;
-  border-radius: 4px;
+  border-left: 2px solid var(--border);
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 0.25em 0 0.25em 0.75em;
+  margin: 0.75em 0;
+  border-radius: 0;
 }
 
 .prose aside p {
-  margin: 0.2em 0;
+  margin: 0.15em 0;
 }
 
 /* Remove the enlarged first letter styling */

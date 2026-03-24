@@ -7,7 +7,7 @@ order: 2
 
 *March 24, 2026*
 
-The [previous piece](/effective-goal-setting/a_model_for_goal_setting) defined alignment as a property of goals that can jump discontinuously at thresholds. That observation has implications I want to develop here.
+The [previous piece](/effective-goal-setting/a_model_for_goal_setting) defined alignment as a property of goals that can jump discontinuously at thresholds. I want to develop what that implies.
 
 ---
 
@@ -29,25 +29,29 @@ The goals that produce the largest jumps in value tend to have low probability o
 
 Qualifying for a national team, getting hired at a frontier lab, building something that reaches escape velocity. These are goals where most attempts fail. The probability of success for any individual attempt is low.
 
-But the expected value, properly calculated, is high. The value at the discontinuity is so large relative to the cost of the attempt that even a low probability of reaching it makes the bet worthwhile.
+But the value, properly considered, can still be favorable. The value at the discontinuity is so large relative to the cost of the attempt that even a low probability of reaching it can make the bet worthwhile.
 
-I want to be precise about this claim. I am asserting that in many (not all) domains, the ratio of value to probability at the top of the distribution exceeds the ratio in the middle. This is not obviously true in every case. It depends on the specific domain, the specific threshold, and how you measure value. But in the domains I care about (athletics, technology, career capital), I believe the pattern holds. The value discontinuities at the top are large enough that even very low probabilities produce favorable expected value relative to the middle of the distribution.
+I want to be precise about this claim. I am asserting that in many (not all) domains, the ratio of value to probability at the top of the distribution exceeds the ratio in the middle. This is not obviously true in every case. It depends on the specific domain, the specific threshold, and how you measure value. But in the domains I care about (athletics, technology, career capital), I believe the pattern holds.
+
+<aside>
+The value discontinuities at the top are large enough that even very low probabilities produce favorable ratios relative to the middle. I can't prove this formally but it matches everything I've observed.
+</aside>
 
 ---
 
 ## 3. Why the Top Is Underpriced
 
-Most people do not avoid high-value, low-probability goals because they have done the EV calculation and found it wanting. They avoid them for several reasons, most of which have nothing to do with the math.
+Most people do not avoid high-value, low-probability goals because they have done the calculation and found it wanting. They avoid them for several reasons, most of which have nothing to do with the math.
 
 **Fear of failure.** This is the largest factor. People are afraid of failing. Not in the abstract, but concretely: the rejection, the embarrassment, the feeling of having tried and not made it. This fear causes people to select away from goals where failure is likely, regardless of what success would be worth.
 
 **Information asymmetry.** Many people do not know the top exists, or do not know how to access it. If you have never been exposed to people who work at frontier labs or compete at national levels, those goals do not enter your queue. You cannot pursue what you cannot see.
 
-**Resource constraints.** Some people genuinely cannot afford to fail repeatedly. If a single failed attempt has real consequences (financial, familial, logistical), the low-probability bet is not viable even if the EV is favorable. This is a real constraint, not a psychological one.
+**Resource constraints.** Some people genuinely cannot afford to fail repeatedly. If a single failed attempt has real consequences (financial, familial, logistical), the low-probability bet is not viable even if the ratio is favorable. This is a real constraint, not a psychological one.
 
 **Social norms.** People are funneled toward conventional paths by the expectations of parents, peers, institutions. These paths tend to cluster in the middle of the distribution, not because the middle is optimal, but because it is legible and socially endorsed.
 
-The net effect is that fewer people pursue high-value, low-probability goals than the EV warrants. The top is not literally uncontested, but it is less contested than it should be given the value at stake.
+The net effect is that fewer people pursue high-value, low-probability goals than the value warrants. The top is not literally uncontested, but it is less contested than it should be given the value at stake.
 
 ---
 
@@ -59,7 +63,9 @@ This is where competition becomes disproportionate to value. Mid-tier internship
 
 Consider the internship market. The compensation difference between a top-tier and mid-tier tech internship can be 5-10x. The difference in competitiveness is not 5-10x. It is comparable, sometimes even inverted. A mid-tier position can receive thousands of applications from candidates who self-selected out of the top tier due to fear, not due to inability. The middle absorbs the demand that fear deflected from the top.
 
-This is a direct consequence of point 3. Each factor that pushes people away from the top pushes them into the middle. Since everyone is doing this simultaneously, the middle becomes oversaturated.
+<aside>
+I have watched this happen in my own cohort. People who are clearly capable of competing for the best positions apply to the safe ones instead. The safe ones then become harder to get, which is exactly the opposite of what they were going for.
+</aside>
 
 ---
 
