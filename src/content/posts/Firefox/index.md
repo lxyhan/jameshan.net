@@ -30,3 +30,4 @@ Firefox's codebase is massive (~20 million lines), but it's also one of the most
 5. [Privacy Metrics: Design & Data Foundation](/firefox/v_privacy_metrics_design_and_data_foundation)
 6. [Privacy Metrics: Implementation](/firefox/vi_privacy_metrics_implementation)
 7. [Privacy Metrics: UI & Testing](/firefox/vii_privacy_metrics_ui_and_testing)
+8. [Mozilla Engineering Talks + Networking](/firefox/viii_mozilla_engineering_talks) - Photos from the March 2026 office event.

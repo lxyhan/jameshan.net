@@ -1,4 +1,4 @@
----
+write t---
 title: "A Model for Goal Setting"
 pubDate: 2026-03-14
 description: "A framework for understanding decision making"
@@ -11,7 +11,7 @@ order: 1
 
 *March 14, 2026*
 
-There are three questions I wanted a model to answer: how do I decide what to work on, how do I know what *not* to do, and, given I know what to do, how do I actually do it effectively.
+There is one question I want a model to answer: what should I work on?
 
 This is an attempt to build a framework for understanding my decisions from first principles.
 
@@ -23,8 +23,7 @@ A goal has three components: a **want** (a desire for some state to be different
 
 Scrolling Instagram is a goal. The want is the feeling of dopamine when I look at reels. The steps are picking up my phone, opening the app, and swiping. The outcome is that I have scrolled. Qualifying for Team Canada is also a goal. The want is the credential and what it represents. The steps are years of structured training. The outcome is making the team.
 
-These two things have identical structure. There is no separate category for "distractions" or "wasted time." Every action I take is a goal being selected. 
-The difference between these goals is not structural. It is in the properties described below.
+These two things have identical structure. There is no separate category for "distractions" or "wasted time." Every action I take is a goal being selected. The difference between these goals is not structural. It is in the properties described below.
 
 ---
 
@@ -112,9 +111,7 @@ Some sets of goals have increasing marginal returns (compound interest) and then
 
 ## 4. Distortions
 
-The priority queue represents the ordering of goals by EV. This is a determinstic ordering in the universe that I don't have access to. What I actually select in practice is a percieved queue that stems from my mood, thoughts, systems, and even distoritions: factors that warp my perception of the scores or cause me to ignore the ordering entirely.
-
-Let's explore a few distortions that can cause my personal queue to deviate from the true priority queue of goals.
+The priority queue represents the ordering of goals by EV. This is a deterministic ordering in the universe that I don't have access to. What I actually select in practice is a perceived queue that stems from my mood, thoughts, systems, and distortions: factors that warp my perception of the scores or cause me to ignore the ordering entirely.
 
 <aside>
 This is my 3rd time stating this, but this model assumes that the Queue is always correct. If there is a misalignment, it is already priced into the queue via our inputs.
@@ -163,13 +160,13 @@ False inputs require corrections to the data feed (e.g. sertraline correcting OC
 
 No intervention needs to fully solve its target distortion. It needs to make the queue less wrong than it would be without it.
 
-## Next Steps
+---
 
-We now have the language to reason about goals. I will now build up towards heuristics for:
-- What is an Effective Goal?
-- How can I set an Effective Goal?
-- Given a set of effective Goals, how do I minimize distortions?
+## 6. Open Questions
 
-And the most difficult of all:
-- Increasing Motivation for goals
-- How do I measure alignment
+This model gives me language for reasoning about goals. What it does not yet address:
+
+- Alignment is doing most of the work, and I have no reliable method for measuring it. The entire framework depends on a variable I cannot quantify.
+- The non-linearity of alignment (noted in the aside above) suggests that the structure of value across outcomes is itself worth examining. I explore this in the [next piece](/effective-goal-setting/fat_tails_in_value).
+- Motivation as an input to EV risks circularity. If I select by EV and motivation is part of EV, the model may be restating "I do what I feel like doing" with additional formalism.
+- The queue being "never wrong" is unfalsifiable by construction. Any bad outcome is attributed to bad inputs. This is useful as a modelling assumption but should not be mistaken for a claim about reality.
