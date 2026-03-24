@@ -1,5 +1,5 @@
 ---
-title: "The Psychology of Failure"
+title: "Becoming a professional failure"
 pubDate: 2026-03-24
 draft: true
 order: 4
@@ -83,7 +83,7 @@ The same mechanism applies here. Repeated exposure to failure recalibrates the p
 
 ## 7. The Ordering
 
-This is the piece that Taleb's framework misses entirely. He describes the portfolio. He describes the structure of value. He says: take asymmetric bets, embrace volatility, seek exposure to positive Black Swans. All correct at the system level. All useless as advice for an individual who is afraid of failing.
+Taleb describes the portfolio. He describes the structure of value. He says: take asymmetric bets, embrace volatility, seek exposure to positive Black Swans. All correct at the system level. All useless as advice for an student who is afraid of failing.
 
 You cannot start with the portfolio. You start with exposure. Small failures, tolerable stakes, repeated until the system adapts. Then the portfolio becomes possible, because the psychological cost of the asymmetric bets has dropped low enough that you can actually take them.
 
