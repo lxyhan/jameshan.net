@@ -1,5 +1,5 @@
 ---
-title: "Becoming a professional failure"
+title: "Becoming a Professional Failure"
 pubDate: 2026-03-24
 draft: true
 order: 4
