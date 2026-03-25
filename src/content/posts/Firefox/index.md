@@ -33,5 +33,4 @@ The work started small (a one-line JSON change to strip a tracking parameter) an
 4. [Copy Clean Link](/firefox/copy-clean-link/index) - Stripping tracking parameters from copied URLs
 5. [Clear Data Dialog](/firefox/clear-data-dialog/index) - Modernizing the clear history dialog
 6. [SmartBlock](/firefox/smartblock/index) - Preserving useful content from blocked embeds
-7. [LLM Security](/firefox/llm-security/index) - LLM security in the context of Firefox
-8. [Mozilla Engineering Talks](/firefox/mozilla_engineering_talks) - Photos from the March 2026 office event
+7. [Community Engagement](/firefox/community-engagement/index) - Events, talks, and networking at Mozilla
