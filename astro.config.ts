@@ -16,6 +16,7 @@ import rehypeRaw from 'rehype-raw'                         // ⭐ ADDED
 import rehypeCleanup from './src/plugins/rehype-cleanup.mjs'
 import rehypeImageProcessor from './src/plugins/rehype-image-processor.mjs'
 import rehypeCopyCode from './src/plugins/rehype-copy-code.mjs'
+import rehypeSectionFootnotes from './src/plugins/rehype-section-footnotes.mjs'
 
 import { themeConfig } from './src/config'
 import { imageConfig } from './src/utils/image-config'
@@ -57,7 +58,8 @@ export default defineConfig({
       rehypeRaw,                         // ⭐ ADDED: enables inline HTML in markdown
       rehypeCleanup,
       rehypeImageProcessor,
-      rehypeCopyCode
+      rehypeCopyCode,
+      rehypeSectionFootnotes
     ]
   },
 

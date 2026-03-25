@@ -53,11 +53,9 @@ This requires an assumption: there exist many possible timelines, and my well-be
 
 Alignment is the hardest property to measure. It is also the only one that connects to actual long-term outcomes.
 
-One thing I keep coming back to is that alignment is not always smooth. Some goals have alignment that increases linearly with effort. Others jump discontinuously at a threshold. Any goal with a binary qualification (a credential, a hire, a ship date) has a step function in its alignment curve.
+One thing I keep coming back to is that alignment is not always smooth. Some goals have alignment that increases linearly with effort. Others jump discontinuously at a threshold. Any goal with a binary qualification (a credential, a hire, a ship date) has a step function in its alignment curve.[^1]
 
-<aside>
-Training is a good example. Baseline training (running a few times a week, lifting twice) has high alignment through health and mental clarity. Additional volume beyond that has diminishing returns. The curve flattens. But at a qualification threshold, like making a national team, alignment jumps. You go from "someone who trains a lot" to "Team Canada athlete." The credential unlocks downstream value in career signaling, content authority, and social differentiation that did not exist one step below the threshold. This means training "almost enough" to qualify is the lowest-value position. You pay the cost of high volume but don't reach the threshold where credential alignment kicks in. Either commit to crossing the threshold or drop to baseline. The middle is where value is lowest.
-</aside>
+[^1]: Training is a good example. Baseline training (running a few times a week, lifting twice) has high alignment through health and mental clarity. Additional volume beyond that has diminishing returns. The curve flattens. But at a qualification threshold, like making a national team, alignment jumps. You go from "someone who trains a lot" to "Team Canada athlete." The credential unlocks downstream value in career signaling, content authority, and social differentiation that did not exist one step below the threshold. This means training "almost enough" to qualify is the lowest-value position. You pay the cost of high volume but don't reach the threshold where credential alignment kicks in. Either commit to crossing the threshold or drop to baseline. The middle is where value is lowest.
 
 ### Ranking Goals
 
@@ -72,21 +70,17 @@ Under this heuristic:
 - Negative-value goals have negative alignment and high motivation. They feel rewarding but produce negative outcomes.
 - Asymmetric bets have low probability and high alignment. They are positive value when the cost of the attempt is small relative to the potential payoff.
 
-I think 95%+ of most people's goals are probably negative value. I'll come back to this.
+I think 95%+ of most people's goals are probably negative value. I'll come back to this.[^2]
 
-<aside>
-This is a bold claim and I'm not fully confident in it yet. But when I look at how I spend my own time, the proportion of hours going toward goals with genuinely positive alignment is disturbingly small. Most of the day is consumed by things that feel good in the moment but produce nothing.
-</aside>
+[^2]: This is a bold claim and I'm not fully confident in it yet. But when I look at how I spend my own time, the proportion of hours going toward goals with genuinely positive alignment is disturbingly small. Most of the day is consumed by things that feel good in the moment but produce nothing.
 
 ---
 
 ## 3. The Priority Queue
 
-A rational actor would model goals as a priority queue sorted by value. One goal at a time, selected from the top.
+A rational actor would model goals as a priority queue sorted by value. One goal at a time, selected from the top.[^3]
 
-<aside>
-This is a modelling choice: I'm assuming the ranking is the universal indicator of value. A higher-ranked goal is always better than a lower-ranked one. This is not subject to perception, because perception is already priced into the inputs (motivation is a perception, alignment tries to account for it).
-</aside>
+[^3]: This is a modelling choice: I'm assuming the ranking is the universal indicator of value. A higher-ranked goal is always better than a lower-ranked one. This is not subject to perception, because perception is already priced into the inputs (motivation is a perception, alignment tries to account for it).
 
 The queue logic is never wrong. It is a sorting algorithm that always produces the correct ordering given its inputs. By defining it this way, all failure modes collapse into one category: input quality. Every bad decision is a bad input. You don't deliberate at the selection step. You take whatever is on top.
 
@@ -104,11 +98,9 @@ Some sets of goals have increasing marginal returns (compound interest) and then
 
 ## 4. Distortions
 
-The priority queue represents the ordering of goals by value. This is a deterministic ordering in the universe that I don't have access to. What I actually select in practice is a perceived queue that stems from my mood, thoughts, systems, and distortions: factors that warp my perception of the scores or cause me to ignore the ordering entirely.
+The priority queue represents the ordering of goals by value. This is a deterministic ordering in the universe that I don't have access to. What I actually select in practice is a perceived queue that stems from my mood, thoughts, systems, and distortions: factors that warp my perception of the scores or cause me to ignore the ordering entirely.[^4]
 
-<aside>
-This is my third time stating this, but the model assumes the queue is always correct. If there is a misalignment, it is already priced into the queue via the inputs.
-</aside>
+[^4]: This is my third time stating this, but the model assumes the queue is always correct. If there is a misalignment, it is already priced into the queue via the inputs.
 
 ### False Inputs
 

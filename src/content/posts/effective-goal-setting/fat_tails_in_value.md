@@ -31,11 +31,9 @@ Qualifying for a national team, getting hired at a frontier lab, building someth
 
 But the value, properly considered, can still be favorable. The value at the discontinuity is so large relative to the cost of the attempt that even a low probability of reaching it can make the bet worthwhile.
 
-I want to be precise about this claim. I am asserting that in many (not all) domains, the ratio of value to probability at the top of the distribution exceeds the ratio in the middle. This is not obviously true in every case. It depends on the specific domain, the specific threshold, and how you measure value. But in the domains I care about (athletics, technology, career capital), I believe the pattern holds.
+I want to be precise about this claim. I am asserting that in many (not all) domains, the ratio of value to probability at the top of the distribution exceeds the ratio in the middle. This is not obviously true in every case. It depends on the specific domain, the specific threshold, and how you measure value. But in the domains I care about (athletics, technology, career capital), I believe the pattern holds.[^1]
 
-<aside>
-The value discontinuities at the top are large enough that even very low probabilities produce favorable ratios relative to the middle. I can't prove this formally but it matches everything I've observed.
-</aside>
+[^1]: The value discontinuities at the top are large enough that even very low probabilities produce favorable ratios relative to the middle. I can't prove this formally but it matches everything I've observed.
 
 ---
 
@@ -61,11 +59,9 @@ The corollary: if people avoid the top, where do they go? They crowd into goals 
 
 This is where competition becomes disproportionate to value. Mid-tier internships, varsity-level athletics, "good but not great" positions. These goals attract enormous volumes of applicants because they sit in the sweet spot of feeling achievable while still signaling ambition. The result is that the competition-to-value ratio in the middle is often worse than at the top.
 
-Consider the internship market. The compensation difference between a top-tier and mid-tier tech internship can be 5-10x. The difference in competitiveness is not 5-10x. It is comparable, sometimes even inverted. A mid-tier position can receive thousands of applications from candidates who self-selected out of the top tier due to fear, not due to inability. The middle absorbs the demand that fear deflected from the top.
+Consider the internship market. The compensation difference between a top-tier and mid-tier tech internship can be 5-10x. The difference in competitiveness is not 5-10x. It is comparable, sometimes even inverted. A mid-tier position can receive thousands of applications from candidates who self-selected out of the top tier due to fear, not due to inability. The middle absorbs the demand that fear deflected from the top.[^2]
 
-<aside>
-I have watched this happen in my own cohort. People who are clearly capable of competing for the best positions apply to the safe ones instead. The safe ones then become harder to get, which is exactly the opposite of what they were going for.
-</aside>
+[^2]: I have watched this happen in my own cohort. People who are clearly capable of competing for the best positions apply to the safe ones instead. The safe ones then become harder to get, which is exactly the opposite of what they were going for.
 
 ---
 

@@ -312,23 +312,20 @@
   border-left-color: rgb(100, 116, 139);
 }
 
-/* Asides - inline footnotes */
+/* Asides - small highlighted annotation boxes */
 .prose aside {
-  font-size: 0.78em;
-  line-height: 1.45;
-  color: var(--text-secondary);
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--text-primary);
   background: transparent;
-  border-left: 2px solid var(--border);
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  padding: 0.25em 0 0.25em 0.75em;
-  margin: 0.75em 0;
-  border-radius: 0;
+  border: 1px solid var(--border);
+  padding: 0.5em 0.75em;
+  margin: 0.5em 0;
+  border-radius: 4px;
 }
 
 .prose aside p {
-  margin: 0.15em 0;
+  margin: 0.2em 0;
 }
 
 /* Remove the enlarged first letter styling */
@@ -523,21 +520,33 @@
   padding: 3px 1px;
 }
 
-/* Footnotes - more compact */
+/* Footnotes - bottom of page (hidden, replaced by section footnotes) */
 .prose .footnotes {
-  margin-top: 2.5rem; /* Less space */
-  padding-top: 1.25rem;
-  position: relative;
+  display: none;
 }
 
-.prose .footnotes::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4rem;
-  height: 1px;
-  background-color: var(--border);
+/* Section footnotes - inline at end of each section */
+.prose .section-footnotes {
+  margin: 1.25rem 0 0.5rem;
+  padding: 0;
+}
+
+.prose .section-footnotes ol {
+  margin: 0;
+  padding-left: 1.25em;
+  list-style-type: decimal;
+}
+
+.prose .section-footnotes li {
+  font-size: 0.78em;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-bottom: 0.25em;
+}
+
+.prose .section-footnotes li p {
+  margin: 0;
+  display: inline;
 }
 
 .prose cite {

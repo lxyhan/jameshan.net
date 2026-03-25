@@ -43,11 +43,9 @@ This creates a natural categorization.
 
 The interesting cases are bets that look expensive but can be restructured to be cheap. A multi-year training commitment is expensive. But if the training itself develops skills that transfer regardless of whether you hit the specific threshold (health, discipline, credibility), the sunk cost on failure is lower than it appears. The bet is partially hedged by its side effects.
 
-Conversely, some bets look cheap but are actually expensive. The gym is a good example. One session costs an hour. That feels cheap. But the value curve is smooth and flattening. There is no threshold where it jumps. Hundreds of hours for marginal, diminishing returns. The cumulative cost relative to the value produced is high. It just doesn't feel that way because the per-session cost is low.
+Conversely, some bets look cheap but are actually expensive. The gym is a good example.[^1] One session costs an hour. That feels cheap. But the value curve is smooth and flattening. There is no threshold where it jumps. Hundreds of hours for marginal, diminishing returns. The cumulative cost relative to the value produced is high. It just doesn't feel that way because the per-session cost is low.
 
-<aside>
-I don't mean the gym is bad. Baseline fitness has real alignment through health and mental clarity. But beyond that baseline, the value curve flattens quickly. The guys I know who spend two hours a day in the gym but can't be bothered to send a single application are making exactly this mistake: they are paying a high cumulative cost for a smooth, flattening return, while ignoring cheap bets with discontinuous upside.
-</aside>
+[^1]: I don't mean the gym is bad. Baseline fitness has real alignment through health and mental clarity. But beyond that baseline, the value curve flattens quickly. The guys I know who spend two hours a day in the gym but can't be bothered to send a single application are making exactly this mistake: they are paying a high cumulative cost for a smooth, flattening return, while ignoring cheap bets with discontinuous upside.
 
 This is why "cost" as a concept needs to account for cumulative investment relative to the shape of the value curve. A bet is expensive if the total time spent is high relative to the value it produces, regardless of how cheap each individual session feels.
 

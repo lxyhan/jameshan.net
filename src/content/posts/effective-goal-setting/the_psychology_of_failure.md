@@ -47,11 +47,9 @@ This is the most important thing to understand about fear of failure. It is not 
 
 The mechanism for reversing this is well-established in clinical psychology: exposure therapy. You expose yourself to the feared stimulus at tolerable doses, repeatedly, and the fear response weakens. Not because you stop caring, but because the nervous system recalibrates its threat assessment based on evidence.
 
-I have direct experience with this through OCD treatment. ERP (exposure and response prevention) works by sitting with the anxiety, not performing the compulsion, and allowing the nervous system to learn that the feared outcome does not occur. The threat was fabricated. The system updates.
+I have direct experience with this through OCD treatment. ERP (exposure and response prevention) works by sitting with the anxiety, not performing the compulsion, and allowing the nervous system to learn that the feared outcome does not occur. The threat was fabricated. The system updates.[^1]
 
-<aside>
-This is one of the more useful things I've learned. ERP taught me that the feeling of anxiety is not evidence that the threat is real. The feeling fires regardless. What matters is what actually happens when you don't perform the avoidance behavior. Usually, nothing.
-</aside>
+[^1]: This is one of the more useful things I've learned. ERP taught me that the feeling of anxiety is not evidence that the threat is real. The feeling fires regardless. What matters is what actually happens when you don't perform the avoidance behavior. Usually, nothing.
 
 The parallel to goal selection is direct. The feared stimulus is failure. The compulsion is avoidance (selecting safe goals instead). The exposure is taking the bet anyway, experiencing the failure, and surviving it. Each time this happens, the fear response weakens slightly. The perceived cost of failure moves closer to the actual cost.
 
@@ -69,11 +67,9 @@ The key variables are:
 
 **Volume.** One rejection teaches you nothing about your fear response. Fifty rejections teach you that rejection is survivable. The recalibration requires repetition. There is no shortcut.
 
-**Proximity to the actual fear.** Thinking about failure does not produce exposure. You have to actually fail. The nervous system only updates based on experience, not on hypothetical reasoning. This is why knowing the math does not fix the psychology: knowing that failure is low-cost does not produce the physiological update that experiencing failure does.
+**Proximity to the actual fear.** Thinking about failure does not produce exposure. You have to actually fail. The nervous system only updates based on experience, not on hypothetical reasoning. This is why knowing the math does not fix the psychology: knowing that failure is low-cost does not produce the physiological update that experiencing failure does.[^2]
 
-<aside>
-I keep circling back to this point because it is the crux of the whole series. The intellectual framework and the psychological reality operate on different systems. You can understand one perfectly and still be stuck on the other. The bridge between them is not more understanding. It is experience.
-</aside>
+[^2]: I keep circling back to this point because it is the crux of the whole series. The intellectual framework and the psychological reality operate on different systems. You can understand one perfectly and still be stuck on the other. The bridge between them is not more understanding. It is experience.
 
 ---
 
