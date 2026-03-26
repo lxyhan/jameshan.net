@@ -2,6 +2,7 @@
 title: "Index: Privacy Alignment"
 pubDate: "2026-02-27"
 order: 0
+viewId: 76
 ---
 
 *Auto-generating comprehensive privacy capability documentation from Firefox's source code, across desktop and mobile platforms.*

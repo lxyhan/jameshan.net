@@ -1,6 +1,7 @@
 ---
 title: 'Coordination Without Authority: Zhang Zuolin and the Fengtian Clique'
 pubDate: '2025-12-06'
+viewId: 50
 ---
 
 In the summer of 1928, a train carrying Zhang Zuolin wound through the mountains northeast of Beijing. He was returning to Manchuria after another failed attempt to hold the capital. The Nationalists were advancing. His coalition was fraying. The Japanese, who had financed his rise, were growing impatient with his independence.

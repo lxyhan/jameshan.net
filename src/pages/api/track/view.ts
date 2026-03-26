@@ -41,7 +41,7 @@ function getClientIP(request: Request): string {
 const OWNER_IPS = (process.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
 
 function isOwner(ip: string): boolean {
-  return OWNER_IPS.includes(ip);
+  return OWNER_IPS.includes(ip) || ip === 'unknown';
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -54,7 +54,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const body = await request.json();
-    const { path, sessionId, fingerprint } = body;
+    const { path: rawPath, viewId, sessionId, fingerprint } = body;
+
+    // Normalize path: strip trailing slash for consistent matching
+    const path = rawPath?.replace(/\/+$/, '') || '';
 
     if (!path) {
       return new Response(JSON.stringify({ error: 'Path required' }), {
@@ -109,6 +112,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { error } = await supabase.from('page_views').insert({
       page_path: path,
+      view_id: viewId || null,
       session_id: sessionId || null,
       fingerprint: fingerprint || null,
       ip_address: ip,

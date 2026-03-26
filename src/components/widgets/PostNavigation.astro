@@ -12,10 +12,17 @@ const posts = await getSortedFilteredPosts()
 // Get current folder
 const currentFolder = currentPostId.split('/')[0]
 
-// Filter posts to same folder and sort alphabetically by id
+// Filter posts to same folder and sort by order field (then by pubDate as fallback)
 const folderPosts = posts
   .filter(post => post.id.split('/')[0] === currentFolder)
-  .sort((a, b) => a.id.localeCompare(b.id))
+  .sort((a, b) => {
+    const aOrder = a.data.order
+    const bOrder = b.data.order
+    if (aOrder != null && bOrder != null) return aOrder - bOrder
+    if (aOrder != null) return -1
+    if (bOrder != null) return 1
+    return a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  })
 
 // Find current post index within folder
 const currentIndex = folderPosts.findIndex(post => post.id === currentPostId)

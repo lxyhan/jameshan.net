@@ -2,6 +2,7 @@
 title: '12: Network Flows'
 pubDate: '2025-12-31'
 order: 12
+viewId: 17
 ---
 
 *Coming soon.*

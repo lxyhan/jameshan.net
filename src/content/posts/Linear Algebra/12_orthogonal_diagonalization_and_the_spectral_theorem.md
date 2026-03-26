@@ -2,6 +2,7 @@
 title: '12: Orthogonal Diagonalization and the Spectral Theorem'
 pubDate: '2025-12-08'
 order: 12
+viewId: 96
 ---
 
 Symmetric matrices have a special property: they can always be diagonalized using orthogonal eigenvectors. This means you can write $A = QDQ^T$ where $Q$ has orthonormal columns. The "orthogonal" part is crucial,instead of computing a full matrix inverse ($O(n^3)$), you just transpose ($O(n^2)$). Geometrically, symmetric matrices can only stretch along perpendicular axes, never rotate. This is the **Spectral Theorem**, and it's why symmetric matrices are the friendliest matrices in linear algebra.

@@ -2,6 +2,7 @@
 title: 'Removing the Old Dialog'
 pubDate: '2026-01-14'
 order: 1
+viewId: 65
 ---
 
 *Deleting 2,500 lines of dead code across 46 files after the new clear history dialog shipped.*

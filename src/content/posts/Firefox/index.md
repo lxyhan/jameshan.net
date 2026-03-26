@@ -2,6 +2,7 @@
 title: "Index: Firefox"
 pubDate: "2025-11-05"
 order: 0
+viewId: 72
 ---
 
 *A series documenting my patches to Mozilla Firefox as a Privacy Engineering intern.*

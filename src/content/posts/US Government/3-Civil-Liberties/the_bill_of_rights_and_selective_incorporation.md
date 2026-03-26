@@ -2,6 +2,7 @@
 title: "The Bill of Rights and Selective Incorporation"
 pubDate: "2025-12-23"
 order: 1
+viewId: 186
 ---
 
 The Bill of Rights was an afterthought. It's now the most litigated part of the Constitution.

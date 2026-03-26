@@ -2,6 +2,7 @@
 title: '7: Priority Queues and Heaps'
 pubDate: '2025-12-12'
 order: 7
+viewId: 28
 ---
 
 A **priority queue** supports insert and extract-min/max. Binary heaps implement this with $O(\log n)$ operations.

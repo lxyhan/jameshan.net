@@ -2,6 +2,7 @@
 title: 'Gradient Descent'
 pubDate: '2025-01-28'
 order: 2
+viewId: 117
 ---
 
 Gradient descent is an iterative optimization algorithm used to find the minimum of a function. While linear regression has a closed-form solution, gradient descent provides a more general approach that scales better to high dimensions and generalizes to other models.

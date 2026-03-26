@@ -2,6 +2,7 @@
 title: 'Practice Problems'
 pubDate: '2025-01-28'
 order: 4
+viewId: 120
 ---
 
 Practice problems for linear regression and gradient descent.

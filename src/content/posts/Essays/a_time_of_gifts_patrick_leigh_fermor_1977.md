@@ -1,6 +1,7 @@
 ---
 title: 'A Time of Gifts (Patrick Leigh Fermor, 1977)'
 pubDate: '2025-01-25'
+viewId: 46
 ---
 
 In 1933, Patrick Leigh Fermor walked from the Hook of Holland to Constantinople. He was eighteen, recently expelled from school, carrying a few pounds and a letter of introduction or two. The journey took over a year. He didn't write about it until forty years later.

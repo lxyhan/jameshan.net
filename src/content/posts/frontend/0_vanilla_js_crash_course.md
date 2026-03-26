@@ -2,6 +2,7 @@
 title: '0: Vanilla JS Crash Course'
 pubDate: '2026-02-16'
 order: 0
+viewId: 84
 ---
 
 Prerequisites for React — the DOM API is how JavaScript talks to HTML natively. React abstracts all of this, but understanding the raw browser APIs makes React's model click and prepares you for general JavaScript interview questions.

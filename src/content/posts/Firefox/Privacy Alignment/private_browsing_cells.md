@@ -2,6 +2,7 @@
 title: 'Private Browsing Cell Clarification'
 pubDate: '2026-03-05'
 order: 2
+viewId: 77
 ---
 
 *Empty table cells were confusing readers. A small label fixed the ambiguity.*

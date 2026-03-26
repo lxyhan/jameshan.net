@@ -2,6 +2,7 @@
 title: "American Political Ideologies"
 pubDate: "2025-12-23"
 order: 3
+viewId: 187
 ---
 
 What does it mean to be liberal or conservative in America? The answer is more complicated than a line from left to right.

@@ -2,6 +2,7 @@
 title: '5: Matrix Transformations as Functions'
 pubDate: '2025-12-05'
 order: 5
+viewId: 105
 ---
 
 ## Matrix Transformations

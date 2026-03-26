@@ -2,6 +2,7 @@
 title: 'Каскад at Bagram: VIA Music and the Compression Ratio of Sincerity'
 pubDate: '2025-01-30'
 draft: true
+viewId: 48
 ---
 
 In 1988, a band called Каскад played a concert at Bagram Air Base in Afghanistan. Someone recorded it. The recording survived the withdrawal, the collapse of the Soviet Union, the chaos of the 1990s. Now you can find it on obscure Russian music sites, sandwiched between other artifacts of wars that no longer make sense to anyone who didn't fight them.

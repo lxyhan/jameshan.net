@@ -2,6 +2,7 @@
 title: "Week 5: Apr 13 - Apr 19"
 pubDate: "2026-04-13"
 order: 7
+viewId: 160
 ---
 
 > Meso 2 (Threshold + VO2max), Week 1. **Race-pace strides introduced.** Zones should be updated from W4 test. All paces below assume recalibration happened.

@@ -2,6 +2,7 @@
 title: "Index: US Government"
 pubDate: "2025-12-23"
 order: 0
+viewId: 195
 ---
 
 Welcome to AP US Government and Politics.

@@ -2,6 +2,7 @@
 title: "Campaigns, Finance, and Media"
 pubDate: "2025-12-23"
 order: 5
+viewId: 192
 ---
 
 Modern campaigns are expensive, professionalized, and media-saturated. Understanding how they work reveals how democracy actually functions.

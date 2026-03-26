@@ -2,6 +2,7 @@
 title: 'Facebook Post Shim'
 pubDate: '2025-12-09'
 order: 2
+viewId: 82
 ---
 
 *When ETP blocks the Facebook SDK, embedded posts disappear completely. This shim renders click-to-load placeholders so users know the content exists.*

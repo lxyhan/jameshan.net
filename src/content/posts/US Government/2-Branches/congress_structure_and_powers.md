@@ -2,6 +2,7 @@
 title: "Congress: Structure and Powers"
 pubDate: "2025-12-23"
 order: 1
+viewId: 180
 ---
 
 Congress is the most powerful branch of government. At least, that's what the founders intended when they made it Article I.

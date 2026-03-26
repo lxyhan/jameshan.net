@@ -2,6 +2,7 @@
 title: '9: Divide and Conquer'
 pubDate: '2025-01-26'
 order: 9
+viewId: 30
 ---
 
 Divide and conquer breaks problems into smaller subproblems, solves them recursively, and combines solutions. The challenge: analyzing recurrences to prove efficiency.

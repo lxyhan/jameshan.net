@@ -2,6 +2,7 @@
 title: "Ideology and Economic Policy"
 pubDate: "2025-12-23"
 order: 4
+viewId: 188
 ---
 
 Economic policy is where ideology meets governance. Theories about markets, government, and human nature translate into taxes, spending, and regulation.

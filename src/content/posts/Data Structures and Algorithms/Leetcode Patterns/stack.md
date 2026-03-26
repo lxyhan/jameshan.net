@@ -2,6 +2,7 @@
 title: 'Stack'
 pubDate: '2025-01-24'
 order: 3
+viewId: 35
 ---
 
 Stacks are LIFO (Last In, First Out). They shine when you need to match pairs, track "most recent" state, or process things in reverse order. If you see parentheses, nested structures, or "next greater element"—think stack.

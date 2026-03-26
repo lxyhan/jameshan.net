@@ -2,6 +2,7 @@
 title: '3: Minimum Spanning Trees'
 pubDate: '2025-12-12'
 order: 3
+viewId: 24
 ---
 
 A **spanning tree** of a connected graph includes all vertices with exactly $V-1$ edges (minimum to connect, no cycles). A **minimum spanning tree (MST)** minimizes total edge weight.

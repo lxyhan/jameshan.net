@@ -2,6 +2,7 @@
 title: '14: Portfolio Optimization'
 pubDate: '2025-12-13'
 order: 14
+viewId: 98
 ---
 
 Modern portfolio theory is linear algebra in disguise. Harry Markowitz's Nobel Prize-winning insight: don't just maximize returns—**minimize variance for a given return**. The math? Quadratic forms, covariance matrices, and constrained optimization.

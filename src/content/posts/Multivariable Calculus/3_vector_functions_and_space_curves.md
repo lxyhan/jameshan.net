@@ -2,6 +2,7 @@
 title: '3: Vector Functions and Space Curves'
 pubDate: '2025-01-28'
 order: 3
+viewId: 138
 ---
 
 Vector-valued functions describe curves and motion in space.

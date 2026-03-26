@@ -2,6 +2,7 @@
 title: "Week 7: Apr 27 - May 3"
 pubDate: "2026-04-27"
 order: 9
+viewId: 162
 ---
 
 > Meso 2, Week 3 of 3. Peak week. Volume hits ~40 km. Push VO2max pace if zones have been feeling easy. Deload follows.

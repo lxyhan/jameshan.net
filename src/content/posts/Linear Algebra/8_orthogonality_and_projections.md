@@ -2,6 +2,7 @@
 title: '8: Orthogonality and Projections'
 pubDate: '2025-12-08'
 order: 8
+viewId: 108
 ---
 
 Orthogonality is the geometric idea of "perpendicularity" extended to any dimension. Two vectors are orthogonal when their dot product is zero,they point in completely independent directions. This concept unlocks powerful tools: projections decompose vectors into components, orthogonal bases simplify computations, and the Gram-Schmidt process converts any basis into an orthonormal one. Orthogonality turns complicated geometric problems into simple, coordinate-wise calculations.

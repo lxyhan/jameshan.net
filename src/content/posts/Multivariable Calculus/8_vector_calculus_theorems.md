@@ -2,6 +2,7 @@
 title: '8: Vector Calculus Theorems'
 pubDate: '2025-01-28'
 order: 8
+viewId: 143
 ---
 
 The fundamental theorems connecting line integrals, surface integrals, and volume integrals.

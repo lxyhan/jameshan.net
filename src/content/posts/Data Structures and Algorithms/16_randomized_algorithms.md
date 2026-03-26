@@ -2,6 +2,7 @@
 title: '16: Randomized Algorithms'
 pubDate: '2025-12-31'
 order: 16
+viewId: 21
 ---
 
 *Coming soon.*

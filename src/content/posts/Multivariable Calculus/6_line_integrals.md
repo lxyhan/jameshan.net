@@ -2,6 +2,7 @@
 title: '6: Line Integrals'
 pubDate: '2025-01-28'
 order: 6
+viewId: 141
 ---
 
 Integrating functions along curves.

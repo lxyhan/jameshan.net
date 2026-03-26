@@ -2,6 +2,7 @@
 title: "Nutrition Protocol"
 pubDate: "2026-03-19"
 order: 2
+viewId: 168
 ---
 
 Nutrition for aquathlon training on a caloric deficit. The deficit is necessary for body composition but creates specific problems for high-intensity training and sleep. Every protocol below exists to solve a concrete issue.

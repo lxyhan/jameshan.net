@@ -2,6 +2,7 @@
 title: '7: Data Wrangling with JavaScript'
 pubDate: '2026-02-17'
 order: 7
+viewId: 91
 ---
 
 Thirty-minute speed drill on transforming data, the bread and butter of fintech frontends. Every exercise uses patterns you'll hit in interviews: reshaping API responses, aggregating transactions, and building lookup structures.

@@ -2,6 +2,7 @@
 title: 'Binary Search'
 pubDate: '2025-01-24'
 order: 4
+viewId: 33
 ---
 
 Binary search achieves $O(\log n)$ by halving the search space each iteration. The challenge isn't the algorithm—it's recognizing when to use it and handling boundary conditions correctly.

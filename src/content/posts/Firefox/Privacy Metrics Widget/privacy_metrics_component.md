@@ -2,6 +2,7 @@
 title: 'Privacy Metrics Component'
 pubDate: '2026-03-19'
 order: 2
+viewId: 79
 ---
 
 *The service layer was done. Now I needed something users could actually see.*

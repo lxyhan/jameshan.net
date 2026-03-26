@@ -2,6 +2,7 @@
 title: "Index: Data Structures & Algorithms"
 pubDate: "2025-12-10"
 order: 0
+viewId: 31
 ---
 
 Notes for **CSC263: Data Structures and Analysis** and **CSC373: Algorithm Design, Analysis & Complexity** at the University of Toronto.

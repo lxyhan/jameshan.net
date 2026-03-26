@@ -1,6 +1,7 @@
 ---
 title: 'Andrei Rublev and the Problem of Creation Under Uncertainty'
 pubDate: '2025-01-28'
+viewId: 47
 ---
 
 What does it mean to make art in an absurd and cruel world?

@@ -2,6 +2,7 @@
 title: "Week 8: May 4 - May 10"
 pubDate: "2026-05-04"
 order: 10
+viewId: 163
 ---
 
 > Meso 2, **DELOAD.** Volume drops to ~27 km. Zone recalibration this week.

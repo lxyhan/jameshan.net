@@ -2,6 +2,7 @@
 title: '9: The Linear Model'
 pubDate: '2025-12-31'
 order: 9
+viewId: 13
 ---
 
 *Coming soon.*

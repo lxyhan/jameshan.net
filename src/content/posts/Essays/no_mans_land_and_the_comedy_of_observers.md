@@ -1,6 +1,7 @@
 ---
 title: "No Man's Land and the Comedy of Observers"
 pubDate: '2026-03-12'
+viewId: 55
 ---
 
 Two soldiers are stuck in a trench between the lines. One Bosniak, one Serb. A third man is lying on a bouncing mine: if he moves, everyone dies.

@@ -2,6 +2,7 @@
 title: "Week 2: Mar 23 - Mar 29"
 pubDate: "2026-03-23"
 order: 4
+viewId: 157
 ---
 
 > Meso 1, Week 2. Second quality session introduced. Volume jumps to ~25 km. The re-entry phase is over -- now we train.

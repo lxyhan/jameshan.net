@@ -2,6 +2,7 @@
 title: "Separation of Powers & Checks and Balances"
 pubDate: "2025-12-23"
 order: 4
+viewId: 178
 ---
 
 The founders didn't trust concentrated power. They designed a system to prevent it.

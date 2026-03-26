@@ -2,6 +2,7 @@
 title: '2: Solving Linear Systems'
 pubDate: '2025-12-08'
 order: 2
+viewId: 102
 ---
 
 Solving a linear system means finding a recipe that produces a target dish.

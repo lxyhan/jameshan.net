@@ -2,6 +2,7 @@
 title: "Index: Effective Goal Setting"
 pubDate: 2026-03-23
 order: 0
+viewId: 41
 ---
 
 A framework for understanding decision making from first principles.

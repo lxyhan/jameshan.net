@@ -2,6 +2,7 @@
 title: "Voting Rights and Turnout"
 pubDate: "2025-12-23"
 order: 1
+viewId: 194
 ---
 
 This is where democracy gets real. Not abstract principles but actual people actually voting (or not).

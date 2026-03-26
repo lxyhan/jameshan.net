@@ -2,6 +2,7 @@
 title: "Index: Multivariable Calculus"
 pubDate: "2025-01-28"
 order: 0
+viewId: 144
 ---
 
 I took this class in the summer of 2024. These notes are just for me to refresh the material and for anyone else looking to review multivariable calculus.

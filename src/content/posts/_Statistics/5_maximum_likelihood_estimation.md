@@ -2,6 +2,7 @@
 title: '5: Maximum Likelihood Estimation'
 pubDate: '2025-12-31'
 order: 5
+viewId: 9
 ---
 
 *Coming soon.*

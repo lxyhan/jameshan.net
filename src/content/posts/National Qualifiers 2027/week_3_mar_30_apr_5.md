@@ -2,6 +2,7 @@
 title: "Week 3: Mar 30 - Apr 5"
 pubDate: "2026-03-30"
 order: 5
+viewId: 158
 ---
 
 > Meso 1, Week 3. Peak week. Volume hits 30 km. First swim. VO2max work gets harder.

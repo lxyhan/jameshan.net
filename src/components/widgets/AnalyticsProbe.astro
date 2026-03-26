@@ -41,13 +41,17 @@
     try {
       const sessionId = getSessionId();
       const fingerprint = getFingerprint();
-      const path = window.location.pathname;
+      const path = window.location.pathname.replace(/\/+$/, '');
+      // Use viewId if available (stable numeric ID), otherwise fall back to path
+      const viewIdAttr = document.querySelector('[data-view-id]')?.getAttribute('data-view-id');
+      const viewId = viewIdAttr ? parseInt(viewIdAttr, 10) : null;
 
       await fetch('/api/track/view', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           path,
+          viewId,
           sessionId,
           fingerprint,
         }),

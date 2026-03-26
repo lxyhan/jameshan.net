@@ -2,6 +2,7 @@
 title: "Index: Software Design"
 pubDate: "2025-01-28"
 order: 0
+viewId: 171
 ---
 
 Notes from CSC207 in Fall 2024.

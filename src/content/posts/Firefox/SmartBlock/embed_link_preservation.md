@@ -2,6 +2,7 @@
 title: 'Embed Link Preservation'
 pubDate: '2026-01-16'
 order: 1
+viewId: 81
 ---
 
 *When Firefox blocks a Twitter embed for privacy, users lose the content entirely. This patch preserves the text and links so they can still read the tweet.*

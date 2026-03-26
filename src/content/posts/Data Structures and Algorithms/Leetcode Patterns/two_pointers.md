@@ -2,6 +2,7 @@
 title: 'Two Pointers'
 pubDate: '2025-01-24'
 order: 2
+viewId: 37
 ---
 
 Two pointers reduce $O(n^2)$ brute force to $O(n)$ by maintaining invariants as pointers move. The key: knowing *when* and *which direction* to move each pointer.

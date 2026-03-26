@@ -2,6 +2,7 @@
 title: 'Dead Code Cleanup'
 pubDate: '2026-01-16'
 order: 2
+viewId: 62
 ---
 
 *The first patch removed the dialog. This one caught the references I missed.*

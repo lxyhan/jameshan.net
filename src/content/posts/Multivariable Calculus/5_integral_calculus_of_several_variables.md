@@ -2,6 +2,7 @@
 title: '5: Integral Calculus of Several Variables'
 pubDate: '2025-01-28'
 order: 5
+viewId: 140
 ---
 
 Double and triple integrals for computing volumes, masses, and other quantities.

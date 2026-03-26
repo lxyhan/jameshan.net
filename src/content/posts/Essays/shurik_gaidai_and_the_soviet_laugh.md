@@ -1,6 +1,7 @@
 ---
 title: 'Shurik, Gaidai, and the Soviet Laugh'
 pubDate: '2026-03-17'
+viewId: 58
 ---
 
 I found *Operation Y* on YouTube, full film, Russian with English subs, the kind of upload that's been there for years and nobody's taken down. Shurik and this girl are walking together studying from a textbook, so absorbed in it that they don't even notice they've walked straight into someone's house.

@@ -2,6 +2,7 @@
 title: '2: Vectors'
 pubDate: '2025-01-28'
 order: 2
+viewId: 137
 ---
 
 Vectors are the fundamental language of multivariable calculus and physics.

@@ -1,23 +1,23 @@
 ---
 interface Props {
-  path: string;
+  viewId: number;
 }
 
-const { path } = Astro.props;
+const { viewId } = Astro.props;
 ---
 
-<span class="post-views" data-path={path}>
+<span class="post-views" data-view-id={viewId}>
   <span class="view-count"></span>
 </span>
 
 <script>
   document.addEventListener('astro:page-load', () => {
     document.querySelectorAll('.post-views').forEach(async (el) => {
-      const path = el.getAttribute('data-path');
-      if (!path) return;
+      const viewId = el.getAttribute('data-view-id');
+      if (!viewId) return;
 
       try {
-        const response = await fetch(`/api/analytics?path=${encodeURIComponent(path)}`);
+        const response = await fetch(`/api/analytics?viewId=${encodeURIComponent(viewId)}`);
         if (response.ok) {
           const data = await response.json();
           const countEl = el.querySelector('.view-count') as HTMLElement;

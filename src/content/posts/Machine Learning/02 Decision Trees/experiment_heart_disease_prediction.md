@@ -2,6 +2,7 @@
 title: 'Experiment: Heart Disease Prediction'
 pubDate: '2025-12-31'
 order: 2
+viewId: 115
 ---
 
 Using decision trees to predict heart disease from NHANES health survey data, with a focus on hyperparameter tuning and model interpretation.

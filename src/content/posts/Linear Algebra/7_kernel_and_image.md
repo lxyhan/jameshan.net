@@ -2,6 +2,7 @@
 title: '7: Kernel and Image'
 pubDate: '2025-12-06'
 order: 7
+viewId: 107
 ---
 
 Every linear transformation has two fundamental subspaces attached to it: the **kernel** (what gets destroyed) and the **image** (what gets produced). Understanding these reveals what a transformation does geometrically,where it collapses, where it stretches, and what it can reach.

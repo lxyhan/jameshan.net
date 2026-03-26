@@ -2,6 +2,7 @@
 title: "Federalism"
 pubDate: "2025-12-23"
 order: 5
+viewId: 175
 ---
 
 Federalism is the division of power between national and state governments. It's one of the most contested aspects of American government.

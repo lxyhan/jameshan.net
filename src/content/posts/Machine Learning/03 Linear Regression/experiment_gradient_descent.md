@@ -2,6 +2,7 @@
 title: 'Experiment: Gradient Descent'
 pubDate: '2025-01-28'
 order: 3
+viewId: 116
 ---
 
 Implementing linear regression from scratch using gradient descent, then comparing it to sklearn's built-in solution.

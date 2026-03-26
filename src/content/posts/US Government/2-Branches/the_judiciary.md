@@ -2,6 +2,7 @@
 title: "The Judiciary"
 pubDate: "2025-12-23"
 order: 4
+viewId: 182
 ---
 
 The judiciary is the least dangerous branch, Hamilton said. He may have been wrong.

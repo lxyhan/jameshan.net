@@ -3,6 +3,7 @@ title: "The Framework"
 pubDate: 2026-03-24
 draft: true
 order: 5
+viewId: 43
 ---
 
 *March 24, 2026*

@@ -1,6 +1,7 @@
 ---
 title: 'Discontinuous Utility and the Jutland Paradox'
 pubDate: '2025-11-25'
+viewId: 51
 ---
 
 ![HMS Dreadnought](../_assets/dreadnought.jpg)

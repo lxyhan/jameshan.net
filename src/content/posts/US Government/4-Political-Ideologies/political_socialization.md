@@ -2,6 +2,7 @@
 title: "Political Socialization"
 pubDate: "2025-12-23"
 order: 1
+viewId: 191
 ---
 
 Where do your political beliefs come from? The answer is more complicated than "I thought about the issues and made up my mind."

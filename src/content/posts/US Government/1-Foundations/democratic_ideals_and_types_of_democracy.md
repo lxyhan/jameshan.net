@@ -2,6 +2,7 @@
 title: "Democratic Ideals & Types of Democracy"
 pubDate: "2025-12-23"
 order: 1
+viewId: 174
 ---
 
 Before we can understand American government, we need to understand the ideas that built it.

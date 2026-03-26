@@ -2,6 +2,7 @@
 title: '3: Vectors in Euclidian Space'
 pubDate: '2025-11-29'
 order: 3
+viewId: 103
 ---
 
 ## Basic Definitions

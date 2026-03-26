@@ -2,6 +2,7 @@
 title: 'Logistic Regression and Regularization'
 pubDate: '2025-01-29'
 order: 4
+viewId: 121
 ---
 
 This lecture covers how to extend linear models to capture non-linear relationships through feature mapping, how to prevent overfitting using regularization, and how to adapt linear models for classification tasks.

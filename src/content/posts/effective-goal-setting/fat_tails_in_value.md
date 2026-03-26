@@ -3,6 +3,7 @@ title: "Fat Tails in Value"
 pubDate: 2026-03-24
 draft: true
 order: 2
+viewId: 40
 ---
 
 *March 24, 2026*

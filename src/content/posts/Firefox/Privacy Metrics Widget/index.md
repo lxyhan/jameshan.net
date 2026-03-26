@@ -2,6 +2,7 @@
 title: "Index: Privacy Metrics Widget"
 pubDate: "2026-03-19"
 order: 0
+viewId: 78
 ---
 
 *Building a widget on the protections dashboard that shows users how many trackers Firefox has blocked for them this week.*

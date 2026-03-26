@@ -2,6 +2,7 @@
 title: '4: Matrix Operations'
 pubDate: '2025-12-06'
 order: 4
+viewId: 104
 ---
 
 Matrices aren't just grids of numbers—they're objects with their own arithmetic.

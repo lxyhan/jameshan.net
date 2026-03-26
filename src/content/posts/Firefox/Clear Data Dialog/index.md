@@ -2,6 +2,7 @@
 title: "Index: Clear Data Dialog"
 pubDate: "2026-01-14"
 order: 0
+viewId: 63
 ---
 
 *Modernizing Firefox's clear history dialog: removing the legacy version, cleaning up dead code, and improving the UX.*

@@ -2,6 +2,7 @@
 title: '8: Likelihood Ratio Tests'
 pubDate: '2025-12-31'
 order: 8
+viewId: 12
 ---
 
 *Coming soon.*

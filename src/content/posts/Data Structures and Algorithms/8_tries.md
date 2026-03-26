@@ -2,6 +2,7 @@
 title: '8: Tries'
 pubDate: '2025-12-12'
 order: 8
+viewId: 29
 ---
 
 A **trie** stores strings character-by-character. Strings with common prefixes share paths. Operations are $O(k)$ where $k$ is string length—independent of how many strings are stored.

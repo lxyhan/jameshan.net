@@ -2,6 +2,7 @@
 title: '6: Confidence Intervals'
 pubDate: '2025-12-31'
 order: 6
+viewId: 10
 ---
 
 *Coming soon.*

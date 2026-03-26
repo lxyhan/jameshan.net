@@ -2,6 +2,7 @@
 title: '7: Hypothesis Testing'
 pubDate: '2025-12-31'
 order: 7
+viewId: 11
 ---
 
 *Coming soon.*

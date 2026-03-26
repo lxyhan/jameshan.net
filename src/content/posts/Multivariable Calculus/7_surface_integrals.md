@@ -2,6 +2,7 @@
 title: '7: Surface Integrals'
 pubDate: '2025-01-28'
 order: 7
+viewId: 142
 ---
 
 Integrating functions over surfaces in 3D.

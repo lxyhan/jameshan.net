@@ -2,6 +2,7 @@
 title: "The Constitutional Convention"
 pubDate: "2025-12-23"
 order: 3
+viewId: 179
 ---
 
 The Constitution was a product of compromise. Understanding those compromises helps explain why our government works the way it does.

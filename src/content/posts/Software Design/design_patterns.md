@@ -2,6 +2,7 @@
 title: 'Design Patterns'
 pubDate: '2025-01-28'
 order: 3
+viewId: 170
 ---
 
 Common solutions to recurring software design problems. These patterns aren't code to copy, they're templates for solving problems in context.

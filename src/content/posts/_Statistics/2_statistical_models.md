@@ -2,6 +2,7 @@
 title: '2: Statistical Models'
 pubDate: '2025-12-31'
 order: 2
+viewId: 6
 ---
 
 *Coming soon.*

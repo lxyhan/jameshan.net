@@ -2,6 +2,7 @@
 title: "The Presidency"
 pubDate: "2025-12-23"
 order: 3
+viewId: 183
 ---
 
 The presidency has become the center of American government. The founders didn't quite intend this.

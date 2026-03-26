@@ -2,6 +2,7 @@
 title: '1: React Quick Start'
 pubDate: '2026-02-14'
 order: 1
+viewId: 85
 ---
 
 React is a JavaScript library for building user interfaces out of composable **components**. This page covers the core concepts you'll use daily.

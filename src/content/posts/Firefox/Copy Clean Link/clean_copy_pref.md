@@ -2,6 +2,7 @@
 title: 'Clean Copy as Default Preference'
 pubDate: '2025-12-16'
 order: 3
+viewId: 68
 ---
 
 *Letting users make "Copy Clean Link" the default copy behavior, with a pref toggle in Privacy settings.*

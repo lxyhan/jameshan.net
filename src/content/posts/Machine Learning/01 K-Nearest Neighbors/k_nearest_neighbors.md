@@ -2,6 +2,7 @@
 title: 'K-Nearest Neighbors'
 pubDate: '2025-12-31'
 order: 1
+viewId: 113
 ---
 
 K-Nearest Neighbors (KNN) is one of the simplest and most intuitive machine learning algorithms. It's a great starting point for understanding supervised learning because it requires no training phase, you just store the data and make predictions at inference time.

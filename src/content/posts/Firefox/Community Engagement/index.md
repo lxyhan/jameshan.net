@@ -2,6 +2,7 @@
 title: "Index: Community Engagement"
 pubDate: "2026-03-24"
 order: 0
+viewId: 66
 ---
 
 *Events, talks, and networking from my time at Mozilla.*

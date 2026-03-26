@@ -2,6 +2,7 @@
 title: "Measuring Public Opinion"
 pubDate: "2025-12-23"
 order: 2
+viewId: 190
 ---
 
 Democracy requires knowing what the people want. But how do we know what the people want?

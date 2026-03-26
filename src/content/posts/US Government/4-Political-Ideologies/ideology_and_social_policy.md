@@ -2,6 +2,7 @@
 title: "Ideology and Social Policy"
 pubDate: "2025-12-23"
 order: 5
+viewId: 189
 ---
 
 Social policy addresses how we live together: our families, communities, identities, and freedoms. These issues often provoke more passion than economic debates because they touch on fundamental values.

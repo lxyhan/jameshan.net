@@ -2,6 +2,7 @@
 title: "Week 6: Apr 20 - Apr 26"
 pubDate: "2026-04-20"
 order: 8
+viewId: 161
 ---
 
 > Meso 2, Week 2 of 3. Volume hits ~36 km. VO2max reps get longer. Threshold gets progressive.

@@ -2,6 +2,7 @@
 title: 'Android ETP Pipeline'
 pubDate: '2026-03-25'
 order: 1
+viewId: 75
 ---
 
 **Bug 2020402** | [D286029](https://phabricator.services.mozilla.com/D286029), [D289805](https://phabricator.services.mozilla.com/D289805) | Reviewer: manuel

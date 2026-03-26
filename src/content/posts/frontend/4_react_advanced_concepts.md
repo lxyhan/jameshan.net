@@ -2,6 +2,7 @@
 title: '4: React Advanced Concepts'
 pubDate: '2026-02-15'
 order: 4
+viewId: 88
 ---
 
 Five concepts you'll need for Ramp-style live coding challenges. Each one fills a gap from the Quick Start and Intermediate material.

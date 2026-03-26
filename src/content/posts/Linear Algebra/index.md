@@ -2,6 +2,7 @@
 title: "Index: Linear Algebra"
 pubDate: "2025-12-08"
 order: 0
+viewId: 110
 ---
 
 Linear algebra is not about matrices. It's about **structure** -- how to capture relationships, compress information, and reveal hidden symmetries in the world.

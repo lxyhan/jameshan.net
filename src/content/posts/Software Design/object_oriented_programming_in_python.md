@@ -2,6 +2,7 @@
 title: 'Object-Oriented Programming in Python'
 pubDate: '2025-01-25'
 order: 1
+viewId: 172
 ---
 
 Object-oriented programming organizes code around **objects**—bundles of data (attributes) and behavior (methods). Python's OOP is flexible: everything is an object, classes are objects, and you can mix paradigms freely.

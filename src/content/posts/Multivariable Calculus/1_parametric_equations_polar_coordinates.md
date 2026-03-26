@@ -2,6 +2,7 @@
 title: '1: Parametric Equations / Polar Coordinates'
 pubDate: '2025-01-28'
 order: 1
+viewId: 136
 ---
 
 Alternative coordinate systems for describing curves and regions.

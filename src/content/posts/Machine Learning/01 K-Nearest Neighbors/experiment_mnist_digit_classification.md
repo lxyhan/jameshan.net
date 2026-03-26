@@ -2,6 +2,7 @@
 title: 'Experiment: MNIST Digit Classification'
 pubDate: '2025-12-31'
 order: 2
+viewId: 111
 ---
 
 Implementing k-Nearest Neighbors from scratch to classify handwritten digits using the MNIST dataset.

@@ -2,6 +2,7 @@
 title: '6: Balanced Binary Search Trees'
 pubDate: '2025-12-12'
 order: 6
+viewId: 27
 ---
 
 BSTs store keys where left subtree < node < right subtree. This gives $O(\log n)$ search—if balanced. AVL trees maintain balance via rotations, guaranteeing $O(\log n)$ worst-case.

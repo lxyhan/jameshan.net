@@ -2,6 +2,7 @@
 title: 'Loading Indicator'
 pubDate: '2026-01-15'
 order: 3
+viewId: 64
 ---
 
 *Users were staring at a blank dialog for 3-10 seconds while Firefox calculated data sizes. A spinner fixed the UX.*

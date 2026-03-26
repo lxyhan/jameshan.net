@@ -2,6 +2,7 @@
 title: '6: Subspaces'
 pubDate: '2025-12-3'
 order: 6
+viewId: 106
 ---
 
 Subspaces are the building blocks of linear algebra,they're the sets where vector operations stay contained, and understanding them reveals the geometry hidden inside matrices.

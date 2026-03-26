@@ -2,6 +2,7 @@
 title: '11: Dynamic Programming'
 pubDate: '2025-12-31'
 order: 11
+viewId: 16
 ---
 
 *Coming soon.*

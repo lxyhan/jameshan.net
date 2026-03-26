@@ -2,6 +2,7 @@
 title: '3: React Intermediate'
 pubDate: '2026-02-14'
 order: 3
+viewId: 87
 ---
 
 Building on the Quick Start fundamentals, these four patterns show up constantly in real React apps — especially in frontend interviews. Each one introduces a new concept while reinforcing what you already know.

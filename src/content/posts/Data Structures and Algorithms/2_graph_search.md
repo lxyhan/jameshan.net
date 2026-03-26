@@ -2,6 +2,7 @@
 title: '2: Graph Search'
 pubDate: '2025-12-12'
 order: 2
+viewId: 23
 ---
 
 BFS, DFS, and CFS are **the same algorithm**. The only difference is how we pick the next node from the frontier:

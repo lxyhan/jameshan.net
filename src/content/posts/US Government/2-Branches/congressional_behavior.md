@@ -2,6 +2,7 @@
 title: "Congressional Behavior"
 pubDate: "2025-12-23"
 order: 2
+viewId: 181
 ---
 
 What motivates members of Congress? How do they decide what to do?

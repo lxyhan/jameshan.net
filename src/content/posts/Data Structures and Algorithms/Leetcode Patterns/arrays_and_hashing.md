@@ -2,6 +2,7 @@
 title: 'Arrays and Hashing'
 pubDate: '2025-01-24'
 order: 1
+viewId: 32
 ---
 
 Arrays and hash maps form the foundation of most coding interviews. Master these first—they appear in nearly every problem, either as the main technique or as a building block.

@@ -2,6 +2,7 @@
 title: 'Linear Regression'
 pubDate: '2025-01-27'
 order: 1
+viewId: 119
 ---
 
 Linear regression is one of the simplest and most fundamental machine learning algorithms. Despite its simplicity, it serves as an excellent baseline model and foundation for understanding more complex algorithms.

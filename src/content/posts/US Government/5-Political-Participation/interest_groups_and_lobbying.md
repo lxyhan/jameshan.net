@@ -2,6 +2,7 @@
 title: "Interest Groups and Lobbying"
 pubDate: "2025-12-23"
 order: 3
+viewId: 193
 ---
 
 Interest groups are how organized citizens influence government between elections. Some call it democracy in action. Others call it legalized bribery.

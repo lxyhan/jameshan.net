@@ -2,6 +2,7 @@
 title: "Week 13: Jun 8 - Jun 14"
 pubDate: "2026-06-08"
 order: 15
+viewId: 152
 ---
 
 > Meso 4 (Race Prep), Week 1 of 3. All paces recalibrated from W12 TT. Race-pace 600-800s. Brick session introduced. Volume ~42 km.

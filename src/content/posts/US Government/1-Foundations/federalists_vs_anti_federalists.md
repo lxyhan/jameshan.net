@@ -2,6 +2,7 @@
 title: "Federalists vs. Anti-Federalists"
 pubDate: "2025-12-23"
 order: 2
+viewId: 176
 ---
 
 The Constitution almost didn't happen. Its ratification sparked one of the most important debates in American history.

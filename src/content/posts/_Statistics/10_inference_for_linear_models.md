@@ -2,6 +2,7 @@
 title: '10: Inference for Linear Models'
 pubDate: '2025-12-31'
 order: 10
+viewId: 4
 ---
 
 *Coming soon.*

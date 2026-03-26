@@ -2,6 +2,7 @@
 title: '5: Hash Tables'
 pubDate: '2025-12-12'
 order: 5
+viewId: 26
 ---
 
 Hash tables implement dictionaries with **$O(1)$ average** insert, lookup, and delete. The tradeoff: no ordering, and worst-case is $O(n)$.

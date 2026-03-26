@@ -1,6 +1,7 @@
 ---
 title: 'Reflections'
 pubDate: '2025-11-27'
+viewId: 2
 ---
 
 *How SDS shaped me as an engineer.*

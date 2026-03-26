@@ -2,6 +2,7 @@
 title: '16: Covariance Estimation and Regularization'
 pubDate: '2025-12-13'
 order: 16
+viewId: 100
 ---
 
 The sample covariance matrix is the natural estimator for $\Sigma$. But in high dimensions—when $n$ (assets) approaches $T$ (observations)—it becomes **singular, unstable, and useless**. Regularization techniques from linear algebra rescue us: shrinkage, factor structures, and eigenvalue clipping.

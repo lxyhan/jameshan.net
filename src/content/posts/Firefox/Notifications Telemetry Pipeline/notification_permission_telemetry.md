@@ -2,6 +2,7 @@
 title: 'Notification Permission Telemetry'
 pubDate: '2026-01-14'
 order: 1
+viewId: 74
 ---
 
 *My first Firefox patch: instrumenting the full lifecycle of notification permission prompts with Glean telemetry.*

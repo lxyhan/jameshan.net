@@ -2,6 +2,7 @@
 title: '4: Union-Find'
 pubDate: '2025-12-12'
 order: 4
+viewId: 25
 ---
 
 Union-Find tracks **disjoint sets** with two operations:

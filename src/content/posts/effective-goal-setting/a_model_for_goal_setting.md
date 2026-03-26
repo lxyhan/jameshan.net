@@ -5,6 +5,7 @@ description: "A framework for understanding decision making"
 tags: ["reflection", "philosophy"]
 draft: true
 order: 1
+viewId: 39
 ---
 
 *March 14, 2026*

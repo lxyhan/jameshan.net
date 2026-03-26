@@ -2,6 +2,7 @@
 title: '1: Graphs and Representations'
 pubDate: '2025-12-12'
 order: 1
+viewId: 22
 ---
 
 A **graph** $G = (V, E)$ consists of vertices $V$ and edges $E$. Edges can be **directed** (one-way) or **undirected** (two-way), and **weighted** or **unweighted**.

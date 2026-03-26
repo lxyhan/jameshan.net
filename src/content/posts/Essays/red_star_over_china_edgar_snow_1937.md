@@ -1,6 +1,7 @@
 ---
 title: 'Red Star Over China (Edgar Snow, 1937)'
 pubDate: '2026-03-20'
+viewId: 57
 ---
 
 In 1936, Edgar Snow crossed Nationalist lines into the blockaded Communist base area in northwest China. He was the first Western journalist to reach the Chinese Communists, the first to interview Mao Zedong at length, the first to report on the Red Army as something other than a rumor. The book he wrote about it shaped how the entire Western world understood the Chinese revolution for the next forty years.

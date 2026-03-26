@@ -1,6 +1,7 @@
 ---
 title: 'Bridging the Transit Data Gap'
 pubDate: '2026-03-17'
+viewId: 49
 ---
 
 A research proposal for using machine learning to detect transit deserts and predict latent demand in unserved Canadian communities. Written with Ethan Qiu and Helen Zhao for the RBC Borealis Let's Solve It challenge.

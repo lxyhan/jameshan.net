@@ -2,6 +2,7 @@
 title: "Index: SmartBlock"
 pubDate: "2025-12-09"
 order: 0
+viewId: 83
 ---
 
 *Making Firefox's tracker blocking smarter: preserving useful content from blocked embeds and extending shim coverage.*

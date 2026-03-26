@@ -1,6 +1,7 @@
 ---
 title: 'In the Heat of the Sun: Memory as Authorship'
 pubDate: '2025-01-28'
+viewId: 53
 ---
 
 The film opens on a Beijing summer in the 1970s, during the Cultural Revolution. A teenage boy named Ma Xiaojun runs wild through empty streets with his friends. Their parents are gone, absorbed in political campaigns. The city has become a playground with no adults to supervise.

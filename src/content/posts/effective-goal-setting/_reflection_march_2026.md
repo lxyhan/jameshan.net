@@ -4,6 +4,7 @@ pubDate: 2026-03-16
 description: "Reflection on what went wrong, what went well, and what to change in the upcoming internship cycle."
 tags: ["reflection", "career"]
 draft: true
+viewId: 38
 ---
 
 ## Reflection on Internships, Goal Setting, Value, and Ego

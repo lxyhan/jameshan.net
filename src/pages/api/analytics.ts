@@ -19,6 +19,7 @@ export const GET: APIRoute = async ({ request }) => {
   try {
     const url = new URL(request.url);
     const path = url.searchParams.get('path');
+    const viewId = url.searchParams.get('viewId');
     const excludeBots = url.searchParams.get('excludeBots') !== 'false';
 
     const today = new Date();
@@ -27,10 +28,13 @@ export const GET: APIRoute = async ({ request }) => {
     // Fetch today's data
     let todayQuery = supabase
       .from('page_views')
-      .select('ip_address, session_id, fingerprint, viewed_at, is_bot, page_path')
+      .select('ip_address, session_id, fingerprint, viewed_at, is_bot, page_path, view_id')
       .gte('viewed_at', today.toISOString());
 
-    if (path) {
+    // Filter by viewId (stable numeric ID) or path (legacy fallback)
+    if (viewId) {
+      todayQuery = todayQuery.eq('view_id', parseInt(viewId, 10));
+    } else if (path) {
       todayQuery = todayQuery.eq('page_path', path);
     }
 
@@ -47,11 +51,13 @@ export const GET: APIRoute = async ({ request }) => {
       while (hasMore) {
         let query = supabase
           .from('page_views')
-          .select('ip_address, session_id, fingerprint, is_bot, page_path, viewed_at')
+          .select('ip_address, session_id, fingerprint, is_bot, page_path, view_id, viewed_at')
           .order('viewed_at', { ascending: false })
           .range(offset, offset + batchSize - 1);
 
-        if (path) {
+        if (viewId) {
+          query = query.eq('view_id', parseInt(viewId, 10));
+        } else if (path) {
           query = query.eq('page_path', path);
         }
 
@@ -75,9 +81,9 @@ export const GET: APIRoute = async ({ request }) => {
 
     // Filter out owner IPs and remove views within 10 min of previous view (same IP + page)
     const filterViews = (data: any[]) => {
-      const filtered = OWNER_IPS.length > 0
-        ? data.filter(v => !OWNER_IPS.includes(v.ip_address))
-        : data;
+      const filtered = data.filter(v =>
+        v.ip_address && v.ip_address !== 'unknown' && v.ip_address !== 'None' && !OWNER_IPS.includes(v.ip_address)
+      );
       const sorted = [...filtered].sort((a, b) => new Date(a.viewed_at).getTime() - new Date(b.viewed_at).getTime());
       const lastView = new Map<string, number>(); // "ip|path" -> timestamp
       const cooldownMs = 10 * 60 * 1000;

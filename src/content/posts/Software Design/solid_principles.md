@@ -2,6 +2,7 @@
 title: 'SOLID Principles'
 pubDate: '2025-01-28'
 order: 2
+viewId: 173
 ---
 
 SOLID is an acronym for five design principles that make software more maintainable, flexible, and understandable.

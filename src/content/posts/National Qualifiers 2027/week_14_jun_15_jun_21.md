@@ -2,6 +2,7 @@
 title: "Week 14: Jun 15 - Jun 21"
 pubDate: "2026-06-15"
 order: 16
+viewId: 153
 ---
 
 > Meso 4, Week 2 of 3. **Brick session and first race simulation.** Volume ~40 km.

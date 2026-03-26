@@ -2,6 +2,7 @@
 title: '13: Singular Value Decomposition'
 pubDate: '2025-12-10'
 order: 13
+viewId: 97
 ---
 
 Eigendecomposition is elegant, but it has a problem: it only works for square matrices, and even then, only when you have enough eigenvectors. **Singular Value Decomposition (SVD)** is the generalization that works for *any* matrix,rectangular, singular, whatever. Every matrix has an SVD.

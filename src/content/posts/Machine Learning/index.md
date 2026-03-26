@@ -2,6 +2,7 @@
 title: "Index: Machine Learning"
 pubDate: "2025-12-31"
 order: 0
+viewId: 127
 ---
 
 A series on machine learning fundamentals, from nearest neighbors to neural networks, with hands-on experiments and a capstone project.

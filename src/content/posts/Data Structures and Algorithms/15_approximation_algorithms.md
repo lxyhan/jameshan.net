@@ -2,6 +2,7 @@
 title: '15: Approximation Algorithms'
 pubDate: '2025-12-31'
 order: 15
+viewId: 20
 ---
 
 *Coming soon.*

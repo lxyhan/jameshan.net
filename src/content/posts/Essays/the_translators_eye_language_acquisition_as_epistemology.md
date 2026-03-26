@@ -2,6 +2,7 @@
 title: "The Translator's Eye: Language Acquisition as Epistemology"
 pubDate: '2025-01-30'
 draft: true
+viewId: 61
 ---
 
 I'm from Henan, early 2000s.

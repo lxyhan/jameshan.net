@@ -2,6 +2,7 @@
 title: "Press, Assembly, and the Right to Bear Arms"
 pubDate: "2025-12-23"
 order: 3
+viewId: 185
 ---
 
 The remaining First Amendment freedoms and the Second Amendment share a common theme: the people's ability to resist tyranny.

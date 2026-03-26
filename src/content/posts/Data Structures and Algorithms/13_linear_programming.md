@@ -2,6 +2,7 @@
 title: '13: Linear Programming'
 pubDate: '2025-12-31'
 order: 13
+viewId: 18
 ---
 
 *Coming soon.*

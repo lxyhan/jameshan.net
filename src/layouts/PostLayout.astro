@@ -21,7 +21,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import { themeConfig } from '@/config'
 
-const { title, pubDate, readingTime, toc, postId } = Astro.props as PostLayoutProps & { postId: string }
+const { title, pubDate, readingTime, toc, postId, viewId } = Astro.props as PostLayoutProps & { postId: string; viewId?: number }
 
 const postSlug = Astro.url.pathname.split('/').filter(Boolean).pop() || ''
 const postPath = Astro.url.pathname
@@ -47,12 +47,12 @@ const ogImage = `/open-graph/${postSlug}.png`
           <BackButton />
           {themeConfig.post.toc && <TableOfContents toc={toc} />}
         </aside> -->
-        <article class="post-article prose">
+        <article class="post-article prose" data-view-id={viewId}>
           <GradientMask />
           <div class="post-header">
             <Breadcrumb postId={postId} title={title} />
             <div class="date">
-              <PostViews path={postPath} />
+              {viewId && <PostViews viewId={viewId} />}
               <span class="separator" style="margin: 0 0.5rem;">|</span>
               <FormattedDate date={pubDate} context="post" />
               {

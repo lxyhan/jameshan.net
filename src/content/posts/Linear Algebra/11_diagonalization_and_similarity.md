@@ -2,6 +2,7 @@
 title: '11: Diagonalization and Similarity'
 pubDate: '2025-12-08'
 order: 11
+viewId: 95
 ---
 
 Diagonalization converts a complicated matrix into the simplest possible form: a diagonal matrix. When you can diagonalize a matrix $A$, you've found the "eigenvector coordinate system" where $A$ just stretches along axes. This makes everything easier,computing powers, solving differential equations, understanding long-term behavior. The key is finding enough eigenvectors to build a new basis.

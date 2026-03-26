@@ -1,6 +1,7 @@
 ---
 title: "The Goal Gradient"
 pubDate: "2026-03-22"
+viewId: 60
 ---
 
 The more abstract a goal, the harder it is to act on. The more concrete a goal, the easier it is to optimize for the wrong thing.

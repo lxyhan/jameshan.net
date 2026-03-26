@@ -2,6 +2,7 @@
 title: "Week 16: Jun 29 - Jul 5"
 pubDate: "2026-06-29"
 order: 18
+viewId: 155
 ---
 
 > **TAPER WEEK.** End of the 16-week block. Volume at ~50% of peak. One sharpening session. No strength. Absorb everything.

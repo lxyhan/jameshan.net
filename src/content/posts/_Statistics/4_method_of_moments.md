@@ -2,6 +2,7 @@
 title: '4: Method of Moments'
 pubDate: '2025-12-31'
 order: 4
+viewId: 8
 ---
 
 *Coming soon.*

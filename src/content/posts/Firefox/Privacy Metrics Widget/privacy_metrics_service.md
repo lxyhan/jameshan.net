@@ -2,6 +2,7 @@
 title: 'Privacy Metrics Service'
 pubDate: '2026-03-19'
 order: 1
+viewId: 80
 ---
 
 *Firefox blocks thousands of trackers every week, but users had no way to see the numbers.*

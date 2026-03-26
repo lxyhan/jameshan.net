@@ -2,6 +2,7 @@
 title: 'Decision Trees'
 pubDate: '2025-12-31'
 order: 1
+viewId: 114
 ---
 
 Decision trees are simple but powerful learning algorithms widely used in practice, including Kaggle competitions. They mimic human decision-making processes and can achieve excellent performance.

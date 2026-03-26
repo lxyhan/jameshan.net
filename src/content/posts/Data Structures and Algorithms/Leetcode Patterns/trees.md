@@ -2,6 +2,7 @@
 title: 'Trees'
 pubDate: '2025-01-24'
 order: 6
+viewId: 36
 ---
 
 Tree problems are recursion problems. The key insight: solve for the current node assuming you've already solved for children. Most solutions are variations of DFS traversals.

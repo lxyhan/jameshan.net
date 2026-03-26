@@ -1,6 +1,7 @@
 ---
 title: 'A Farewell to Arms (Ernest Hemingway, 1929)'
 pubDate: '2026-03-22'
+viewId: 45
 ---
 
 There's a moment during the retreat from Caporetto where Frederic Henry shoots a sergeant. The man refuses to help free a stuck vehicle. Henry fires without hesitation, and the narration moves on in the same flat tone it uses for everything else: weather, food, the color of the river.

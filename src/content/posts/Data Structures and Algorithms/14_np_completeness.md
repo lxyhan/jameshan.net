@@ -2,6 +2,7 @@
 title: '14: NP-Completeness'
 pubDate: '2025-12-31'
 order: 14
+viewId: 19
 ---
 
 *Coming soon.*

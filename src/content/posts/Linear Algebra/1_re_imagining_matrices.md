@@ -2,6 +2,7 @@
 title: "1: Re-imagining Matrices"
 pubDate: "2025-11-29"
 order: 1
+viewId: 101
 ---
 
 Linear algebra feels abstract until you realize it behaves exactly like a kitchen.

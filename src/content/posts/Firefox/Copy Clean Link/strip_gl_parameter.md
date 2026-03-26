@@ -2,6 +2,7 @@
 title: 'Stripping the _gl Parameter'
 pubDate: '2025-11-05'
 order: 1
+viewId: 71
 ---
 
 *My very first day on the job: adding one line to strip Google Analytics linker parameters from copied URLs.*

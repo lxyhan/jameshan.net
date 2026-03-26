@@ -1,6 +1,7 @@
 ---
 title: "How We Got Here"
 pubDate: "2026-03-15"
+viewId: 145
 ---
 
 ## Athletic Background

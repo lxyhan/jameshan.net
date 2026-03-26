@@ -2,6 +2,7 @@
 title: '3: Estimators & Properties'
 pubDate: '2025-12-31'
 order: 3
+viewId: 7
 ---
 
 *Coming soon.*

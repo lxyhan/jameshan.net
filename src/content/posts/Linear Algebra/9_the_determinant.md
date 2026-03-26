@@ -2,6 +2,7 @@
 title: '9: The Determinant'
 pubDate: '2025-12-06'
 order: 9
+viewId: 109
 ---
 
 The determinant is a single number that captures something essential about a square matrix: how it scales volume. A determinant of zero means the matrix collapses space,it's singular. A nonzero determinant means the matrix is invertible. This geometric meaning drives everything else.

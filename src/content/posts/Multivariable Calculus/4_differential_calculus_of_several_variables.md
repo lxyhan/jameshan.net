@@ -2,6 +2,7 @@
 title: '4: Differential Calculus of Several Variables'
 pubDate: '2025-01-28'
 order: 4
+viewId: 139
 ---
 
 Extending derivatives to functions of multiple variables.
