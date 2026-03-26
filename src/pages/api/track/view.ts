@@ -38,7 +38,7 @@ function getClientIP(request: Request): string {
 }
 
 // Owner IPs to exclude (comma-separated env var)
-const OWNER_IPS = (process.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
+const OWNER_IPS = (import.meta.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
 
 function isOwner(ip: string): boolean {
   return OWNER_IPS.includes(ip) || ip === 'unknown';

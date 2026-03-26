@@ -1,9 +1,24 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import { themeConfig } from '@/config'
----
+import { getCollection } from 'astro:content'
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+const posts = await getCollection('posts')
+const postsWithViewId = posts
+  .filter(p => p.data.viewId)
+  .map(p => ({ id: p.id, title: p.data.title, viewId: p.data.viewId }))
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+// Build viewId -> title lookup for the page list
+const viewIdToTitle: Record<string, string> = {}
+const viewIdToPath: Record<string, string> = {}
+postsWithViewId.forEach(p => {
+  if (p.viewId) {
+    viewIdToTitle[String(p.viewId)] = p.title
+    viewIdToPath[String(p.viewId)] = '/' + p.id
+  }
+})
+---
 
 <IndexLayout
   title={`Analytics · ${themeConfig.site.title}`}
@@ -13,7 +28,7 @@ import { themeConfig } from '@/config'
   <div class="analytics-page">
     <h1>Analytics</h1>
 
-    <p class="methodology">Page views are recorded to a Supabase Postgres database on each request. Bot traffic is identified using user-agent pattern matching and excluded from counts. To prevent artificial inflation from page refreshes or rapid navigation, views from the same IP address to the same page within a 2.5-minute window are deduplicated at query time. IP addresses are stored as SHA-256 hashes, not in plaintext. No cookies are used, no fingerprinting, no third-party scripts. The raw view data is queried client-side and aggregated in the browser.</p>
+    <p class="methodology">Views are recorded per page load, deduplicated by IP (10-minute cooldown), with bots and owner traffic excluded. No cookies, no fingerprinting.</p>
 
     <div class="stats-row">
       <div class="stat">
@@ -33,6 +48,12 @@ import { themeConfig } from '@/config'
           <option value="30">30</option>
           <option value="60" selected>60</option>
         </select> days</h2>
+        <select id="post-select">
+          <option value="">All pages</option>
+          {postsWithViewId.map(p => (
+            <option value={p.viewId}>{p.title}</option>
+          ))}
+        </select>
       </div>
       <div class="histogram-container">
         <div class="y-axis" id="y-axis">
@@ -40,8 +61,7 @@ import { themeConfig } from '@/config'
           <span id="y-mid"></span>
           <span id="y-min">0</span>
         </div>
-        <div class="histogram" id="histogram">
-                  </div>
+        <div class="histogram" id="histogram"></div>
         <div class="tooltip" id="tooltip"></div>
       </div>
       <div class="histogram-labels">
@@ -50,22 +70,19 @@ import { themeConfig } from '@/config'
       </div>
     </div>
 
-    <div class="locations-section">
-      <h2>Views by country (all time)</h2>
-      <div class="locations-grid">
-        <div class="map-container" id="map-container"></div>
-        <div class="locations-list" id="locations-list">
-          <span class="loading-text">Loading...</span>
-        </div>
+    <div class="pages-section">
+      <h2>Pages by views</h2>
+      <div class="pages-list" id="pages-list">
+        <span class="loading-text">Loading...</span>
       </div>
     </div>
   </div>
 </IndexLayout>
 
-<script>
+<script define:vars={{ viewIdToTitle, viewIdToPath }}>
   const STATS_CACHE_KEY = 'analytics_stats_cache';
 
-  function showStats(data: any) {
+  function showStats(data) {
     const todayEl = document.getElementById('today-views');
     const allEl = document.getElementById('all-views');
     if (todayEl && data?.humanToday !== undefined) {
@@ -79,15 +96,10 @@ import { themeConfig } from '@/config'
   }
 
   async function loadStats() {
-    // Show cached data immediately
     const cached = localStorage.getItem(STATS_CACHE_KEY);
     if (cached) {
-      try {
-        showStats(JSON.parse(cached));
-      } catch { /* ignore parse errors */ }
+      try { showStats(JSON.parse(cached)); } catch {}
     }
-
-    // Fetch fresh data
     try {
       const response = await fetch('/api/analytics');
       if (response.ok) {
@@ -100,41 +112,38 @@ import { themeConfig } from '@/config'
     }
   }
 
-  function getHistogramCacheKey(days: number) {
+  function getHistogramCacheKey(days) {
     return `analytics_histogram_${days}`;
   }
 
-  function showHistogram(data: any) {
+  function showHistogram(data) {
     const container = document.getElementById('histogram');
     const startLabel = document.getElementById('start-date');
     const endLabel = document.getElementById('end-date');
     const tooltip = document.getElementById('tooltip');
 
     if (container && data?.days && data.days.length > 0) {
-      const maxViews = Math.max(...data.days.map((d: any) => d.views), 1);
+      const maxViews = Math.max(...data.days.map((d) => d.views), 1);
 
-      container.innerHTML = data.days.map((day: any) => {
+      container.innerHTML = data.days.map((day) => {
         const height = Math.max((day.views / maxViews) * 100, 2);
         return `<div class="bar" style="height: ${height}%" data-date="${day.date}" data-views="${day.views}"></div>`;
       }).join('');
 
       container.classList.add('loaded');
 
-      // Update y-axis labels
       const yMax = document.getElementById('y-max');
       const yMid = document.getElementById('y-mid');
       if (yMax) yMax.textContent = maxViews.toString();
       if (yMid) yMid.textContent = Math.round(maxViews / 2).toString();
 
-      // Add hover listeners
       container.querySelectorAll('.bar').forEach(bar => {
         bar.addEventListener('mouseenter', (e) => {
-          const target = e.target as HTMLElement;
+          const target = e.target;
           const date = new Date(target.dataset.date + 'T00:00:00');
           const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-          const views = target.dataset.views;
           if (tooltip) {
-            tooltip.textContent = `${formatted}: ${views} views`;
+            tooltip.textContent = `${formatted}: ${target.dataset.views} views`;
             tooltip.style.opacity = '1';
           }
         });
@@ -154,20 +163,18 @@ import { themeConfig } from '@/config'
     }
   }
 
-  async function loadHistogram(days = 60) {
-    const cacheKey = getHistogramCacheKey(days);
+  let currentViewId = '';
 
-    // Show cached data immediately
+  async function loadHistogram(days = 60, viewId = '') {
+    const cacheKey = viewId ? `analytics_histogram_${days}_${viewId}` : getHistogramCacheKey(days);
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
-      try {
-        showHistogram(JSON.parse(cached));
-      } catch { /* ignore parse errors */ }
+      try { showHistogram(JSON.parse(cached)); } catch {}
     }
-
-    // Fetch fresh data
     try {
-      const response = await fetch(`/api/analytics/daily?days=${days}`);
+      let url = `/api/analytics/daily?days=${days}`;
+      if (viewId) url += `&viewId=${viewId}`;
+      const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem(cacheKey, JSON.stringify(data));
@@ -178,205 +185,65 @@ import { themeConfig } from '@/config'
     }
   }
 
-  // Dropdown handler
-  const daysSelect = document.getElementById('days-select') as HTMLSelectElement;
-  if (daysSelect) {
-    daysSelect.addEventListener('change', () => {
-      loadHistogram(parseInt(daysSelect.value, 10));
-    });
+  const daysSelect = document.getElementById('days-select');
+  const postSelect = document.getElementById('post-select');
+
+  function reloadHistogram() {
+    const days = parseInt(daysSelect?.value || '60', 10);
+    currentViewId = postSelect?.value || '';
+    loadHistogram(days, currentViewId);
   }
 
-  // Country code to name mapping
-  const countryNames: Record<string, string> = {
-    US: 'United States', CA: 'Canada', GB: 'United Kingdom', DE: 'Germany',
-    FR: 'France', JP: 'Japan', AU: 'Australia', CN: 'China', IN: 'India',
-    BR: 'Brazil', MX: 'Mexico', KR: 'South Korea', IT: 'Italy', ES: 'Spain',
-    NL: 'Netherlands', SE: 'Sweden', NO: 'Norway', DK: 'Denmark', FI: 'Finland',
-    PL: 'Poland', RU: 'Russia', UA: 'Ukraine', SG: 'Singapore', HK: 'Hong Kong',
-    TW: 'Taiwan', NZ: 'New Zealand', IE: 'Ireland', CH: 'Switzerland', AT: 'Austria',
-    BE: 'Belgium', PT: 'Portugal', CZ: 'Czech Republic', RO: 'Romania', HU: 'Hungary',
-    GR: 'Greece', IL: 'Israel', AE: 'UAE', SA: 'Saudi Arabia', ZA: 'South Africa',
-    AR: 'Argentina', CL: 'Chile', CO: 'Colombia', PH: 'Philippines', MY: 'Malaysia',
-    TH: 'Thailand', VN: 'Vietnam', ID: 'Indonesia', PK: 'Pakistan', BD: 'Bangladesh',
-    EG: 'Egypt', NG: 'Nigeria', KE: 'Kenya', TR: 'Turkey',
-  };
+  if (daysSelect) daysSelect.addEventListener('change', reloadHistogram);
+  if (postSelect) postSelect.addEventListener('change', reloadHistogram);
 
-  // ISO Alpha-3 to Alpha-2 mapping for GeoJSON
-  const iso3to2: Record<string, string> = {
-    AFG: 'AF', ALB: 'AL', DZA: 'DZ', AGO: 'AO', ARG: 'AR', ARM: 'AM', AUS: 'AU', AUT: 'AT',
-    AZE: 'AZ', BHS: 'BS', BGD: 'BD', BLR: 'BY', BEL: 'BE', BLZ: 'BZ', BEN: 'BJ', BTN: 'BT',
-    BOL: 'BO', BIH: 'BA', BWA: 'BW', BRA: 'BR', BRN: 'BN', BGR: 'BG', BFA: 'BF', BDI: 'BI',
-    KHM: 'KH', CMR: 'CM', CAN: 'CA', CAF: 'CF', TCD: 'TD', CHL: 'CL', CHN: 'CN', COL: 'CO',
-    COG: 'CG', COD: 'CD', CRI: 'CR', HRV: 'HR', CUB: 'CU', CYP: 'CY', CZE: 'CZ', DNK: 'DK',
-    DOM: 'DO', ECU: 'EC', EGY: 'EG', SLV: 'SV', GNQ: 'GQ', ERI: 'ER', EST: 'EE', ETH: 'ET',
-    FIN: 'FI', FRA: 'FR', GAB: 'GA', GMB: 'GM', GEO: 'GE', DEU: 'DE', GHA: 'GH', GRC: 'GR',
-    GTM: 'GT', GIN: 'GN', GNB: 'GW', GUY: 'GY', HTI: 'HT', HND: 'HN', HKG: 'HK', HUN: 'HU',
-    ISL: 'IS', IND: 'IN', IDN: 'ID', IRN: 'IR', IRQ: 'IQ', IRL: 'IE', ISR: 'IL', ITA: 'IT',
-    JAM: 'JM', JPN: 'JP', JOR: 'JO', KAZ: 'KZ', KEN: 'KE', PRK: 'KP', KOR: 'KR', KWT: 'KW',
-    KGZ: 'KG', LAO: 'LA', LVA: 'LV', LBN: 'LB', LSO: 'LS', LBR: 'LR', LBY: 'LY', LTU: 'LT',
-    LUX: 'LU', MKD: 'MK', MDG: 'MG', MWI: 'MW', MYS: 'MY', MLI: 'ML', MRT: 'MR', MEX: 'MX',
-    MDA: 'MD', MNG: 'MN', MNE: 'ME', MAR: 'MA', MOZ: 'MZ', MMR: 'MM', NAM: 'NA', NPL: 'NP',
-    NLD: 'NL', NZL: 'NZ', NIC: 'NI', NER: 'NE', NGA: 'NG', NOR: 'NO', OMN: 'OM', PAK: 'PK',
-    PAN: 'PA', PNG: 'PG', PRY: 'PY', PER: 'PE', PHL: 'PH', POL: 'PL', PRT: 'PT', PRI: 'PR',
-    QAT: 'QA', ROU: 'RO', RUS: 'RU', RWA: 'RW', SAU: 'SA', SEN: 'SN', SRB: 'RS', SLE: 'SL',
-    SGP: 'SG', SVK: 'SK', SVN: 'SI', SOM: 'SO', ZAF: 'ZA', SSD: 'SS', ESP: 'ES', LKA: 'LK',
-    SDN: 'SD', SUR: 'SR', SWZ: 'SZ', SWE: 'SE', CHE: 'CH', SYR: 'SY', TWN: 'TW', TJK: 'TJ',
-    TZA: 'TZ', THA: 'TH', TGO: 'TG', TTO: 'TT', TUN: 'TN', TUR: 'TR', TKM: 'TM', UGA: 'UG',
-    UKR: 'UA', ARE: 'AE', GBR: 'GB', USA: 'US', URY: 'UY', UZB: 'UZ', VEN: 'VE', VNM: 'VN',
-    YEM: 'YE', ZMB: 'ZM', ZWE: 'ZW',
-  };
+  function showPages(data) {
+    const container = document.getElementById('pages-list');
+    if (!container || !data?.pages) return;
 
-  let mapInstance: any = null;
-
-  async function loadMap(data: { countries: Record<string, number>, total: number }) {
-    const mapContainer = document.getElementById('map-container');
-    if (!mapContainer) return;
-
-    // Dynamically import Leaflet
-    const leaflet = await import('leaflet');
-    const L = leaflet.default || leaflet;
-
-    // Clean up existing map
-    if (mapInstance) {
-      mapInstance.remove();
-    }
-
-    try {
-      // Fetch GeoJSON
-      const geoResponse = await fetch('/countries.geo.json');
-      const geoData = await geoResponse.json();
-
-      const entries = Object.entries(data.countries);
-      const maxCount = Math.max(...entries.map(([, c]) => c), 1);
-
-      // Get color based on count
-      function getColor(count: number): string {
-        if (!count) return 'var(--border)';
-        const intensity = Math.min(count / maxCount, 1);
-        // Use a black scale
-        const lightness = 70 - (intensity * 60);
-        return `hsl(0, 0%, ${lightness}%)`;
-      }
-
-      // Create map
-      mapInstance = L.map(mapContainer, {
-        zoomControl: false,
-        attributionControl: false,
-        dragging: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        touchZoom: false,
-      }).fitWorld().setView([35, 0], 1);
-
-      // Style function
-      function style(feature: any) {
-        const iso3 = feature.id;
-        const iso2 = iso3to2[iso3] || iso3;
-        const count = data.countries[iso2] || 0;
-        return {
-          fillColor: getColor(count),
-          weight: 0.5,
-          opacity: 1,
-          color: 'var(--bg)',
-          fillOpacity: 0.9,
-        };
-      }
-
-      // Hover handlers
-      function onEachFeature(feature: any, layer: any) {
-        const iso3 = feature.id;
-        const iso2 = iso3to2[iso3] || iso3;
-        const count = data.countries[iso2] || 0;
-        const name = feature.properties.name;
-
-        if (count > 0) {
-          layer.bindTooltip(`${name}: ${count} views`, {
-            sticky: true,
-            className: 'map-tooltip-leaflet',
-          });
-        }
-
-        layer.on({
-          mouseover: (e: any) => {
-            if (count > 0) {
-              e.target.setStyle({ fillOpacity: 0.7 });
-            }
-          },
-          mouseout: (e: any) => {
-            if (count > 0) {
-              e.target.setStyle({ fillOpacity: 0.9 });
-            }
-          },
-        });
-      }
-
-      L.geoJSON(geoData, { style, onEachFeature }).addTo(mapInstance);
-      mapContainer.classList.add('loaded');
-    } catch (error) {
-      console.debug('Failed to load map:', error);
-    }
-  }
-
-  function showLocations(data: { countries: Record<string, number>, total: number }) {
-    const container = document.getElementById('locations-list');
-    if (!container) return;
-
-    // Also update the map
-    loadMap(data);
-
-    const entries = Object.entries(data.countries);
-    if (entries.length === 0) {
-      container.innerHTML = '<span class="no-data">No location data yet</span>';
+    if (data.pages.length === 0) {
+      container.innerHTML = '<span class="loading-text">No data</span>';
       return;
     }
 
-    container.innerHTML = entries
-      .slice(0, 15) // Show top 15 countries
-      .map(([code, count]) => {
-        const name = countryNames[code] || code;
-        const percent = ((count / data.total) * 100).toFixed(1);
-        return `<div class="location-item">
-          <span class="country-name">${name}</span>
-          <span class="country-count">${count} (${percent}%)</span>
-        </div>`;
-      })
-      .join('');
+    container.innerHTML = data.pages.map((page) => {
+      const vid = page.viewId;
+      const href = vid && viewIdToPath[String(vid)] ? viewIdToPath[String(vid)] : page.path;
+      return `<a href="${href}" class="page-row">
+        <span class="page-title">${href}</span>
+        <span class="page-views">${page.views}</span>
+      </a>`;
+    }).join('');
 
     container.classList.add('loaded');
   }
 
-  async function loadLocations() {
-    const cacheKey = 'analytics_locations_cache';
-
-    // Show cached data immediately
+  async function loadPages() {
+    const cacheKey = 'analytics_pages_cache';
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
-      try {
-        showLocations(JSON.parse(cached));
-      } catch { /* ignore parse errors */ }
+      try { showPages(JSON.parse(cached)); } catch {}
     }
-
-    // Fetch fresh data
     try {
-      const response = await fetch('/api/analytics/locations');
+      const response = await fetch('/api/analytics/top');
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem(cacheKey, JSON.stringify(data));
-        showLocations(data);
+        showPages(data);
       }
     } catch (error) {
-      console.debug('Failed to load locations:', error);
+      console.debug('Failed to load pages:', error);
     }
   }
 
   loadStats();
   loadHistogram(60);
-  loadLocations();
+  loadPages();
 
   document.addEventListener('astro:page-load', () => {
     loadStats();
     loadHistogram();
-    loadLocations();
+    loadPages();
   });
 </script>
 
@@ -398,6 +265,13 @@ import { themeConfig } from '@/config'
     font-weight: normal;
   }
 
+  .methodology {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
   .stats-row {
     display: flex;
     gap: 2rem;
@@ -413,23 +287,20 @@ import { themeConfig } from '@/config'
     font-size: 1.5rem;
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    min-width: 45px;
+    min-height: 1.8rem;
+  }
+
+  .stat-value.loaded {
+    opacity: 1;
   }
 
   .stat-label {
     font-size: 0.8rem;
     color: var(--text-secondary);
-  }
-
-  .methodology {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-  }
-
-  .methodology a {
-    color: var(--text-secondary);
-    text-decoration: underline;
   }
 
   .histogram-section {
@@ -439,6 +310,8 @@ import { themeConfig } from '@/config'
   .histogram-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .histogram-header h2 {
@@ -461,6 +334,25 @@ import { themeConfig } from '@/config'
   #days-select:focus {
     outline: none;
     border-bottom-color: var(--text-primary);
+  }
+
+  #post-select {
+    font-size: 0.8rem;
+    font-family: inherit;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #post-select:focus {
+    outline: none;
+    border-color: var(--text-primary);
   }
 
   .histogram-container {
@@ -488,6 +380,12 @@ import { themeConfig } from '@/config'
     height: 120px;
     padding: 0.5rem 0;
     flex: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .histogram.loaded {
+    opacity: 1;
   }
 
   .tooltip {
@@ -521,127 +419,65 @@ import { themeConfig } from '@/config'
     margin-top: 0.25rem;
   }
 
-  .stat-value {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: inline-block;
-    min-width: 45px;
-    min-height: 1.8rem;
-  }
-
-  .stat-value.loaded {
-    opacity: 1;
-  }
-
-  .histogram {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .histogram.loaded {
-    opacity: 1;
-  }
-
   @media (max-width: 768px) {
-    .histogram {
-      height: 80px;
-    }
-    .y-axis {
-      height: 80px;
-    }
+    .histogram { height: 80px; }
+    .y-axis { height: 80px; }
   }
 
-  .locations-section {
+  /* Pages list */
+  .pages-section {
     margin-top: 2rem;
   }
 
-  .locations-grid {
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  .map-container {
-    position: relative;
-    width: 100%;
-    height: 380px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    background: var(--bg-secondary);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .map-container.loaded {
-    opacity: 1;
-  }
-
-  /* Leaflet map overrides */
-  .map-container .leaflet-container {
-    background: var(--bg-secondary);
-    height: 100%;
-    width: 100%;
-  }
-
-  .map-tooltip-leaflet {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    box-shadow: none;
-  }
-
-  .map-tooltip-leaflet::before {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    .locations-grid {
-      grid-template-columns: 1fr;
-    }
-    .map-container {
-      height: 200px;
-    }
-  }
-
-  .locations-list {
+  .pages-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
-  .locations-list.loaded {
+  .pages-list.loaded {
     opacity: 1;
   }
 
-  .loading-text, .no-data {
+  .loading-text {
     font-size: 0.8rem;
     color: var(--text-secondary);
   }
 
-  .location-item {
+  .page-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.85rem;
-    padding: 0.25rem 0;
+    align-items: center;
+    padding: 0.3rem 0;
     border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    transition: color 0.15s;
   }
 
-  .location-item:last-child {
+  .page-row:hover {
+    color: var(--primary);
+  }
+
+  .page-row:last-child {
     border-bottom: none;
   }
 
-  .country-name {
-    color: var(--text-primary);
+  .page-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 1rem;
   }
 
-  .country-count {
+  .page-views {
+    font-family: var(--mono);
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    flex-shrink: 0;
   }
 </style>

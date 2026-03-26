@@ -11,23 +11,49 @@ const { viewId } = Astro.props;
 </span>
 
 <script>
+  const VIEW_CACHE_KEY = 'post_views_cache';
+
+  function getViewCache(): Record<string, number> {
+    try {
+      return JSON.parse(localStorage.getItem(VIEW_CACHE_KEY) || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function setViewCache(viewId: string, count: number) {
+    const cache = getViewCache();
+    cache[viewId] = count;
+    localStorage.setItem(VIEW_CACHE_KEY, JSON.stringify(cache));
+  }
+
   document.addEventListener('astro:page-load', () => {
     document.querySelectorAll('.post-views').forEach(async (el) => {
       const viewId = el.getAttribute('data-view-id');
       if (!viewId) return;
 
+      const countEl = el.querySelector('.view-count') as HTMLElement;
+      if (!countEl) return;
+
+      // Show cached value immediately
+      const cached = getViewCache()[viewId];
+      if (cached !== undefined) {
+        countEl.textContent = cached + ' views';
+        countEl.classList.add('loaded');
+      }
+
+      // Fetch fresh in background
       try {
         const response = await fetch(`/api/analytics?viewId=${encodeURIComponent(viewId)}`);
         if (response.ok) {
           const data = await response.json();
-          const countEl = el.querySelector('.view-count') as HTMLElement;
-          if (countEl) {
-            countEl.textContent = (data.allTime || 0) + ' views';
-            countEl.classList.add('loaded');
-          }
+          const count = data.allTime || 0;
+          setViewCache(viewId, count);
+          countEl.textContent = count + ' views';
+          countEl.classList.add('loaded');
         }
-      } catch (error) {
-        // Silent fail
+      } catch {
+        // Silent fail, cached value still showing
       }
     });
   });

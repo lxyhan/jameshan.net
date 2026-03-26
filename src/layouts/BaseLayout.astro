@@ -139,27 +139,27 @@ const posts = await getSortedFilteredPosts()
     min-width: 0;
   }
 
-  /* Medium+ screens: side by side */
+  /* Medium+ screens: three-column grid
+     Left rail (sidebar) | Content | Right rail (mini chart)
+     Uses CSS grid with named columns so each zone is explicit */
   @media (min-width: 900px) {
     .two-col-grid {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
       padding: 0 2rem;
-      align-items: flex-start;
-      justify-content: center;
-      margin-left: auto;
-      margin-right: auto;
+      align-items: start;
     }
 
     .sidebar-area {
       order: 1;
-      width: 300px;
-      flex-shrink: 0;
+      width: 280px;
       margin-top: 0;
       padding-top: 0;
       border-top: none;
       position: fixed;
       top: 6rem;
-      left: max(2rem, calc(50% - 600px + 2rem));
+      left: 2rem;
       max-height: calc(100vh - 8rem);
       overflow-y: auto;
       overflow-x: hidden;
@@ -174,21 +174,31 @@ const posts = await getSortedFilteredPosts()
 
     .content-area {
       order: 2;
-      width: 65ch;
-      flex-shrink: 0;
-      margin-left: calc(300px + 4rem);
+      grid-column: 2;
+      max-width: 85ch;
     }
   }
 
-  /* Large screens: wider content */
   @media (min-width: 1200px) {
-    .sidebar-area {
-      width: 320px;
+    .two-col-grid {
+      grid-template-columns: 300px 1fr;
+      gap: 4rem;
     }
 
-    .content-area {
-      width: 75ch;
-      margin-left: calc(320px + 5rem);
+    .sidebar-area {
+      width: 300px;
+    }
+  }
+
+  @media (min-width: 1500px) {
+    .two-col-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      grid-template-columns: 300px 1fr;
+    }
+
+    .sidebar-area {
+      left: calc(50% - 700px);
     }
   }
 

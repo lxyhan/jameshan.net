@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 
 export const prerender = false;
 
-const OWNER_IPS = (process.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
+const OWNER_IPS = (import.meta.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
 
 export const GET: APIRoute = async ({ request }) => {
   if (!supabase) {

@@ -14,6 +14,7 @@ export const GET: APIRoute = async ({ request }) => {
   try {
     const url = new URL(request.url);
     const daysParam = url.searchParams.get('days') || '60';
+    const viewIdParam = url.searchParams.get('viewId');
     const numDays = Math.min(parseInt(daysParam, 10) || 60, 365);
 
     // Get date range
@@ -30,12 +31,18 @@ export const GET: APIRoute = async ({ request }) => {
       let hasMore = true;
 
       while (hasMore) {
-        const { data, error } = await supabase
+        let query = supabase
           .from('page_views')
-          .select('viewed_at, ip_address, page_path, is_bot')
+          .select('viewed_at, ip_address, page_path, view_id, is_bot')
           .gte('viewed_at', startDate.toISOString())
           .order('viewed_at', { ascending: true })
           .range(offset, offset + batchSize - 1);
+
+        if (viewIdParam) {
+          query = query.eq('view_id', parseInt(viewIdParam, 10));
+        }
+
+        const { data, error } = await query;
 
         if (error) throw error;
 
@@ -53,12 +60,17 @@ export const GET: APIRoute = async ({ request }) => {
 
     const data = await fetchAllViews();
 
-    // Apply session-based deduplication (2.5 min cooldown per IP per page)
-    const filterSessionDupes = (views: any[]) => {
-      const lastView = new Map<string, number>();
-      const cooldownMs = 2.5 * 60 * 1000;
+    // Filter owner IPs and apply 10-min cooldown dedup
+    const OWNER_IPS = (import.meta.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
 
-      return views.filter(v => {
+    const filterViews = (views: any[]) => {
+      const cleaned = views.filter(v =>
+        v.ip_address && v.ip_address !== 'unknown' && v.ip_address !== 'None' && !OWNER_IPS.includes(v.ip_address)
+      );
+      const lastView = new Map<string, number>();
+      const cooldownMs = 10 * 60 * 1000;
+
+      return cleaned.filter(v => {
         const key = `${v.ip_address}|${v.page_path}`;
         const viewTime = new Date(v.viewed_at).getTime();
         const last = lastView.get(key);
@@ -71,7 +83,7 @@ export const GET: APIRoute = async ({ request }) => {
       });
     };
 
-    const filtered = filterSessionDupes(data || []);
+    const filtered = filterViews(data || []);
 
     // Group by day
     const dayMap = new Map<string, number>();
@@ -99,7 +111,45 @@ export const GET: APIRoute = async ({ request }) => {
       views,
     }));
 
-    return new Response(JSON.stringify({ days }), {
+    // If requested, also compute the global max daily views (across all posts)
+    const includeMax = url.searchParams.get('includeMax') === 'true';
+    let globalMaxDaily = 0;
+
+    if (includeMax) {
+      // Fetch all views (no viewId filter) for the same date range
+      let allViews: any[] = [];
+      let allOffset = 0;
+      let allHasMore = true;
+
+      while (allHasMore) {
+        const { data: allData, error: allError } = await supabase
+          .from('page_views')
+          .select('viewed_at, ip_address, page_path, is_bot')
+          .gte('viewed_at', startDate.toISOString())
+          .order('viewed_at', { ascending: true })
+          .range(allOffset, allOffset + 1000 - 1);
+
+        if (allError) throw allError;
+        if (allData && allData.length > 0) {
+          allViews = allViews.concat(allData);
+          allOffset += 1000;
+          allHasMore = allData.length === 1000;
+        } else {
+          allHasMore = false;
+        }
+      }
+
+      const allFiltered = filterViews(allViews);
+      const globalDayMap = new Map<string, number>();
+      allFiltered.forEach(v => {
+        if (v.is_bot) return;
+        const day = new Date(v.viewed_at).toISOString().split('T')[0];
+        globalDayMap.set(day, (globalDayMap.get(day) || 0) + 1);
+      });
+      globalMaxDaily = Math.max(...globalDayMap.values(), 0);
+    }
+
+    return new Response(JSON.stringify({ days, ...(includeMax ? { globalMaxDaily } : {}) }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
