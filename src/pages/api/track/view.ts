@@ -37,7 +37,12 @@ function getClientIP(request: Request): string {
   return 'unknown';
 }
 
-// Owner traffic tracking removed - all traffic now counts with session-based cooldown
+// Owner IPs to exclude (comma-separated env var)
+const OWNER_IPS = (process.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
+
+function isOwner(ip: string): boolean {
+  return OWNER_IPS.includes(ip);
+}
 
 export const POST: APIRoute = async ({ request }) => {
   if (!supabase) {
@@ -61,8 +66,16 @@ export const POST: APIRoute = async ({ request }) => {
     const userAgent = request.headers.get('user-agent') || '';
     const ip = getClientIP(request);
 
-    // Check if this IP viewed this page within the last 2.5 minutes
-    const cooldownMinutes = 2.5;
+    // Skip tracking for owner IPs
+    if (isOwner(ip)) {
+      return new Response(JSON.stringify({ success: true, skipped: true, reason: 'owner' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Check if this IP viewed this page within the last 10 minutes
+    const cooldownMinutes = 10;
     const cooldownTime = new Date(Date.now() - cooldownMinutes * 60 * 1000);
 
     const { data: recentViews, error: checkError } = await supabase

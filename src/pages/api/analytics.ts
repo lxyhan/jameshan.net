@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabase';
 
 export const prerender = false;
 
+const OWNER_IPS = (process.env.OWNER_IPS || '').split(',').map(ip => ip.trim()).filter(Boolean);
+
 export const GET: APIRoute = async ({ request }) => {
   if (!supabase) {
     return new Response(JSON.stringify({
@@ -71,11 +73,14 @@ export const GET: APIRoute = async ({ request }) => {
 
     const allDataRaw = await fetchAllData();
 
-    // Fallback filter for old data: remove views within 2.5 min of previous view (same IP + page)
-    const filterSessionDupes = (data: any[]) => {
-      const sorted = [...data].sort((a, b) => new Date(a.viewed_at).getTime() - new Date(b.viewed_at).getTime());
+    // Filter out owner IPs and remove views within 10 min of previous view (same IP + page)
+    const filterViews = (data: any[]) => {
+      const filtered = OWNER_IPS.length > 0
+        ? data.filter(v => !OWNER_IPS.includes(v.ip_address))
+        : data;
+      const sorted = [...filtered].sort((a, b) => new Date(a.viewed_at).getTime() - new Date(b.viewed_at).getTime());
       const lastView = new Map<string, number>(); // "ip|path" -> timestamp
-      const cooldownMs = 2.5 * 60 * 1000;
+      const cooldownMs = 10 * 60 * 1000;
 
       return sorted.filter(v => {
         const key = `${v.ip_address}|${v.page_path}`;
@@ -90,8 +95,8 @@ export const GET: APIRoute = async ({ request }) => {
       });
     };
 
-    const allData = filterSessionDupes(allDataRaw);
-    const filteredTodayData = filterSessionDupes(todayData || []);
+    const allData = filterViews(allDataRaw);
+    const filteredTodayData = filterViews(todayData || []);
 
     // Separate bots and humans
     const humanData = allData.filter(d => !d.is_bot);
