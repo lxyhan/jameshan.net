@@ -13,3 +13,4 @@ viewId: 78
 
 1. [Privacy Metrics Service](/firefox/privacy-metrics-widget/privacy_metrics_service) - Backend service and IPC layer
 2. [Privacy Metrics Component](/firefox/privacy-metrics-widget/privacy_metrics_component) - Lit web component, localization, and tests
+3. [Top Trackers Database](/firefox/privacy-metrics-widget/top_trackers_database) - Schema migration and per-origin storage for top-K tracker queries

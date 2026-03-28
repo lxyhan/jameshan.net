@@ -35,3 +35,4 @@ The work started small (a one-line JSON change to strip a tracking parameter) an
 5. [Clear Data Dialog](/firefox/clear-data-dialog/index) - Modernizing the clear history dialog
 6. [SmartBlock](/firefox/smartblock/index) - Preserving useful content from blocked embeds
 7. [Community Engagement](/firefox/community-engagement/index) - Events, talks, and networking at Mozilla
+8. [Tracker Performance Cost Model](/firefox/tracker-performance-cost-model/index) - Multi-target XGBoost regression scoring tracker domains by performance cost
